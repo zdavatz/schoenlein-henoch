@@ -67,7 +67,7 @@ Chapel-Hill-Nomenklatur 2012 und geht von dort in den Fall.
 Der Verlauf der letzten Wochen und was er bedeutet · den Hämoglobinwert
 lesen und was die Infusion mit ihm macht · Krankheitsbild und die vier
 betroffenen Bereiche · was den Schub ausgelöst haben kann · warum das Alter
-den Verlauf ändert · was ein früherer Schub bedeutet · Herkunft des
+den Verlauf ändert · belegte Fälle älterer Frauen, nah an 84 · was ein früherer Schub bedeutet · Herkunft des
 Blutverlusts · eine Tabelle der notwendigen Abklärungen · Behandlung ·
 Novalgin und was dabei zu kontrollieren ist · die Magenentzündung und woher
 sie kommen kann · Pantoprazol, sein Zeitpunkt und seine Folgen · was sie
