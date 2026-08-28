@@ -44,12 +44,13 @@ eingebettet.
 | Datei | Aufgabe |
 |---|---|
 | `src/inhalt.rs` | **Der gesamte Text**, als Daten. Wer Inhalt ändert, ändert ihn nur hier. |
-| `src/html.rs` | HTML-Ausgabe, bindet `src/blatt.css` per `include_str!` ein |
+| `src/html.rs` | HTML-Ausgabe |
+| `src/blatt.css` | Gestaltung der HTML-Ausgabe, per `include_str!` eingebunden |
 | `src/pdf.rs` | PDF-Satz und Link-Overlay |
 | `src/main.rs` | schreibt beide Dateien |
 | `fonts/` | DejaVu Sans, wird ins PDF eingebettet |
 
-Fünf Dinge, die beim Bauen Zeit gekostet haben:
+Acht Dinge, die beim Bauen Zeit gekostet haben:
 
 - **Links liegen hinter dem Wort, nicht auf einer eigenen Zeile.** Das
   frühere Verfahren – jeder Verweis allein auf seiner Zeile, erkannt an einer
@@ -135,8 +136,9 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
 ## Inhaltliches
 
 - **Jede medizinische Aussage gehört belegt**, nicht aus dem Gedächtnis
-  geschrieben. Die Quellen stehen am Schluss des Dokuments verlinkt; neue
-  Aussagen kommen mit einer neuen Quelle oder gar nicht.
+  geschrieben. Der Beleg hängt hinter dem Wort im Satz, das Verzeichnis am
+  Schluss führt die Literatur; neue Aussagen kommen mit einer neuen Quelle
+  oder gar nicht.
 - **Keine allgemeinen Ratschläge.** Alles im Blatt muss belegt *und* auf
   diese Patientin zugeschnitten sein. Herausgeflogen sind darum: die
   generische Warnzeichenliste «Was nicht warten darf», die Haushaltstipps
@@ -202,8 +204,9 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
 - Die Angaben zu Erwachsenen und Betagten sind der Kern. Das meiste, was
   man auf Deutsch zu dieser Krankheit findet, betrifft Kinder und führt bei
   einer 84-jährigen Patientin in die Irre.
-- Adressen, Präparate und Zuständigkeiten veralten. Das Datum in `STAND` und
-  in `FUSS` beim Prüfen mitführen.
+- Adressen, Präparate und Zuständigkeiten veralten. Das Datum in `STAND`
+  beim Prüfen mitführen – ebenso das Datum im Abschnitt zum Interaktions-
+  check, das den Lauf datiert.
 
 ## Vertraulichkeit
 
@@ -216,8 +219,8 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   Anwendungspasswörter in eingecheckten Dateien. Ein `.gitignore`-Eintrag
   ist eine Vorsichtsmassnahme, kein Schutz – ein `git add -f` genügt. Vor
   jedem Commit `git status` prüfen.
-- Die Mailadressen in den Adressangaben sind öffentliche Kontaktangaben von
-  Universitätsspital und Kinderspital Zürich, keine privaten.
+- Die Mailadressen in den Adressangaben sind öffentliche Kontaktangaben des
+  Universitätsspitals Zürich, keine privaten.
 
 ## Lizenz
 

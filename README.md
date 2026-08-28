@@ -50,34 +50,35 @@ verstanden werden:
 Das Blatt beginnt mit der Entdeckungsgeschichte von Heberden 1801 bis zur
 Chapel-Hill-Nomenklatur 2012 und geht von dort in den Fall.
 
-Krankheitsbild und die vier betroffenen Bereiche · Hämoglobinwert lesen und
-was die Infusion mit ihm macht ·
-was den Schub ausgelöst haben kann · warum das Alter den Verlauf ändert · was ein
-früherer Schub bedeutet · der Verlauf der letzten Wochen und was er bedeutet ·
-Herkunft des Blutverlusts · eine Tabelle der notwendigen Abklärungen ·
-Behandlung · Novalgin und was dabei zu kontrollieren ist · ein
-Interaktionscheck der beteiligten Medikamente · eine Übersicht
-der Abführmittel zum Trinken, die es in der
-Schweiz gibt, mit Wirkstoff und Süssstoff je Präparat und den beiden
-aromafreien Alternativen · Adressen in Zürich · was zum Termin mitgehört ·
-Fragen, die sich zu stellen lohnen · Quellen.
+Der Verlauf der letzten Wochen und was er bedeutet · den Hämoglobinwert
+lesen und was die Infusion mit ihm macht · Krankheitsbild und die vier
+betroffenen Bereiche · was den Schub ausgelöst haben kann · warum das Alter
+den Verlauf ändert · was ein früherer Schub bedeutet · Herkunft des
+Blutverlusts · eine Tabelle der notwendigen Abklärungen · Behandlung ·
+Novalgin und was dabei zu kontrollieren ist · ein Interaktionscheck der
+beteiligten Medikamente · eine Übersicht der Abführmittel zum Trinken, die
+es in der Schweiz gibt, mit Wirkstoff und Süssstoff je Präparat und den
+beiden aromafreien Alternativen · Adressen in Zürich · was zum Termin
+mitgehört · Fragen, die sich zu stellen lohnen · Quellen.
 
 **Keine allgemeinen Ratschläge.** Was hier steht, ist belegt und auf diese
 Patientin zugeschnitten. Generische Warnzeichenlisten, Haushaltstipps,
 Anmeldeprozeduren, Haftungshinweise und Angaben, die Kinder betreffen, sind
 bewusst nicht drin.
 
-Belegt ist alles mit der zitierten Literatur, im Dokument am Schluss
-verlinkt. Die Belege zu den Arzneimitteln liegen hinter den Wörtern: «Agranulozytose»
-führt auf die Warnhinweise, «Rubazonsäure» auf die sonstigen Hinweise, jeder
-Präparatename in den Tabellen auf seine Zusammensetzung – kapitelgenau, ein
-Klick, kein Blättern. Das Quellenverzeichnis führt je Präparat die
-vollständige Fachinformation. Der Interaktionscheck stammt aus
-[SDIF](https://sdif.oddb.org/?tab=check), dem Swiss Drug Interaction Finder, der die
-Schweizer Fachinformationen mit den abgestuften EPha-Daten abgleicht. Die Arzneimittelangaben stammen aus den Fachinformationen auf
-[ch.oddb.org](https://ch.oddb.org). Die Adressen sind öffentliche Angaben
-von Universitätsspital und Kinderspital Zürich, überprüft am
-28. August 2026.
+Belegt ist alles. **Die Belege liegen hinter den Wörtern**, nicht als
+URL-Liste darunter: «Agranulozytose» führt auf die Warnhinweise,
+«Rubazonsäure» auf die sonstigen Hinweise, jeder Präparatename in den
+Tabellen auf seine Zusammensetzung – kapitelgenau, ein Klick, kein Blättern.
+Das Verzeichnis am Schluss führt die Literatur und je Präparat die
+vollständige Fachinformation.
+
+Die Arzneimittelangaben stammen aus den Fachinformationen auf
+[ch.oddb.org](https://ch.oddb.org), der Interaktionscheck aus
+[SDIF](https://sdif.oddb.org), dem Swiss Drug Interaction Finder, der die
+Schweizer Fachinformationen mit den abgestuften EPha-Daten abgleicht. Die
+Adressen sind öffentliche Angaben des Universitätsspitals Zürich, überprüft
+am 28. August 2026.
 
 ## Bauen
 
@@ -105,6 +106,12 @@ Das PDF entsteht ohne Chrome und ohne WeasyPrint: [genpdf](https://crates.io/cra
 schreibt über printpdf, [lopdf](https://crates.io/crates/lopdf) legt die
 Hyperlinks nach, DejaVu Sans wird eingebettet – dieselbe Pipeline wie in
 [adhs-expert](https://github.com/zdavatz/adhs-expert).
+
+Den Absatzsatz macht das Blatt selbst, statt genpdfs `Paragraph` zu nehmen:
+Nur wer weiss, wo ein Wort zu liegen kommt, kann einen Link dahinterlegen.
+Die Klickfläche ist die Unterstreichung – sie wird in einer eigenen Farbe
+gezeichnet, und `add_links` liest ihre Seitenkoordinaten aus dem
+Inhaltsstrom. Anzeige und Messpunkt sind damit dasselbe.
 
 ## Lizenz
 
