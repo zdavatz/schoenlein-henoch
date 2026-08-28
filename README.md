@@ -19,7 +19,7 @@ Nahrungsaufnahme, kaum Flüssigkeit und seit etwa vier bis fünf Wochen gar
 kein Stuhlgang mehr. Die «Ausgangslage» im Dokument beschreibt diesen Fall.
 Namen kommen keine vor.
 
-Fünf Punkte, an denen sich das Blatt aufhängt, weil sie leicht falsch
+Sechs Punkte, an denen sich das Blatt aufhängt, weil sie leicht falsch
 verstanden werden:
 
 - **Beim Hämoglobin ist tief schlechter, nicht besser.** Die Verwechslung
@@ -35,6 +35,11 @@ verstanden werden:
 - **Die Krankheit ist nicht ansteckend**, aber der Funke ist häufig ein
   Infekt – bei 50 bis 90 Prozent geht einer voraus, oft mit Streptokokken
   der Gruppe A. Zwischen Infekt und Ausbruch liegen ein bis drei Wochen.
+- **Novalgin ist kein NSAR, aber auch nicht harmlos.** Metamizol kann das
+  Knochenmark treffen – Agranulozytose, aplastische Anämie, Panzytopenie –
+  und gehört damit auf die Liste der Erklärungen für den fallenden
+  Hämoglobinwert. Es kann ausserdem den Kreatininwert im Labor verfälschen
+  und den Urin harmlos rot färben.
 - **Die Infusion füllt das Blutvolumen wieder auf** – richtig bei einer
   Patientin, die kaum trinkt. Sie verdünnt aber auch: Der gemessene
   Hämoglobinwert kann danach weiter fallen, ohne dass zusätzlich Blut
@@ -50,7 +55,8 @@ was die Infusion mit ihm macht ·
 was den Schub ausgelöst haben kann · warum das Alter den Verlauf ändert · was ein
 früherer Schub bedeutet · der Verlauf der letzten Wochen und was er bedeutet ·
 Herkunft des Blutverlusts · eine Tabelle der notwendigen Abklärungen ·
-Behandlung · eine Übersicht der Abführmittel zum Trinken, die es in der
+Behandlung · Novalgin und was dabei zu kontrollieren ist · eine Übersicht
+der Abführmittel zum Trinken, die es in der
 Schweiz gibt, mit Wirkstoff und Süssstoff je Präparat und den beiden
 aromafreien Alternativen · Adressen in Zürich · was zum Termin mitgehört ·
 Fragen, die sich zu stellen lohnen · Quellen.
