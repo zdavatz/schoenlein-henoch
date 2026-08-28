@@ -144,6 +144,28 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   geschrieben. Der Beleg hängt hinter dem Wort im Satz, das Verzeichnis am
   Schluss führt die Literatur; neue Aussagen kommen mit einer neuen Quelle
   oder gar nicht.
+- **Quellennummern nachprüfen, nicht abschreiben.** Eine PMC-Nummer führt
+  immer auf *irgendeinen* Artikel, auch auf den falschen – ohne Fehlermeldung.
+  In PR #1 zeigte `PMC5021885`, angeblich der 93-jährige Fall, auf eine Arbeit
+  über mesenchymale Stromazellen bei myelodysplastischen Syndromen; richtig
+  ist `PMC5031831`. Titel deshalb vor dem Einbauen abgleichen:
+
+  ```bash
+  curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?db=pmc&id=5031831&retmode=json" \
+    | python3 -c "import json,sys; print(json.load(sys.stdin)['result']['5031831']['title'])"
+  ```
+
+  Für DOIs dasselbe über Crossref: `curl -s https://api.crossref.org/works/<doi>`.
+  Beide laufen ohne Bot-Schutz – anders als `pubmed.ncbi.nlm.nih.gov` und
+  `pmc.ncbi.nlm.nih.gov`, die WebFetch eine Cookie- oder Captcha-Seite
+  zurückgeben; dort hilft nur der Browser.
+
+- **Findet sich keine Quelle, fliegt die Aussage raus.** Die Tabellenzeile zu
+  einer 99-jährigen Patientin aus PR #1 ist so verschwunden: In PubMed gibt es
+  keinen solchen Fall, und der 93-jährige Fall bezeichnet sich selbst als den
+  ältesten bekannten. Nicht stehenlassen und nicht mit einer ungefähr
+  passenden Quelle zukleben.
+
 - **Keine allgemeinen Ratschläge.** Alles im Blatt muss belegt *und* auf
   diese Patientin zugeschnitten sein. Herausgeflogen sind darum: die
   generische Warnzeichenliste «Was nicht warten darf», die Haushaltstipps

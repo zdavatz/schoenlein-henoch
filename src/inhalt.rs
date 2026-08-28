@@ -380,17 +380,12 @@ static T_FAELLE: Tabelle = Tabelle {
         &[
             &[N("93 J")],
             &[T("USA, nach Bronchitis und Levofloxacin: rasches Nierenversagen.")],
-            &[T("Hochdosis-Steroide, Dialyse. "), L("Kukrety 2016", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5021885/")],
+            &[T("Hochdosis-Steroide, Dialyse. "), L("Kukrety 2016", "https://pmc.ncbi.nlm.nih.gov/articles/PMC5031831/")],
         ],
         &[
             &[N("97 J")],
             &[T("Japan: Bauch, Purpura, Gelenke, Blut und Eiweiss im Urin.")],
             &[T("Prednisolon 0,5 mg/kg, kein Rezidiv. "), L("Kamiya 2015", "https://doi.org/10.1111/1346-8138.12747")],
-        ],
-        &[
-            &[N("99 J")],
-            &[T("Japan: Beinpurpura, Bauchschmerz, akutes Nierenversagen.")],
-            &[T("Prednisolon 30 mg, Tod an Nierenversagen Tag 24.")],
         ],
     ],
     linien: true,
@@ -517,6 +512,7 @@ pub static DOKUMENT: &[Block] = &[
     H2("Belegte Fälle in diesem Alter"),
     P(&[T("Einen veröffentlichten Fall genau einer 84-jährigen Frau mit IgA-Vaskulitis gibt es in der durchsuchten Literatur nicht. Was es gibt, sind Frauen knapp darunter und knapp darüber – und die Bilder, die zu dieser Patientin passen: Purpura an den Beinen, Bauch, oft Niere. Die nächste deutschsprachige Beschreibung ist eine 80-Jährige aus "), L("Basel", "https://doi.org/10.1055/s-2002-32350"), T(", drei Wochen nach einer Pneumonie. Die nächste mit Nierenhistologie sind 80 und 85 Jahre, "), L("Japan 2019", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6367074/"), T(".")]),
     Tab(&T_FAELLE),
+    P(&[T("Zur Einordnung der Tabelle gehört, wie dünn dieser Rand der Literatur ist. Die Autoren des 93-jährigen Falls bezeichnen ihre Patientin ausdrücklich als die "), L("älteste bekannte Patientin mit dieser Krankheit", "https://pmc.ncbi.nlm.nih.gov/articles/PMC5031831/"), T(" – obwohl die 97-Jährige aus Japan ein Jahr zuvor erschienen war. Solche Superlative in Einzelfallberichten sind also mit Vorsicht zu lesen. Was bleibt, ist der Befund der Tabelle selbst: Jenseits der neunzig ist die Literatur eine Handvoll Einzelfälle, und für eine 84-Jährige gibt es keinen passgenauen Bericht.")]),
     P(&[T("Weiter entfernt, aber dokumentiert: 89 Jahre mit kompletter Remission unter niedrig dosiertem Prednisolon plus Mizoribin ("), L("Sugimoto 2021", "https://doi.org/10.1007/s13730-020-00513-6"), T("); 75 und 76 Jahre in derselben "), L("Ueda-Serie", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6367074/"), T(" mit Steroidpuls, teils steroidinduziertem Diabetes; 71 Jahre mit Darmblutung und gutem Ansprechen auf parenterale Kortikoide ("), L("Cureus 2022", "https://doi.org/10.7759/cureus.34422"), T("). Ein 84-jähriger "), B("Mann"), T(" nach COVID ist beschrieben – das ist nicht diese Patientin.")]),
     P(&[
         T("Was die grösseren Untersuchungen für sie bedeuten: Erwachsene haben häufiger und schwerer Nierenbefall als Kinder. In der Kohorte von "), L("Pillebout", "https://pubmed.ncbi.nlm.nih.gov/11961015/"), T(" (250 Erwachsene, Alter 15 bis 86) erreichten nur 20 Prozent eine Remission, 11 Prozent ein endgültiges Nierenversagen, und die häufigste Todesursache war ein Karzinom, nicht die Vaskulitis. Ab etwa 63 Jahren mehr nekrotische Purpura und Nierenversagen ("), L("IGAVAS", "https://pubmed.ncbi.nlm.nih.gov/33410479/"), T("). In der japanischen Registerarbeit von "), L("Komatsu", "https://doi.org/10.1371/journal.pone.0196955"), T(" waren 46 Patientinnen und Patienten 65 bis 84 Jahre alt: schlechtere eGFR, mehr Halbmonde, weniger Remission. Männer überwiegen in fast allen westlichen Serien – eine 84-jährige Frau ist die seltenere Kombination."),
@@ -899,8 +895,8 @@ pub static QUELLEN: &[(&str, Verweis)] = &[
      Verweis { text: "https://doi.org/10.4236/jbm.2017.56004", url: "https://doi.org/10.4236/jbm.2017.56004" }),
     ("Nishikura N et al.: IgA Vasculitis in a 90-Year-Old Woman Treated with Azathioprine. Cureus 2022; 14: e28996. PMC9549259",
      Verweis { text: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9549259/", url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9549259/" }),
-    ("Kukrety SP et al.: Henoch-Schönlein Purpura in an Adult. Case Rep Med 2016; 2016: 7890379. PMC5021885",
-     Verweis { text: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5021885/", url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5021885/" }),
+    ("Kukrety S et al.: Henoch Schonlein Purpura as a Cause of Renal Failure in an Adult. Case Rep Med 2016; 2016: 7890379. PMC5031831",
+     Verweis { text: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5031831/", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5031831/" }),
     ("Kamiya K et al.: IgA vasculitis in a 97-year-old woman. J Dermatol 2015",
      Verweis { text: "https://doi.org/10.1111/1346-8138.12747", url: "https://doi.org/10.1111/1346-8138.12747" }),
     ("Sugimoto H et al.: Successful treatment of IgA vasculitis with mizoribine in an elderly woman. CEN Case Rep 2021; 10: 46-52",

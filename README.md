@@ -44,6 +44,11 @@ verstanden werden:
   Patientin, die kaum trinkt. Sie verdünnt aber auch: Der gemessene
   Hämoglobinwert kann danach weiter fallen, ohne dass zusätzlich Blut
   verloren geht.
+- **Für eine 84-jährige Frau gibt es keinen passgenauen Fallbericht.** Die
+  belegten Fälle reichen von 80 bis 97 Jahren, alle als Einzelfälle. Der
+  93-jährige Fall bezeichnet sich selbst als den ältesten bekannten – ein
+  Jahr nachdem eine 97-Jährige publiziert worden war. Superlative in
+  Einzelfallberichten taugen wenig.
 - **«Magenentzündung» ist ein Befund und keine Ursache.** Vaskulitis,
   Medikamente und Helicobacter pylori kommen alle in Frage, und dieselbe
   Spiegelung trennt sie. Wichtig dabei: Bei Erwachsenen sitzt die Vaskulitis
