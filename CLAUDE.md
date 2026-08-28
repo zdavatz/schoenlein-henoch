@@ -152,6 +152,12 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   ch.oddb.org und ist dort frei zugänglich. Die Fachinfo einer Zulassung
   liegt unter `https://ch.oddb.org/de/gcc/fachinfo/reg/<Swissmedic-Nr>`, die
   Suche unter `.../search/zone/drugs/search_query/<name>`.
+- **Der Beleg steht im Text, nicht nur im Quellenverzeichnis.** Wer liest,
+  soll klicken können: Unter jeden Abschnitt, der sich auf Fachinformationen
+  stützt, gehört ein `Block::Verweise` mit genau den Kapiteln, die ihn
+  tragen. Das Quellenverzeichnis führt je Präparat einen Registereintrag auf
+  die vollständige Fachinformation – die Kapitel stehen dort bewusst nicht
+  noch einmal.
 - **Verlinkt wird das Kapitel, nicht die ganze Fachinformation:**
   `.../fachinfo/reg/<Nr>/chapter/<kapitel>`. Wer eine Aussage belegt, verlinkt
   das Kapitel, in dem sie steht – sonst muss der Leser eine zwanzigseitige
