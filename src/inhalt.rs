@@ -22,6 +22,9 @@ pub enum Span {
     /// Darf nicht umbrechen – Messwerte wie "83 g/l". Im HTML `span.nb`,
     /// im PDF mit geschuetzten Leerzeichen.
     N(&'static str),
+    /// Verlinktes Wort mitten im Satz: Anzeigetext und Ziel. Im PDF liegt die
+    /// Klickflaeche hinter dem Wort, erkennbar an der Unterstreichung.
+    L(&'static str, &'static str),
 }
 
 /// Eine klickbare Zeile. Im PDF steht sie stets allein auf ihrer Zeile, weil
@@ -61,10 +64,6 @@ pub enum Block {
         titel: &'static str,
         blocks: &'static [Block],
     },
-    /// Freistehende klickbare Zeilen im Fliesstext. Im PDF steht jede allein
-    /// auf ihrer Zeile - die Link-Annotationen werden ueber die
-    /// Schriftgroesse zugeordnet.
-    Verweise(&'static [Verweis]),
     Adresse {
         name: &'static str,
         rolle: &'static [Span],
@@ -83,7 +82,7 @@ pub const KOPFZEILE: &str = "IgA-Vaskulitis (Purpura Schönlein-Henoch)";
 
 
 use Block::*;
-use Span::{B, I, N, T};
+use Span::{B, I, L, N, T};
 
 // ---------------------------------------------------------------------------
 // Tabellen
@@ -211,42 +210,42 @@ static T_ABFUEHR: Tabelle = Tabelle {
     gewichte: &[26, 26, 48],
     zeilen: &[
         &[
-            &[B("Movicol neutral"), T(", "), B("Movicol Junior neutral")],
+            &[L("Movicol neutral", "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/composition"), T(", "), L("Movicol Junior neutral", "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/composition")],
             &[T("Macrogol 3350 mit Elektrolyten")],
             &[B("Keines."), T(" Für die neutrale Variante nennt die Fachinformation weder ein Aroma noch einen Süssstoff.")],
         ],
         &[
-            &[B("Laxipeg aromafrei")],
+            &[L("Laxipeg aromafrei", "https://ch.oddb.org/de/gcc/fachinfo/reg/62765/chapter/composition")],
             &[T("Macrogol 4000")],
             &[B("Hilfsstoffe: keine."), T(" Wörtlich so in der Fachinformation.")],
         ],
         &[
-            &[T("Movicol")],
+            &[L("Movicol", "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/composition")],
             &[T("Macrogol 3350 mit Elektrolyten")],
             &[T("Acesulfam-Kalium (E950), Limetten- und Zitronenaroma")],
         ],
         &[
-            &[T("Movicol Chocolat")],
+            &[L("Movicol Chocolat", "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/composition")],
             &[T("Macrogol 3350 mit Elektrolyten")],
             &[T("Acesulfam-Kalium (E950), Schokoladenaroma, dazu Benzylalkohol im Aroma")],
         ],
         &[
-            &[T("Transipeg, Transipeg forte")],
+            &[L("Transipeg, Transipeg forte", "https://ch.oddb.org/de/gcc/fachinfo/reg/53282/chapter/composition")],
             &[T("Macrogol 3350 mit Elektrolyten")],
             &[T("Aspartam (E951), Acesulfam-Kalium")],
         ],
         &[
-            &[T("Laxipeg banane")],
+            &[L("Laxipeg banane", "https://ch.oddb.org/de/gcc/fachinfo/reg/62765/chapter/composition")],
             &[T("Macrogol 4000")],
             &[T("Acesulfam-Kalium (E950), Bananenaroma")],
         ],
         &[
-            &[T("Duphalac, Gatinar, Rudolac")],
+            &[L("Duphalac", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/composition"), T(", "), L("Gatinar", "https://ch.oddb.org/de/gcc/fachinfo/reg/37585/chapter/composition"), T(", "), L("Rudolac", "https://ch.oddb.org/de/gcc/fachinfo/reg/51067/chapter/composition")],
             &[T("Lactulose-Sirup")],
             &[T("Kein Zusatz nötig – der Wirkstoff selbst ist ein Zucker. Duphalac nennt unter Hilfsstoffen: keine.")],
         ],
         &[
-            &[T("Importal")],
+            &[L("Importal", "https://ch.oddb.org/de/gcc/fachinfo/reg/52785/chapter/composition")],
             &[T("Lactitol")],
             &[T("Zuckeralkohol, gleiches Prinzip wie Lactulose.")],
         ],
@@ -260,17 +259,17 @@ static T_DARMSPIEGELUNG: Tabelle = Tabelle {
     gewichte: &[26, 26, 48],
     zeilen: &[
         &[
-            &[T("Moviprep, Moviprep Orange")],
+            &[L("Moviprep, Moviprep Orange", "https://ch.oddb.org/de/gcc/fachinfo/reg/57900/chapter/composition")],
             &[T("Macrogol 3350, Natriumsulfat, Ascorbat")],
             &[T("Aspartam (E951), 0,233 g je Beutel, Acesulfam-Kalium, Zitronenaroma – dazu literweise zu trinken")],
         ],
         &[
-            &[T("Picoprep, CitraFleet")],
+            &[L("Picoprep, CitraFleet", "https://ch.oddb.org/de/gcc/fachinfo/reg/62754/chapter/composition")],
             &[T("Natriumpicosulfat, Magnesiumoxid, Citronensäure")],
             &[T("Saccharin-Natrium (E954), Orangenaroma – wirkt zusätzlich stimulierend auf die Darmbewegung")],
         ],
         &[
-            &[T("Plenvu, Clensia, Cololyt")],
+            &[T("Plenvu, Clensia, "), L("Cololyt", "https://ch.oddb.org/de/gcc/fachinfo/reg/48205/chapter/composition")],
             &[T("Macrogol mit Elektrolyten")],
             &[T("Dieselbe Gruppe; die Zusammensetzung steht in der jeweiligen Fachinformation.")],
         ],
@@ -478,105 +477,58 @@ pub static DOKUMENT: &[Block] = &[
     P(&[T("Novalgin ist "), B("Metamizol"), T(" (Novaminsulfon, Dipyron), ein Pyrazolonderivat und "), B("kein NSAR"), T(". Es wirkt schmerzstillend, fiebersenkend und "), B("krampflösend"), T(" – gerade das Letzte passt zu kolikartigen Bauchschmerzen. Als Wahl ist es nachvollziehbar: Es belastet Magenschleimhaut und Niere nicht auf demselben Weg wie Ibuprofen oder Diclofenac. Dieselbe Substanz heisst in der Schweiz auch Minalgin, Metamizol-Mepha, Metamizol Spirig HC oder Novaminsulfon Sintetica; es gibt sie als Tabletten, Tropfen und Ampullen.")]),
     P(&[T("Fünf Punkte aus der Fachinformation, die in dieser Lage zählen:")]),
     Liste(&[
-        &[B("Das Blutbild gehört dazu."), T(" Metamizol kann eine "), B("Agranulozytose"), T(" auslösen – sehr selten, unter 1 von 10'000, aber sie kann tödlich verlaufen. Sie ist nicht dosisabhängig, kann jederzeit auftreten, auch nach früher problemloser Einnahme, und noch kurz nach dem Absetzen. Bei Fieber, Schüttelfrost, Halsschmerzen oder schmerzhaften Stellen der Schleimhaut in Mund, Nase oder Rachen ist die Behandlung zu unterbrechen und sofort ein "), B("vollständiges Blutbild mit Differentialblutbild"), T(" zu machen. Ohne Häufigkeitsangabe stehen ausserdem aplastische Anämie und Panzytopenie in der Liste, beide auch mit tödlichem Ausgang. In den deutschen Meldungen traten zwei Drittel der Fälle innert sechs Wochen auf, knapp ein Drittel innert sieben Tagen.")],
-        &[B("Damit gehört Novalgin auf die Liste der Erklärungen für den Hämoglobin-Abfall."), T(" Nicht als wahrscheinlichste, aber als eine, die ein Differentialblutbild in einem Schritt mitprüft. Die Fachinformation nennt ausdrücklich "), B("Blässe"), T(" als Anzeichen, mit dem man zum Arzt soll – daneben Krankheitsgefühl, Infektionszeichen, andauerndes Fieber, Hämatome und Blutungen.")],
-        &[B("Blutdruck."), T(" Gelegentlich – 1 von 1000 bis 1 von 100 – löst Metamizol einen isolierten Blutdruckabfall aus. Die Fachinformation verlangt vorher ausdrücklich die «Optimierung des hämodynamischen Status bei Patienten mit vorbestehender Hypotonie mit Volumenmangel, Dehydratation, instabilem Kreislauf». Das beschreibt genau diese Patientin und ist ein weiterer Grund für die Infusion. In die Vene darf höchstens 1 ml pro Minute laufen.")],
-        &[B("Niere."), T(" Sehr selten ein akutes Nierenversagen, «vor allem wenn bereits eine Nierenerkrankung vorliegt», dazu eine akute interstitielle Nephritis ohne Häufigkeitsangabe. Bei einer Krankheit, über deren Verlauf die Niere entscheidet, ist das kein Nebensatz. Hohe Dosen sind bei eingeschränkter Nierenfunktion zu vermeiden, und im Alter ist die Nierenfunktion ohnehin mitzudenken.")],
-        &[B("Der Kreatininwert kann falsch sein."), T(" Metamizol stört Labortests, die auf der Trinder-Reaktion beruhen – ausdrücklich auch die Messung des "), B("Kreatinins"), T(". Wer die Nierenfunktion im Verlauf beurteilt, muss das wissen.")],
-    ]),
-    Verweise(&[
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/restrictions", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/restrictions" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/unwanted_effects", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/unwanted_effects" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/interactions", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/interactions" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/usage", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/usage" },
+        &[B("Das Blutbild gehört dazu."), T(" Metamizol kann eine "), L("Agranulozytose", "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/restrictions"), T(" auslösen – sehr selten, unter 1 von 10'000, aber sie kann tödlich verlaufen. Sie ist nicht dosisabhängig, kann jederzeit auftreten, auch nach früher problemloser Einnahme, und noch kurz nach dem Absetzen. Bei Fieber, Schüttelfrost, Halsschmerzen oder schmerzhaften Stellen der Schleimhaut in Mund, Nase oder Rachen ist die Behandlung zu unterbrechen und sofort ein "), B("vollständiges Blutbild mit Differentialblutbild"), T(" zu machen. Ohne Häufigkeitsangabe stehen ausserdem aplastische Anämie und Panzytopenie in der Liste, beide auch mit tödlichem Ausgang. In den deutschen Meldungen traten zwei Drittel der Fälle innert sechs Wochen auf, knapp ein Drittel innert sieben Tagen.")],
+        &[B("Damit gehört Novalgin auf die Liste der Erklärungen für den Hämoglobin-Abfall."), T(" Nicht als wahrscheinlichste, aber als eine, die ein Differentialblutbild in einem Schritt mitprüft. Die "), L("Fachinformation", "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/restrictions"), T(" nennt ausdrücklich "), B("Blässe"), T(" als Anzeichen, mit dem man zum Arzt soll – daneben Krankheitsgefühl, Infektionszeichen, andauerndes Fieber, Hämatome und Blutungen.")],
+        &[B("Blutdruck."), T(" Gelegentlich – 1 von 1000 bis 1 von 100 – löst Metamizol einen isolierten Blutdruckabfall aus. Die "), L("Fachinformation", "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/restrictions"), T(" verlangt vorher ausdrücklich die «Optimierung des hämodynamischen Status bei Patienten mit vorbestehender Hypotonie mit Volumenmangel, Dehydratation, instabilem Kreislauf». Das beschreibt genau diese Patientin und ist ein weiterer Grund für die Infusion. In die Vene darf höchstens 1 ml pro Minute laufen.")],
+        &[B("Niere."), T(" Sehr selten ein "), L("akutes Nierenversagen", "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/unwanted_effects"), T(", «vor allem wenn bereits eine Nierenerkrankung vorliegt», dazu eine akute interstitielle Nephritis ohne Häufigkeitsangabe. Bei einer Krankheit, über deren Verlauf die Niere entscheidet, ist das kein Nebensatz. "), L("Hohe Dosen", "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/usage"), T(" sind bei eingeschränkter Nierenfunktion zu vermeiden, und im Alter ist die Nierenfunktion ohnehin mitzudenken.")],
+        &[B("Der Kreatininwert kann falsch sein."), T(" Metamizol stört "), L("Labortests, die auf der Trinder-Reaktion beruhen", "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/interactions"), T(" – ausdrücklich auch die Messung des "), B("Kreatinins"), T(". Wer die Nierenfunktion im Verlauf beurteilt, muss das wissen.")],
     ]),
     P(&[T("Zwei Dinge, die im Alltag Verwirrung stiften:")]),
     Liste(&[
-        &[B("Roter Urin unter Novalgin muss kein Blut sein."), T(" Metamizol bildet Rubazonsäure, ein harmloses Abbauprodukt, das den Harn rot färbt und nach dem Absetzen verschwindet. Weil dieses Blatt die Urinkontrolle in den Mittelpunkt stellt, zählt das doppelt – und ebenso, dass die Frage nicht mit blossem Auge beantwortet wird, sondern mit Streifen und Sediment.")],
-        &[B("Magen-Darm-Blutungen stehen trotzdem in der Liste."), T(" Ohne Häufigkeitsangabe, aber die Fachinformation nennt gastrointestinale Blutungen, Ulzerationen und Perforationen unter den unerwünschten Wirkungen. «Kein NSAR» heisst also nicht «für den Magen unbedenklich».")],
+        &[B("Roter Urin unter Novalgin muss kein Blut sein."), T(" Metamizol bildet "), L("Rubazonsäure", "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/other_advice"), T(", ein harmloses Abbauprodukt, das den Harn rot färbt und nach dem Absetzen verschwindet. Weil dieses Blatt die Urinkontrolle in den Mittelpunkt stellt, zählt das doppelt – und ebenso, dass die Frage nicht mit blossem Auge beantwortet wird, sondern mit Streifen und Sediment.")],
+        &[B("Magen-Darm-Blutungen stehen trotzdem in der Liste."), T(" Ohne Häufigkeitsangabe, aber die Fachinformation nennt "), L("gastrointestinale Blutungen, Ulzerationen und Perforationen", "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/unwanted_effects"), T(" unter den unerwünschten Wirkungen. «Kein NSAR» heisst also nicht «für den Magen unbedenklich».")],
     ]),
-    P(&[T("Zuerst zu klären sind zwei Gegenanzeigen: eine "), B("eingeschränkte Knochenmarksfunktion oder Blutbildungsstörung"), T(" und eine frühere Agranulozytose unter Pyrazolonen. Und falls sie niedrig dosiertes Aspirin zum Herzschutz nimmt: Metamizol schwächt dessen Wirkung auf die Blutplättchen ab.")]),
-    Verweise(&[
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/contra_indications", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/contra_indications" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/other_advice", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/other_advice" },
-    ]),
+    P(&[T("Zuerst zu klären sind zwei "), L("Gegenanzeigen", "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/contra_indications"), T(": eine "), B("eingeschränkte Knochenmarksfunktion oder Blutbildungsstörung"), T(" und eine frühere Agranulozytose unter Pyrazolonen. Und falls sie niedrig dosiertes Aspirin zum Herzschutz nimmt: Metamizol schwächt dessen Wirkung auf die Blutplättchen ab.")]),
 
     H2("Interaktionscheck"),
-    P(&[T("Geprüft mit "), B("SDIF"), T(", dem Swiss Drug Interaction Finder: Er wertet die Interaktionsangaben aus den Schweizer Fachinformationen aus und gleicht sie mit der EPha-Datenbank ab, die jede Kombination von A bis X einstuft – A keine Massnahmen, C regelmässige Überwachung, D Kombination vermeiden, X kontraindiziert. Der Lauf vom 28. August 2026 mit Novalgin, Kortison, Macrogol, Lactulose und niedrig dosiertem Aspirin ergab Folgendes. Das Werkzeug und der Lauf selbst, mit fertig gefülltem Warenkorb, stehen hier – der zweite Link setzt den Korb über die ATC-Codes zusammen, weshalb für die Macrogol-Klasse ein anderes Präparat derselben Klasse angezeigt werden kann.")]),
+    P(&[T("Geprüft mit "), L("SDIF", "https://sdif.oddb.org"), T(", dem Swiss Drug Interaction Finder: Er wertet die Interaktionsangaben aus den Schweizer Fachinformationen aus und gleicht sie mit der EPha-Datenbank ab, die jede Kombination von A bis X einstuft – A keine Massnahmen, C regelmässige Überwachung, D Kombination vermeiden, X kontraindiziert. "), L("Der Lauf vom 28. August 2026", "https://sdif.oddb.org/?tab=check&drugs=N02BB02-H02AB06-A06AD65-A06AD11-B01AC06"), T(" mit Novalgin, Kortison, Macrogol, Lactulose und niedrig dosiertem Aspirin ergab Folgendes. Das Werkzeug und der Lauf selbst, mit fertig gefülltem Warenkorb, stehen hier – der zweite Link setzt den Korb über die ATC-Codes zusammen, weshalb für die Macrogol-Klasse ein anderes Präparat derselben Klasse angezeigt werden kann.")]),
     P(&[
         B("Der Vorbehalt zuerst:"), T(" Geprüft ist nur, was auf diesem Blatt steht. Die vollständige Medikamentenliste kennt nur die Patientin selbst, und sie gehört zum Termin mitgebracht – rezeptfreie Mittel eingeschlossen. Ein maschineller Check kann nur vergleichen, was man ihm gibt."),
-    ]),
-    Verweise(&[
-        Verweis { text: "https://sdif.oddb.org", url: "https://sdif.oddb.org" },
-        Verweis {
-            text: "https://sdif.oddb.org/?tab=check&drugs=N02BB02-H02AB06-A06AD65-A06AD11-B01AC06",
-            url: "https://sdif.oddb.org/?tab=check&drugs=N02BB02-H02AB06-A06AD65-A06AD11-B01AC06",
-        },
     ]),
     Tab(&T_INTERAKTION),
     H3("Was bei Kortison dazukommt"),
     Liste(&[
         &[B("Aspirin und Kortison: Klasse C."), T(" Erhöhtes Risiko einer Blutung im Magen-Darm-Trakt durch additive Schädigung der Magenschleimhaut. Das Risiko steigt ausdrücklich mit höherem Lebensalter, mit einer Vorgeschichte von Geschwüren und unter gleichzeitiger Blutverdünnung – alle drei gehören hier geprüft. Empfohlene Massnahme: klinische Überwachung auf Geschwüre und die "), B("vorbeugende Gabe eines Protonenpumpenhemmers"), T(". Das deckt sich mit dem Magenschutz, der im Abschnitt zur Behandlung ohnehin steht.")],
-        &[B("Lactulose und Kortison."), T(" Kortikosteroide senken das Kalium, und die Duphalac-Fachinformation nennt Lactulose als Mittel, das diesen Kaliumverlust theoretisch verstärkt. Bei einer Patientin, deren Kalium nach Wochen ohne Nahrung ohnehin überwacht gehört, ist das ein weiteres Argument für Macrogol.")],
-    ]),
-    Verweise(&[
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/interactions", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/interactions" },
+        &[B("Lactulose und Kortison."), T(" Kortikosteroide senken das Kalium, und die "), L("Duphalac-Fachinformation", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/interactions"), T(" nennt Lactulose als Mittel, das diesen Kaliumverlust theoretisch verstärkt. Bei einer Patientin, deren Kalium nach Wochen ohne Nahrung ohnehin überwacht gehört, ist das ein weiteres Argument für Macrogol.")],
     ]),
     H3("Ohne Treffer"),
     P(&[T("Novalgin mit Macrogol, mit Lactulose, mit Paracetamol, mit einem Protonenpumpenhemmer und mit einem ACE-Hemmer: kein Treffer. Macrogol hat in der EPha-Datenbank überhaupt keinen Eintrag – es wird nicht aufgenommen und interagiert praktisch nicht. Auch das spricht für Movicol neutral.")]),
     H3("Ein Fund am Rande, der hier zählt"),
-    P(&[T("Beim Auflösen des Namens «Paracetamol» griff der Check auf Kombinationspräparate zu, die zusätzlich Tramadol oder Codein enthalten; die dortigen Warnungen betrafen den Opioid-Anteil und nicht das Paracetamol. Als Interaktion ist das ein Fehlalarm – als Hinweis ist es der praktisch wichtigste des ganzen Laufs: "), B("Opioide verstopfen."), T(" Die Duphalac-Fachinformation führt Opiate ausdrücklich unter den Substanzen, die die Wirkung von Lactulose abschwächen, weil sie selbst obstipierend wirken. Bei einer Patientin, die seit Wochen keinen Stuhlgang hat, ist ein opioidhaltiges Schmerzmittel – Codein, Tramadol – das Falsche. Novalgin enthält keines, und das ist ein Punkt zu seinen Gunsten.")]),
+    P(&[T("Beim Auflösen des Namens «Paracetamol» griff der Check auf Kombinationspräparate zu, die zusätzlich Tramadol oder Codein enthalten; die dortigen Warnungen betrafen den Opioid-Anteil und nicht das Paracetamol. Als Interaktion ist das ein Fehlalarm – als Hinweis ist es der praktisch wichtigste des ganzen Laufs: "), B("Opioide verstopfen."), T(" Die "), L("Duphalac-Fachinformation", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/interactions"), T(" führt Opiate ausdrücklich unter den Substanzen, die die Wirkung von Lactulose abschwächen, weil sie selbst obstipierend wirken. Bei einer Patientin, die seit Wochen keinen Stuhlgang hat, ist ein opioidhaltiges Schmerzmittel – Codein, Tramadol – das Falsche. Novalgin enthält keines, und das ist ein Punkt zu seinen Gunsten.")]),
     P(&[T("Zwei weitere Treffer des Laufs sind ebenfalls keine: Der Check meldete «kontraindiziert» zwischen Aspirin und Movicol, weil er im Namen «Macrogol, Kombinationen» das Wort «Kombinationen» als Wirkstoff las, und er ordnete Novalgin einer Regel für Aspirin und NSAR zu, obwohl Metamizol keines von beiden ist. Wer maschinell prüft, muss die Treffer nachlesen; die Fachinformation entscheidet, nicht die Trefferliste.")]),
 
     H2("Abführmittel: welche es gibt und warum sie süss sind"),
     P(&[T("Vorbemerkung, weil sie in dieser Lage alles andere überwiegt: Solange Erbrechen nach jedem Essen und wochenlang fehlender Stuhlgang nicht abgeklärt sind, ist die Frage nach dem richtigen Abführmittel die zweite Frage. Die erste steht im Abschnitt oben. Was hier folgt, gilt für die Zeit danach – und für den Fall, dass ein Mittel bereits verordnet ist und schlecht vertragen wird.")]),
     P(&[T("Dass ein Abführmittel zum Trinken süss ist, ist kein Zufall des Herstellers. Bei der einen Gruppe ist der Wirkstoff selbst ein Zucker; bei der anderen ist die Süsse ein Zusatz – und den gibt es auch ohne.")]),
     P(&[
-        B("Lactulose ist der Zucker."), T(" Duphalac, Gatinar und Rudolac sind Lactulose-Sirup. Die Fachinformation nennt unter Hilfsstoffen: keine. Süss ist hier nicht ein Zusatz, sondern der Wirkstoff, und daran lässt sich nichts ändern. Lactulose wird nicht aufgenommen, sondern im Dickdarm von Bakterien "), B("vergoren"), T(" – dabei entstehen Gase. Blähungen sind deshalb kein Nebeneffekt, sondern das Stoffwechselprodukt. In den Zulassungsstudien war Durchfall sehr häufig (13,1 Prozent), Flatulenz, Bauchschmerzen, Übelkeit und Erbrechen häufig. Importal (Lactitol) ist ein Zuckeralkohol und funktioniert nach demselben Prinzip."),
-    ]),
-    Verweise(&[
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/composition", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/composition" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/effects", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/effects" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/unwanted_effects", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/unwanted_effects" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/37585/chapter/composition", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/37585/chapter/composition" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/51067/chapter/composition", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/51067/chapter/composition" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/52785/chapter/composition", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/52785/chapter/composition" },
+        B("Lactulose ist der Zucker."), T(" "), L("Duphalac", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/composition"), T(", "), L("Gatinar", "https://ch.oddb.org/de/gcc/fachinfo/reg/37585/chapter/composition"), T(" und "), L("Rudolac", "https://ch.oddb.org/de/gcc/fachinfo/reg/51067/chapter/composition"), T(" sind Lactulose-Sirup. Die Fachinformation nennt unter Hilfsstoffen: keine. Süss ist hier nicht ein Zusatz, sondern der Wirkstoff, und daran lässt sich nichts ändern. Lactulose wird nicht aufgenommen, sondern im Dickdarm von Bakterien "), L("vergoren", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/effects"), T(" – dabei entstehen Gase. Blähungen sind deshalb kein Nebeneffekt, sondern das Stoffwechselprodukt. In den Zulassungsstudien war "), L("Durchfall sehr häufig (13,1 Prozent)", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/unwanted_effects"), T(", Flatulenz, Bauchschmerzen, Übelkeit und Erbrechen häufig. "), L("Importal", "https://ch.oddb.org/de/gcc/fachinfo/reg/52785/chapter/composition"), T(" (Lactitol) ist ein Zuckeralkohol und funktioniert nach demselben Prinzip."),
     ]),
     P(&[
         B("Macrogol ist von sich aus geschmacklos."), T(" Es ist ein inertes Polymer: Es wird weder aufgenommen noch von Bakterien verstoffwechselt, sondern bindet osmotisch Wasser und geht unverändert durch. Keine Vergärung, entsprechend "), B("deutlich weniger Gas"), T(". Die Süsse der gängigen Präparate kommt aus Aroma und Süssstoff – und genau die gibt es auch weggelassen:"),
     ]),
     Tab(&T_ABFUEHR),
-    Verweise(&[
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/composition", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/composition" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/62765/chapter/composition", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/62765/chapter/composition" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/53282/chapter/composition", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/53282/chapter/composition" },
-    ]),
     P(&[T("Und die Mittel, die zur Vorbereitung einer Darmspiegelung literweise getrunken werden – die süssesten von allen:")]),
     Tab(&T_DARMSPIEGELUNG),
-    Verweise(&[
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/57900/chapter/composition", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/57900/chapter/composition" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/62754/chapter/composition", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/62754/chapter/composition" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/48205/chapter/composition", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/48205/chapter/composition" },
-    ]),
     P(&[
         B("Was man konkret verlangen kann:"), T(" "), B("Movicol neutral"), T(" oder "), B("Laxipeg aromafrei"), T(". Beide sind in der Schweiz zugelassen und kassenpflichtig, beide enthalten weder Aroma noch Süssstoff. Von Movicol neutral gibt es auch eine Junior-Packung, wenn eine kleinere Dosis leichter fällt."),
     ]),
     P(&[T("Der Cochrane-Vergleich gibt Macrogol gegenüber Lactulose ohnehin durchweg den Vorzug: bessere Stuhlfrequenz, bessere Stuhlform, weniger Bauchschmerzen, weniger Bedarf an Zusatzmitteln. Der Wechsel löst also nicht nur das Geschmacksproblem.")]),
     H3("Vier Punkte aus den Fachinformationen, die hier besonders zählen"),
     Liste(&[
-        &[B("Bei Darmverschluss verboten."), T(" Alle diese Mittel führen intestinale Obstruktion, Ileus und Perforation als Gegenanzeige. Duphalac verlangt darüber hinaus ausdrücklich, dass schmerzhafte Bauchsymptome unklarer Ursache "), B("vor"), T(" Behandlungsbeginn abgeklärt werden, um eine nicht diagnostizierte Obstruktion auszuschliessen. Bei seit Wochen fehlendem Stuhlgang ist das keine Formalie.")],
-        &[B("Ohne Flüssigkeit keine Wirkung."), T(" Duphalac empfiehlt während einer Abführbehandlung 1,5 bis 2 Liter am Tag. Für Movicol steht ausdrücklich, dass die zubereitete Lösung die reguläre Flüssigkeitszufuhr "), B("nicht ersetzt"), T("; ein Beutel wird in 125 ml Wasser gelöst. Wer kaum trinkt, dem hilft das Mittel wenig – und die Austrocknung trifft ausgerechnet die Niere.")],
-        &[B("Im Alter die kleinere Dosis."), T(" Für Menschen über 65 genügt bei Movicol laut Fachinformation normalerweise ein Beutel täglich statt ein bis zwei.")],
-        &[B("Die neutrale Variante lässt sich vorbereiten."), T(" Die zubereitete Lösung von Movicol neutral ist im Kühlschrank 24 Stunden haltbar, die der aromatisierten Varianten nur 6 – die neutrale kann also am Vorabend angesetzt und kalt getrunken werden.")],
-    ]),
-    Verweise(&[
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/contra_indications", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/contra_indications" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/restrictions", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/restrictions" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/usage", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/usage" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/other_advice", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/other_advice" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/contra_indications", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/contra_indications" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/restrictions", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/restrictions" },
-        Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/usage", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/usage" },
+        &[B("Bei Darmverschluss verboten."), T(" Alle diese Mittel führen "), L("intestinale Obstruktion, Ileus und Perforation", "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/contra_indications"), T(" als "), L("Gegenanzeige", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/contra_indications"), T(". Duphalac verlangt darüber hinaus "), L("ausdrücklich", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/restrictions"), T(", dass schmerzhafte Bauchsymptome unklarer Ursache "), B("vor"), T(" Behandlungsbeginn abgeklärt werden, um eine nicht diagnostizierte Obstruktion auszuschliessen. Bei seit Wochen fehlendem Stuhlgang ist das keine Formalie.")],
+        &[B("Ohne Flüssigkeit keine Wirkung."), T(" Duphalac empfiehlt während einer Abführbehandlung "), L("1,5 bis 2 Liter am Tag", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/usage"), T(". Für Movicol "), L("steht ausdrücklich", "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/restrictions"), T(", dass die zubereitete Lösung die reguläre Flüssigkeitszufuhr "), B("nicht ersetzt"), T("; ein Beutel wird in 125 ml Wasser gelöst. Wer kaum trinkt, dem hilft das Mittel wenig – und die Austrocknung trifft ausgerechnet die Niere.")],
+        &[B("Im Alter die kleinere Dosis."), T(" Für Menschen über 65 genügt bei Movicol laut "), L("Fachinformation", "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/usage"), T(" normalerweise ein Beutel täglich statt ein bis zwei.")],
+        &[B("Die neutrale Variante lässt sich vorbereiten."), T(" Die zubereitete Lösung von Movicol neutral ist "), L("im Kühlschrank 24 Stunden haltbar", "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/other_advice"), T(", die der aromatisierten Varianten nur 6 – die neutrale kann also am Vorabend angesetzt und kalt getrunken werden.")],
     ]),
     Alarm {
         titel: "Erbrechen von Galle ist kein Geschmacksproblem",

@@ -14,6 +14,7 @@
 
 use std::path::Path;
 use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::Mutex;
 
 use anyhow::{anyhow, Result};
 use genpdf::elements::{LinearLayout, Paragraph, UnorderedList};
@@ -27,11 +28,6 @@ use crate::inhalt::{Block, Span, Tabelle, Verweis};
 use crate::inhalt::{DOKUMENT, KOPFZEILE, QUELLEN, STAND, TITEL, TITEL2, UNTERTITEL};
 
 // --- Schriftgroessen -------------------------------------------------------
-//
-// 9 und 11 gehoeren ausschliesslich den Verweiszeilen. Sobald eine andere
-// Zeile in einer dieser Groessen gesetzt wird, verschiebt sich die Zuordnung
-// der Links und jeder Verweis zeigt aufs falsche Ziel. Die Pruefung am Ende
-// von `render` faengt das ab; sie darf nie entfernt werden.
 const S_H1: u8 = 19;
 const S_H2: u8 = 14;
 const S_H3: u8 = 12;
@@ -42,7 +38,6 @@ const S_KOPF: u8 = 7;
 const LINK_GROSS: u8 = 11;
 /// Verweise im Quellenverzeichnis.
 const LINK_KLEIN: u8 = 9;
-const LINK_SIZES: [u8; 2] = [LINK_KLEIN, LINK_GROSS];
 
 const INK: Color = Color::Rgb(0x1d, 0x21, 0x29);
 const BORDEAUX: Color = Color::Rgb(0x7a, 0x1f, 0x2b);
@@ -52,37 +47,9 @@ const HELLGRAU: Color = Color::Rgb(0x8a, 0x8f, 0x98);
 
 const RAND_MM: f64 = 18.0;
 const ZEILENABSTAND: f64 = 1.4;
-const A4_WIDTH_PT: f64 = 595.276;
-const MARGIN_PT: f64 = RAND_MM * 72.0 / 25.4;
-/// Mittlere Zeichenbreite von DejaVu Sans in em - nur fuer die Klickflaeche.
-const AVG_ADVANCE_EM: f64 = 0.55;
-/// Laenger gesetzte Verweise wuerden umbrechen; ein Umbruch ergaebe zwei
-/// Zeilen in Linkgroesse und damit eine Verschiebung der Zuordnung. Die
-/// Grenze haengt an der Schriftgroesse und daran, wie breit die Zeile steht:
-/// Kontaktzeilen sitzen eingerueckt in Adressblocken, Quellen laufen ueber
-/// die volle Satzbreite und tragen die kleinere Schrift.
-const MAX_LINK_GROSS: usize = 76;
-const MAX_LINK_KLEIN: usize = 94;
 
 fn grund() -> Style {
     Style::new().with_font_size(S_TEXT).with_color(INK)
-}
-
-/// Kuerzt lange Adressen in der Mitte. Verlinkt wird immer das Original,
-/// die Klickflaeche bemisst sich nach dem angezeigten Text.
-fn link_text(url: &str, max: usize) -> String {
-    let n = url.chars().count();
-    if n <= max {
-        return url.to_string();
-    }
-    let keep = max - 1;
-    let vorn = keep / 2;
-    let hinten = keep - vorn;
-    let zeichen: Vec<char> = url.chars().collect();
-    let mut s: String = zeichen[..vorn].iter().collect();
-    s.push('…');
-    s.extend(&zeichen[n - hinten..]);
-    s
 }
 
 // ---------------------------------------------------------------------------
@@ -100,18 +67,19 @@ const NACHKLAPP: [char; 8] = [',', '.', ';', ':', '!', '?', ')', '\u{bb}'];
 /// mit einem Leerzeichen beginnt, oder ein Semikolon, das von seinem Wort
 /// abgerissen wird. Deshalb wandern fuehrende Leerzeichen und Satzzeichen
 /// vorher ans Ende des vorangehenden Stuecks.
-fn stuecke(sp: &[Span], basis: Style) -> Vec<(String, Style)> {
-    let mut teile: Vec<(String, Style)> = Vec::new();
+fn stuecke(sp: &[Span], basis: Style) -> Vec<(String, Style, Option<&'static str>)> {
+    let mut teile: Vec<(String, Style, Option<&'static str>)> = Vec::new();
     for s in sp {
-        let (text, stil) = match s {
-            Span::T(t) => ((*t).to_string(), basis),
-            Span::B(t) => ((*t).to_string(), basis.bold()),
-            Span::I(t) => ((*t).to_string(), basis.italic()),
+        let (text, stil, url) = match s {
+            Span::T(t) => ((*t).to_string(), basis, None),
+            Span::B(t) => ((*t).to_string(), basis.bold(), None),
+            Span::I(t) => ((*t).to_string(), basis.italic(), None),
             // Messwerte duerfen nicht umbrechen.
-            Span::N(t) => (t.replace(' ', "\u{00a0}"), basis),
+            Span::N(t) => (t.replace(' ', "\u{00a0}"), basis, None),
+            Span::L(t, url) => ((*t).to_string(), basis.with_color(BORDEAUX), Some(*url)),
         };
         let mut rest = text.as_str();
-        if let Some((vorher, _)) = teile.last_mut() {
+        if let Some((vorher, _, _)) = teile.last_mut() {
             while let Some(c) = rest.chars().next() {
                 if c == ' ' || NACHKLAPP.contains(&c) {
                     vorher.push(c);
@@ -122,18 +90,14 @@ fn stuecke(sp: &[Span], basis: Style) -> Vec<(String, Style)> {
             }
         }
         if !rest.is_empty() {
-            teile.push((rest.to_string(), stil));
+            teile.push((rest.to_string(), stil, url));
         }
     }
     teile
 }
 
-fn absatz(sp: &[Span], basis: Style) -> Paragraph {
-    let mut p = Paragraph::default();
-    for (text, stil) in stuecke(sp, basis) {
-        p.push_styled(text, stil);
-    }
-    p
+fn absatz(sp: &[Span], basis: Style) -> Fliesstext {
+    Fliesstext::neu(sp, basis)
 }
 
 fn ueberschrift(text: &str, groesse: u8, farbe: Color) -> impl Element {
@@ -143,9 +107,10 @@ fn ueberschrift(text: &str, groesse: u8, farbe: Color) -> impl Element {
 }
 
 fn verweiszeile(v: &Verweis, groesse: u8) -> impl Element {
-    let max = if groesse == LINK_KLEIN { MAX_LINK_KLEIN } else { MAX_LINK_GROSS };
-    Paragraph::new(link_text(v.text, max))
-        .styled(Style::new().with_font_size(groesse).with_color(BORDEAUX))
+    Fliesstext::neu(
+        &[Span::L(v.text, v.url)],
+        Style::new().with_font_size(groesse).with_color(BORDEAUX),
+    )
 }
 
 // ---------------------------------------------------------------------------
@@ -157,6 +122,170 @@ const ZELL_X: f64 = 1.6;
 const ZELL_Y: f64 = 1.0;
 
 const LINIE: Color = Color::Rgb(0xc9, 0xcc, 0xd1);
+
+/// Farbe, mit der die Unterstreichung eines Links gezeichnet wird. Sie kommt
+/// sonst nirgends als Strichfarbe vor - `add_links` erkennt die Klickflaechen
+/// daran. Optisch ist sie von BORDEAUX nicht zu unterscheiden.
+const LINK_MARKE: Color = Color::Rgb(0x7b, 0x20, 0x2d);
+
+/// Die Ziele der gezeichneten Unterstreichungen, in der Reihenfolge, in der
+/// sie in den Inhaltsstrom geschrieben wurden. Bricht ein Link ueber zwei
+/// Zeilen um, steht sein Ziel zweimal darin - genau wie zwei Striche
+/// gezeichnet wurden. `add_links` legt darueber die Annotationen.
+static GEZEICHNET: Mutex<Vec<&'static str>> = Mutex::new(Vec::new());
+
+/// Ein Textstueck mit eigenem Stil, gegebenenfalls verlinkt.
+struct Lauf {
+    text: String,
+    stil: Style,
+    url: Option<&'static str>,
+}
+
+/// Ein Wort im Satz: Verweis auf seinen Lauf, der Text und die x-Position.
+struct Wort {
+    lauf: usize,
+    text: String,
+    x: f64,
+    breite: f64,
+}
+
+/// Absatz, den wir selbst setzen.
+///
+/// genpdfs `Paragraph` waere einfacher, verraet aber nicht, wo ein Wort zu
+/// liegen kommt - und genau das braucht es fuer einen Link, der hinter einem
+/// Wort im Fliesstext liegt. Der Umbruch ist derselbe wie in genpdf: gebrochen
+/// wird an Leerzeichen, das Leerzeichen bleibt beim Wort davor, und die
+/// Breiten kommen aus `Style::str_width`, also aus derselben Quelle.
+///
+/// Unter jedes verlinkte Wort zeichnet `render` eine Linie in `LINK_MARKE`.
+/// Sie ist zugleich die Unterstreichung, die den Link sichtbar macht, und die
+/// Spur, an der `add_links` die Klickflaeche findet: `draw_line` schreibt ihre
+/// Koordinaten in Seitenkoordinaten in den Inhaltsstrom.
+struct Fliesstext {
+    laeufe: Vec<Lauf>,
+    basis: Style,
+    zeilen: Option<Vec<Vec<Wort>>>,
+    idx: usize,
+}
+
+impl Fliesstext {
+    fn neu(sp: &[Span], basis: Style) -> Fliesstext {
+        let mut laeufe = Vec::new();
+        for (text, stil, url) in stuecke(sp, basis) {
+            laeufe.push(Lauf { text, stil, url });
+        }
+        Fliesstext { laeufe, basis, zeilen: None, idx: 0 }
+    }
+
+    /// Bricht die Laeufe in Zeilen um und merkt sich jede x-Position.
+    fn umbrechen(&mut self, fc: &FontCache, breite: f64) {
+        let mut zeilen: Vec<Vec<Wort>> = vec![Vec::new()];
+        let mut x = 0.0f64;
+        for (i, lauf) in self.laeufe.iter().enumerate() {
+            for wort in lauf.text.split_inclusive(' ') {
+                let w = f64::from(lauf.stil.str_width(fc, wort));
+                if w > breite {
+                    WORT_ZU_BREIT.store(true, Ordering::Relaxed);
+                    eprintln!(
+                        "Wort passt nicht in die Zeile: «{}» braucht {:.1} mm, verfügbar sind {:.1} mm",
+                        wort.trim(),
+                        w,
+                        breite
+                    );
+                }
+                if x + w > breite && x > 0.0 {
+                    zeilen.push(Vec::new());
+                    x = 0.0;
+                }
+                zeilen
+                    .last_mut()
+                    .expect("mindestens eine Zeile")
+                    .push(Wort { lauf: i, text: wort.to_string(), x, breite: w });
+                x += w;
+            }
+        }
+        self.zeilen = Some(zeilen);
+    }
+}
+
+impl Element for Fliesstext {
+    fn render(
+        &mut self,
+        context: &Context,
+        area: Area<'_>,
+        style: Style,
+    ) -> Result<RenderResult, GenError> {
+        let mut result = RenderResult::default();
+        result.size.width = area.size().width;
+        let fc = &context.font_cache;
+        if self.zeilen.is_none() {
+            self.umbrechen(fc, f64::from(area.size().width));
+        }
+        let zeilen = self.zeilen.as_ref().expect("umbrochen");
+        if self.idx >= zeilen.len() {
+            return Ok(result);
+        }
+
+        let basis = style.and(self.basis);
+        let zeilenhoehe = f64::from(basis.line_height(fc));
+        let mut y = 0.0f64;
+
+        while self.idx < zeilen.len() {
+            if y + zeilenhoehe > f64::from(area.size().height) {
+                result.has_more = true;
+                break;
+            }
+            let zeile = &zeilen[self.idx];
+            if let Some(mut abschnitt) =
+                area.text_section(fc, Position::new(0.0, y), basis)
+            {
+                for wort in zeile {
+                    abschnitt.print_str(&wort.text, self.laeufe[wort.lauf].stil)?;
+                }
+            } else {
+                result.has_more = true;
+                break;
+            }
+
+            // Unterstreichung je verlinktem Wort, zusammenhaengende Woerter
+            // desselben Laufs zu einer Linie verbunden.
+            let mut i = 0;
+            while i < zeile.len() {
+                let lauf = zeile[i].lauf;
+                if self.laeufe[lauf].url.is_some() {
+                    let von = zeile[i].x;
+                    let mut bis = zeile[i].x + zeile[i].breite;
+                    while i + 1 < zeile.len() && zeile[i + 1].lauf == lauf {
+                        i += 1;
+                        bis = zeile[i].x + zeile[i].breite;
+                    }
+                    // Der Leerraum am Wortende gehoert nicht unterstrichen.
+                    let bis = bis - if zeile[i].text.ends_with(' ') {
+                        f64::from(self.laeufe[lauf].stil.str_width(fc, " "))
+                    } else {
+                        0.0
+                    };
+                    let unten = y + zeilenhoehe * 0.80;
+                    area.draw_line(
+                        vec![Position::new(von, unten), Position::new(bis, unten)],
+                        Style::new().with_color(LINK_MARKE),
+                    );
+                    GEZEICHNET
+                        .lock()
+                        .expect("Linkliste")
+                        .push(self.laeufe[lauf].url.expect("verlinkt"));
+                }
+                i += 1;
+            }
+
+            y += zeilenhoehe;
+            self.idx += 1;
+        }
+
+        result.size.height = Mm::from(y);
+        Ok(result)
+    }
+}
 
 /// Gesetzt, sobald ein einzelnes Wort breiter ist als seine Spalte. genpdf
 /// laesst ein solches Wort **stillschweigend weg** - der Text fehlt dann im
@@ -170,7 +299,7 @@ fn zellhoehe(fc: &FontCache, sp: &[Span], basis: Style, breite: f64) -> f64 {
     let mut zeilen = 1usize;
     let mut x = 0.0f64;
     let mut zh = 0.0f64;
-    for (text, stil) in stuecke(sp, basis) {
+    for (text, stil, _) in stuecke(sp, basis) {
         zh = zh.max(f64::from(stil.line_height(fc)));
         for wort in text.split_inclusive(' ') {
             let w = f64::from(stil.str_width(fc, wort));
@@ -326,10 +455,6 @@ fn folgehoehe(fc: &FontCache, b: &'static Block, style: Style) -> f64 {
         }
         Block::Adresse { name, rolle, zeilen, links } => {
             adresshoehe(fc, name, rolle, zeilen, links.len(), style)
-        }
-        Block::Verweise(vs) => {
-            let stil = style.and(Style::new().with_font_size(LINK_KLEIN));
-            vs.len() as f64 * (f64::from(stil.line_height(fc)) + 1.0)
         }
         // Kaesten halten sich selbst zusammen; die Ueberschrift davor soll
         // deswegen nicht die halbe Seite leer lassen.
@@ -555,11 +680,6 @@ fn baue(bs: &'static [Block], ziel: &mut LinearLayout, fc: &FontCache, style: St
                     umbruch_offen: true,
                 });
             }
-            Block::Verweise(vs) => {
-                for v in *vs {
-                    ziel.push(verweiszeile(v, LINK_KLEIN).padded(Margins::trbl(0, 0, 1, 0)));
-                }
-            }
             Block::Adresse { name, rolle, zeilen, links } => {
                 let mut innen = LinearLayout::vertical();
                 innen.push(Paragraph::new(name.to_string()).styled(grund().bold()));
@@ -582,55 +702,6 @@ fn baue(bs: &'static [Block], ziel: &mut LinearLayout, fc: &FontCache, style: St
     }
 }
 
-/// Alle URLs in Satzreihenfolge. Muss mit `baue` und dem Quellenteil in
-/// `render` uebereinstimmen.
-fn urls() -> Vec<&'static str> {
-    fn sammle(bs: &'static [Block], out: &mut Vec<&'static str>) {
-        for b in bs {
-            match b {
-                Block::Lead { blocks, .. } | Block::Alarm { blocks, .. } => sammle(blocks, out),
-                Block::Verweise(vs) => out.extend(vs.iter().map(|v| v.url)),
-                Block::Adresse { links, .. } => out.extend(links.iter().map(|v| v.url)),
-                _ => {}
-            }
-        }
-    }
-    let mut out = Vec::new();
-    sammle(DOKUMENT, &mut out);
-    out.extend(QUELLEN.iter().map(|(_, v)| v.url));
-    out
-}
-
-/// Angezeigte Laenge je Verweis, in derselben Reihenfolge - fuer die Breite
-/// der Klickflaeche.
-fn anzeigelaengen() -> Vec<usize> {
-    fn sammle(bs: &'static [Block], out: &mut Vec<usize>) {
-        for b in bs {
-            match b {
-                Block::Lead { blocks, .. } | Block::Alarm { blocks, .. } => sammle(blocks, out),
-                Block::Verweise(vs) => out.extend(
-                    vs.iter()
-                        .map(|v| link_text(v.text, MAX_LINK_KLEIN).chars().count()),
-                ),
-                Block::Adresse { links, .. } => out.extend(
-                    links
-                        .iter()
-                        .map(|v| link_text(v.text, MAX_LINK_GROSS).chars().count()),
-                ),
-                _ => {}
-            }
-        }
-    }
-    let mut out = Vec::new();
-    sammle(DOKUMENT, &mut out);
-    out.extend(
-        QUELLEN
-            .iter()
-            .map(|(_, v)| link_text(v.text, MAX_LINK_KLEIN).chars().count()),
-    );
-    out
-}
-
 // ---------------------------------------------------------------------------
 // Schriften und Link-Overlay
 // ---------------------------------------------------------------------------
@@ -649,13 +720,26 @@ fn load_font_family(font_dir: &str) -> Result<genpdf::fonts::FontFamily<genpdf::
     })
 }
 
-/// Legt ueber jede in einer Linkgroesse gesetzte Textzeile eine Annotation.
+/// Legt ueber jede Unterstreichung in `LINK_MARKE` eine Link-Annotation.
 ///
-/// Der Inhaltsstrom wird Seite fuer Seite in Zeichenreihenfolge durchlaufen;
-/// printpdf schreibt je Zeile `BT / TL / Td x y / Tf /F n / TJ [...]`, sodass
-/// das letzte `Td` vor einem `TJ` die Grundlinie der Zeile angibt.
-fn add_links(pdf: &Path, urls: &[&str], laengen: &[usize]) -> Result<usize> {
+/// `Fliesstext` zeichnet unter jedes verlinkte Wort eine Linie in dieser
+/// Farbe. `draw_line` schreibt sie mit Seitenkoordinaten in den Inhaltsstrom,
+/// womit die Klickflaeche exakt feststeht - anders als beim frueheren
+/// Verfahren ueber die Schriftgroesse braucht es dafuer keine reservierten
+/// Groessen mehr, und ein Link darf mitten im Satz stehen.
+///
+/// Die Reihenfolge der Striche im Strom ist die Reihenfolge, in der sie
+/// gezeichnet wurden; `GEZEICHNET` haelt dazu die Ziele.
+fn add_links(pdf: &Path, ziele: &[&str]) -> Result<usize> {
     use lopdf::{Dictionary, Document, Object, StringFormat};
+
+    let marke = match LINK_MARKE {
+        Color::Rgb(r, g, b) => (r as f64 / 255.0, g as f64 / 255.0, b as f64 / 255.0),
+        _ => unreachable!("LINK_MARKE ist RGB"),
+    };
+    // printpdf schreibt Farben mit zwei Nachkommastellen. Verglichen wird
+    // deshalb gerundet - sonst findet der Vergleich die eigene Farbe nicht.
+    let gleich = |a: f64, b: f64| (a * 100.0).round() == (b * 100.0).round();
 
     let mut doc = Document::load(pdf)?;
     let seiten: Vec<(u32, lopdf::ObjectId)> = doc.get_pages().into_iter().collect();
@@ -672,53 +756,43 @@ fn add_links(pdf: &Path, urls: &[&str], laengen: &[usize]) -> Result<usize> {
     for (_, page_id) in seiten {
         let content = doc.get_and_decode_page_content(page_id)?;
 
-        let mut pos = (0.0f64, 0.0f64);
-        let mut size = 0.0f64;
-        let mut zeilen: Vec<(f64, f64, f64)> = Vec::new();
+        let mut ist_marke = false;
+        let mut punkte: Vec<(f64, f64)> = Vec::new();
+        let mut striche: Vec<(f64, f64, f64)> = Vec::new();
         for op in &content.operations {
             match op.operator.as_str() {
-                "Td" | "TD" if op.operands.len() >= 2 => {
+                "RG" if op.operands.len() >= 3 => {
+                    let c: Vec<f64> = op.operands.iter().filter_map(num).collect();
+                    ist_marke = c.len() >= 3
+                        && gleich(c[0], marke.0)
+                        && gleich(c[1], marke.1)
+                        && gleich(c[2], marke.2);
+                    punkte.clear();
+                }
+                "m" | "l" if ist_marke && op.operands.len() >= 2 => {
                     if let (Some(x), Some(y)) = (num(&op.operands[0]), num(&op.operands[1])) {
-                        pos = (x, y);
+                        punkte.push((x, y));
                     }
                 }
-                "Tm" if op.operands.len() >= 6 => {
-                    if let (Some(x), Some(y)) = (num(&op.operands[4]), num(&op.operands[5])) {
-                        pos = (x, y);
+                "S" | "s" | "f" | "F" | "B" | "b" | "n" if ist_marke => {
+                    if punkte.len() >= 2 {
+                        let x0 = punkte.iter().map(|p| p.0).fold(f64::INFINITY, f64::min);
+                        let x1 = punkte.iter().map(|p| p.0).fold(f64::NEG_INFINITY, f64::max);
+                        striche.push((x0, x1, punkte[0].1));
                     }
-                }
-                "Tf" if op.operands.len() >= 2 => {
-                    if let Some(s) = num(&op.operands[1]) {
-                        size = s;
-                    }
-                }
-                "Tj" | "TJ" => {
-                    let ist_link = LINK_SIZES
-                        .iter()
-                        .any(|s| (size - *s as f64).abs() < 0.01);
-                    let schon = zeilen
-                        .last()
-                        .map(|(x, y, _)| (*x, *y) == pos)
-                        .unwrap_or(false);
-                    if ist_link && !schon {
-                        zeilen.push((pos.0, pos.1, size));
-                    }
+                    punkte.clear();
                 }
                 _ => {}
             }
         }
-        if zeilen.is_empty() {
+        if striche.is_empty() {
             continue;
         }
 
         let mut annots: Vec<Object> = Vec::new();
-        for (x, y, size) in &zeilen {
-            let Some(url) = urls.get(gesetzt) else { break };
-            let chars = laengen.get(gesetzt).copied().unwrap_or(40);
+        for (x0, x1, y) in &striche {
+            let Some(url) = ziele.get(gesetzt) else { break };
             gesetzt += 1;
-
-            let breite = chars as f64 * size * AVG_ADVANCE_EM;
-            let rechts = (x + breite + 2.0).min(A4_WIDTH_PT - MARGIN_PT);
 
             let mut action = Dictionary::new();
             action.set("S", Object::Name(b"URI".to_vec()));
@@ -733,10 +807,10 @@ fn add_links(pdf: &Path, urls: &[&str], laengen: &[usize]) -> Result<usize> {
             annot.set(
                 "Rect",
                 Object::Array(vec![
-                    Object::Real((*x - 2.0) as f32),
+                    Object::Real((*x0 - 1.0) as f32),
                     Object::Real((*y - 2.0) as f32),
-                    Object::Real(rechts as f32),
-                    Object::Real((*y + size + 2.0) as f32),
+                    Object::Real((*x1 + 1.0) as f32),
+                    Object::Real((*y + 9.0) as f32),
                 ]),
             );
             annot.set("Border", Object::Array(vec![0.into(), 0.into(), 0.into()]));
@@ -831,17 +905,15 @@ pub fn render(out: &Path, font_dir: &str) -> Result<usize> {
         ));
     }
 
-    let urls = urls();
-    let laengen = anzeigelaengen();
-    let gesetzt = add_links(out, &urls, &laengen)?;
-    if gesetzt != urls.len() {
+    let ziele = GEZEICHNET.lock().expect("Linkliste").clone();
+    let gesetzt = add_links(out, &ziele)?;
+    if gesetzt != ziele.len() {
         return Err(anyhow!(
-            "Link-Overlay: {} Zeilen in Linkgroesse gefunden, aber {} URLs erwartet – \
-             die Zuordnung waere verschoben. Steht irgendwo Text in {} oder {} pt?",
+            "Link-Overlay: {} Unterstreichungen im Inhaltsstrom gefunden, aber {} gezeichnet – \
+             die Zuordnung wäre verschoben. Wird LINK_MARKE irgendwo sonst als Strichfarbe \
+             verwendet?",
             gesetzt,
-            urls.len(),
-            LINK_KLEIN,
-            LINK_GROSS
+            ziele.len()
         ));
     }
     Ok(gesetzt)

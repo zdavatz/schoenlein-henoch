@@ -51,35 +51,36 @@ eingebettet.
 
 Fünf Dinge, die beim Bauen Zeit gekostet haben:
 
-- **Die Schriftgrössen 9 pt und 11 pt gehören ausschliesslich den
-  Verweiszeilen.** `genpdf` 0.2 kennt keine Hyperlinks. Deshalb steht jeder
-  Verweis allein auf seiner Zeile und in einer dieser beiden Grössen; nach
-  dem Rendern läuft `add_links()` den Inhaltsstrom Seite für Seite durch,
-  sammelt die Grundlinien aller Zeilen in genau diesen Grössen ein und legt
-  `/Link`-Annotationen darüber. Sobald irgendwo sonst Text in 9 oder 11 pt
-  gesetzt wird, verschiebt sich die Zuordnung und jeder Link zeigt aufs
-  falsche Ziel. `render()` bricht mit Fehler ab, wenn die Zahl der gefundenen
-  Zeilen nicht der Zahl der URLs entspricht – **diese Prüfung nie
-  entfernen**, sie ist die einzige Absicherung. Fliesstext läuft auf 10,
-  Kleingedrucktes auf 8, die Kopfzeile auf 7 pt.
-- **`urls()` und `anzeigelaengen()` müssen dieselbe Reihenfolge liefern wie
-  der Satz**: erst der Dokumentbaum (Kästen, `Verweise`, Adressen), dann die
-  Quellen. Wer die Reihenfolge in `baue()` ändert, muss beide mitziehen.
-- **Ein Link im Fliesstext geht nicht.** Weil die Zuordnung über die
-  Schriftgrösse läuft, muss jeder Verweis allein auf seiner Zeile stehen.
-  Soll eine im Text genannte Adresse anklickbar sein, kommt ein
-  `Block::Verweise` darunter – so hängen etwa die beiden SDIF-Adressen unter
-  dem Absatz, der das Werkzeug nennt. Ein `<a>` mitten im Satz gäbe es nur
-  im HTML und nicht im PDF; deshalb gibt es ihn nirgends.
-- **`link_text()` kürzt lange Adressen in der Mitte**; verlinkt wird immer
-  das Original. Die Grenze hängt an der Schriftgrösse und daran, wie breit
-  die Zeile steht: `MAX_LINK_GROSS = 76` für die Kontaktzeilen, die
-  eingerückt in Adressblöcken sitzen, `MAX_LINK_KLEIN = 94` für die Quellen
-  über die volle Satzbreite. Beide garantieren, dass eine URL nie umbricht –
-  ein Umbruch ergäbe zwei Zeilen in Linkgrösse und damit wieder eine
-  Verschiebung. Wer eine längere URL aufnimmt, prüft am Satzbild, dass sie
-  ungekürzt und einzeilig steht; die Link-Zählung merkt den Umbruch, nicht
-  aber eine unnötige Kürzung.
+- **Links liegen hinter dem Wort, nicht auf einer eigenen Zeile.** Das
+  frühere Verfahren – jeder Verweis allein auf seiner Zeile, erkannt an einer
+  reservierten Schriftgrösse – ist weg. Es zwang dazu, nackte URLs unter die
+  Absätze zu setzen, und das war der Sache nicht angemessen: Wer liest, soll
+  das Wort anklicken.
+- **`Fliesstext` in `src/pdf.rs` setzt Absätze selbst**, statt genpdfs
+  `Paragraph` zu nehmen. Nur so ist bekannt, wo ein Wort zu liegen kommt. Der
+  Umbruch ist derselbe wie in genpdf – gebrochen wird an Leerzeichen, das
+  Leerzeichen bleibt beim Wort davor – und die Breiten kommen aus
+  `Style::str_width`, also aus derselben Quelle wie bei genpdf, samt Kerning.
+  Wer `umbrechen()` anfasst, ändert den Satz des ganzen Dokuments.
+- **Die Klickfläche ist die Unterstreichung.** Unter jedes verlinkte Wort
+  zeichnet `Fliesstext` eine Linie in `LINK_MARKE`; `draw_line` schreibt sie
+  mit **Seitenkoordinaten** in den Inhaltsstrom, und genau daran findet
+  `add_links()` die Rechtecke. Die Linie ist zugleich die Unterstreichung,
+  die den Link sichtbar macht – Anzeige und Messpunkt sind dasselbe, deshalb
+  können sie nicht auseinanderlaufen.
+- **`LINK_MARKE` darf nirgends sonst als Strichfarbe vorkommen.** Als
+  Füllfarbe für Text ist sie unbedenklich, als Strichfarbe nicht: Jeder
+  Strich in dieser Farbe wird zu einer Link-Annotation. Tabellenlinien nehmen
+  `LINIE`, Rahmen die Vorgabe Schwarz.
+- **printpdf schreibt Farben mit zwei Nachkommastellen.** `0x7b` wird zu
+  `0.48`, nicht zu `0.4824`. Der Farbvergleich in `add_links()` rundet
+  deshalb auf zwei Stellen – mit einer engeren Toleranz findet er die eigene
+  Farbe nicht, und es gibt null Treffer statt einer Fehlermeldung.
+- **`GEZEICHNET` hält die Ziele in Zeichenreihenfolge.** Bricht ein Link über
+  zwei Zeilen um, zeichnet `Fliesstext` zwei Striche und legt das Ziel
+  zweimal ab – die Zuordnung bleibt eins zu eins. `render()` bricht ab, wenn
+  die Zahl der gefundenen Striche nicht zur Zahl der gezeichneten passt.
+  **Diese Prüfung nie entfernen.**
 - **Links prüft man nicht mit `grep /URI` auf der rohen Datei.** Erst
   entpacken: `qpdf --qdf --object-streams=disable ein.pdf raus.pdf`, dann
   `grep -c /URI raus.pdf`. Verlinkt sind auch `tel:` und `mailto:`.
@@ -152,12 +153,12 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   ch.oddb.org und ist dort frei zugänglich. Die Fachinfo einer Zulassung
   liegt unter `https://ch.oddb.org/de/gcc/fachinfo/reg/<Swissmedic-Nr>`, die
   Suche unter `.../search/zone/drugs/search_query/<name>`.
-- **Der Beleg steht im Text, nicht nur im Quellenverzeichnis.** Wer liest,
-  soll klicken können: Unter jeden Abschnitt, der sich auf Fachinformationen
-  stützt, gehört ein `Block::Verweise` mit genau den Kapiteln, die ihn
-  tragen. Das Quellenverzeichnis führt je Präparat einen Registereintrag auf
-  die vollständige Fachinformation – die Kapitel stehen dort bewusst nicht
-  noch einmal.
+- **Der Beleg steht hinter dem Wort.** `Span::L("Wort", "URL")` macht ein
+  Wort im Satz anklickbar – die Fachinformation hängt hinter dem Begriff, den
+  sie belegt, und die Präparatenamen in den Tabellen führen auf ihre
+  Zusammensetzung. Keine nackten URL-Zeilen im Fliesstext. Das
+  Quellenverzeichnis führt je Präparat einen Registereintrag auf die
+  vollständige Fachinformation.
 - **Verlinkt wird das Kapitel, nicht die ganze Fachinformation:**
   `.../fachinfo/reg/<Nr>/chapter/<kapitel>`. Wer eine Aussage belegt, verlinkt
   das Kapitel, in dem sie steht – sonst muss der Leser eine zwanzigseitige

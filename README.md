@@ -68,9 +68,10 @@ Anmeldeprozeduren, Haftungshinweise und Angaben, die Kinder betreffen, sind
 bewusst nicht drin.
 
 Belegt ist alles mit der zitierten Literatur, im Dokument am Schluss
-verlinkt. Die Belege zu den Arzneimitteln stehen im Text, direkt unter der Aussage,
-die sie tragen, und zeigen auf das einzelne Kapitel der Fachinformation –
-ein Klick, kein Blättern. Das Quellenverzeichnis führt je Präparat die
+verlinkt. Die Belege zu den Arzneimitteln liegen hinter den Wörtern: «Agranulozytose»
+führt auf die Warnhinweise, «Rubazonsäure» auf die sonstigen Hinweise, jeder
+Präparatename in den Tabellen auf seine Zusammensetzung – kapitelgenau, ein
+Klick, kein Blättern. Das Quellenverzeichnis führt je Präparat die
 vollständige Fachinformation. Der Interaktionscheck stammt aus
 [SDIF](https://sdif.oddb.org/?tab=check), dem Swiss Drug Interaction Finder, der die
 Schweizer Fachinformationen mit den abgestuften EPha-Daten abgleicht. Die Arzneimittelangaben stammen aus den Fachinformationen auf

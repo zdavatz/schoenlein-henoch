@@ -22,6 +22,9 @@ fn spans(out: &mut String, sp: &[Span]) {
             Span::I(t) => {
                 let _ = write!(out, "<em>{}</em>", esc(t));
             }
+            Span::L(t, url) => {
+                let _ = write!(out, "<a href=\"{}\">{}</a>", esc(url), esc(t));
+            }
             Span::N(t) => {
                 // Messwerte duerfen nicht am Schraegstrich oder vor der
                 // Einheit umbrechen.
@@ -112,11 +115,6 @@ fn blocks(out: &mut String, bs: &[Block]) {
                 let _ = write!(out, "  <h3>{}</h3>\n", esc(titel));
                 blocks(out, inner);
                 out.push_str("</div>\n\n");
-            }
-            Block::Verweise(vs) => {
-                for v in *vs {
-                    verweis(out, v, "verweis");
-                }
             }
             Block::Adresse { name, rolle, zeilen, links } => {
                 out.push_str("<div class=\"adresse\">\n");
