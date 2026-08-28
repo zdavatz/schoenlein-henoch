@@ -59,6 +59,11 @@ fn grund() -> Style {
 /// Zeichen, die nie am Zeilenanfang stehen duerfen.
 const NACHKLAPP: [char; 8] = [',', '.', ';', ':', '!', '?', ')', '\u{bb}'];
 
+/// Zeichen, die nie am Zeilenende stehen duerfen. Sie gehoeren an das Wort,
+/// das ihnen folgt - eine oeffnende Klammer allein am Zeilenende ist derselbe
+/// Fehler wie ein Semikolon allein am Zeilenanfang.
+const VORKLAPP: [char; 3] = ['(', '\u{ab}', '['];
+
 /// Zerlegt die Textstuecke eines Absatzes in Paare aus Text und Stil.
 ///
 /// genpdf zerlegt jedes Stueck einzeln in Woerter und darf an jeder Grenze
@@ -66,7 +71,8 @@ const NACHKLAPP: [char; 8] = [',', '.', ';', ':', '!', '?', ')', '\u{bb}'];
 /// Wort fuer sich. Beides ergibt haessliche Zeilenanfaenge - eine Zeile, die
 /// mit einem Leerzeichen beginnt, oder ein Semikolon, das von seinem Wort
 /// abgerissen wird. Deshalb wandern fuehrende Leerzeichen und Satzzeichen
-/// vorher ans Ende des vorangehenden Stuecks.
+/// vorher ans Ende des vorangehenden Stuecks - und umgekehrt eine oeffnende
+/// Klammer am Ende eines Stuecks an den Anfang des naechsten.
 fn stuecke(sp: &[Span], basis: Style) -> Vec<(String, Style, Option<&'static str>)> {
     let mut teile: Vec<(String, Style, Option<&'static str>)> = Vec::new();
     for s in sp {
@@ -89,10 +95,25 @@ fn stuecke(sp: &[Span], basis: Style) -> Vec<(String, Style, Option<&'static str
                 }
             }
         }
-        if !rest.is_empty() {
-            teile.push((rest.to_string(), stil, url));
+        if rest.is_empty() {
+            continue;
         }
+        // Oeffnende Klammern des vorangehenden Stuecks nach vorn holen, damit
+        // sie nicht allein am Zeilenende haengen bleiben.
+        let mut vorne = String::new();
+        if let Some((vorher, _, _)) = teile.last_mut() {
+            while let Some(c) = vorher.chars().next_back() {
+                if VORKLAPP.contains(&c) {
+                    vorher.pop();
+                    vorne.insert(0, c);
+                } else {
+                    break;
+                }
+            }
+        }
+        teile.push((vorne + rest, stil, url));
     }
+    teile.retain(|(t, _, _)| !t.is_empty());
     teile
 }
 
