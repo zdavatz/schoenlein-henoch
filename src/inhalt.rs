@@ -135,12 +135,14 @@ static T_VERLAUF: Tabelle = Tabelle {
             )],
         ],
         &[
-            &[B("Seit etwa vier bis fünf Wochen gar kein Stuhlgang mehr")],
+            &[B("Über vier bis fünf Wochen gar kein Stuhlgang – inzwischen wieder in Gang")],
             &[T(
                 "Ausbleibender Stuhl gehört zusammen mit Erbrechen und Bauchschmerz zum \
                  klassischen Bild des Darmverschlusses. Ausbleibender Stuhl ",
             ), B("und"), T(
-                " ausbleibender Windabgang ist der Notfall, nicht die Sprechstunde.",
+                " ausbleibender Windabgang ist der Notfall, nicht die Sprechstunde. Dass die \
+                 Passage wieder offen ist, entschärft genau diesen Punkt – siehe den Abschnitt \
+                 «Was sich gebessert hat».",
             )],
         ],
     ],
@@ -162,7 +164,7 @@ static T_ABKLAERUNG: Tabelle = Tabelle {
         ],
         &[
             &[B("Niere")],
-            &[T("Kreatinin, eGFR, Albumin im Blut – der Verlauf, nicht nur der Einzelwert.")],
+            &[T("Kreatinin, eGFR, Albumin im Blut – der Verlauf, nicht nur der Einzelwert. Dazu der "), B("Harnstoff aus derselben Entnahme"), T(": Wie er zum Kreatinin steht, ist ein Hinweis darauf, ob eine Blutungsquelle oben liegt – siehe den Abschnitt «Dunkler Stuhl: Galle oder Blut?».")],
         ],
         &[
             &[B("Blutzerfall")],
@@ -366,15 +368,18 @@ pub static DOKUMENT: &[Block] = &[
                 B("Das Tempo."), T(" Der Abfall um "), N("25 g/l"), T(" ist der eigentliche Befund. Eine Blutarmut durch Entzündung oder Nierenschwäche entwickelt sich über Monate. Ein Abfall innert Wochen spricht für Blutverlust – bei dieser Krankheit in erster Linie aus dem Darm. Das gehört rasch abgeklärt und nicht in eine Sprechstunde in sechs Wochen."),
             ]),
             P(&[
-                B("Der Bauch."), T(" Seit Wochen kein Appetit, starke Bauchschmerzen, wenig Schlaf, immer wieder Erbrechen – jedes Mal, nachdem eine Kleinigkeit gegessen wurde –, kaum Flüssigkeit, und seit etwa vier bis fünf Wochen gar kein Stuhlgang mehr. Diese Kombination ist keine gewöhnliche Verstopfung; sie ist das Bild einer Passagestörung und der dringlichste Teil dieses Blattes. Siehe den Abschnitt «Was seit Wochen läuft»."),
+                B("Der Bauch."), T(" Seit Wochen kein Appetit, starke Bauchschmerzen, wenig Schlaf, immer wieder Erbrechen – jedes Mal, nachdem eine Kleinigkeit gegessen wurde –, kaum Flüssigkeit, und über vier bis fünf Wochen gar kein Stuhlgang. Diese Kombination ist keine gewöhnliche Verstopfung; sie ist das Bild einer Passagestörung. Siehe den Abschnitt «Was seit Wochen läuft»."),
             ]),
             P(&[
                 B("Und ein Vorlauf."), T(" Es gab schon einmal einen massiven Ausschlag an den Beinen, nach einer Phase starker Belastung. Damit ist das heutige Bild wahrscheinlich kein Erstereignis – siehe den Abschnitt «Ein früherer Schub»."),
             ]),
+            P(&[
+                B("Und der Stand heute."), T(" Der Stuhlgang ist wieder in Gang, der Ausschlag an den Beinen geht zurück, der Urin wurde untersucht und war unauffällig. Drei echte Besserungen – der Hämoglobinabfall ist damit aber nicht erklärt. Siehe den Abschnitt «Was sich gebessert hat»."),
+            ]),
         ],
     },
     H2("Was seit Wochen läuft"),
-    P(&[T("Was die Patientin seit Wochen erlebt, gehört zusammen auf ein Blatt. Einzeln klingt jeder Punkt nach einer Unannehmlichkeit; zusammen ergeben sie etwas anderes.")]),
+    P(&[T("Was die Patientin in den vergangenen Wochen erlebt hat, gehört zusammen auf ein Blatt. Einzeln klingt jeder Punkt nach einer Unannehmlichkeit; zusammen ergeben sie etwas anderes. Diese Liste ist die Vorgeschichte, mit der man zum Termin geht; was sich davon inzwischen gebessert hat, steht im Abschnitt danach.")]),
     Tab(&T_VERLAUF),
     P(&[
         T("Zusammengenommen ist das die klassische Kombination einer "), B("Passagestörung"), T(": Erbrechen kurz nach dem Essen, ausbleibender Stuhl über Wochen, starker Bauchschmerz. Bei einer IgA-Vaskulitis ist der naheliegende Mechanismus ein Darmwandödem – die entzündete, geschwollene Wand behindert die Passage. Es kommen aber auch die Erklärungen infrage, die bei einer 84-Jährigen ohnehin auf der Liste stehen, ein Tumor voran. Beides klärt dasselbe: ein Bild vom Bauch."),
@@ -385,6 +390,27 @@ pub static DOKUMENT: &[Block] = &[
     P(&[
         B("Die Infusion ist deshalb richtig."), T(" Wenn durch den Mund nichts drin bleibt, füllt sie das Blutvolumen wieder auf – kristalloide Lösungen sind bei Austrocknung und Blutverlust das Mittel erster Wahl. Das ist bei dieser Patientin gleich dreifach von Nutzen: Der Kreislauf bekommt wieder Volumen, gegen Schwindel und Schwarzwerden beim Aufstehen; die Niere bekommt wieder Durchblutung, und sie ist bei dieser Krankheit ohnehin das gefährdete Organ; und der Körper braucht Wasser, damit ein Abführmittel überhaupt wirken kann. Für Nahrung gilt dasselbe in eigener Rechnung – nach Wochen ohne Essen gehört der Kostaufbau überwacht."),
     ]),
+
+    H2("Was sich gebessert hat"),
+    P(&[T("Drei Dinge haben sich geändert, und alle drei sind echte Besserung: Der Stuhlgang ist wieder in Gang, der Ausschlag an den Beinen geht zurück, und der Urin wurde untersucht und war unauffällig. Was jede der drei Meldungen beantwortet – und was sie ausdrücklich nicht beantwortet – steht hier.")]),
+
+    H3("Der Stuhlgang ist wieder in Gang"),
+    P(&[T("Das ist die wichtigste der drei Meldungen. Der Verdacht, der über allem stand – Passagestörung, im schlimmsten Fall Darmverschluss –, ist damit entschärft: Was durchgeht, ist nicht verschlossen. Der Notfallgrund fällt weg.")]),
+    P(&[T("Was nicht wegfällt, ist die Frage, warum die Passage wochenlang stand. Die beiden Erklärungen, die dafür auf dem Tisch lagen, liegen weiter dort – das Darmwandödem der Vaskulitis und ein Hindernis, das mit 84 Jahren ohnehin gesucht gehört. Beide beantwortet dieselbe Untersuchung, und sie ist jetzt leichter durchzuführen als vorher: Solange die Passage stand, verbot sich die Darmspiegelung; jetzt verbietet sie sich nicht mehr. Der Zeitpunkt dafür ist nicht «wenn es wieder schlechter wird», sondern jetzt, solange es gut geht.")]),
+
+    H3("Der Ausschlag geht zurück"),
+    P(&[T("Gut für die Haut – und die Haut ist der harmloseste der vier Bereiche. Daraus folgen zwei Dinge, und beide zeigen in dieselbe Richtung: Was jetzt nicht getan wird, lässt sich später nicht nachholen.")]),
+    P(&[B("Das Fenster für die Hautbiopsie schliesst sich."), T(" Der Beweis der Diagnose ist der IgA-Nachweis in der Gefässwand, und er gelingt nur an einer frischen Läsion, jünger als etwa 48 Stunden; an abgeheilten Flecken findet sich nichts mehr. Wer die Diagnose sichern will, hat dafür so lange Zeit, wie noch frische Flecken nachkommen – danach nicht mehr. Dasselbe gilt für Fotos mit Datum, und die kosten nichts.")]),
+    P(&[B("Die Urinkontrolle fängt jetzt erst an."), T(" Der häufigste Fehler bei dieser Krankheit ist, die Kontrollen zu beenden, sobald die Haut wieder sauber aussieht. Die Nierenbeteiligung "), L("entwickelt sich", "https://www.aafp.org/pubs/afp/issues/2020/0815/p229.html"), T(" typischerweise ein bis drei Monate nach dem Ausschlag und kann sich bis zu sechs Monate verzögern; 91 Prozent treten innerhalb von sechs Wochen auf, 97 Prozent innerhalb von sechs Monaten. Der abheilende Ausschlag ist deshalb kein Grund, mit dem Urin aufzuhören – er markiert den Beginn der Zeit, in der hingeschaut werden muss.")]),
+
+    H3("Der Urin ist unauffällig"),
+    P(&[T("Die beste Nachricht des Blattes: Das Organ, das über den Verlauf entscheidet, zeigt im Moment nichts. Zwei Einschränkungen gehören dazu, und keine davon ist eine Spitzfindigkeit.")]),
+    P(&[B("Was genau wurde gemacht?"), T(" Ein Streifentest allein ist nicht dasselbe wie Status, Sediment und Protein-Kreatinin-Quotient. Der Streifen misst eine Konzentration, und deshalb hängt sein Ergebnis daran, wie verdünnt der Urin ist – unter laufender Infusion ist er verdünnt. In einer Untersuchung an 2932 Urinproben wurde eine erhebliche Eiweissausscheidung in den verdünnten Proben vom Streifentest "), L("nicht erkannt", "https://pmc.ncbi.nlm.nih.gov/articles/PMC5063823/"), T(". Der Protein-Kreatinin-Quotient hat dieses Problem nicht: Er bezieht das Eiweiss auf das Kreatinin und ist damit von der Verdünnung unabhängig. Die Frage lautet also nicht «war der Urin gut», sondern «welche Untersuchungen waren darin enthalten, und wie hoch war der Quotient».")]),
+    P(&[B("Ein normaler Befund ist eine Momentaufnahme."), T(" Urin und Blutdruck gehören über mindestens sechs Monate kontrolliert, ausdrücklich auch dann, wenn der erste Befund normal war. Der Wert des heutigen Ergebnisses liegt nicht darin, dass es die Frage schliesst, sondern darin, dass es der erste Punkt einer Kurve ist.")]),
+
+    H3("Was offen bleibt: die 25 g/l"),
+    P(&[T("Keine der drei Meldungen erklärt den Hämoglobinabfall. Der unauffällige Urin sagt etwas über die Niere und nichts über den Blutverlust – die langsame Blutarmut aus nachlassender Nierenfunktion passt zu diesem Tempo ohnehin nicht. Und die Auskunft, der dunkle Stuhl sei Galle gewesen, nimmt, falls sie zutrifft, die naheliegendste Quelle aus der Rechnung. Damit wird die Frage nicht kleiner, sondern dringlicher: Es fehlen "), N("25 g/l"), T(", und die wahrscheinlichste Erklärung wäre gerade ausgeschieden. Wie sich das ohne grossen Aufwand weiterverfolgen lässt, steht im Abschnitt «Dunkler Stuhl: Galle oder Blut?».")]),
+    P(&[T("Der einfachste Schritt ist ein neuer Hämoglobinwert zusammen mit den Retikulozyten, jetzt, wo wieder getrunken wird und die Austrocknung den Wert nicht mehr schönt. Er sagt zweierlei: ob der Verlust steht oder weiterläuft, und ob das Knochenmark antwortet.")]),
 
     H2("Den Hämoglobinwert richtig lesen"),
     P(&[
@@ -450,7 +476,7 @@ pub static DOKUMENT: &[Block] = &[
 
     H2("Woher der Blutverlust kommen kann"),
     Liste(&[
-        &[B("Blutung aus dem Magen-Darm-Trakt."), T(" Die naheliegendste Erklärung. Die Vaskulitis schädigt die Schleimhaut, am häufigsten im Zwölffingerdarm. Die Blutung muss nicht sichtbar sein – sie kann über Wochen sickern, ohne dass der Stuhl auffällt. Kommt seit Wochen ohnehin kein Stuhl, fällt dieser Hinweis ganz weg.")],
+        &[B("Blutung aus dem Magen-Darm-Trakt."), T(" Die naheliegendste Erklärung. Die Vaskulitis schädigt die Schleimhaut, am häufigsten im Zwölffingerdarm. Die Blutung muss nicht sichtbar sein – sie kann über Wochen sickern, ohne dass der Stuhl auffällt. Solange gar kein Stuhl kam, fiel dieser Hinweis ganz weg; jetzt, wo die Passage wieder offen ist, steht er wieder zur Verfügung – siehe den nächsten Abschnitt.")],
         &[B("Medikamente."), T(" Kortison zusammen mit Schmerzmitteln vom NSAR-Typ (Ibuprofen, Diclofenac, Naproxen) erhöht das Geschwürrisiko erheblich; NSAR belasten zusätzlich die Niere. Blutverdünner verstärken jede vorhandene Blutungsquelle. Die vollständige Medikamentenliste gehört auf den Tisch, rezeptfreie Mittel eingeschlossen.")],
         &[B("Eine zweite, unabhängige Quelle."), T(" Mit 84 Jahren ist ein Dickdarmtumor oder ein Magengeschwür statistisch häufiger als die Vaskulitis selbst. Beides würde den Blutverlust erklären – und zusammen mit der ausbleibenden Passage womöglich auch den Rest.")],
         &[B("Die Niere."), T(" Bei nachlassender Nierenfunktion bildet der Körper weniger Erythropoetin, das Hormon für die Blutbildung. Das erklärt eine langsam sinkende Kurve, keinen Sturz um "), N("25 g/l"), T(" in kurzer Zeit.")],
@@ -459,6 +485,14 @@ pub static DOKUMENT: &[Block] = &[
         &[B("Entzündungsanämie."), T(" Ebenso: als Grundrauschen möglich, für diesen Verlauf zu langsam.")],
         &[B("Verdünnung durch die Infusion."), T(" Sie senkt den gemessenen Wert, ohne dass Blut verloren geht – siehe oben. Zusammen mit häufigen Blutentnahmen erklärt das einen Teil des Abfalls und ist vor der grossen Abklärung in einer Minute geprüft.")],
     ]),
+
+    H2("Dunkler Stuhl: Galle oder Blut?"),
+    P(&[T("Die Auskunft, der dunkle Stuhl komme von der Galle, ist nicht abwegig – die Farbe des Stuhls stammt tatsächlich aus der Galle. Das Bilirubin der Galle wird im Dickdarm von den Darmbakterien "), L("abgebaut", "https://www.ncbi.nlm.nih.gov/books/NBK470290/"), T("; die dabei entstehenden Stoffe sind farblos und geben dem Stuhl erst durch Oxidation an der Luft seine Farbe. Nach Wochen ohne Nahrung und ohne Stuhlgang ist ein dunkler erster Stuhl also keine Überraschung.")]),
+    P(&[T("Nur beantwortet die Farbe die Frage nicht, um die es geht. "), B("Teerstuhl"), T(" – der Stuhl bei einer Blutung im oberen Verdauungstrakt – ist nicht bloss dunkel, sondern schwarz, glänzend, klebrig, schwer abzuspülen und von durchdringendem Geruch. Drei Angaben dazu sind in dieser Lage nützlich: Es braucht rund "), N("50 ml"), T(" Blut im Magen, um den Stuhl "), L("schwarz zu färben", "https://www.ncbi.nlm.nih.gov/books/NBK411/"), T("; nach einer Blutung kann er noch tagelang so aussehen, die Farbe sagt also nichts darüber, ob gerade jetzt geblutet wird; und Eisenpräparate und Wismut färben ihn ebenfalls schwarz. Die Medikamentenliste beantwortet hier unter Umständen mehr als das Auge.")]),
+    P(&[T("Wie viel an dieser Unterscheidung hängt, zeigt die Auswertung der "), L("JAMA-Reihe zur klinischen Untersuchung", "https://pubmed.ncbi.nlm.nih.gov/22416103/"), T(": Ein Teerstuhl, den die Ärztin selbst gesehen hat, vervielfacht die Chance auf eine Blutung im oberen Verdauungstrakt um das 25-fache; ein von der Patientin oder den Angehörigen berichteter schwarzer Stuhl nur um das Fünf- bis Sechsfache. Der Unterschied zwischen «sah dunkel aus» und «war Teerstuhl» ist also kein Wortstreit, sondern der Unterschied zwischen einem starken und einem mittelmässigen Hinweis. Wo es darauf ankommt, schaut jemand hin, der es beurteilen kann.")]),
+    P(&[B("Der billigste Hinweis steckt im Blut, das ohnehin abgenommen wird."), T(" Bei einer Blutung im oberen Verdauungstrakt wird das Bluteiweiss im Darm verdaut und aufgenommen; der Harnstoff im Blut steigt daraufhin, das Kreatinin nicht. Ein Verhältnis von Harnstoff zu Kreatinin über 30 vervielfacht die Chance auf eine obere Blutungsquelle um das Siebenfache; eine "), L("Metaanalyse", "https://onlinelibrary.wiley.com/doi/10.1111/jgh.70224"), T(" fand den besten Trennwert bei 22, mit 66 Prozent Sensitivität und 71 Prozent Spezifität. Ein Beweis ist das nicht, aber ein Hinweis, der weder eine zusätzliche Entnahme noch einen weiteren Termin kostet.")]),
+    Klein(&[T("Ein Fallstrick beim Nachrechnen: Diese Grenzwerte gelten für die amerikanischen Einheiten, Harnstoffstickstoff und Kreatinin je in mg/dl; dort liegt der übliche Bereich bei etwa 8 bis 15. Schweizer Labors geben Harnstoff in mmol/l und Kreatinin in µmol/l an, und in dieser Rechnung sehen dieselben Verhältnisse ganz anders aus – der übliche Bereich liegt dann "), L("bei etwa 40 bis 100", "https://litfl.com/urea-creatinine-ratio/"), T(". Wer die Zahlen des Laborberichts direkt gegen die 30 hält, bekommt Unsinn heraus. Die Rechnung gehört der Ärztin; hier steht sie, damit die Frage überhaupt gestellt wird.")]),
+    P(&[T("Und wie die Frage auch ausgeht: Der Hämoglobinabfall braucht eine Erklärung. Fällt der Stuhl als Quelle aus, rücken die übrigen Einträge der Liste oben nach vorn – und der wirksamste nächste Schritt bleibt derselbe, den dieses Blatt an mehreren Stellen nennt: die Spiegelung, die Blutungsquelle und Tumorfrage in einem Durchgang beantwortet.")]),
 
     H2("Was abgeklärt gehört"),
     Tab(&T_ABKLAERUNG),
@@ -510,7 +544,7 @@ pub static DOKUMENT: &[Block] = &[
     P(&[T("Zwei weitere Treffer des Laufs sind ebenfalls keine: Der Check meldete «kontraindiziert» zwischen Aspirin und Movicol, weil er im Namen «Macrogol, Kombinationen» das Wort «Kombinationen» als Wirkstoff las, und er ordnete Novalgin einer Regel für Aspirin und NSAR zu, obwohl Metamizol keines von beiden ist. Wer maschinell prüft, muss die Treffer nachlesen; die Fachinformation entscheidet, nicht die Trefferliste.")]),
 
     H2("Abführmittel: welche es gibt und warum sie süss sind"),
-    P(&[T("Vorbemerkung, weil sie in dieser Lage alles andere überwiegt: Solange Erbrechen nach jedem Essen und wochenlang fehlender Stuhlgang nicht abgeklärt sind, ist die Frage nach dem richtigen Abführmittel die zweite Frage. Die erste steht im Abschnitt oben. Was hier folgt, gilt für die Zeit danach – und für den Fall, dass ein Mittel bereits verordnet ist und schlecht vertragen wird.")]),
+    P(&[T("Vorbemerkung, weil sie alles andere überwiegt: Solange nicht abgeklärt ist, warum die Passage wochenlang stand, ist die Frage nach dem richtigen Abführmittel die zweite Frage. Die erste steht im Abschnitt oben. Dass wieder Stuhl abgeht, beantwortet sie nicht – es macht die Untersuchung nur möglich. Was hier folgt, gilt für die Zeit danach – und für den Fall, dass ein Mittel bereits verordnet ist und schlecht vertragen wird.")]),
     P(&[T("Dass ein Abführmittel zum Trinken süss ist, ist kein Zufall des Herstellers. Bei der einen Gruppe ist der Wirkstoff selbst ein Zucker; bei der anderen ist die Süsse ein Zusatz – und den gibt es auch ohne.")]),
     P(&[
         B("Lactulose ist der Zucker."), T(" "), L("Duphalac", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/composition"), T(", "), L("Gatinar", "https://ch.oddb.org/de/gcc/fachinfo/reg/37585/chapter/composition"), T(" und "), L("Rudolac", "https://ch.oddb.org/de/gcc/fachinfo/reg/51067/chapter/composition"), T(" sind Lactulose-Sirup. Die Fachinformation nennt unter Hilfsstoffen: keine. Süss ist hier nicht ein Zusatz, sondern der Wirkstoff, und daran lässt sich nichts ändern. Lactulose wird nicht aufgenommen, sondern im Dickdarm von Bakterien "), L("vergoren", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/effects"), T(" – dabei entstehen Gase. Blähungen sind deshalb kein Nebeneffekt, sondern das Stoffwechselprodukt. In den Zulassungsstudien war "), L("Durchfall sehr häufig (13,1 Prozent)", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/unwanted_effects"), T(", Flatulenz, Bauchschmerzen, Übelkeit und Erbrechen häufig. "), L("Importal", "https://ch.oddb.org/de/gcc/fachinfo/reg/52785/chapter/composition"), T(" (Lactitol) ist ein Zuckeralkohol und funktioniert nach demselben Prinzip."),
@@ -527,7 +561,7 @@ pub static DOKUMENT: &[Block] = &[
     P(&[T("Der Cochrane-Vergleich gibt Macrogol gegenüber Lactulose ohnehin durchweg den Vorzug: bessere Stuhlfrequenz, bessere Stuhlform, weniger Bauchschmerzen, weniger Bedarf an Zusatzmitteln. Der Wechsel löst also nicht nur das Geschmacksproblem.")]),
     H3("Vier Punkte aus den Fachinformationen, die hier besonders zählen"),
     Liste(&[
-        &[B("Bei Darmverschluss verboten."), T(" Alle diese Mittel führen "), L("intestinale Obstruktion, Ileus und Perforation", "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/contra_indications"), T(" als "), L("Gegenanzeige", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/contra_indications"), T(". Duphalac verlangt darüber hinaus "), L("ausdrücklich", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/restrictions"), T(", dass schmerzhafte Bauchsymptome unklarer Ursache "), B("vor"), T(" Behandlungsbeginn abgeklärt werden, um eine nicht diagnostizierte Obstruktion auszuschliessen. Bei seit Wochen fehlendem Stuhlgang ist das keine Formalie.")],
+        &[B("Bei Darmverschluss verboten."), T(" Alle diese Mittel führen "), L("intestinale Obstruktion, Ileus und Perforation", "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/contra_indications"), T(" als "), L("Gegenanzeige", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/contra_indications"), T(". Duphalac verlangt darüber hinaus "), L("ausdrücklich", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/restrictions"), T(", dass schmerzhafte Bauchsymptome unklarer Ursache "), B("vor"), T(" Behandlungsbeginn abgeklärt werden, um eine nicht diagnostizierte Obstruktion auszuschliessen. Nach wochenlang fehlendem Stuhlgang ist das keine Formalie, auch jetzt nicht, wo die Passage wieder offen ist.")],
         &[B("Ohne Flüssigkeit keine Wirkung."), T(" Duphalac empfiehlt während einer Abführbehandlung "), L("1,5 bis 2 Liter am Tag", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/usage"), T(". Für Movicol "), L("steht ausdrücklich", "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/restrictions"), T(", dass die zubereitete Lösung die reguläre Flüssigkeitszufuhr "), B("nicht ersetzt"), T("; ein Beutel wird in 125 ml Wasser gelöst. Wer kaum trinkt, dem hilft das Mittel wenig – und die Austrocknung trifft ausgerechnet die Niere.")],
         &[B("Im Alter die kleinere Dosis."), T(" Für Menschen über 65 genügt bei Movicol laut "), L("Fachinformation", "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/usage"), T(" normalerweise ein Beutel täglich statt ein bis zwei.")],
         &[B("Die neutrale Variante lässt sich vorbereiten."), T(" Die zubereitete Lösung von Movicol neutral ist "), L("im Kühlschrank 24 Stunden haltbar", "https://ch.oddb.org/de/gcc/fachinfo/reg/58420/chapter/other_advice"), T(", die der aromatisierten Varianten nur 6 – die neutrale kann also am Vorabend angesetzt und kalt getrunken werden.")],
@@ -539,7 +573,7 @@ pub static DOKUMENT: &[Block] = &[
             P(&[T("Trifft das zu, ist ein Abführmittel durch den Mund nicht nur wirkungslos, sondern falsch: Man drückt Flüssigkeit gegen einen Engpass. Dann hilft auch der Wechsel auf Macrogol nichts. Dazu kommen die Aspirationsgefahr beim Erbrechen und der Flüssigkeitsverlust – der trifft ausgerechnet die Niere, das Organ, das hier ohnehin gefährdet ist.")]),
             P(&[B("Zwei Fragen gehören heute geklärt, nicht nächste Woche.")]),
             P(&[B("Wofür ist das Abführmittel gedacht?"), T(" Ist es die Vorbereitung auf die Darmspiegelung, ist Erbrechen unter der Spülung zwar häufig – aber mit Galle und Aufstossen gehört die Vorbereitung abgebrochen und die Ärztin informiert, nicht durchgezogen. Ist es gegen gewöhnliche Verstopfung, gilt dieselbe Abklärungspflicht.")]),
-            P(&[B("Gehen Winde und Stuhl noch ab?"), T(" Wenn nicht, ist das der Notfall und nicht die Sprechstunde.")]),
+            P(&[B("Gehen Winde und Stuhl noch ab?"), T(" Diese Frage ist im Moment beantwortet – es geht wieder Stuhl ab. Sie bleibt der Prüfstein: Hört es wieder auf, ist das der Notfall und nicht die Sprechstunde.")]),
         ],
     },
 
@@ -585,14 +619,18 @@ pub static DOKUMENT: &[Block] = &[
         &[T("Ein Verlaufsblatt zum Bauch: seit wann kein Appetit, seit wann kein Stuhlgang, wie oft Erbrechen und in welchem Abstand zum Essen, wie viel getrunken wird")],
         &[T("Das Gewicht, wenn möglich mit einem früheren Wert zum Vergleich")],
         &[T("Die vollständige Medikamentenliste, rezeptfreie Schmerz- und Abführmittel eingeschlossen – mit dem Namen des Abführmittels auf der Packung")],
-        &[T("Fotos des Ausschlags mit Datum. Purpura heilt oft schneller ab, als ein Termin zustande kommt.")],
+        &[T("Fotos des Ausschlags mit Datum. Purpura heilt oft schneller ab, als ein Termin zustande kommt – der Ausschlag geht bereits zurück, was jetzt nicht fotografiert wird, ist weg.")],
         &[T("Angaben zum früheren Schub: wann, wie lange, was wurde gemacht, wurde der Urin kontrolliert, gab es eine Biopsie")],
-        &[T("Bisherige Urin- und Nierenwerte")],
+        &[T("Bisherige Urin- und Nierenwerte, den letzten Befund im Wortlaut – mit der Angabe, welche Untersuchungen darin enthalten waren")],
+        &[T("Wann der Stuhlgang wieder eingesetzt hat, wie der erste aussah, wie er sich seither verändert – und ob ihn jemand vom Fach gesehen hat")],
     ]),
 
     H2("Fragen, die sich lohnen"),
     Liste(&[
-        &[T("Seit vier bis fünf Wochen kein Stuhlgang und Erbrechen nach jedem Essen – ist ein Darmverschluss ausgeschlossen, und mit welcher Untersuchung?")],
+        &[T("Nach vier bis fünf Wochen ohne Stuhlgang geht die Passage wieder – ist damit geklärt, warum sie stand, oder steht die Untersuchung des Bauches weiter aus?")],
+        &[T("Der dunkle Stuhl wurde mit der Galle erklärt – womit wurde Blut als Quelle ausgeschlossen?")],
+        &[T("Wie stehen Harnstoff und Kreatinin aus derselben Blutentnahme zueinander?")],
+        &[T("Der Urin war unauffällig – war das ein Streifentest allein oder Status, Sediment und Protein-Kreatinin-Quotient?")],
         &[T("Ist eine Computertomografie des Bauches geplant, und wann?")],
         &[T("Wie wird die Flüssigkeitszufuhr sichergestellt, wenn kaum getrunken wird und Erbrechen dazukommt?")],
         &[T("Nach Wochen ohne Nahrung: Wie wird der Kostaufbau begleitet, und werden Phosphat, Kalium und Magnesium dabei kontrolliert?")],
@@ -602,13 +640,13 @@ pub static DOKUMENT: &[Block] = &[
         &[T("Kann der Kreatininwert durch Metamizol verfälscht sein – und wie wird die Nierenfunktion dann beurteilt?")],
         &[T("Wofür ist das Abführmittel verordnet – gegen Verstopfung oder als Vorbereitung der Darmspiegelung? Und ist es in dieser Lage überhaupt zulässig?")],
         &[T("Kann statt eines aromatisierten Präparats Movicol neutral oder Laxipeg aromafrei verschrieben werden – ohne Aroma und ohne Süssstoff?")],
-        &[T("Ist eine Magen- und Darmspiegelung geplant – und wann?")],
+        &[T("Jetzt, wo die Passage wieder offen ist: Ist die Magen- und Darmspiegelung angesetzt, und wann?")],
         &[T("Wie hoch ist der Eiweissverlust im Urin, gemessen als Protein-Kreatinin-Quotient?")],
         &[T("Wurde ANCA bestimmt, also die im Alter häufigere Vaskulitisform ausgeschlossen?")],
-        &[T("Wurde eine Hautbiopsie gemacht, solange frische Flecken vorhanden waren?")],
+        &[T("Der Ausschlag geht zurück: Wird die Hautbiopsie jetzt gemacht, solange noch frische Flecken da sind?")],
         &[T("Ist bei diesem Verlauf eine Nierenbiopsie angezeigt?")],
         &[T("Welche der aktuellen Medikamente belasten Magen oder Niere?")],
-        &[T("Wie oft und über welchen Zeitraum wird der Urin kontrolliert?")],
+        &[T("Wie oft und über welchen Zeitraum wird der Urin kontrolliert – auch jetzt, wo der Befund normal war und der Ausschlag abheilt?")],
         &[T("Ist bei einer Erstmanifestation in diesem Alter eine Tumorsuche vorgesehen?")],
         &[T("Wurde nach dem früheren Ausschlag an den Beinen der Urin kontrolliert – und mit welchem Ergebnis?")],
         &[T("Ging ein Infekt voraus – und welche Medikamente sind in den letzten Wochen neu dazugekommen?")],
@@ -671,6 +709,20 @@ pub static QUELLEN: &[(&str, Verweis)] = &[
      Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK564513/", url: "https://www.ncbi.nlm.nih.gov/books/NBK564513/" }),
     ("Zum nachlassenden Durstgefühl im Alter: Adult Dehydration. StatPearls, NCBI Bookshelf",
      Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK555956/", url: "https://www.ncbi.nlm.nih.gov/books/NBK555956/" }),
+    ("Zum Zeitpunkt der Nierenbeteiligung und zur Dauer der Nachkontrolle: Henoch-Schönlein Purpura (IgA Vasculitis) – Rapid Evidence Review. Am Fam Physician 2020",
+     Verweis { text: "https://www.aafp.org/pubs/afp/issues/2020/0815/p229.html", url: "https://www.aafp.org/pubs/afp/issues/2020/0815/p229.html" }),
+    ("Zum Streifentest bei verdünntem Urin: The efficacy of semi-quantitative urine protein-to-creatinine ratio for the detection of significant proteinuria. PMC5063823",
+     Verweis { text: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5063823/", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5063823/" }),
+    ("Zur Farbe des Stuhls: Physiology, Bilirubin. StatPearls, NCBI Bookshelf",
+     Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK470290/", url: "https://www.ncbi.nlm.nih.gov/books/NBK470290/" }),
+    ("Zum Teerstuhl: Hematemesis, Melena, and Hematochezia. Clinical Methods, NCBI Bookshelf",
+     Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK411/", url: "https://www.ncbi.nlm.nih.gov/books/NBK411/" }),
+    ("Srygley FD et al.: Does this patient have a severe upper gastrointestinal bleed? JAMA 2012; 307: 1072–1079",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/22416103/", url: "https://pubmed.ncbi.nlm.nih.gov/22416103/" }),
+    ("Simadibrata DM et al.: Blood Urea Nitrogen-to-Creatinine Ratio to Differentiate Upper From Lower Gastrointestinal Bleeding. J Gastroenterol Hepatol 2026",
+     Verweis { text: "https://onlinelibrary.wiley.com/doi/10.1111/jgh.70224", url: "https://onlinelibrary.wiley.com/doi/10.1111/jgh.70224" }),
+    ("Zu den Einheiten des Harnstoff-Kreatinin-Verhältnisses: Urea-Creatinine Ratio. Life in the Fast Lane",
+     Verweis { text: "https://litfl.com/urea-creatinine-ratio/", url: "https://litfl.com/urea-creatinine-ratio/" }),
     ("Lee-Robichaud H et al.: Lactulose versus Polyethylene Glycol for Chronic Constipation. Cochrane Database Syst Rev 2010; CD007570",
      Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/20614462/", url: "https://pubmed.ncbi.nlm.nih.gov/20614462/" }),
     ("SDIF – Swiss Drug Interaction Finder: der Lauf dieses Blattes, mit gefülltem Warenkorb",
