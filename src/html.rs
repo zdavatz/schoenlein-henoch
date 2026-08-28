@@ -113,6 +113,11 @@ fn blocks(out: &mut String, bs: &[Block]) {
                 blocks(out, inner);
                 out.push_str("</div>\n\n");
             }
+            Block::Verweise(vs) => {
+                for v in *vs {
+                    verweis(out, v, "verweis");
+                }
+            }
             Block::Adresse { name, rolle, zeilen, links } => {
                 out.push_str("<div class=\"adresse\">\n");
                 let _ = write!(out, "  <p class=\"name\">{}</p>\n", esc(name));

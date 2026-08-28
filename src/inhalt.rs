@@ -61,6 +61,10 @@ pub enum Block {
         titel: &'static str,
         blocks: &'static [Block],
     },
+    /// Freistehende klickbare Zeilen im Fliesstext. Im PDF steht jede allein
+    /// auf ihrer Zeile - die Link-Annotationen werden ueber die
+    /// Schriftgroesse zugeordnet.
+    Verweise(&'static [Verweis]),
     Adresse {
         name: &'static str,
         rolle: &'static [Span],
@@ -488,9 +492,16 @@ pub static DOKUMENT: &[Block] = &[
     P(&[T("Zuerst zu klären sind zwei Gegenanzeigen: eine "), B("eingeschränkte Knochenmarksfunktion oder Blutbildungsstörung"), T(" und eine frühere Agranulozytose unter Pyrazolonen. Und falls sie niedrig dosiertes Aspirin zum Herzschutz nimmt: Metamizol schwächt dessen Wirkung auf die Blutplättchen ab.")]),
 
     H2("Interaktionscheck"),
-    P(&[T("Geprüft mit "), B("SDIF"), T(", dem Swiss Drug Interaction Finder: Er wertet die Interaktionsangaben aus den Schweizer Fachinformationen aus und gleicht sie mit der EPha-Datenbank ab, die jede Kombination von A bis X einstuft – A keine Massnahmen, C regelmässige Überwachung, D Kombination vermeiden, X kontraindiziert. Der Lauf vom 28. August 2026 mit Novalgin, Kortison, Macrogol, Lactulose und niedrig dosiertem Aspirin ergab Folgendes. Er ist am Schluss unter den Quellen verlinkt, mit fertig gefülltem Warenkorb – der Link setzt ihn über die ATC-Codes zusammen, weshalb für die Macrogol-Klasse ein anderes Präparat derselben Klasse angezeigt werden kann.")]),
+    P(&[T("Geprüft mit "), B("SDIF"), T(", dem Swiss Drug Interaction Finder: Er wertet die Interaktionsangaben aus den Schweizer Fachinformationen aus und gleicht sie mit der EPha-Datenbank ab, die jede Kombination von A bis X einstuft – A keine Massnahmen, C regelmässige Überwachung, D Kombination vermeiden, X kontraindiziert. Der Lauf vom 28. August 2026 mit Novalgin, Kortison, Macrogol, Lactulose und niedrig dosiertem Aspirin ergab Folgendes. Das Werkzeug und der Lauf selbst, mit fertig gefülltem Warenkorb, stehen hier – der zweite Link setzt den Korb über die ATC-Codes zusammen, weshalb für die Macrogol-Klasse ein anderes Präparat derselben Klasse angezeigt werden kann.")]),
     P(&[
         B("Der Vorbehalt zuerst:"), T(" Geprüft ist nur, was auf diesem Blatt steht. Die vollständige Medikamentenliste kennt nur die Patientin selbst, und sie gehört zum Termin mitgebracht – rezeptfreie Mittel eingeschlossen. Ein maschineller Check kann nur vergleichen, was man ihm gibt."),
+    ]),
+    Verweise(&[
+        Verweis { text: "https://sdif.oddb.org", url: "https://sdif.oddb.org" },
+        Verweis {
+            text: "https://sdif.oddb.org/?tab=check&drugs=N02BB02-H02AB06-A06AD65-A06AD11-B01AC06",
+            url: "https://sdif.oddb.org/?tab=check&drugs=N02BB02-H02AB06-A06AD65-A06AD11-B01AC06",
+        },
     ]),
     Tab(&T_INTERAKTION),
     H3("Was bei Kortison dazukommt"),
@@ -668,7 +679,7 @@ pub static QUELLEN: &[(&str, Verweis)] = &[
     ("SDIF – Swiss Drug Interaction Finder: der Lauf dieses Blattes, mit gefülltem Warenkorb",
      Verweis { text: "https://sdif.oddb.org/?tab=check&drugs=N02BB02-H02AB06-A06AD65-A06AD11-B01AC06", url: "https://sdif.oddb.org/?tab=check&drugs=N02BB02-H02AB06-A06AD65-A06AD11-B01AC06" }),
     ("SDIF – Interaktionscheck auf Basis der Schweizer Fachinformationen und EPha",
-     Verweis { text: "https://sdif.oddb.org/?tab=check", url: "https://sdif.oddb.org/?tab=check" }),
+     Verweis { text: "https://sdif.oddb.org", url: "https://sdif.oddb.org" }),
     ("EPha.ch – die abgestuften Interaktionsdaten hinter dem Check",
      Verweis { text: "https://epha.ch", url: "https://epha.ch" }),
     ("Novalgin, Warnhinweise: Agranulozytose, Panzytopenie, Blutdruckabfall bei Volumenmangel und Dehydratation",

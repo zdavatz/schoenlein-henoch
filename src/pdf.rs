@@ -327,6 +327,10 @@ fn folgehoehe(fc: &FontCache, b: &'static Block, style: Style) -> f64 {
         Block::Adresse { name, rolle, zeilen, links } => {
             adresshoehe(fc, name, rolle, zeilen, links.len(), style)
         }
+        Block::Verweise(vs) => {
+            let stil = style.and(Style::new().with_font_size(LINK_KLEIN));
+            vs.len() as f64 * (f64::from(stil.line_height(fc)) + 1.0)
+        }
         // Kaesten halten sich selbst zusammen; die Ueberschrift davor soll
         // deswegen nicht die halbe Seite leer lassen.
         Block::Lead { .. } | Block::Alarm { .. } => MITNEHMEN_MAX,
@@ -551,6 +555,11 @@ fn baue(bs: &'static [Block], ziel: &mut LinearLayout, fc: &FontCache, style: St
                     umbruch_offen: true,
                 });
             }
+            Block::Verweise(vs) => {
+                for v in *vs {
+                    ziel.push(verweiszeile(v, LINK_KLEIN).padded(Margins::trbl(0, 0, 1, 0)));
+                }
+            }
             Block::Adresse { name, rolle, zeilen, links } => {
                 let mut innen = LinearLayout::vertical();
                 innen.push(Paragraph::new(name.to_string()).styled(grund().bold()));
@@ -580,6 +589,7 @@ fn urls() -> Vec<&'static str> {
         for b in bs {
             match b {
                 Block::Lead { blocks, .. } | Block::Alarm { blocks, .. } => sammle(blocks, out),
+                Block::Verweise(vs) => out.extend(vs.iter().map(|v| v.url)),
                 Block::Adresse { links, .. } => out.extend(links.iter().map(|v| v.url)),
                 _ => {}
             }
@@ -598,6 +608,10 @@ fn anzeigelaengen() -> Vec<usize> {
         for b in bs {
             match b {
                 Block::Lead { blocks, .. } | Block::Alarm { blocks, .. } => sammle(blocks, out),
+                Block::Verweise(vs) => out.extend(
+                    vs.iter()
+                        .map(|v| link_text(v.text, MAX_LINK_KLEIN).chars().count()),
+                ),
                 Block::Adresse { links, .. } => out.extend(
                     links
                         .iter()

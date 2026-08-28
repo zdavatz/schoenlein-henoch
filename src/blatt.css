@@ -159,3 +159,8 @@
 
   /* Randbemerkung im Fliesstext. */
   .klein { font-size: 9pt; color: #5a6068; }
+
+  /* Freistehende Verweiszeile im Fliesstext. Im PDF steht sie allein auf
+     ihrer Zeile, weil dort die Link-Annotationen ueber die Schriftgroesse
+     zugeordnet werden; im HTML wird das nachgebildet. */
+  .verweis { margin: 0 0 1mm 0; font-size: 9pt; }

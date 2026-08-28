@@ -63,8 +63,14 @@ Fünf Dinge, die beim Bauen Zeit gekostet haben:
   entfernen**, sie ist die einzige Absicherung. Fliesstext läuft auf 10,
   Kleingedrucktes auf 8, die Kopfzeile auf 7 pt.
 - **`urls()` und `anzeigelaengen()` müssen dieselbe Reihenfolge liefern wie
-  der Satz**: erst der Dokumentbaum (Kästen, Adressen, Kontaktzeilen), dann
-  die Quellen. Wer die Reihenfolge in `baue()` ändert, muss beide mitziehen.
+  der Satz**: erst der Dokumentbaum (Kästen, `Verweise`, Adressen), dann die
+  Quellen. Wer die Reihenfolge in `baue()` ändert, muss beide mitziehen.
+- **Ein Link im Fliesstext geht nicht.** Weil die Zuordnung über die
+  Schriftgrösse läuft, muss jeder Verweis allein auf seiner Zeile stehen.
+  Soll eine im Text genannte Adresse anklickbar sein, kommt ein
+  `Block::Verweise` darunter – so hängen etwa die beiden SDIF-Adressen unter
+  dem Absatz, der das Werkzeug nennt. Ein `<a>` mitten im Satz gäbe es nur
+  im HTML und nicht im PDF; deshalb gibt es ihn nirgends.
 - **`link_text()` kürzt lange Adressen in der Mitte**; verlinkt wird immer
   das Original. Die Grenze hängt an der Schriftgrösse und daran, wie breit
   die Zeile steht: `MAX_LINK_GROSS = 76` für die Kontaktzeilen, die
