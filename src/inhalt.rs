@@ -347,6 +347,56 @@ static T_CHRONIK: Tabelle = Tabelle {
     chronik: true,
 };
 
+
+static T_FAELLE: Tabelle = Tabelle {
+    kopf: &["Alter", "Bild", "Verlauf"],
+    gewichte: &[14, 48, 38],
+    zeilen: &[
+        &[
+            &[N("80 J")],
+            &[T("Basel, nach Pneumonie: Fieber, Gelenk- und Bauchschmerz, Petechien, Makrohämaturie. Hautbiopsie mit IgA.")],
+            &[T("Supportiv, nach Infektsanierung rückläufig. "), L("Rüdiger 2002", "https://doi.org/10.1055/s-2002-32350")],
+        ],
+        &[
+            &[N("80 J")],
+            &[T("Japan: Purpura, Darm, milde Nephritis, 10 Prozent Halbmonde.")],
+            &[T("Prednisolon 0,7 mg/kg, nach 6 Monaten Proteinurie weg. "), L("Ueda 2019", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6367074/")],
+        ],
+        &[
+            &[N("85 J")],
+            &[T("Japan, dieselbe Serie: nephrotisches Syndrom, 100 Prozent Halbmonde.")],
+            &[T("Steroide, dann CMV, Pneumonie, Sepsis, Tod. "), L("Ueda 2019", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6367074/")],
+        ],
+        &[
+            &[N("86 J")],
+            &[T("Brasilien, nach Atemwegsinfekt: Purpura, Kreatinin 3,1, Proteinurie 4,5 g/d.")],
+            &[T("Ohne Immunsuppression gebessert. "), L("Sande Miguel 2017", "https://doi.org/10.4236/jbm.2017.56004")],
+        ],
+        &[
+            &[N("90 J")],
+            &[T("Japan: Purpura, Aszites, Dünndarmödem, milde Niere.")],
+            &[T("Rezidiv unter 3 mg Prednisolon, dann Azathioprin, stabil. "), L("Nishikura 2022", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9549259/")],
+        ],
+        &[
+            &[N("93 J")],
+            &[T("USA, nach Bronchitis und Levofloxacin: rasches Nierenversagen.")],
+            &[T("Hochdosis-Steroide, Dialyse. "), L("Kukrety 2016", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5021885/")],
+        ],
+        &[
+            &[N("97 J")],
+            &[T("Japan: Bauch, Purpura, Gelenke, Blut und Eiweiss im Urin.")],
+            &[T("Prednisolon 0,5 mg/kg, kein Rezidiv. "), L("Kamiya 2015", "https://doi.org/10.1111/1346-8138.12747")],
+        ],
+        &[
+            &[N("99 J")],
+            &[T("Japan: Beinpurpura, Bauchschmerz, akutes Nierenversagen.")],
+            &[T("Prednisolon 30 mg, Tod an Nierenversagen Tag 24.")],
+        ],
+    ],
+    linien: true,
+    chronik: false,
+};
+
 // ---------------------------------------------------------------------------
 // Das Dokument
 // ---------------------------------------------------------------------------
@@ -463,6 +513,18 @@ pub static DOKUMENT: &[Block] = &[
         &[T("Bei älteren Menschen kann eine IgA-Vaskulitis die Begleiterscheinung einer noch unentdeckten Krebserkrankung sein. In einer Übersichtsarbeit entwickelten rund 16 Prozent der erwachsenen Betroffenen einen Tumor, zu gut zwei Dritteln solide Tumoren – Lunge, Prostata, Brust –, zum übrigen Drittel Lymphome und Leukämien. Verbindliche Suchempfehlungen gibt es nicht, aber im hohen Alter ist die Frage zu stellen.")],
     ]),
     P(&[T("Der letzte Punkt, der Hämoglobin-Abfall und der seit Wochen fehlende Stuhlgang hängen zusammen: Ein Bild vom Bauch und anschliessend eine Magen- und Darmspiegelung beantworten dieselben Fragen in einem Durchgang – wo es blutet, was die Passage behindert, und ob etwas dahintersteckt.")]),
+
+    H2("Belegte Fälle in diesem Alter"),
+    P(&[T("Einen veröffentlichten Fall genau einer 84-jährigen Frau mit IgA-Vaskulitis gibt es in der durchsuchten Literatur nicht. Was es gibt, sind Frauen knapp darunter und knapp darüber – und die Bilder, die zu dieser Patientin passen: Purpura an den Beinen, Bauch, oft Niere. Die nächste deutschsprachige Beschreibung ist eine 80-Jährige aus "), L("Basel", "https://doi.org/10.1055/s-2002-32350"), T(", drei Wochen nach einer Pneumonie. Die nächste mit Nierenhistologie sind 80 und 85 Jahre, "), L("Japan 2019", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6367074/"), T(".")]),
+    Tab(&T_FAELLE),
+    P(&[T("Weiter entfernt, aber dokumentiert: 89 Jahre mit kompletter Remission unter niedrig dosiertem Prednisolon plus Mizoribin ("), L("Sugimoto 2021", "https://doi.org/10.1007/s13730-020-00513-6"), T("); 75 und 76 Jahre in derselben "), L("Ueda-Serie", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6367074/"), T(" mit Steroidpuls, teils steroidinduziertem Diabetes; 71 Jahre mit Darmblutung und gutem Ansprechen auf parenterale Kortikoide ("), L("Cureus 2022", "https://doi.org/10.7759/cureus.34422"), T("). Ein 84-jähriger "), B("Mann"), T(" nach COVID ist beschrieben – das ist nicht diese Patientin.")]),
+    P(&[
+        T("Was die grösseren Untersuchungen für sie bedeuten: Erwachsene haben häufiger und schwerer Nierenbefall als Kinder. In der Kohorte von "), L("Pillebout", "https://pubmed.ncbi.nlm.nih.gov/11961015/"), T(" (250 Erwachsene, Alter 15 bis 86) erreichten nur 20 Prozent eine Remission, 11 Prozent ein endgültiges Nierenversagen, und die häufigste Todesursache war ein Karzinom, nicht die Vaskulitis. Ab etwa 63 Jahren mehr nekrotische Purpura und Nierenversagen ("), L("IGAVAS", "https://pubmed.ncbi.nlm.nih.gov/33410479/"), T("). In der japanischen Registerarbeit von "), L("Komatsu", "https://doi.org/10.1371/journal.pone.0196955"), T(" waren 46 Patientinnen und Patienten 65 bis 84 Jahre alt: schlechtere eGFR, mehr Halbmonde, weniger Remission. Männer überwiegen in fast allen westlichen Serien – eine 84-jährige Frau ist die seltenere Kombination."),
+    ]),
+    P(&[
+        T("Zur Therapie gibt es "), B("keine Studie an Oktogenarierinnen"), T(". Die "), L("KDIGO-Leitlinie 2025", "https://doi.org/10.1016/j.kint.2025.04.004"), T(" rät davon ab, Steroide nur zu geben, um einer Nephritis vorzubeugen, wenn Haut, Gelenke oder Darm allein betroffen sind (Empfehlung 1B). Bei bedrohter Niere oder schwerem Darmbefall sind Steroide Praxis. Zusätzliches Cyclophosphamid brachte in der einzigen Erwachsenen-Studie ("), L("CESAR", "https://pubmed.ncbi.nlm.nih.gov/20505654/"), T(") keinen Nutzen. Was in diesem Alter zählt, steht in der Ueda-Serie: drei von dreizehn über 60 starben an Infekten unter Steroiden. Das ist Literatur für den Termin, kein Behandlungsplan."),
+    ]),
+    Klein(&[T("Recherchestand 28. August 2026. Einzelfälle, Evidenzstufe IV bis V. Keine Behandlungsempfehlung.")]),
 
     H2("Ein früherer Schub"),
     P(&[T("Tastbare Purpura an den Unterschenkeln ist die Signatur dieser Krankheit. Ist das schon einmal aufgetreten, ist das heutige Bild wahrscheinlich ein "), B("Rezidiv"), T(" – und das ändert die Einordnung.")]),
@@ -829,4 +891,32 @@ pub static QUELLEN: &[(&str, Verweis)] = &[
      Verweis { text: "https://www.ajkd.org/article/S0272-6386(11)00809-2/fulltext", url: "https://www.ajkd.org/article/S0272-6386(11)00809-2/fulltext" }),
     ("Jennette JC et al.: 2012 Revised International Chapel Hill Consensus Conference Nomenclature of Vasculitides. Arthritis Rheum 2013",
      Verweis { text: "https://onlinelibrary.wiley.com/doi/10.1002/art.37715", url: "https://onlinelibrary.wiley.com/doi/10.1002/art.37715" }),
+    ("Rüdiger JJ, Eriksson U, Schiller P, Leuppi JD: Purpura Schönlein-Henoch bei einer 80-jährigen Frau. Dtsch Med Wochenschr 2002; 127: 1719-22",
+     Verweis { text: "https://doi.org/10.1055/s-2002-32350", url: "https://doi.org/10.1055/s-2002-32350" }),
+    ("Ueda H et al.: Clinical and histopathologic features of adult-onset IgA vasculitis in the elderly. Intern Med 2019; 58: 31-38. PMC6367074",
+     Verweis { text: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6367074/", url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6367074/" }),
+    ("Sande Miguel T et al.: Henoch-Schönlein Purpura in an Elderly Patient. J Biosci Med 2017; 5: 37-45",
+     Verweis { text: "https://doi.org/10.4236/jbm.2017.56004", url: "https://doi.org/10.4236/jbm.2017.56004" }),
+    ("Nishikura N et al.: IgA Vasculitis in a 90-Year-Old Woman Treated with Azathioprine. Cureus 2022; 14: e28996. PMC9549259",
+     Verweis { text: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9549259/", url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9549259/" }),
+    ("Kukrety SP et al.: Henoch-Schönlein Purpura in an Adult. Case Rep Med 2016; 2016: 7890379. PMC5021885",
+     Verweis { text: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5021885/", url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5021885/" }),
+    ("Kamiya K et al.: IgA vasculitis in a 97-year-old woman. J Dermatol 2015",
+     Verweis { text: "https://doi.org/10.1111/1346-8138.12747", url: "https://doi.org/10.1111/1346-8138.12747" }),
+    ("Sugimoto H et al.: Successful treatment of IgA vasculitis with mizoribine in an elderly woman. CEN Case Rep 2021; 10: 46-52",
+     Verweis { text: "https://doi.org/10.1007/s13730-020-00513-6", url: "https://doi.org/10.1007/s13730-020-00513-6" }),
+    ("IgA vasculitis with gastrointestinal and neurologic involvement in an adult. Cureus. DOI 10.7759/cureus.34422",
+     Verweis { text: "https://doi.org/10.7759/cureus.34422", url: "https://doi.org/10.7759/cureus.34422" }),
+    ("Pillebout E et al.: Henoch-Schönlein Purpura in adults: outcome and prognostic factors. JASN 2002; 13: 1271-78. PMID 11961015",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/11961015/", url: "https://pubmed.ncbi.nlm.nih.gov/11961015/" }),
+    ("Audemard-Verger A et al.: Characteristics and management of IgA vasculitis (Henoch-Schönlein) in adults: data from the 260-patient IGAVAS study. Arthritis Rheumatol 2017. PMID 28605168",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/28605168/", url: "https://pubmed.ncbi.nlm.nih.gov/28605168/" }),
+    ("Audemard-Verger A et al.: Impact of aging on phenotype and prognosis in IgA vasculitis. Rheumatology 2021; 60: 4245-51. PMID 33410479",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/33410479/", url: "https://pubmed.ncbi.nlm.nih.gov/33410479/" }),
+    ("Komatsu H et al.: Clinical manifestations of Henoch-Schönlein purpura nephritis and IgA nephropathy: a nationwide study. PLoS One 2018; 13: e0196955. PMID 29738576",
+     Verweis { text: "https://doi.org/10.1371/journal.pone.0196955", url: "https://doi.org/10.1371/journal.pone.0196955" }),
+    ("Pillebout E et al.: Addition of cyclophosphamide to corticosteroids for adult HSP (CESAR). Kidney Int 2010; 78: 495-502. PMID 20505654",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/20505654/", url: "https://pubmed.ncbi.nlm.nih.gov/20505654/" }),
+    ("KDIGO 2025 Clinical Practice Guideline for the Management of IgA Nephropathy and IgA Vasculitis. Kidney Int 2025",
+     Verweis { text: "https://doi.org/10.1016/j.kint.2025.04.004", url: "https://doi.org/10.1016/j.kint.2025.04.004" }),
 ];
