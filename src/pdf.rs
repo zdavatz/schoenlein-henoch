@@ -15,14 +15,15 @@
 use std::path::Path;
 
 use anyhow::{anyhow, Result};
-use genpdf::elements::{
-    Break, FrameCellDecorator, LinearLayout, Paragraph, TableLayout, UnorderedList,
-};
+use genpdf::elements::{LinearLayout, Paragraph, UnorderedList};
+use genpdf::error::Error as GenError;
+use genpdf::fonts::FontCache;
+use genpdf::render::Area;
 use genpdf::style::{Color, Style};
-use genpdf::{Alignment, Element, Margins};
+use genpdf::{Alignment, Context, Element, Margins, Mm, Position, RenderResult};
 
 use crate::inhalt::{Block, Span, Tabelle, Verweis};
-use crate::inhalt::{DOKUMENT, FUSS, KOPFZEILE, QUELLEN, STAND, TITEL, TITEL2, UNTERTITEL};
+use crate::inhalt::{DOKUMENT, KOPFZEILE, QUELLEN, STAND, TITEL, TITEL2, UNTERTITEL};
 
 // --- Schriftgroessen -------------------------------------------------------
 //
@@ -86,13 +87,15 @@ fn link_text(url: &str) -> String {
 /// Zeichen, die nie am Zeilenanfang stehen duerfen.
 const NACHKLAPP: [char; 8] = [',', '.', ';', ':', '!', '?', ')', '\u{bb}'];
 
-fn absatz(sp: &[Span], basis: Style) -> Paragraph {
-    // genpdf zerlegt jedes Textstueck einzeln in Woerter und darf an jeder
-    // Grenze zwischen zwei Stuecken umbrechen; ein fuehrendes Leerzeichen
-    // wird dabei ein Wort fuer sich. Beides ergibt haessliche Zeilenanfaenge -
-    // eine Zeile, die mit einem Leerzeichen beginnt, oder ein Semikolon, das
-    // von seinem Wort abgerissen wird. Deshalb wandern fuehrende Leerzeichen
-    // und Satzzeichen vorher ans Ende des vorangehenden Stuecks.
+/// Zerlegt die Textstuecke eines Absatzes in Paare aus Text und Stil.
+///
+/// genpdf zerlegt jedes Stueck einzeln in Woerter und darf an jeder Grenze
+/// zwischen zwei Stuecken umbrechen; ein fuehrendes Leerzeichen wird dabei ein
+/// Wort fuer sich. Beides ergibt haessliche Zeilenanfaenge - eine Zeile, die
+/// mit einem Leerzeichen beginnt, oder ein Semikolon, das von seinem Wort
+/// abgerissen wird. Deshalb wandern fuehrende Leerzeichen und Satzzeichen
+/// vorher ans Ende des vorangehenden Stuecks.
+fn stuecke(sp: &[Span], basis: Style) -> Vec<(String, Style)> {
     let mut teile: Vec<(String, Style)> = Vec::new();
     for s in sp {
         let (text, stil) = match s {
@@ -117,9 +120,12 @@ fn absatz(sp: &[Span], basis: Style) -> Paragraph {
             teile.push((rest.to_string(), stil));
         }
     }
+    teile
+}
 
+fn absatz(sp: &[Span], basis: Style) -> Paragraph {
     let mut p = Paragraph::default();
-    for (text, stil) in teile {
+    for (text, stil) in stuecke(sp, basis) {
         p.push_styled(text, stil);
     }
     p
@@ -140,49 +146,161 @@ fn verweiszeile(v: &Verweis, groesse: u8) -> impl Element {
 // Tabellen
 // ---------------------------------------------------------------------------
 
-fn tabelle(t: &Tabelle) -> TableLayout {
-    let mut tab = TableLayout::new(t.gewichte.to_vec());
-    tab.set_cell_decorator(FrameCellDecorator::new(true, true, false));
+/// Innenabstand der Zellen in Millimetern.
+const ZELL_X: f64 = 1.6;
+const ZELL_Y: f64 = 1.0;
 
-    let kopfstil = Style::new().with_font_size(S_KLEIN).with_color(GRAU).bold();
-    let mut kopf: Vec<Box<dyn Element>> = Vec::new();
-    for k in t.kopf {
-        kopf.push(Box::new(
-            Paragraph::new(k.to_string())
-                .styled(kopfstil)
-                .padded(Margins::trbl(1, 1, 1, 1)),
-        ));
-    }
-    tab.push_row(kopf).expect("Kopfzeile der Tabelle");
+const LINIE: Color = Color::Rgb(0xc9, 0xcc, 0xd1);
 
-    for zeile in t.zeilen {
-        let mut row: Vec<Box<dyn Element>> = Vec::new();
-        for cell in zeile.iter() {
-            row.push(Box::new(
-                absatz(cell, grund()).padded(Margins::trbl(1, 1, 1, 1)),
-            ));
+/// Schaetzt die Hoehe einer Zelle, indem sie genpdfs Wortumbruch nachbildet:
+/// gebrochen wird an Leerzeichen, das Leerzeichen bleibt beim Wort davor.
+fn zellhoehe(fc: &FontCache, sp: &[Span], basis: Style, breite: f64) -> f64 {
+    let mut zeilen = 1usize;
+    let mut x = 0.0f64;
+    let mut zh = 0.0f64;
+    for (text, stil) in stuecke(sp, basis) {
+        zh = zh.max(f64::from(stil.line_height(fc)));
+        for wort in text.split_inclusive(' ') {
+            let w = f64::from(stil.str_width(fc, wort));
+            if x + w > breite && x > 0.0 {
+                zeilen += 1;
+                x = w;
+            } else {
+                x += w;
+            }
         }
-        tab.push_row(row).expect("Tabellenzeile");
     }
-    tab
+    zh * zeilen as f64
 }
 
-fn chronik(zeilen: &[(&str, &[Span])]) -> TableLayout {
-    let mut tab = TableLayout::new(vec![16, 84]);
-    tab.set_cell_decorator(FrameCellDecorator::new(false, false, false));
-    let jahrstil = Style::new().with_font_size(S_TEXT).with_color(BORDEAUX).bold();
-    for (jahr, was) in zeilen {
-        let row: Vec<Box<dyn Element>> = vec![
-            Box::new(
-                Paragraph::new(jahr.to_string())
-                    .styled(jahrstil)
-                    .padded(Margins::trbl(0, 2, 3, 0)),
-            ),
-            Box::new(absatz(was, grund()).padded(Margins::trbl(0, 0, 3, 0))),
-        ];
-        tab.push_row(row).expect("Chronikzeile");
+/// Tabelle, die eine Zeile nie ueber einen Seitenumbruch reisst.
+///
+/// genpdfs `TableLayout` bricht mitten in der Zeile um: die linke Spalte steht
+/// dann leer auf der Folgeseite und der Satz der rechten geht darunter weiter.
+/// `Element::render` bekommt in `area.size().height` die auf der Seite noch
+/// verbleibende Hoehe - damit laesst sich jede Zeile vorher messen und der
+/// Umbruch selbst setzen. Die Kopfzeile wird auf jeder Seite wiederholt.
+struct Zeilentabelle {
+    t: &'static Tabelle,
+    idx: usize,
+    /// Ein Umbruch, bevor ueberhaupt eine Zeile steht, ist genau einmal
+    /// erlaubt - naemlich wenn die Tabelle am Seitenende beginnt. Ohne diese
+    /// Schranke koennte eine Zeile, die auf keine Seite passt, endlos
+    /// weiterschieben.
+    leerumbruch: bool,
+}
+
+impl Zeilentabelle {
+    fn neu(t: &'static Tabelle) -> Zeilentabelle {
+        Zeilentabelle { t, idx: 0, leerumbruch: true }
     }
-    tab
+
+    /// Grundstil einer Zelle. In der Chronik steht die Jahreszahl links.
+    fn basis(&self, spalte: usize) -> Style {
+        if self.t.chronik && spalte == 0 {
+            Style::new().with_font_size(S_TEXT).with_color(BORDEAUX).bold()
+        } else {
+            grund()
+        }
+    }
+}
+
+impl Element for Zeilentabelle {
+    fn render(
+        &mut self,
+        context: &Context,
+        mut area: Area<'_>,
+        style: Style,
+    ) -> Result<RenderResult, GenError> {
+        let mut result = RenderResult::default();
+        result.size.width = area.size().width;
+        if self.idx >= self.t.zeilen.len() {
+            return Ok(result);
+        }
+
+        let fc = &context.font_cache;
+        let seite = f64::from(area.size().height);
+        let mut y = 0.0f64;
+
+        // Kopfzeile, auf jeder Seite wiederholt.
+        let kopfhoehe = if self.t.kopf.is_empty() {
+            0.0
+        } else {
+            let basis = Style::new().with_font_size(S_KLEIN).with_color(GRAU).bold();
+            let mess = style.and(basis);
+            let spalten = area.split_horizontally(self.t.gewichte);
+            let mut h = 0.0f64;
+            for (i, sp) in spalten.iter().enumerate() {
+                let breite = f64::from(sp.size().width) - 2.0 * ZELL_X;
+                h = h.max(zellhoehe(fc, &[Span::T(self.t.kopf[i])], mess, breite));
+            }
+            h += 2.0 * ZELL_Y;
+            for (i, sp) in spalten.iter().enumerate() {
+                let mut ca = sp.clone();
+                ca.add_offset(Position::new(ZELL_X, ZELL_Y));
+                ca.set_width(Mm::from(f64::from(sp.size().width) - 2.0 * ZELL_X));
+                Paragraph::new(self.t.kopf[i].to_string())
+                    .styled(basis)
+                    .render(context, ca, style)?;
+            }
+            let breite = f64::from(area.size().width);
+            area.draw_line(
+                vec![Position::new(0.0, h), Position::new(breite, h)],
+                Style::new().with_color(LINIE),
+            );
+            area.add_offset(Position::new(0.0, h));
+            y += h;
+            h
+        };
+
+        while self.idx < self.t.zeilen.len() {
+            let zeile = self.t.zeilen[self.idx];
+            let spalten = area.split_horizontally(self.t.gewichte);
+
+            let mut h = 0.0f64;
+            for (i, zelle) in zeile.iter().enumerate() {
+                let mess = style.and(self.basis(i));
+                let breite = f64::from(spalten[i].size().width) - 2.0 * ZELL_X;
+                h = h.max(zellhoehe(fc, zelle, mess, breite));
+            }
+            h += 2.0 * ZELL_Y;
+
+            if y + h > seite {
+                let schon_gesetzt = y > kopfhoehe + 0.01;
+                if schon_gesetzt || self.leerumbruch {
+                    if !schon_gesetzt {
+                        self.leerumbruch = false;
+                    }
+                    result.has_more = true;
+                    break;
+                }
+                // Sonst durch: eine Zeile, die auch auf einer leeren Seite
+                // nicht passt, muss hier gesetzt werden.
+            }
+
+            for (i, zelle) in zeile.iter().enumerate() {
+                let mut ca = spalten[i].clone();
+                ca.add_offset(Position::new(ZELL_X, ZELL_Y));
+                ca.set_width(Mm::from(f64::from(spalten[i].size().width) - 2.0 * ZELL_X));
+                absatz(zelle, self.basis(i)).render(context, ca, style)?;
+            }
+
+            if self.t.linien {
+                let breite = f64::from(area.size().width);
+                area.draw_line(
+                    vec![Position::new(0.0, h), Position::new(breite, h)],
+                    Style::new().with_color(LINIE),
+                );
+            }
+
+            area.add_offset(Position::new(0.0, h));
+            y += h;
+            self.idx += 1;
+        }
+
+        result.size.height = Mm::from(y);
+        Ok(result)
+    }
 }
 
 // ---------------------------------------------------------------------------
@@ -206,8 +324,7 @@ fn baue(bs: &[Block], ziel: &mut LinearLayout) {
                 }
                 ziel.push(ul.padded(Margins::trbl(0, 0, 2, 2)));
             }
-            Block::Tab(t) => ziel.push(tabelle(t).padded(Margins::trbl(1, 0, 3, 0))),
-            Block::Chronik(z) => ziel.push(chronik(z).padded(Margins::trbl(1, 0, 2, 0))),
+            Block::Tab(t) => ziel.push(Zeilentabelle::neu(t).padded(Margins::trbl(1, 0, 3, 0))),
             Block::Lead { werte, blocks } => {
                 let mut innen = LinearLayout::vertical();
                 innen.push(
@@ -481,12 +598,6 @@ pub fn render(out: &Path, font_dir: &str) -> Result<usize> {
         quellen.push(verweiszeile(v, LINK_KLEIN).padded(Margins::trbl(0, 0, 1, 0)));
     }
     doc.push(quellen);
-
-    doc.push(Break::new(1));
-    doc.push(
-        absatz(FUSS, Style::new().with_font_size(S_KLEIN).with_color(HELLGRAU))
-            .padded(Margins::trbl(2, 0, 0, 0)),
-    );
 
     doc.render_to_file(out)
         .map_err(|e| anyhow!("PDF schreiben {}: {}", out.display(), e))?;

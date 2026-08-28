@@ -32,10 +32,15 @@ pub struct Verweis {
 }
 
 pub struct Tabelle {
+    /// Leer, wenn die Tabelle keine Kopfzeile hat.
     pub kopf: &'static [&'static str],
     /// Spaltengewichte fuer den PDF-Satz.
     pub gewichte: &'static [usize],
     pub zeilen: &'static [&'static [&'static [Span]]],
+    /// Trennlinien unter den Zeilen.
+    pub linien: bool,
+    /// Chronik: erste Spalte als Jahreszahl, ohne Linien und ohne Kopf.
+    pub chronik: bool,
 }
 
 pub enum Block {
@@ -46,7 +51,6 @@ pub enum Block {
     Klein(&'static [Span]),
     Liste(&'static [&'static [Span]]),
     Tab(&'static Tabelle),
-    Chronik(&'static [(&'static str, &'static [Span])]),
     /// Kasten mit der Ausgangslage.
     Lead {
         werte: &'static str,
@@ -73,13 +77,6 @@ pub const STAND: &str =
     "Informationsblatt für die Patientin und ihre Angehörigen · Stand 28. August 2026 · zum Mitnehmen zum Arzttermin";
 pub const KOPFZEILE: &str = "IgA-Vaskulitis (Purpura Schönlein-Henoch)";
 
-pub const FUSS: &[Span] = &[Span::T(
-    "Dieses Blatt fasst den Stand der veröffentlichten Literatur zusammen und ersetzt keine \
-     ärztliche Beurteilung. Es ist dafür gedacht, zum Termin mitgenommen zu werden, damit die \
-     entscheidenden Fragen gestellt und die richtigen Untersuchungen angeordnet werden. Angaben \
-     zu Adressen, Präparaten und Zuständigkeiten sind am 28. August 2026 überprüft worden; \
-     Sprechstunden, Zulassungen und Zuständigkeiten ändern sich.",
-)];
 
 use Block::*;
 use Span::{B, I, N, T};
@@ -144,6 +141,8 @@ static T_VERLAUF: Tabelle = Tabelle {
             )],
         ],
     ],
+    linien: true,
+    chronik: false,
 };
 
 static T_ABKLAERUNG: Tabelle = Tabelle {
@@ -199,6 +198,8 @@ static T_ABKLAERUNG: Tabelle = Tabelle {
             &[T("Nierenbiopsie bei relevantem Eiweissverlust oder fallender Nierenfunktion. Sie entscheidet über die Therapie.")],
         ],
     ],
+    linien: true,
+    chronik: false,
 };
 
 static T_ABFUEHR: Tabelle = Tabelle {
@@ -246,6 +247,8 @@ static T_ABFUEHR: Tabelle = Tabelle {
             &[T("Zuckeralkohol, gleiches Prinzip wie Lactulose.")],
         ],
     ],
+    linien: true,
+    chronik: false,
 };
 
 static T_DARMSPIEGELUNG: Tabelle = Tabelle {
@@ -268,34 +271,42 @@ static T_DARMSPIEGELUNG: Tabelle = Tabelle {
             &[T("Dieselbe Gruppe; die Zusammensetzung steht in der jeweiligen Fachinformation.")],
         ],
     ],
+    linien: true,
+    chronik: false,
 };
 
-static CHRONIK: &[(&str, &[Span])] = &[
-    ("1801", &[
+static T_CHRONIK: Tabelle = Tabelle {
+    kopf: &[],
+    gewichte: &[16, 84],
+    zeilen: &[
+        &[&[T("1801")], &[
         B("William Heberden, London."),
         T(" Beschreibt in seinen "), I("Commentaries"), T(" einen fünfjährigen Buben: Flecken an den Beinen, Bauchschmerzen, blutiger Stuhl, geschwollene Gelenke, Blut im Urin. Das vollständige Bild, 36 Jahre vor Schönlein – nur zieht niemand einen Schluss daraus. Eines bleibt bemerkenswert: Schon der allererste beschriebene Fall war ein Kind. Das prägt die Literatur bis heute und ist der Grund, warum über alte Patientinnen so wenig zu finden ist."),
-    ]),
-    ("1837", &[
+        ]],
+        &[&[T("1837")], &[
         B("Johann Lukas Schönlein, Zürich."),
         T(" Schönlein war 1832 in Würzburg im Zug der Demagogenverfolgung nach dem Hambacher Fest seiner Ämter enthoben worden; die eben gegründete Universität Zürich holte ihn 1833. In seinen Zürcher Jahren prägt er den Begriff "), I("Peliosis rheumatica"), T(" – griechisch "), I("pelios"), T(", fahl-blauschwarz. Sein Beitrag ist nicht die Beobachtung der Flecken, die kannte man, sondern die Verknüpfung: Hautblutung und Gelenkschmerz sind eine Krankheit und nicht zwei. Geschrieben hat er es nie selbst. Er publizierte fast nichts; seine Studenten schrieben die Vorlesungen mit und gaben sie heraus, von einer der Ausgaben distanzierte er sich ausdrücklich. Im selben Jahr findet er in Zürich den Erreger des Favus – einer der ersten Nachweise überhaupt, dass ein Mikroorganismus eine menschliche Krankheit verursacht, Jahrzehnte vor Koch und Pasteur."),
-    ]),
-    ("1868–1899", &[
+        ]],
+        &[&[T("1868–1899")], &[
         B("Eduard Heinrich Henoch, Berlin."),
         T(" Henoch hörte Schönlein als Student und leitete später die Kinderabteilung der Charité. 1868 beschreibt er die Verbindung von Kolik, blutigem Durchfall, Gelenkschmerz und Ausschlag – der Bauch kommt dazu. 1874 legt er vier Kinderfälle mit dem vollständigen Quartett vor. 1899 betont er, wie häufig eine Nephritis dazugehört. Damit ist das Bild fertig, und zwar in genau der Reihenfolge, in der die Medizin die Krankheit bis heute begreift: erst was man sieht, dann was weh tut, zuletzt was gefährlich ist."),
-    ]),
-    ("1914–1948", &[
+        ]],
+        &[&[T("1914–1948")], &[
         B("Die Allergie-Epoche."),
         T(" Osler vermutet 1914, es steckten anaphylaktische Vorgänge dahinter; Frank und Glanzmann prägen daraufhin den Namen «anaphylaktoide Purpura». Im Mechanismus falsch, in der Denkrichtung richtig – das Immunsystem war im Spiel. 1948 spannt Douglas Gairdner im "), I("Quarterly Journal of Medicine"), T(" die beiden Namen endgültig zusammen. Ab da heisst sie Schönlein-Henoch-Syndrom."),
-    ]),
-    ("1968–1973", &[
+        ]],
+        &[&[T("1968–1973")], &[
         B("Der Beweis."),
         T(" Jean Berger beschreibt 1968 in Paris eine Nierenkrankheit mit IgA-Ablagerungen im Mesangium – gegen die damalige Lehre, nach der IgG das schädigende Immunglobulin sei. 1973 zeigen Baart de la Faille-Kuyper und Mitarbeiter im "), I("Lancet"), T(" dasselbe IgA in den Hautgefässen "), B("und"), T(" im Nierenmesangium von Schönlein-Henoch-Patienten. Damit ist klar, was 172 Jahre lang nur ein Muster von Symptomen war: eine Krankheit der IgA-Immunkomplexe. Und es erklärt, warum ausgerechnet Haut, Darm und Niere zusammen erkranken – sie haben nichts gemeinsam ausser der Grösse ihrer Gefässe."),
-    ]),
-    ("2012", &[
+        ]],
+        &[&[T("2012")], &[
         B("Der Name fällt."),
         T(" Die Chapel Hill Consensus Conference benennt die Vaskulitiden nach ihrer Ursache statt nach ihren Entdeckern. Aus Purpura Schönlein-Henoch wird IgA-Vaskulitis. Beide Namen laufen bis heute nebeneinander; im Klinikalltag hört man das alte oft."),
-    ]),
-];
+        ]],
+    ],
+    linien: false,
+    chronik: true,
+};
 
 // ---------------------------------------------------------------------------
 // Das Dokument
@@ -304,7 +315,7 @@ static CHRONIK: &[(&str, &[Span])] = &[
 pub static DOKUMENT: &[Block] = &[
     H2("Wie die Krankheit entdeckt wurde"),
     P(&[T("Der Doppelname führt in die Irre. Keiner der beiden hat die Krankheit als Erster gesehen, und was sie wirklich ist, wusste bis 1973 niemand.")]),
-    Chronik(CHRONIK),
+    Tab(&T_CHRONIK),
     Klein(&[T("Von Heberdens Buben bis zum Fluoreszenzmikroskop vergingen 172 Jahre. Das Kortison, das weiter unten im Abschnitt zur Behandlung steht, war schon zwei Jahrzehnte in Gebrauch, bevor man wusste, wogegen es eigentlich wirkt.")]),
 
     Lead {
@@ -363,17 +374,11 @@ pub static DOKUMENT: &[Block] = &[
     ]),
     P(&[T("Die Diagnose stützt sich auf das klinische Bild und, wo möglich, auf eine Hautbiopsie mit direkter Immunfluoreszenz: Der Nachweis von IgA in der Gefässwand ist der Beweis. Entscheidend dabei – die Probe muss aus einer "), B("frischen"), T(" Hautstelle stammen, jünger als etwa 48 Stunden. An abgeheilten Flecken findet sich nichts mehr.")]),
 
-    H2("Ist das ansteckend? Nein"),
+    H2("Was den Schub ausgelöst haben kann"),
     P(&[T("In den entzündeten Gefässen sitzen keine Bakterien, sondern "), B("Immunkomplexe aus körpereigenen Antikörpern"), T(". Die Krankheit ist keine Infektion und "), B("nicht übertragbar"), T(" – niemand im Haushalt ist gefährdet, es braucht keine Isolation.")]),
-    P(&[T("Daraus folgt der Punkt, der im Alltag am meisten zählt: "), B("Antibiotika behandeln die Vaskulitis nicht."), T(" Sie behandeln eine Infektion, falls gerade eine besteht – aber sie bringen weder den Ausschlag noch die Bauchschmerzen noch die Nierenbeteiligung zum Verschwinden. Deshalb steht im Abschnitt zur Behandlung Kortison und kein Antibiotikum.")]),
-    H3("Bakterien sind aber oft der Funke"),
     P(&[T("Ein grosser Teil der Fälle beginnt "), B("ein bis drei Wochen nach einem Infekt"), T(", meist der oberen Atemwege; die Angaben schwanken je nach Studie zwischen etwa 50 und 90 Prozent. Am häufigsten genannt wird "), B("Streptococcus der Gruppe A"), T(", derselbe Erreger, der die eitrige Angina verursacht; bei über 30 Prozent der Patienten mit Nierenbeteiligung liessen sich Streptokokken kulturell nachweisen. Der Infekt ist also oft der Auslöser, aber nicht die Krankheit – wenn der Ausschlag erscheint, ist die Angina meist längst vorbei.")]),
-    H3("Was dazwischen passiert"),
-    P(&[T("Die Schleimhäute bilden gegen den Infekt "), B("IgA"), T(". Das ist der Antikörper der Schleimhäute, und das ist seine normale Aufgabe. Bei veranlagten Menschen fehlt einem Teil dieser IgA1-Moleküle ein Zucker an der Scharnierregion, die "), B("Galaktose"), T(". Das Immunsystem erkennt diese fehlerhaft beschichteten eigenen Antikörper als fremd und bildet IgG-Antikörper gegen das eigene IgA.")]),
-    P(&[T("Beide verklumpen zu Immunkomplexen, die im Blut zirkulieren und sich dort festsetzen, wo die Gefässe am engsten sind: Haut, Darm, Nierenmesangium. Dort aktivieren sie das Komplementsystem, und dieses entzündet die Gefässwand. Der Fehler liegt also nicht im Bakterium, sondern im Zuckermantel eines körpereigenen Antikörpers – das Bakterium stösst nur an.")]),
-    H3("Und in diesem Fall"),
-    P(&[T("Bei einer 84-jährigen Patientin verschiebt sich die Auslöserfrage. Der Infekt als Auslöser ist die Regel "), I("bei Kindern"), T(". Im Alter stehen zwei andere Möglichkeiten weiter vorn: "), B("Medikamente"), T(" und eine noch unentdeckte "), B("Tumorerkrankung"), T(" – siehe den folgenden Abschnitt. Die Frage «welcher Infekt war es?» ist hier weniger ergiebig als «welche Medikamente sind in den letzten Wochen neu dazugekommen?» und «wurde nach einem Tumor gesucht?».")]),
-    P(&[T("Ein Nachtrag zum Geschichtskapitel am Anfang: Schönlein nannte die Krankheit 1837 "), I("Peliosis rheumatica"), T(". Er ahnte den Zusammenhang, ohne ihn erklären zu können – die Streptokokken-Verbindung stellt sie in dieselbe Familie wie das rheumatische Fieber. Beides ist das Immunsystem, das nach einer Halsentzündung über das Ziel hinausschiesst.")]),
+    P(&[T("Daraus folgt der Punkt, der im Alltag am meisten zählt: "), B("Antibiotika behandeln die Vaskulitis nicht."), T(" Sie behandeln eine Infektion, falls gerade eine besteht – aber sie bringen weder den Ausschlag noch die Bauchschmerzen noch die Nierenbeteiligung zum Verschwinden. Deshalb steht im Abschnitt zur Behandlung Kortison und kein Antibiotikum.")]),
+    P(&[T("Bei einer 84-jährigen Patientin verschiebt sich die Auslöserfrage. Der Infekt als Auslöser ist die Regel "), I("bei Kindern"), T(". Im Alter stehen zwei andere Möglichkeiten weiter vorn: "), B("Medikamente"), T(" und eine noch unentdeckte "), B("Tumorerkrankung"), T(" – siehe den nächsten Abschnitt. Die Frage «welcher Infekt war es?» ist hier weniger ergiebig als «welche Medikamente sind in den letzten Wochen neu dazugekommen?» und «wurde nach einem Tumor gesucht?».")]),
 
     H2("Warum das Alter den Unterschied macht"),
     P(&[T("Fast alles, was man über diese Krankheit liest, stammt aus der Kinderheilkunde. Dort ist sie häufig, verläuft meist harmlos und heilt von selbst aus. Bei Erwachsenen ist sie selten – rund 0,8 bis 1,8 Fälle auf 100'000 Personen im Jahr – und sie verhält sich anders:")]),
@@ -500,18 +505,6 @@ pub static DOKUMENT: &[Block] = &[
             Verweis { text: "britta.george@usz.ch", url: "mailto:britta.george@usz.ch" },
         ],
     },
-    H3("Notfall"),
-    Adresse {
-        name: "Notfallstation Universitätsspital Zürich",
-        rolle: &[T("Rund um die Uhr geöffnet, für alle Erwachsenen")],
-        zeilen: &[&[T("Schmelzbergstrasse 8, 8091 Zürich")]],
-        links: &[
-            Verweis { text: "+41 44 255 11 11", url: "tel:+41442551111" },
-            Verweis { text: "Ambulanz: 144", url: "tel:144" },
-        ],
-    },
-    H3("Zur Anmeldung"),
-    P(&[T("Weder am Universitätsspital noch am Kinderspital ist eine Selbstanmeldung möglich – es braucht die Zuweisung durch den Haus- oder Facharzt. Wer nicht wochenlang warten will, lässt die Zuweisung an die oben genannte Person adressieren und schreibt zwei Dinge ausdrücklich hinein: den Hämoglobin-Verlauf ("), I("Abfall von 108 auf "), T("83 g/l) und die Bauchsituation ("), I("seit vier bis fünf Wochen kein Stuhlgang, Erbrechen nach jeder Nahrungsaufnahme"), T("). Das ändert die Dringlichkeitsstufe. Beim zweiten Punkt ist allerdings der Notfall der schnellere Weg als jede Zuweisung.")]),
     H2("Was zum Termin mitgehört"),
     Liste(&[
         &[T("Alle Hämoglobinwerte mit Datum – die Kurve sagt mehr als der letzte Punkt")],

@@ -4,7 +4,7 @@
 use std::fmt::Write as _;
 
 use crate::inhalt::{Block, Span, Tabelle, Verweis};
-use crate::inhalt::{DOKUMENT, FUSS, KOPFZEILE, QUELLEN, STAND, TITEL, TITEL2, UNTERTITEL};
+use crate::inhalt::{DOKUMENT, KOPFZEILE, QUELLEN, STAND, TITEL, TITEL2, UNTERTITEL};
 
 const CSS: &str = include_str!("blatt.css");
 
@@ -38,15 +38,25 @@ fn zellen(out: &mut String, tag: &str, cell: &[Span], klasse: &str) {
 }
 
 fn tabelle(out: &mut String, t: &Tabelle) {
-    out.push_str("<table>\n<thead><tr>");
-    for k in t.kopf {
-        let _ = write!(out, "<th>{}</th>", esc(k));
+    let _ = write!(out, "<table{}>\n", if t.chronik { " class=\"chronik\"" } else { "" });
+    if !t.kopf.is_empty() {
+        out.push_str("<thead><tr>");
+        for k in t.kopf {
+            let _ = write!(out, "<th>{}</th>", esc(k));
+        }
+        out.push_str("</tr></thead>\n");
     }
-    out.push_str("</tr></thead>\n<tbody>\n");
+    out.push_str("<tbody>\n");
     for zeile in t.zeilen {
         out.push_str("<tr>");
         for (i, cell) in zeile.iter().enumerate() {
-            zellen(out, "td", cell, if i == 0 { " class=\"feld\"" } else { "" });
+            let klasse = match (i, t.chronik) {
+                (0, true) => " class=\"jahr\"",
+                (_, true) => " class=\"was\"",
+                (0, false) => " class=\"feld\"",
+                _ => "",
+            };
+            zellen(out, "td", cell, klasse);
         }
         out.push_str("</tr>\n");
     }
@@ -91,15 +101,6 @@ fn blocks(out: &mut String, bs: &[Block]) {
                 out.push_str("</ul>\n");
             }
             Block::Tab(t) => tabelle(out, t),
-            Block::Chronik(zeilen) => {
-                out.push_str("<table class=\"chronik\">\n");
-                for (jahr, was) in *zeilen {
-                    let _ = write!(out, "<tr>\n  <td class=\"jahr\">{}</td>\n  <td class=\"was\"><p>", esc(jahr));
-                    spans(out, was);
-                    out.push_str("</p></td>\n</tr>\n");
-                }
-                out.push_str("</table>\n\n");
-            }
             Block::Lead { werte, blocks: inner } => {
                 out.push_str("<div class=\"lead\">\n");
                 let _ = write!(out, "  <span class=\"werte\">{}</span>\n", esc(werte));
@@ -166,9 +167,7 @@ pub fn render() -> String {
             esc(v.text)
         );
     }
-    out.push_str("</ul>\n\n<p class=\"fuss\">");
-    spans(&mut out, FUSS);
-    out.push_str("</p>\n\n</body>\n</html>\n");
+    out.push_str("</ul>\n\n</body>\n</html>\n");
 
     // Die Kopfzeile taucht im HTML nur im Seitenfuss der Druckausgabe auf;
     // sie steckt im CSS und wird hier lediglich gegengeprueft.

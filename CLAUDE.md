@@ -80,10 +80,21 @@ Fünf Dinge, die beim Bauen Zeit gekostet haben:
 Bilder ansehen. Achtung: ab zehn Seiten wechselt die Nummerierung der
 Ausgabedateien von `pruef-4.png` auf `pruef-04.png`.
 
-`genpdf` 0.2 kennt kein «keep together» und keine Hintergrundfarben. Kästen
-sind deshalb gerahmt statt hinterlegt, und ein Kasten, der nicht mehr auf die
-Seite passt, wird umbrochen. Wenn das stört, ist der Weg derselbe wie in
-adhs-expert: Höhen vorab messen und den Umbruch selbst setzen.
+**Tabellen setzt ein eigenes Element, nicht genpdfs `TableLayout`.** Dessen
+Umbruch reisst Zeilen mittendurch: die linke Spalte steht leer auf der
+Folgeseite, der Satz der rechten geht darunter weiter. `Zeilentabelle` in
+`src/pdf.rs` misst deshalb jede Zeile vorher – `zellhoehe()` bildet genpdfs
+Wortumbruch nach – und bricht selbst um, bevor eine Zeile nicht mehr passt;
+`area.size().height` liefert dabei die auf der Seite verbleibende Höhe. Die
+Kopfzeile wird auf jeder Folgeseite wiederholt. Wer `zellhoehe()` anfasst,
+muss den Schalter `leerumbruch` mitdenken: Er lässt genau einen Umbruch zu,
+bevor eine erste Zeile steht, und verhindert damit die Endlosschleife bei
+einer Zeile, die auf keine Seite passt.
+
+`genpdf` 0.2 kennt weiter kein «keep together» für Kästen und keine
+Hintergrundfarben. Kästen sind deshalb gerahmt statt hinterlegt, und ein
+Kasten, der nicht mehr auf die Seite passt, wird umbrochen. Wenn das stört,
+ist der Weg derselbe wie bei den Tabellen: vorab messen und selbst brechen.
 
 ## Inhaltliches
 
@@ -94,8 +105,13 @@ adhs-expert: Höhen vorab messen und den Umbruch selbst setzen.
   diese Patientin zugeschnitten sein. Herausgeflogen sind darum: die
   generische Warnzeichenliste «Was nicht warten darf», die Haushaltstipps
   gegen den süssen Geschmack (Strohhalm, Bouillon, Tagesmenge verteilen),
-  der Hinweis auf den rektalen Weg und der Abschnitt zum Kinderspital samt
-  Kispi-Wiki-Quelle. Nichts davon wieder einbauen, ohne zu fragen.
+  der Hinweis auf den rektalen Weg, der Abschnitt zum Kinderspital samt
+  Kispi-Wiki-Quelle, die Adresse der Notfallstation, der Abschnitt «Zur
+  Anmeldung» und der Schlussabsatz mit dem Haftungshinweis. Auch die
+  Überschrift «Ist das ansteckend? Nein» ist weg – die Frage stellt sich
+  nicht; die belegten Angaben zum Infekt als Auslöser stehen weiter im
+  Abschnitt «Was den Schub ausgelöst haben kann». Nichts davon wieder
+  einbauen, ohne zu fragen.
 - **Arzneimittelangaben ausschliesslich über [ch.oddb.org](https://ch.oddb.org)
   belegen, nicht über compendium.ch.** Dieselbe Fachinformation steht auf
   ch.oddb.org und ist dort frei zugänglich. Die Fachinfo einer Zulassung
