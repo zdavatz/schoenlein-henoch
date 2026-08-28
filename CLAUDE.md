@@ -91,10 +91,26 @@ muss den Schalter `leerumbruch` mitdenken: Er lässt genau einen Umbruch zu,
 bevor eine erste Zeile steht, und verhindert damit die Endlosschleife bei
 einer Zeile, die auf keine Seite passt.
 
-`genpdf` 0.2 kennt weiter kein «keep together» für Kästen und keine
-Hintergrundfarben. Kästen sind deshalb gerahmt statt hinterlegt, und ein
-Kasten, der nicht mehr auf die Seite passt, wird umbrochen. Wenn das stört,
-ist der Weg derselbe wie bei den Tabellen: vorab messen und selbst brechen.
+**Kästen, Überschriften und Adressen hält `Zusammenhalten` zusammen.**
+Dasselbe Prinzip: Höhe vorher schätzen, mit `area.size().height` vergleichen
+und, wenn es nicht mehr reicht, eine leere Fläche mit `has_more` zurückgeben
+– dann fängt genpdf eine neue Seite an. Eine Überschrift rechnet sich
+dabei an, was ihr folgt (`folgehoehe()`, gedeckelt auf `MITNEHMEN_MAX`),
+sonst steht sie allein am Seitenfuss. `umbruch_offen` lässt genau einen
+erzwungenen Umbruch zu und verhindert die Endlosschleife.
+
+**`MASS_DEBUG=1` zeigt die Schätzungen** – je Element geschätzte Höhe,
+verbleibende Höhe und ob umbrochen wurde, danach die tatsächlich gesetzte
+Höhe. Die Schätzung lag zuletzt rund 1,5 % über dem Satz. Wer `baue()`
+ändert, prüft damit, ob `kastenhoehe()` noch zum Aufbau passt: Die beiden
+müssen dieselben Abstände zählen.
+
+Was `genpdf` 0.2 weiter nicht kann: Hintergrundfarben. Kästen sind deshalb
+gerahmt statt hinterlegt.
+
+Eine Folge des Zusammenhaltens ist, dass Seiten halb leer bleiben können –
+der Ausgangslage-Kasten braucht rund 130 mm und rückt lieber auf die
+nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
 
 ## Inhaltliches
 

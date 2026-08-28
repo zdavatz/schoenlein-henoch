@@ -20,7 +20,7 @@ use genpdf::error::Error as GenError;
 use genpdf::fonts::FontCache;
 use genpdf::render::Area;
 use genpdf::style::{Color, Style};
-use genpdf::{Alignment, Context, Element, Margins, Mm, Position, RenderResult};
+use genpdf::{Alignment, Context, Element, Margins, Mm, Position, RenderResult, Size};
 
 use crate::inhalt::{Block, Span, Tabelle, Verweis};
 use crate::inhalt::{DOKUMENT, KOPFZEILE, QUELLEN, STAND, TITEL, TITEL2, UNTERTITEL};
@@ -173,6 +173,168 @@ fn zellhoehe(fc: &FontCache, sp: &[Span], basis: Style, breite: f64) -> f64 {
     zh * zeilen as f64
 }
 
+/// Haelt einen Kasten zusammen: passt er nicht mehr auf die Seite, wird der
+/// Umbruch davor gesetzt statt mittendrin.
+///
+/// Ohne das steht die Ueberschrift eines Warnkastens allein am Seitenfuss und
+/// der Inhalt auf der naechsten Seite. genpdf kennt kein «keep together»,
+/// aber `area.size().height` verraet die verbleibende Hoehe - passt die
+/// geschaetzte Hoehe nicht mehr hinein, geben wir eine leere Flaeche mit
+/// `has_more` zurueck und genpdf faengt eine neue Seite an.
+struct Zusammenhalten<E: Element> {
+    inhalt: E,
+    /// Was hier zusammengehalten wird - nur fuer MASS_DEBUG.
+    was: &'static str,
+    /// Geschaetzte Hoehe in Millimetern.
+    hoehe: f64,
+    /// Genau ein erzwungener Umbruch, sonst schoebe ein Kasten, der auf keine
+    /// Seite passt, endlos weiter.
+    umbruch_offen: bool,
+}
+
+impl<E: Element> Element for Zusammenhalten<E> {
+    fn render(
+        &mut self,
+        context: &Context,
+        area: Area<'_>,
+        style: Style,
+    ) -> Result<RenderResult, GenError> {
+        if std::env::var("MASS_DEBUG").is_ok() && self.umbruch_offen {
+            eprintln!(
+                "{}: geschätzt {:.1} mm, verbleibend {:.1} mm{}",
+                self.was,
+                self.hoehe,
+                f64::from(area.size().height),
+                if self.hoehe > f64::from(area.size().height) { "  -> Umbruch" } else { "" }
+            );
+        }
+        if self.umbruch_offen && self.hoehe > f64::from(area.size().height) {
+            self.umbruch_offen = false;
+            return Ok(RenderResult {
+                size: Size::new(area.size().width, Mm::from(0.0)),
+                has_more: true,
+            });
+        }
+        self.umbruch_offen = false;
+        let r = self.inhalt.render(context, area, style)?;
+        if std::env::var("MASS_DEBUG").is_ok() {
+            eprintln!("  {} tatsächlich {:.1} mm", self.was, f64::from(r.size.height));
+        }
+        Ok(r)
+    }
+}
+
+/// Schaetzt die Hoehe eines Kastens. Muss den Aufbau in `baue()` nachbilden:
+/// Titelzeile, dann je Absatz seine Zeilen plus 2 mm Abstand, dazu die
+/// Innen- und Aussenraender des Rahmens.
+fn kastenhoehe(
+    fc: &FontCache,
+    titel: &'static str,
+    bs: &'static [Block],
+    style: Style,
+    farbe: Color,
+) -> f64 {
+    // Satzbreite abzueglich Seitenrand, Rahmen und Innenabstand.
+    let breite = 210.0 - 2.0 * RAND_MM - 2.0 * 3.0;
+    let titelstil = style.and(Style::new().with_font_size(S_H3).with_color(farbe).bold());
+    let mut h = zellhoehe(fc, &[Span::T(titel)], titelstil, breite) + 2.0;
+    for b in bs {
+        h += match b {
+            Block::P(sp) => zellhoehe(fc, sp, style.and(grund()), breite) + 2.0,
+            Block::Klein(sp) => {
+                zellhoehe(fc, sp, style.and(Style::new().with_font_size(S_KLEIN)), breite) + 2.0
+            }
+            // Kaesten enthalten in diesem Dokument nur Absaetze. Kaeme etwas
+            // anderes dazu, waere die Schaetzung zu klein und der Kasten
+            // wuerde wieder umbrochen - unschoen, aber nicht falsch.
+            _ => 0.0,
+        };
+    }
+    // Innenabstand oben/unten, Rahmen, Abstand darunter.
+    h + 2.0 + 1.0 + 4.0 + 2.0
+}
+
+/// Satzbreite in Millimetern.
+const SATZBREITE: f64 = 210.0 - 2.0 * RAND_MM;
+
+/// Hoechstens so viel wird einer Ueberschrift als Gefolge zugerechnet. Ohne
+/// Deckel schoebe eine Ueberschrift vor einem langen Abschnitt jede halbwegs
+/// gefuellte Seite um.
+const MITNEHMEN_MAX: f64 = 46.0;
+
+fn ueberschriftshoehe(fc: &FontCache, t: &'static str, groesse: u8, style: Style) -> f64 {
+    let stil = style.and(Style::new().with_font_size(groesse).bold());
+    let oben = if groesse >= S_H2 { 4.0 } else { 2.0 };
+    zellhoehe(fc, &[Span::T(t)], stil, SATZBREITE) + oben + 1.0
+}
+
+/// Was einer Ueberschrift folgt und mit ihr auf dieselbe Seite gehoert.
+/// Gedeckelt, damit ein langer Abschnitt nicht die ganze Seite verschiebt.
+fn folgehoehe(fc: &FontCache, b: &'static Block, style: Style) -> f64 {
+    let h = match b {
+        Block::P(sp) => zellhoehe(fc, sp, style.and(grund()), SATZBREITE) + 2.0,
+        Block::Klein(sp) => {
+            zellhoehe(fc, sp, style.and(Style::new().with_font_size(S_KLEIN)), SATZBREITE) + 2.0
+        }
+        Block::Liste(items) => items
+            .first()
+            .map(|it| zellhoehe(fc, it, style.and(grund()), SATZBREITE - 4.0) + 1.0)
+            .unwrap_or(0.0),
+        Block::Tab(t) => {
+            // Kopfzeile und erste Zeile - weniger sagt nichts aus.
+            let anteil = |i: usize| {
+                SATZBREITE * t.gewichte[i] as f64 / t.gewichte.iter().sum::<usize>() as f64
+                    - 2.0 * ZELL_X
+            };
+            let mut h = 0.0f64;
+            if !t.kopf.is_empty() {
+                let kstil = style.and(Style::new().with_font_size(S_KLEIN).bold());
+                for (i, k) in t.kopf.iter().enumerate() {
+                    h = h.max(zellhoehe(fc, &[Span::T(k)], kstil, anteil(i)));
+                }
+                h += 2.0 * ZELL_Y;
+            }
+            if let Some(z) = t.zeilen.first() {
+                let mut zh = 0.0f64;
+                for (i, zelle) in z.iter().enumerate() {
+                    zh = zh.max(zellhoehe(fc, zelle, style.and(grund()), anteil(i)));
+                }
+                h += zh + 2.0 * ZELL_Y;
+            }
+            h
+        }
+        Block::Adresse { name, rolle, zeilen, links } => {
+            adresshoehe(fc, name, rolle, zeilen, links.len(), style)
+        }
+        // Kaesten halten sich selbst zusammen; die Ueberschrift davor soll
+        // deswegen nicht die halbe Seite leer lassen.
+        Block::Lead { .. } | Block::Alarm { .. } => MITNEHMEN_MAX,
+        Block::H2(_) | Block::H3(_) => 0.0,
+    };
+    h.min(MITNEHMEN_MAX)
+}
+
+fn adresshoehe(
+    fc: &FontCache,
+    name: &'static str,
+    rolle: &'static [Span],
+    zeilen: &'static [&'static [Span]],
+    links: usize,
+    style: Style,
+) -> f64 {
+    let breite = SATZBREITE - 2.0;
+    let mut h = zellhoehe(fc, &[Span::T(name)], style.and(grund().bold()), breite);
+    if !rolle.is_empty() {
+        h += zellhoehe(fc, rolle, style.and(grund()), breite);
+    }
+    for z in zeilen {
+        h += zellhoehe(fc, z, style.and(grund()), breite);
+    }
+    let linkstil = style.and(Style::new().with_font_size(LINK_GROSS));
+    h += links as f64 * f64::from(linkstil.line_height(fc));
+    h + 4.0
+}
+
 /// Tabelle, die eine Zeile nie ueber einen Seitenumbruch reisst.
 ///
 /// genpdfs `TableLayout` bricht mitten in der Zeile um: die linke Spalte steht
@@ -307,11 +469,20 @@ impl Element for Zeilentabelle {
 // Bloecke
 // ---------------------------------------------------------------------------
 
-fn baue(bs: &[Block], ziel: &mut LinearLayout) {
-    for b in bs {
+fn baue(bs: &'static [Block], ziel: &mut LinearLayout, fc: &FontCache, style: Style) {
+    for (i, b) in bs.iter().enumerate() {
+        let folgt = || bs.get(i + 1).map(|n| folgehoehe(fc, n, style)).unwrap_or(0.0);
         match b {
-            Block::H2(t) => ziel.push(ueberschrift(t, S_H2, BORDEAUX)),
-            Block::H3(t) => ziel.push(ueberschrift(t, S_H3, INK)),
+            Block::H2(t) => ziel.push(Zusammenhalten {
+                was: "H2", hoehe: ueberschriftshoehe(fc, t, S_H2, style) + folgt(),
+                inhalt: ueberschrift(t, S_H2, BORDEAUX),
+                umbruch_offen: true,
+            }),
+            Block::H3(t) => ziel.push(Zusammenhalten {
+                was: "H3", hoehe: ueberschriftshoehe(fc, t, S_H3, style) + folgt(),
+                inhalt: ueberschrift(t, S_H3, INK),
+                umbruch_offen: true,
+            }),
             Block::P(sp) => ziel.push(absatz(sp, grund()).padded(Margins::trbl(0, 0, 2, 0))),
             Block::Klein(sp) => ziel.push(
                 absatz(sp, Style::new().with_font_size(S_KLEIN).with_color(GRAU))
@@ -332,13 +503,15 @@ fn baue(bs: &[Block], ziel: &mut LinearLayout) {
                         .styled(Style::new().with_font_size(S_H3).with_color(BORDEAUX).bold())
                         .padded(Margins::trbl(0, 0, 2, 0)),
                 );
-                baue(blocks, &mut innen);
-                ziel.push(
-                    innen
+                baue(blocks, &mut innen, fc, style);
+                ziel.push(Zusammenhalten {
+                    was: "Lead", hoehe: kastenhoehe(fc, werte, blocks, style, BORDEAUX),
+                    inhalt: innen
                         .padded(Margins::trbl(2, 3, 1, 3))
                         .framed()
                         .padded(Margins::trbl(0, 0, 4, 0)),
-                );
+                    umbruch_offen: true,
+                });
             }
             Block::Alarm { titel, blocks } => {
                 let mut innen = LinearLayout::vertical();
@@ -347,13 +520,15 @@ fn baue(bs: &[Block], ziel: &mut LinearLayout) {
                         .styled(Style::new().with_font_size(S_H3).with_color(ROT).bold())
                         .padded(Margins::trbl(0, 0, 2, 0)),
                 );
-                baue(blocks, &mut innen);
-                ziel.push(
-                    innen
+                baue(blocks, &mut innen, fc, style);
+                ziel.push(Zusammenhalten {
+                    was: "Alarm", hoehe: kastenhoehe(fc, titel, blocks, style, ROT) + 3.0,
+                    inhalt: innen
                         .padded(Margins::trbl(2, 3, 1, 3))
                         .framed()
                         .padded(Margins::trbl(3, 0, 4, 0)),
-                );
+                    umbruch_offen: true,
+                });
             }
             Block::Adresse { name, rolle, zeilen, links } => {
                 let mut innen = LinearLayout::vertical();
@@ -367,7 +542,11 @@ fn baue(bs: &[Block], ziel: &mut LinearLayout) {
                 for v in *links {
                     innen.push(verweiszeile(v, LINK_GROSS));
                 }
-                ziel.push(innen.padded(Margins::trbl(0, 0, 4, 2)));
+                ziel.push(Zusammenhalten {
+                    was: "Adresse", hoehe: adresshoehe(fc, name, rolle, zeilen, links.len(), style),
+                    inhalt: innen.padded(Margins::trbl(0, 0, 4, 2)),
+                    umbruch_offen: true,
+                });
             }
         }
     }
@@ -584,8 +763,13 @@ pub fn render(out: &Path, font_dir: &str) -> Result<usize> {
             .padded(Margins::trbl(0, 0, 4, 0)),
     );
 
+    // Der Schriftcache wird nur zum Messen gebraucht; die Leihe endet vor dem
+    // naechsten `doc.push`.
+    let grundstil = Style::new()
+        .with_font_size(S_TEXT)
+        .with_line_spacing(ZEILENABSTAND);
     let mut korpus = LinearLayout::vertical();
-    baue(DOKUMENT, &mut korpus);
+    baue(DOKUMENT, &mut korpus, doc.font_cache(), grundstil);
     doc.push(korpus);
 
     doc.push(ueberschrift("Quellen", S_H2, BORDEAUX));
