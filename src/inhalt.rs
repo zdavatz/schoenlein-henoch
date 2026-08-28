@@ -118,15 +118,15 @@ static T_VERLAUF: Tabelle = Tabelle {
             )],
         ],
         &[
-            &[B("Erbrechen, jedes Mal nachdem eine Kleinigkeit gegessen wurde")],
+            &[B("Erbrechen, jedes Mal nachdem eine Kleinigkeit gegessen wurde – inzwischen bleibt wieder etwas drin")],
             &[T(
                 "Das ist der wichtigste Punkt der Liste. Erbrechen kurz nach dem Essen heisst, \
                  dass der Mageninhalt nicht weiterkommt. Erbrechen gehört zu den Leitzeichen \
-                 einer Passagestörung; bei weiter unten liegendem Hindernis wird es gallig.",
+                 einer Passagestörung; bei weiter unten liegendem Hindernis wird es gallig. Dass Haferflocken jetzt wieder drinbleiben, ist die zweite grosse Entlastung nach dem Stuhlgang – und die Magenentzündung erklärt rückblickend, warum es vorher jedes Mal kam.",
             )],
         ],
         &[
-            &[B("Sehr wenig getrunken, keine Lust zu trinken")],
+            &[B("Sehr wenig getrunken, keine Lust zu trinken – inzwischen wieder Tee")],
             &[T(
                 "Im Alter lässt das Durstgefühl nach – Austrocknung ist dann die Regel und nicht \
                  die Ausnahme. Sie verschlechtert die Nierenfunktion, verstärkt die Verstopfung \
@@ -160,7 +160,7 @@ static T_ABKLAERUNG: Tabelle = Tabelle {
         ],
         &[
             &[B("Eisen")],
-            &[T("Ferritin "), B("und"), T(" Transferrinsättigung, immer zusammen mit CRP. Ferritin steigt bei Entzündung an – ein normaler Wert schliesst einen Eisenmangel dann nicht aus.")],
+            &[T("Ferritin "), B("und"), T(" Transferrinsättigung, immer zusammen mit CRP. Ferritin steigt bei Entzündung an – ein normaler Wert schliesst einen Eisenmangel dann nicht aus. Wird Eisen verordnet, gehört die Frage nach dem Weg dazu: Unter einem Protonenpumpenhemmer ist die Aufnahme über den Mund unsicher – siehe den Abschnitt zu Pantoprazol.")],
         ],
         &[
             &[B("Niere")],
@@ -184,7 +184,7 @@ static T_ABKLAERUNG: Tabelle = Tabelle {
         ],
         &[
             &[B("Ernährung")],
-            &[T("Gewichtsverlauf, Albumin, Phosphat, Kalium, Magnesium. Nach Wochen ohne Nahrung sind diese Werte die Voraussetzung dafür, dass der Kostaufbau sicher beginnen kann.")],
+            &[T("Gewichtsverlauf, Albumin, Phosphat, Kalium, Magnesium. Nach Wochen ohne Nahrung sind diese Werte die Voraussetzung dafür, dass der Kostaufbau sicher beginnen kann. Magnesium steht unter Pantoprazol ein zweites Mal auf dieser Liste.")],
         ],
         &[
             &[B("Bauch, dringlich")],
@@ -192,7 +192,7 @@ static T_ABKLAERUNG: Tabelle = Tabelle {
         ],
         &[
             &[B("Darm")],
-            &[T("Magen- und Darmspiegelung. Beantwortet Blutungsquelle und Tumorfrage gemeinsam – deshalb der ergiebigste einzelne Schritt, sobald eine Passagestörung ausgeschlossen ist.")],
+            &[T("Magen- und Darmspiegelung. Beantwortet Blutungsquelle und Tumorfrage gemeinsam – deshalb der ergiebigste einzelne Schritt, sobald eine Passagestörung ausgeschlossen ist. Bei der Magenspiegelung gehören zwei Dinge dazu: Gewebeproben aus dem "), B("absteigenden Zwölffingerdarm"), T(", wo die Vaskulitis sitzt, und der Test auf Helicobacter pylori aus denselben Proben.")],
         ],
         &[
             &[B("Haut")],
@@ -392,7 +392,7 @@ pub static DOKUMENT: &[Block] = &[
     ]),
 
     H2("Was sich gebessert hat"),
-    P(&[T("Drei Dinge haben sich geändert, und alle drei sind echte Besserung: Der Stuhlgang ist wieder in Gang, der Ausschlag an den Beinen geht zurück, und der Urin wurde untersucht und war unauffällig. Was jede der drei Meldungen beantwortet – und was sie ausdrücklich nicht beantwortet – steht hier.")]),
+    P(&[T("Drei Dinge haben sich geändert, und alle drei sind echte Besserung: Der Stuhlgang ist wieder in Gang, der Ausschlag an den Beinen geht zurück, und der Urin wurde untersucht und war unauffällig. Was jede der drei Meldungen beantwortet – und was sie ausdrücklich nicht beantwortet – steht hier. Zwei weitere Änderungen haben eigene Abschnitte, weil mehr an ihnen hängt: Sie isst und trinkt wieder, und der Bauchbefund hat einen Namen bekommen.")]),
 
     H3("Der Stuhlgang ist wieder in Gang"),
     P(&[T("Das ist die wichtigste der drei Meldungen. Der Verdacht, der über allem stand – Passagestörung, im schlimmsten Fall Darmverschluss –, ist damit entschärft: Was durchgeht, ist nicht verschlossen. Der Notfallgrund fällt weg.")]),
@@ -411,6 +411,17 @@ pub static DOKUMENT: &[Block] = &[
     H3("Was offen bleibt: die 25 g/l"),
     P(&[T("Keine der drei Meldungen erklärt den Hämoglobinabfall. Der unauffällige Urin sagt etwas über die Niere und nichts über den Blutverlust – die langsame Blutarmut aus nachlassender Nierenfunktion passt zu diesem Tempo ohnehin nicht. Und die Auskunft, der dunkle Stuhl sei Galle gewesen, nimmt, falls sie zutrifft, die naheliegendste Quelle aus der Rechnung. Damit wird die Frage nicht kleiner, sondern dringlicher: Es fehlen "), N("25 g/l"), T(", und die wahrscheinlichste Erklärung wäre gerade ausgeschieden. Wie sich das ohne grossen Aufwand weiterverfolgen lässt, steht im Abschnitt «Dunkler Stuhl: Galle oder Blut?».")]),
     P(&[T("Der einfachste Schritt ist ein neuer Hämoglobinwert zusammen mit den Retikulozyten, jetzt, wo wieder getrunken wird und die Austrocknung den Wert nicht mehr schönt. Er sagt zweierlei: ob der Verlust steht oder weiterläuft, und ob das Knochenmark antwortet.")]),
+
+    H2("Die neue Diagnose: starke Magenentzündung"),
+    P(&[T("Damit steht ein Befund im Raum, der zwei Dinge auf einmal erklärt, die bisher unverbunden nebeneinanderlagen. Eine entzündete Magenschleimhaut erklärt das Erbrechen, das jedes Mal kam, sobald eine Kleinigkeit gegessen war. Und sie erklärt einen Teil der fehlenden "), N("25 g/l"), T(": Eine wunde Schleimhaut blutet nicht in einem Schwall, sie sickert – über Wochen, ohne dass es am Stuhl auffallen muss.")]),
+    P(&[B("Nur ist «Magenentzündung» ein Befund und keine Ursache."), T(" Das Wort beschreibt, wie die Schleimhaut aussieht, nicht, was sie so aussehen lässt. Genau daran hängt aber die Behandlung. Drei Erklärungen stehen hier nebeneinander, und dieselbe Untersuchung trennt sie:")]),
+    Liste(&[
+        &[B("Die Vaskulitis selbst."), T(" Naheliegend – nur zeigt der Blick in die Zahlen etwas Unerwartetes. In einer "), L("Untersuchung an 108 Erwachsenen", "https://pmc.ncbi.nlm.nih.gov/articles/PMC11429444/"), T(" mit Bauchbeteiligung war bei den 61 Magenspiegelungen der Magen selbst nur zweimal betroffen, in 3,3 Prozent der Fälle – der Zwölffingerdarm dagegen 34-mal, in 55,7 Prozent, und dort vor allem der absteigende Teil und der Bulbus. Zu sehen waren Rötung mit Erosionen (48 Prozent) sowie Erosionen mit Geschwüren (31 Prozent). "), B("Daraus folgt etwas Praktisches:"), T(" Ist diese Entzündung die Vaskulitis, liegt ihr Beweis meist hinter dem Magenausgang. Das Gerät muss bis in den absteigenden Zwölffingerdarm, und die Gewebeproben gehören dorthin – nicht nur in den Magen.")],
+        &[B("Die Medikamente."), T(" Kortison und niedrig dosiertes Aspirin schädigen die Magenschleimhaut additiv; genau diese Kombination meldet der Interaktionscheck als Klasse C, mit ausdrücklich steigendem Risiko im höheren Lebensalter. Dazu Novalgin, dessen Fachinformation "), L("gastrointestinale Blutungen, Ulzerationen und Perforationen", "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/unwanted_effects"), T(" unter den unerwünschten Wirkungen führt. Drei Mittel, die am selben Ort angreifen – und alle drei liefen, bevor der Befund erhoben wurde.")],
+        &[B("Helicobacter pylori."), T(" Aus denselben Gewebeproben in einem Schritt beantwortet. Ist das Bakterium da, ist die Behandlung eine andere: Die Fachinformation sieht dafür "), L("Pantoprazol zusammen mit zwei Antibiotika über sieben Tage", "https://ch.oddb.org/de/gcc/fachinfo/reg/58350/chapter/usage"), T(" vor. Ein Säureblocker allein heilt diese Form nicht aus.")],
+    ]),
+    P(&[B("Der wichtigste Satz zu dieser Diagnose steht in der Fachinformation des neuen Medikaments."), T(" Sie nennt "), L("Warnsymptome", "https://ch.oddb.org/de/gcc/fachinfo/reg/58350/chapter/restrictions"), T(", bei denen eine bösartige Erkrankung ausgeschlossen werden "), B("muss"), T(": unerklärlicher Gewichtsverlust, wiederholtes Erbrechen, Schluckstörung, Bluterbrechen, Blutarmut, Teerstuhl. Drei davon treffen hier sicher zu – Gewichtsverlust, wiederholtes Erbrechen, Blutarmut –, und der vierte ist genau die offene Frage aus dem Abschnitt «Dunkler Stuhl: Galle oder Blut?». Die Begründung steht gleich dahinter: Die Behandlung mit Pantoprazol kann die Symptome kaschieren und die Diagnosestellung dadurch verzögern.")]),
+    P(&[T("Das kehrt eine naheliegende Erwartung um. Der Magenschutz macht die Spiegelung nicht weniger dringend, sondern dringender – er nimmt die Beschwerden weg, ohne die Frage zu beantworten, woher sie kamen. Wird es unter dem Mittel besser, ist das eine Erleichterung und kein Befund.")]),
 
     H2("Den Hämoglobinwert richtig lesen"),
     P(&[
@@ -476,7 +487,8 @@ pub static DOKUMENT: &[Block] = &[
 
     H2("Woher der Blutverlust kommen kann"),
     Liste(&[
-        &[B("Blutung aus dem Magen-Darm-Trakt."), T(" Die naheliegendste Erklärung. Die Vaskulitis schädigt die Schleimhaut, am häufigsten im Zwölffingerdarm. Die Blutung muss nicht sichtbar sein – sie kann über Wochen sickern, ohne dass der Stuhl auffällt. Solange gar kein Stuhl kam, fiel dieser Hinweis ganz weg; jetzt, wo die Passage wieder offen ist, steht er wieder zur Verfügung – siehe den nächsten Abschnitt.")],
+        &[B("Die Magenentzündung."), T(" Seit der neuen Diagnose steht diese Erklärung nicht mehr unter den Möglichkeiten, sondern an ihrer Spitze: Eine entzündete, erodierte Schleimhaut ist eine Blutungsquelle. Was offen bleibt, ist nicht mehr das Ob, sondern das Wie viel – und woher die Entzündung kommt. Siehe den Abschnitt «Die neue Diagnose: starke Magenentzündung».")],
+        &[B("Blutung weiter unten im Magen-Darm-Trakt."), T(" Die Vaskulitis schädigt die Schleimhaut am häufigsten im Zwölffingerdarm, also gleich hinter dem Magen. Die Blutung muss nicht sichtbar sein – sie kann über Wochen sickern, ohne dass der Stuhl auffällt. Solange gar kein Stuhl kam, fiel dieser Hinweis ganz weg; jetzt, wo die Passage wieder offen ist, steht er wieder zur Verfügung – siehe den nächsten Abschnitt.")],
         &[B("Medikamente."), T(" Kortison zusammen mit Schmerzmitteln vom NSAR-Typ (Ibuprofen, Diclofenac, Naproxen) erhöht das Geschwürrisiko erheblich; NSAR belasten zusätzlich die Niere. Blutverdünner verstärken jede vorhandene Blutungsquelle. Die vollständige Medikamentenliste gehört auf den Tisch, rezeptfreie Mittel eingeschlossen.")],
         &[B("Eine zweite, unabhängige Quelle."), T(" Mit 84 Jahren ist ein Dickdarmtumor oder ein Magengeschwür statistisch häufiger als die Vaskulitis selbst. Beides würde den Blutverlust erklären – und zusammen mit der ausbleibenden Passage womöglich auch den Rest.")],
         &[B("Die Niere."), T(" Bei nachlassender Nierenfunktion bildet der Körper weniger Erythropoetin, das Hormon für die Blutbildung. Das erklärt eine langsam sinkende Kurve, keinen Sturz um "), N("25 g/l"), T(" in kurzer Zeit.")],
@@ -500,7 +512,7 @@ pub static DOKUMENT: &[Block] = &[
     H2("Zur Behandlung"),
     P(&[T("Die Therapie führen die Spezialisten; hier steht nur, was den Rahmen erklärt.")]),
     P(&[T("Sind allein Haut und Gelenke betroffen, wird oft beobachtet und nur gegen die Beschwerden behandelt. Sobald Darm oder Niere beteiligt sind, kommt Kortison zum Einsatz, üblicherweise Prednison um 1 mg pro Kilogramm Körpergewicht mit anschliessendem Ausschleichen. Eine frühe Kortisonbehandlung senkt die Wahrscheinlichkeit eines bleibenden Nierenschadens deutlich. Bei schwerer Nierenbeteiligung kommen zusätzliche Immunsuppressiva in Frage – das entscheidet die Nierenbiopsie.")]),
-    P(&[T("Im hohen Alter gilt: die niedrigste wirksame Dosis, und die Nebenwirkungen von Anfang an mitbehandeln – Magenschutz, Blutzucker, Knochendichte, Infektrisiko.")]),
+    P(&[T("Im hohen Alter gilt: die niedrigste wirksame Dosis, und die Nebenwirkungen von Anfang an mitbehandeln – Magenschutz, Blutzucker, Knochendichte, Infektrisiko. Der Magenschutz läuft inzwischen als "), B("Pantoprazol"), T("; er hat einen eigenen Abschnitt weiter unten.")]),
     P(&[T("Drei Punkte, die sich anzusprechen lohnen:")]),
     Liste(&[
         &[B("NSAR meiden."), T(" Ibuprofen, Diclofenac, Naproxen belasten Niere und Magenschleimhaut gleichzeitig – beides genau dort, wo die Krankheit ohnehin angreift. Paracetamol ist die verträglichere Alternative. Sie hat "), B("Novalgin"), T(" bekommen; das ist kein NSAR und für kolikartige Schmerzen naheliegend, bringt aber eigene Auflagen mit – siehe den nächsten Abschnitt.")],
@@ -526,22 +538,47 @@ pub static DOKUMENT: &[Block] = &[
     ]),
     P(&[T("Zuerst zu klären sind zwei "), L("Gegenanzeigen", "https://ch.oddb.org/de/gcc/fachinfo/reg/16952/chapter/contra_indications"), T(": eine "), B("eingeschränkte Knochenmarksfunktion oder Blutbildungsstörung"), T(" und eine frühere Agranulozytose unter Pyrazolonen. Und falls sie niedrig dosiertes Aspirin zum Herzschutz nimmt: Metamizol schwächt dessen Wirkung auf die Blutplättchen ab.")]),
 
+    H2("Pantoprazol"),
+    P(&[T("Pantoprazol ist ein "), B("Protonenpumpenhemmer"), T(". Es blockiert die Säurepumpe der Belegzellen in der Magenwand und senkt damit die Säureproduktion. Dieselbe Substanz heisst in der Schweiz unter anderem Pantozol, Pantoprazol Sandoz, Pantoprazol-Mepha, Pantoprazol Spirig HC oder Pantoprazol Zentiva; es gibt sie als magensaftresistente Tablette, als Granulat und für die Vene.")]),
+    P(&[B("Dass es jetzt läuft, ist folgerichtig."), T(" Der Interaktionscheck weiter unten hatte für die Kombination aus Kortison und niedrig dosiertem Aspirin genau das als Massnahme genannt: die vorbeugende Gabe eines Protonenpumpenhemmers. Und der Abschnitt zur Behandlung führt den Magenschutz seit jeher unter dem, was bei Kortison im Alter von Anfang an mitbehandelt gehört. Beides ist damit eingelöst.")]),
+    P(&[T("Fünf Punkte aus der Fachinformation, die in dieser Lage zählen:")]),
+    Liste(&[
+        &[B("Eine Stunde vor dem Essen, ganz, mit Wasser."), T(" Die "), L("Fachinformation", "https://ch.oddb.org/de/gcc/fachinfo/reg/58350/chapter/usage"), T(" verlangt, die magensaftresistente Tablette unzerkaut und unzerbrochen "), B("1 Stunde vor einer Mahlzeit"), T(" mit etwas Wasser einzunehmen. Das ist keine Formalie: Die Säurepumpen müssen arbeiten, damit das Mittel sie treffen kann. Bei einer Patientin, die jetzt wieder frühstückt, heisst das konkret: zuerst die Tablette mit Wasser, das Frühstück eine Stunde später – nicht mit dem Haferbrei zusammen und nicht mit dem Tee.")],
+        &[B("Im Alter höchstens 40 mg am Tag."), T(" Für ältere Patientinnen und bei eingeschränkter Nierenfunktion setzt die "), L("Fachinformation", "https://ch.oddb.org/de/gcc/fachinfo/reg/58350/chapter/usage"), T(" dieselbe Obergrenze: 40 mg Pantoprazol täglich, nicht mehr.")],
+        &[B("Die Magenentzündung steht nicht in der Indikationsliste."), T(" Aufgeführt sind "), L("Refluxkrankheit, Magen- und Zwölffingerdarmgeschwür, die Helicobacter-Behandlung, die Vorbeugung von NSAR-Geschwüren bei erhöhtem Risiko und das Zollinger-Ellison-Syndrom", "https://ch.oddb.org/de/gcc/fachinfo/reg/58350/chapter/indications"), T(". Eine Gastritis als solche ist nicht darunter. Das ist kein Einwand gegen die Verordnung – bei erodierter Schleimhaut und unter Kortison mit Aspirin ist der Einsatz gängig und hier gut begründet. Es erklärt aber, warum die Fachinformation zur Dauer nichts Passendes sagt. Zwei Fragen bleiben deshalb ausdrücklich zu stellen: wie lange, und woran wird der Erfolg gemessen?")],
+        &[B("Eisen kommt schlechter an."), T(" Das Eisen aus pflanzlicher Nahrung – aus Haferflocken etwa – braucht die Magensäure, um in die aufnehmbare Form zu kommen; ein Protonenpumpenhemmer nimmt ihm diese Voraussetzung. In einer "), L("Untersuchung an 43 Patientinnen und Patienten", "https://pmc.ncbi.nlm.nih.gov/articles/PMC9175665/"), T(" mit Eisenmangel unter einem Protonenpumpenhemmer, bei denen keine andere Ursache zu finden war, hatte Eisen zum Schlucken bei 41 nicht angeschlagen; auf Eisen in die Vene stieg der Hämoglobinwert bei 95 Prozent um mindestens "), N("20 g/l"), T(". Bei "), N("83 g/l"), T(" ist das die praktisch wichtigste Zeile dieses Abschnitts: Wird Eisen verordnet, ist der Weg über den Mund unter laufendem Pantoprazol der unsichere.")],
+        &[B("Magnesium und Vitamin B12 bei Dauergabe."), T(" Die "), L("Fachinformation", "https://ch.oddb.org/de/gcc/fachinfo/reg/58350/chapter/restrictions"), T(" nennt schwere Magnesiumerniedrigungen nach mindestens drei Monaten, meist erst nach einem Jahr – Müdigkeit, Krämpfe, Schwindel, Herzrhythmusstörungen, schleichend beginnend und leicht zu übersehen. Für die Aufnahme von Vitamin B12 gilt dasselbe bei langer Anwendung, und die Fachinformation nennt ältere Menschen dabei ausdrücklich. Beides betrifft die Dauer, nicht die ersten Wochen – aber es ist der Grund, warum die Frage nach dem Ende der Behandlung dazugehört.")],
+    ]),
+    P(&[T("Zwei Dinge, die im Alltag Verwirrung stiften:")]),
+    Liste(&[
+        &[B("Neue Hautflecken müssen nicht die Vaskulitis sein."), T(" Protonenpumpenhemmer sind in sehr seltenen Fällen mit einem "), L("subakuten kutanen Lupus erythematodes", "https://ch.oddb.org/de/gcc/fachinfo/reg/58350/chapter/restrictions"), T(" verbunden: Hautveränderungen an den der Sonne ausgesetzten Stellen, begleitet von Gelenkschmerzen. Das sieht dem, was hier ohnehin läuft, zum Verwechseln ähnlich. In einem Blatt, das den Ausschlag als Verlaufszeichen benutzt, gehört das gewusst – neue Flecken an Gesicht, Hals oder Unterarmen sind etwas anderes als die tastbare Purpura an den Unterschenkeln.")],
+        &[B("Ein neuer Durchfall ist nicht automatisch die Krankheit."), T(" Weniger Säure heisst mehr Bakterien im oberen Verdauungstrakt; die "), L("Fachinformation", "https://ch.oddb.org/de/gcc/fachinfo/reg/58350/chapter/restrictions"), T(" nennt ein leicht erhöhtes Risiko für Salmonellen, Campylobacter und Clostridium difficile. Bei einem Darm, dessen Passage gerade erst wieder in Gang gekommen ist, ist das eine zusätzliche Erklärung, die man kennen sollte.")],
+    ]),
+    P(&[T("Und ein Punkt, der eine Frage aus dem Novalgin-Abschnitt wiederholt: Auch die "), L("Interaktionsangaben von Pantoprazol", "https://ch.oddb.org/de/gcc/fachinfo/reg/58350/chapter/interactions"), T(" nennen Methotrexat – hochdosiert kann Pantoprazol dessen Spiegel erhöhen und verlängern. Zusammen mit Novalgin ist Methotrexat kontraindiziert. Ob die Patientin Methotrexat nimmt, ist damit eine Frage, an der gleich zwei ihrer Medikamente hängen.")]),
+
+    H2("Was sie jetzt isst und trinkt"),
+    P(&[T("Sie isst wieder Haferflocken und trinkt Schwarztee mit Milch, Zimt und Zucker. Das ist zuerst einmal die beste Nachricht seit Wochen: Es geht wieder etwas hinein, und es bleibt drin. Was dazugehört, sind keine Vorschriften zum Speiseplan, sondern zwei Fragen der Uhrzeit.")]),
+    P(&[B("Der Tee und das Eisen."), T(" Schwarzer Tee ist einer der stärksten bekannten Hemmer der Eisenaufnahme aus pflanzlicher Nahrung. In einer "), L("Untersuchung mit markiertem Eisen", "https://pubmed.ncbi.nlm.nih.gov/10999016/"), T(" senkte er die Aufnahme aus einer Brotmahlzeit um 79 bis 94 Prozent; die Gerbstoffe binden das Eisen zu einem unlöslichen Komplex. Die Milch ändert daran wenig – dieselbe Arbeit fand für den Zusatz von Milch zu Tee und Kaffee kaum einen Einfluss. Es ist der Tee und nicht der Schluck Milch darin.")]),
+    P(&[B("Eine Stunde Abstand halbiert den Effekt."), T(" Eine "), L("kontrollierte Studie", "https://pubmed.ncbi.nlm.nih.gov/29046302/"), T(" hat genau diese Mahlzeit untersucht – Haferbrei mit markiertem Eisen – und den Tee einmal dazu und einmal eine Stunde danach gegeben. Zum Brei getrunken hemmte er die Eisenaufnahme um 37,2 Prozent, eine Stunde danach nur noch um 18,1 Prozent. Bei einem Hämoglobin von "), N("83 g/l"), T(" ist das keine Feinheit. Zusammen mit der Einnahmevorschrift für Pantoprazol ergibt das eine einfache Reihenfolge für den Morgen: zuerst die Tablette mit Wasser, eine Stunde später die Haferflocken, den Tee zuletzt.")]),
+    P(&[B("Der Zucker ist hier kein Einwand."), T(" Nach Wochen ohne Nahrung sind Kalorien, die freiwillig hineingehen, ein Gewinn. Was in diesen Tagen zählt, ist nicht die Menge Zucker, sondern das, was schon im Abschnitt zum Kostaufbau steht: Phosphat, Kalium und Magnesium gehören kontrolliert.")]),
+    P(&[B("Zum Zimt eine Zahl, damit die Frage vom Tisch ist."), T(" Cassia-Zimt – der übliche Haushaltszimt – enthält Cumarin, im Mittel rund 3 Gramm je Kilogramm Zimt, im Höchstfall 10. Die duldbare tägliche Aufnahme liegt "), L("nach Einschätzung des deutschen Bundesinstituts für Risikobewertung", "https://www.bfr.bund.de/de/service/haeufig-gestellte-fragen/thema/faq-zu-cumarin-in-zimt-und-anderen-lebensmitteln/"), T(" bei 0,1 mg Cumarin je Kilogramm Körpergewicht und Tag; für 60 kg Körpergewicht sind das rund 2 Gramm Cassia-Zimt am Tag, also etwa ein gestrichener Teelöffel. Eine Prise im Tee bleibt weit darunter. Dieselbe Stelle hält ausdrücklich fest, dass bislang kein Fall von Leberschaden nach dem Verzehr von Zimt beschrieben ist. Ceylon-Zimt enthält ohnehin nur wenig Cumarin.")]),
+
     H2("Interaktionscheck"),
-    P(&[T("Geprüft mit "), L("SDIF", "https://sdif.oddb.org"), T(", dem Swiss Drug Interaction Finder: Er wertet die Interaktionsangaben aus den Schweizer Fachinformationen aus und gleicht sie mit der EPha-Datenbank ab, die jede Kombination von A bis X einstuft – A keine Massnahmen, C regelmässige Überwachung, D Kombination vermeiden, X kontraindiziert. "), L("Der Lauf vom 28. August 2026", "https://sdif.oddb.org/?tab=check&drugs=N02BB02-H02AB06-A06AD65-A06AD11-B01AC06"), T(" mit Novalgin, Kortison, Macrogol, Lactulose und niedrig dosiertem Aspirin ergab Folgendes. Das Werkzeug und der Lauf selbst, mit fertig gefülltem Warenkorb, stehen hier – der zweite Link setzt den Korb über die ATC-Codes zusammen, weshalb für die Macrogol-Klasse ein anderes Präparat derselben Klasse angezeigt werden kann.")]),
+    P(&[T("Geprüft mit "), L("SDIF", "https://sdif.oddb.org"), T(", dem Swiss Drug Interaction Finder: Er wertet die Interaktionsangaben aus den Schweizer Fachinformationen aus und gleicht sie mit der EPha-Datenbank ab, die jede Kombination von A bis X einstuft – A keine Massnahmen, C regelmässige Überwachung, D Kombination vermeiden, X kontraindiziert. "), L("Der Lauf vom 28. August 2026", "https://sdif.oddb.org/?tab=check&drugs=N02BB02-A02BC02-H02AB06-A06AD65-A06AD11-B01AC06"), T(" mit Novalgin, Pantoprazol, Kortison, Macrogol, Lactulose und niedrig dosiertem Aspirin ergab Folgendes. Das Werkzeug und der Lauf selbst, mit fertig gefülltem Warenkorb, stehen hier – der zweite Link setzt den Korb über die ATC-Codes zusammen, weshalb für die Macrogol-Klasse ein anderes Präparat derselben Klasse angezeigt werden kann.")]),
     P(&[
         B("Der Vorbehalt zuerst:"), T(" Geprüft ist nur, was auf diesem Blatt steht. Die vollständige Medikamentenliste kennt nur die Patientin selbst, und sie gehört zum Termin mitgebracht – rezeptfreie Mittel eingeschlossen. Ein maschineller Check kann nur vergleichen, was man ihm gibt."),
     ]),
     Tab(&T_INTERAKTION),
     H3("Was bei Kortison dazukommt"),
     Liste(&[
-        &[B("Aspirin und Kortison: Klasse C."), T(" Erhöhtes Risiko einer Blutung im Magen-Darm-Trakt durch additive Schädigung der Magenschleimhaut. Das Risiko steigt ausdrücklich mit höherem Lebensalter, mit einer Vorgeschichte von Geschwüren und unter gleichzeitiger Blutverdünnung – alle drei gehören hier geprüft. Empfohlene Massnahme: klinische Überwachung auf Geschwüre und die "), B("vorbeugende Gabe eines Protonenpumpenhemmers"), T(". Das deckt sich mit dem Magenschutz, der im Abschnitt zur Behandlung ohnehin steht.")],
+        &[B("Aspirin und Kortison: Klasse C."), T(" Erhöhtes Risiko einer Blutung im Magen-Darm-Trakt durch additive Schädigung der Magenschleimhaut. Das Risiko steigt ausdrücklich mit höherem Lebensalter, mit einer Vorgeschichte von Geschwüren und unter gleichzeitiger Blutverdünnung – alle drei gehören hier geprüft. Empfohlene Massnahme: klinische Überwachung auf Geschwüre und die "), B("vorbeugende Gabe eines Protonenpumpenhemmers"), T(". Genau das ist inzwischen geschehen – siehe den Abschnitt zu Pantoprazol. Die Empfehlung des Checks und die Verordnung decken sich hier also.")],
         &[B("Lactulose und Kortison."), T(" Kortikosteroide senken das Kalium, und die "), L("Duphalac-Fachinformation", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/interactions"), T(" nennt Lactulose als Mittel, das diesen Kaliumverlust theoretisch verstärkt. Bei einer Patientin, deren Kalium nach Wochen ohne Nahrung ohnehin überwacht gehört, ist das ein weiteres Argument für Macrogol.")],
     ]),
     H3("Ohne Treffer"),
-    P(&[T("Novalgin mit Macrogol, mit Lactulose, mit Paracetamol, mit einem Protonenpumpenhemmer und mit einem ACE-Hemmer: kein Treffer. Macrogol hat in der EPha-Datenbank überhaupt keinen Eintrag – es wird nicht aufgenommen und interagiert praktisch nicht. Auch das spricht für Movicol neutral.")]),
+    P(&[T("Novalgin mit Macrogol, mit Lactulose, mit Paracetamol und mit einem ACE-Hemmer: kein Treffer. Und Pantoprazol, jetzt selbst im Warenkorb, hat mit keinem der übrigen Mittel einen – weder mit Novalgin noch mit Kortison, Macrogol oder Lactulose meldet die Fachinformation oder EPha etwas. Macrogol hat in der EPha-Datenbank überhaupt keinen Eintrag – es wird nicht aufgenommen und interagiert praktisch nicht. Auch das spricht für Movicol neutral.")]),
     H3("Ein Fund am Rande, der hier zählt"),
     P(&[T("Beim Auflösen des Namens «Paracetamol» griff der Check auf Kombinationspräparate zu, die zusätzlich Tramadol oder Codein enthalten; die dortigen Warnungen betrafen den Opioid-Anteil und nicht das Paracetamol. Als Interaktion ist das ein Fehlalarm – als Hinweis ist es der praktisch wichtigste des ganzen Laufs: "), B("Opioide verstopfen."), T(" Die "), L("Duphalac-Fachinformation", "https://ch.oddb.org/de/gcc/fachinfo/reg/32894/chapter/interactions"), T(" führt Opiate ausdrücklich unter den Substanzen, die die Wirkung von Lactulose abschwächen, weil sie selbst obstipierend wirken. Bei einer Patientin, die seit Wochen keinen Stuhlgang hat, ist ein opioidhaltiges Schmerzmittel – Codein, Tramadol – das Falsche. Novalgin enthält keines, und das ist ein Punkt zu seinen Gunsten.")]),
-    P(&[T("Zwei weitere Treffer des Laufs sind ebenfalls keine: Der Check meldete «kontraindiziert» zwischen Aspirin und Movicol, weil er im Namen «Macrogol, Kombinationen» das Wort «Kombinationen» als Wirkstoff las, und er ordnete Novalgin einer Regel für Aspirin und NSAR zu, obwohl Metamizol keines von beiden ist. Wer maschinell prüft, muss die Treffer nachlesen; die Fachinformation entscheidet, nicht die Trefferliste.")]),
+    P(&[T("Drei weitere Treffer des Laufs sind ebenfalls keine. Der Check meldete «kontraindiziert» zwischen Aspirin und Movicol, weil er im Namen «Macrogol, Kombinationen» das Wort «Kombinationen» als Wirkstoff las. Er ordnete Novalgin einer Regel für Aspirin und NSAR zu, obwohl Metamizol keines von beiden ist. Und er stellte Pantoprazol gegen Aspirin, weil die "), L("Fachinformation von Pantoprazol", "https://ch.oddb.org/de/gcc/fachinfo/reg/58350/chapter/interactions"), T(" dort Antikoagulantien nennt – gemeint sind Cumarine wie Phenprocoumon und Warfarin und deren INR, nicht niedrig dosiertes Aspirin. Wer maschinell prüft, muss die Treffer nachlesen; die Fachinformation entscheidet, nicht die Trefferliste.")]),
 
     H2("Abführmittel: welche es gibt und warum sie süss sind"),
     P(&[T("Vorbemerkung, weil sie alles andere überwiegt: Solange nicht abgeklärt ist, warum die Passage wochenlang stand, ist die Frage nach dem richtigen Abführmittel die zweite Frage. Die erste steht im Abschnitt oben. Dass wieder Stuhl abgeht, beantwortet sie nicht – es macht die Untersuchung nur möglich. Was hier folgt, gilt für die Zeit danach – und für den Fall, dass ein Mittel bereits verordnet ist und schlecht vertragen wird.")]),
@@ -623,6 +660,8 @@ pub static DOKUMENT: &[Block] = &[
         &[T("Angaben zum früheren Schub: wann, wie lange, was wurde gemacht, wurde der Urin kontrolliert, gab es eine Biopsie")],
         &[T("Bisherige Urin- und Nierenwerte, den letzten Befund im Wortlaut – mit der Angabe, welche Untersuchungen darin enthalten waren")],
         &[T("Wann der Stuhlgang wieder eingesetzt hat, wie der erste aussah, wie er sich seither verändert – und ob ihn jemand vom Fach gesehen hat")],
+        &[T("Den Befund zur Magenentzündung im Wortlaut: wie und wo sie festgestellt wurde, ob eine Spiegelung stattgefunden hat, ob Gewebeproben entnommen wurden und aus welchem Abschnitt")],
+        &[T("Wann Pantoprazol begonnen hat, in welcher Dosis, und zu welcher Tageszeit es im Verhältnis zum Frühstück eingenommen wird")],
     ]),
 
     H2("Fragen, die sich lohnen"),
@@ -641,6 +680,13 @@ pub static DOKUMENT: &[Block] = &[
         &[T("Wofür ist das Abführmittel verordnet – gegen Verstopfung oder als Vorbereitung der Darmspiegelung? Und ist es in dieser Lage überhaupt zulässig?")],
         &[T("Kann statt eines aromatisierten Präparats Movicol neutral oder Laxipeg aromafrei verschrieben werden – ohne Aroma und ohne Süssstoff?")],
         &[T("Jetzt, wo die Passage wieder offen ist: Ist die Magen- und Darmspiegelung angesetzt, und wann?")],
+        &[T("Die Magenentzündung ist festgestellt – woher kommt sie? Von der Vaskulitis, von der Kombination aus Kortison, Aspirin und Novalgin, oder von Helicobacter pylori?")],
+        &[T("Wurde bei der Spiegelung bis in den absteigenden Zwölffingerdarm geschaut und dort biopsiert? Dort sitzt die Vaskulitis, im Magen selbst nur selten.")],
+        &[T("Ist auf Helicobacter pylori getestet worden, und mit welchem Ergebnis?")],
+        &[T("Die Fachinformation von Pantoprazol verlangt bei Gewichtsverlust, wiederholtem Erbrechen und Blutarmut den Ausschluss einer bösartigen Erkrankung, weil das Mittel die Symptome kaschieren kann – ist das vorgesehen?")],
+        &[T("Wird Pantoprazol eine Stunde vor dem Frühstück eingenommen, mit Wasser und nicht mit dem Tee?")],
+        &[T("Wie lange soll Pantoprazol laufen, und woran wird entschieden, wann es aufhört?")],
+        &[T("Falls Eisen verordnet wird: Über den Mund oder in die Vene? Unter einem Protonenpumpenhemmer ist die Aufnahme über den Mund unsicher.")],
         &[T("Wie hoch ist der Eiweissverlust im Urin, gemessen als Protein-Kreatinin-Quotient?")],
         &[T("Wurde ANCA bestimmt, also die im Alter häufigere Vaskulitisform ausgeschlossen?")],
         &[T("Der Ausschlag geht zurück: Wird die Hautbiopsie jetzt gemacht, solange noch frische Flecken da sind?")],
@@ -681,6 +727,8 @@ pub static QUELLEN: &[(&str, Verweis)] = &[
      Verweis { text: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9978861/", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9978861/" }),
     ("Shimamura et al.: Gastrointestinal bleeding is associated with renal prognosis in adult patients with IgA vasculitis with nephritis. J Gen Fam Med 2020",
      Verweis { text: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6942937/", url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6942937/" }),
+    ("Gong Y-Q et al.: Abdominal imaging and endoscopic characteristics of adult abdominal IgA vasculitis. Ann Med 2024. PMC11429444",
+     Verweis { text: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11429444/", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11429444/" }),
     ("Toker et al.: IgA vasculitis and malignancy – a systematic review. J Eur Acad Dermatol Venereol 2024",
      Verweis { text: "https://onlinelibrary.wiley.com/doi/10.1111/jdv.19411", url: "https://onlinelibrary.wiley.com/doi/10.1111/jdv.19411" }),
     ("The association between adult IgA vasculitis and cancer – a prospective observational study. PMC11893613",
@@ -707,6 +755,14 @@ pub static QUELLEN: &[(&str, Verweis)] = &[
      Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK537232/", url: "https://www.ncbi.nlm.nih.gov/books/NBK537232/" }),
     ("Zum Kostaufbau nach langem Fasten: Refeeding Syndrome. StatPearls, NCBI Bookshelf",
      Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK564513/", url: "https://www.ncbi.nlm.nih.gov/books/NBK564513/" }),
+    ("Hurrell RF, Reddy M, Cook JD: Inhibition of non-haem iron absorption in man by polyphenolic-containing beverages. Br J Nutr 1999; 81: 289-295",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/10999016/", url: "https://pubmed.ncbi.nlm.nih.gov/10999016/" }),
+    ("Ahmad Fuzi SF et al.: A 1-h time interval between a meal containing iron and consumption of tea attenuates the inhibitory effects on iron absorption. Am J Clin Nutr 2017; 106: 1413-1421",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/29046302/", url: "https://pubmed.ncbi.nlm.nih.gov/29046302/" }),
+    ("Boxer M.: Iron deficiency anemia from iron malabsorption caused by proton pump inhibitors. eJHaem 2020; 1: 548-551. PMC9175665",
+     Verweis { text: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9175665/", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9175665/" }),
+    ("Zum Cumarin im Zimt: FAQ zu Cumarin in Zimt und anderen Lebensmitteln. Bundesinstitut für Risikobewertung",
+     Verweis { text: "bfr.bund.de – FAQ zu Cumarin in Zimt und anderen Lebensmitteln", url: "https://www.bfr.bund.de/de/service/haeufig-gestellte-fragen/thema/faq-zu-cumarin-in-zimt-und-anderen-lebensmitteln/" }),
     ("Zum nachlassenden Durstgefühl im Alter: Adult Dehydration. StatPearls, NCBI Bookshelf",
      Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK555956/", url: "https://www.ncbi.nlm.nih.gov/books/NBK555956/" }),
     ("Zum Zeitpunkt der Nierenbeteiligung und zur Dauer der Nachkontrolle: Henoch-Schönlein Purpura (IgA Vasculitis) – Rapid Evidence Review. Am Fam Physician 2020",
@@ -726,7 +782,7 @@ pub static QUELLEN: &[(&str, Verweis)] = &[
     ("Lee-Robichaud H et al.: Lactulose versus Polyethylene Glycol for Chronic Constipation. Cochrane Database Syst Rev 2010; CD007570",
      Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/20614462/", url: "https://pubmed.ncbi.nlm.nih.gov/20614462/" }),
     ("SDIF – Swiss Drug Interaction Finder: der Lauf dieses Blattes, mit gefülltem Warenkorb",
-     Verweis { text: "https://sdif.oddb.org/?tab=check&drugs=N02BB02-H02AB06-A06AD65-A06AD11-B01AC06", url: "https://sdif.oddb.org/?tab=check&drugs=N02BB02-H02AB06-A06AD65-A06AD11-B01AC06" }),
+     Verweis { text: "https://sdif.oddb.org/?tab=check&drugs=N02BB02-A02BC02-H02AB06-A06AD65-A06AD11-B01AC06", url: "https://sdif.oddb.org/?tab=check&drugs=N02BB02-A02BC02-H02AB06-A06AD65-A06AD11-B01AC06" }),
     ("SDIF – Interaktionscheck auf Basis der Schweizer Fachinformationen und EPha",
      Verweis { text: "https://sdif.oddb.org", url: "https://sdif.oddb.org" }),
     ("EPha.ch – die abgestuften Interaktionsdaten hinter dem Check",
@@ -735,6 +791,10 @@ pub static QUELLEN: &[(&str, Verweis)] = &[
      Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/16952", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/16952" }),
     ("Novalgin-F Tabletten (Metamizol), vollständige Fachinformation",
      Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/16951", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/16951" }),
+    ("Pantoprazol Sandoz (Pantoprazol), vollständige Fachinformation",
+     Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/58350", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/58350" }),
+    ("Pantozol (Pantoprazol), vollständige Fachinformation",
+     Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/52710", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/52710" }),
     ("Movicol, Movicol neutral, Movicol Chocolat (Macrogol 3350)",
      Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/58420", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/58420" }),
     ("Laxipeg banane, Laxipeg aromafrei (Macrogol 4000)",

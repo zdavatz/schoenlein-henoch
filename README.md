@@ -44,6 +44,20 @@ verstanden werden:
   Patientin, die kaum trinkt. Sie verdünnt aber auch: Der gemessene
   Hämoglobinwert kann danach weiter fallen, ohne dass zusätzlich Blut
   verloren geht.
+- **«Magenentzündung» ist ein Befund und keine Ursache.** Vaskulitis,
+  Medikamente und Helicobacter pylori kommen alle in Frage, und dieselbe
+  Spiegelung trennt sie. Wichtig dabei: Bei Erwachsenen sitzt die Vaskulitis
+  fast nie im Magen selbst, sondern im Zwölffingerdarm – dorthin gehören die
+  Gewebeproben.
+- **Der Magenschutz macht die Spiegelung dringender, nicht weniger
+  dringend.** Die Fachinformation von Pantoprazol verlangt bei
+  Gewichtsverlust, wiederholtem Erbrechen und Blutarmut ausdrücklich den
+  Ausschluss einer bösartigen Erkrankung, weil das Mittel die Symptome
+  kaschieren kann.
+- **Schwarzer Tee zum Haferbrei kostet Eisen.** Er hemmt die Aufnahme aus
+  pflanzlicher Nahrung um 79 bis 94 Prozent; eine Stunde Abstand halbiert
+  den Effekt. Unter einem Protonenpumpenhemmer kommt Eisen ohnehin
+  schlechter an – bei einem Hämoglobin von 83 g/l ist das keine Feinheit.
 
 ## Was drinsteht
 
@@ -55,8 +69,9 @@ lesen und was die Infusion mit ihm macht · Krankheitsbild und die vier
 betroffenen Bereiche · was den Schub ausgelöst haben kann · warum das Alter
 den Verlauf ändert · was ein früherer Schub bedeutet · Herkunft des
 Blutverlusts · eine Tabelle der notwendigen Abklärungen · Behandlung ·
-Novalgin und was dabei zu kontrollieren ist · ein Interaktionscheck der
-beteiligten Medikamente · eine Übersicht der Abführmittel zum Trinken, die
+Novalgin und was dabei zu kontrollieren ist · die Magenentzündung und woher
+sie kommen kann · Pantoprazol, sein Zeitpunkt und seine Folgen · was sie
+jetzt isst und trinkt · ein Interaktionscheck der beteiligten Medikamente · eine Übersicht der Abführmittel zum Trinken, die
 es in der Schweiz gibt, mit Wirkstoff und Süssstoff je Präparat und den
 beiden aromafreien Alternativen · Adressen in Zürich · was zum Termin
 mitgehört · Fragen, die sich zu stellen lohnen · Quellen.

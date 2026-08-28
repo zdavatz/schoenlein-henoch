@@ -534,37 +534,63 @@ impl Element for Zeilentabelle {
         let seite = f64::from(area.size().height);
         let mut y = 0.0f64;
 
-        // Kopfzeile, auf jeder Seite wiederholt.
+        // Kopfzeile, auf jeder Seite wiederholt. Zuerst nur messen: gezeichnet
+        // wird sie erst, wenn darunter auch eine Zeile Platz hat.
+        let kopf_basis = Style::new().with_font_size(S_KLEIN).with_color(GRAU).bold();
         let kopfhoehe = if self.t.kopf.is_empty() {
             0.0
         } else {
-            let basis = Style::new().with_font_size(S_KLEIN).with_color(GRAU).bold();
-            let mess = style.and(basis);
+            let mess = style.and(kopf_basis);
             let spalten = area.split_horizontally(self.t.gewichte);
             let mut h = 0.0f64;
             for (i, sp) in spalten.iter().enumerate() {
                 let breite = f64::from(sp.size().width) - 2.0 * ZELL_X;
                 h = h.max(zellhoehe(fc, &[Span::T(self.t.kopf[i])], mess, breite));
             }
+            h + 2.0 * ZELL_Y
+        };
+
+        // Eine Kopfzeile allein am Seitenfuss ist ein schlechter Umbruch. Passt
+        // die erste Zeile nicht mehr darunter, faengt die Tabelle auf der
+        // naechsten Seite an; `leerumbruch` laesst das genau einmal zu und
+        // verhindert damit die Endlosschleife.
+        {
+            let spalten = area.split_horizontally(self.t.gewichte);
+            let zeile = self.t.zeilen[self.idx];
+            let mut h = 0.0f64;
+            for (i, zelle) in zeile.iter().enumerate() {
+                let mess = style.and(self.basis(i));
+                let breite = f64::from(spalten[i].size().width) - 2.0 * ZELL_X;
+                h = h.max(zellhoehe(fc, zelle, mess, breite));
+            }
             h += 2.0 * ZELL_Y;
+            if kopfhoehe + h > seite && self.leerumbruch {
+                self.leerumbruch = false;
+                result.has_more = true;
+                return Ok(result);
+            }
+        }
+
+        if !self.t.kopf.is_empty() {
+            let spalten = area.split_horizontally(self.t.gewichte);
             for (i, sp) in spalten.iter().enumerate() {
                 let mut ca = sp.clone();
                 ca.add_offset(Position::new(ZELL_X, ZELL_Y));
                 ca.set_width(Mm::from(f64::from(sp.size().width) - 2.0 * ZELL_X));
                 Paragraph::new(self.t.kopf[i].to_string())
-                    .styled(basis)
+                    .styled(kopf_basis)
                     .render(context, ca, style)?;
             }
             let breite = f64::from(area.size().width);
             area.draw_line(
-                vec![Position::new(0.0, h), Position::new(breite, h)],
+                vec![Position::new(0.0, kopfhoehe), Position::new(breite, kopfhoehe)],
                 Style::new().with_color(LINIE),
             );
-            area.add_offset(Position::new(0.0, h));
-            y += h;
-            h
-        };
+            area.add_offset(Position::new(0.0, kopfhoehe));
+            y += kopfhoehe;
+        }
 
+        let start_idx = self.idx;
         while self.idx < self.t.zeilen.len() {
             let zeile = self.t.zeilen[self.idx];
             let spalten = area.split_horizontally(self.t.gewichte);
@@ -608,6 +634,12 @@ impl Element for Zeilentabelle {
             area.add_offset(Position::new(0.0, h));
             y += h;
             self.idx += 1;
+        }
+
+        // Wurde in diesem Durchgang mindestens eine Zeile gesetzt, ist der
+        // Fortschritt gesichert und der Umbruch darf wieder zugelassen werden.
+        if self.idx > start_idx {
+            self.leerumbruch = true;
         }
 
         result.size.height = Mm::from(y);

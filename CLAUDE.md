@@ -99,10 +99,15 @@ Folgeseite, der Satz der rechten geht darunter weiter. `Zeilentabelle` in
 `src/pdf.rs` misst deshalb jede Zeile vorher – `zellhoehe()` bildet genpdfs
 Wortumbruch nach – und bricht selbst um, bevor eine Zeile nicht mehr passt;
 `area.size().height` liefert dabei die auf der Seite verbleibende Höhe. Die
-Kopfzeile wird auf jeder Folgeseite wiederholt. Wer `zellhoehe()` anfasst,
-muss den Schalter `leerumbruch` mitdenken: Er lässt genau einen Umbruch zu,
-bevor eine erste Zeile steht, und verhindert damit die Endlosschleife bei
-einer Zeile, die auf keine Seite passt.
+Kopfzeile wird auf jeder Folgeseite wiederholt – aber **erst gemessen, dann
+gezeichnet**: Passt unter sie keine einzige Zeile mehr, bricht die Tabelle um,
+bevor irgendetwas auf dem Papier steht. Sonst bleibt die Kopfzeile allein am
+Seitenfuss stehen und wird auf der Folgeseite gleich noch einmal gesetzt. Wer
+`zellhoehe()` anfasst, muss den Schalter `leerumbruch` mitdenken: Er lässt
+genau einen Umbruch zu, bevor eine erste Zeile steht, und verhindert damit die
+Endlosschleife bei einer Zeile, die auf keine Seite passt; sobald in einem
+Durchgang mindestens eine Zeile gesetzt wurde, wird er wieder scharf
+gestellt.
 
 **Kästen, Überschriften und Adressen hält `Zusammenhalten` zusammen.**
 Dasselbe Prinzip: Höhe vorher schätzen, mit `area.size().height` vergleichen
@@ -179,7 +184,7 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
 
   ```bash
   cd ~/.software/sdif
-  ./target/release/sdif check Novalgin Spiricort Movicol Duphalac Cardiax
+  ./target/release/sdif check Novalgin Pantoprazol Spiricort Movicol Duphalac Cardiax
   ```
 
   Die EPha-Einstufungen (A bis X) stehen zusätzlich in `db/interactions.db`
@@ -191,7 +196,7 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   ```
 
   Der Warenkorb lässt sich in der URL mitgeben – im Blatt verlinkt als
-  `?tab=check&drugs=N02BB02-H02AB06-A06AD65-A06AD11-B01AC06`. Die Codes sind
+  `?tab=check&drugs=N02BB02-A02BC02-H02AB06-A06AD65-A06AD11-B01AC06`. Die Codes sind
   ATC, nicht Marken: für die Macrogol-Klasse A06AD65 zeigt die Oberfläche
   irgendein Präparat der Klasse an, nicht zwingend Movicol.
 
