@@ -66,9 +66,14 @@ Fünf Dinge, die beim Bauen Zeit gekostet haben:
   der Satz**: erst der Dokumentbaum (Kästen, Adressen, Kontaktzeilen), dann
   die Quellen. Wer die Reihenfolge in `baue()` ändert, muss beide mitziehen.
 - **`link_text()` kürzt lange Adressen in der Mitte**; verlinkt wird immer
-  das Original. `MAX_LINK_CHARS = 76` garantiert, dass eine URL nie umbricht
-  – ein Umbruch ergäbe zwei Zeilen in Linkgrösse und damit wieder eine
-  Verschiebung.
+  das Original. Die Grenze hängt an der Schriftgrösse und daran, wie breit
+  die Zeile steht: `MAX_LINK_GROSS = 76` für die Kontaktzeilen, die
+  eingerückt in Adressblöcken sitzen, `MAX_LINK_KLEIN = 94` für die Quellen
+  über die volle Satzbreite. Beide garantieren, dass eine URL nie umbricht –
+  ein Umbruch ergäbe zwei Zeilen in Linkgrösse und damit wieder eine
+  Verschiebung. Wer eine längere URL aufnimmt, prüft am Satzbild, dass sie
+  ungekürzt und einzeilig steht; die Link-Zählung merkt den Umbruch, nicht
+  aber eine unnötige Kürzung.
 - **Links prüft man nicht mit `grep /URI` auf der rohen Datei.** Erst
   entpacken: `qpdf --qdf --object-streams=disable ein.pdf raus.pdf`, dann
   `grep -c /URI raus.pdf`. Verlinkt sind auch `tel:` und `mailto:`.
@@ -159,6 +164,11 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   sqlite3 db/interactions.db "select atc2, risk_class, effect, measures \
     from epha_interactions where atc1='N02BB02' and risk_class in ('C','D','X');"
   ```
+
+  Der Warenkorb lässt sich in der URL mitgeben – im Blatt verlinkt als
+  `?tab=check&drugs=N02BB02-H02AB06-A06AD65-A06AD11-B01AC06`. Die Codes sind
+  ATC, nicht Marken: für die Macrogol-Klasse A06AD65 zeigt die Oberfläche
+  irgendein Präparat der Klasse an, nicht zwingend Movicol.
 
   Die Namensauflösung ist die Fehlerquelle: «Paracetamol» landet auf einem
   Kombipräparat mit Tramadol, «Dafalgan» auf Co-Dafalgan mit Codein, und der

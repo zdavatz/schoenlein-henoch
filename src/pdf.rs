@@ -57,8 +57,12 @@ const MARGIN_PT: f64 = RAND_MM * 72.0 / 25.4;
 /// Mittlere Zeichenbreite von DejaVu Sans in em - nur fuer die Klickflaeche.
 const AVG_ADVANCE_EM: f64 = 0.55;
 /// Laenger gesetzte Verweise wuerden umbrechen; ein Umbruch ergaebe zwei
-/// Zeilen in Linkgroesse und damit eine Verschiebung der Zuordnung.
-const MAX_LINK_CHARS: usize = 76;
+/// Zeilen in Linkgroesse und damit eine Verschiebung der Zuordnung. Die
+/// Grenze haengt an der Schriftgroesse und daran, wie breit die Zeile steht:
+/// Kontaktzeilen sitzen eingerueckt in Adressblocken, Quellen laufen ueber
+/// die volle Satzbreite und tragen die kleinere Schrift.
+const MAX_LINK_GROSS: usize = 76;
+const MAX_LINK_KLEIN: usize = 94;
 
 fn grund() -> Style {
     Style::new().with_font_size(S_TEXT).with_color(INK)
@@ -66,12 +70,12 @@ fn grund() -> Style {
 
 /// Kuerzt lange Adressen in der Mitte. Verlinkt wird immer das Original,
 /// die Klickflaeche bemisst sich nach dem angezeigten Text.
-fn link_text(url: &str) -> String {
+fn link_text(url: &str, max: usize) -> String {
     let n = url.chars().count();
-    if n <= MAX_LINK_CHARS {
+    if n <= max {
         return url.to_string();
     }
-    let keep = MAX_LINK_CHARS - 1;
+    let keep = max - 1;
     let vorn = keep / 2;
     let hinten = keep - vorn;
     let zeichen: Vec<char> = url.chars().collect();
@@ -139,7 +143,8 @@ fn ueberschrift(text: &str, groesse: u8, farbe: Color) -> impl Element {
 }
 
 fn verweiszeile(v: &Verweis, groesse: u8) -> impl Element {
-    Paragraph::new(link_text(v.text))
+    let max = if groesse == LINK_KLEIN { MAX_LINK_KLEIN } else { MAX_LINK_GROSS };
+    Paragraph::new(link_text(v.text, max))
         .styled(Style::new().with_font_size(groesse).with_color(BORDEAUX))
 }
 
@@ -593,9 +598,11 @@ fn anzeigelaengen() -> Vec<usize> {
         for b in bs {
             match b {
                 Block::Lead { blocks, .. } | Block::Alarm { blocks, .. } => sammle(blocks, out),
-                Block::Adresse { links, .. } => {
-                    out.extend(links.iter().map(|v| link_text(v.text).chars().count()))
-                }
+                Block::Adresse { links, .. } => out.extend(
+                    links
+                        .iter()
+                        .map(|v| link_text(v.text, MAX_LINK_GROSS).chars().count()),
+                ),
                 _ => {}
             }
         }
@@ -605,7 +612,7 @@ fn anzeigelaengen() -> Vec<usize> {
     out.extend(
         QUELLEN
             .iter()
-            .map(|(_, v)| link_text(v.text).chars().count()),
+            .map(|(_, v)| link_text(v.text, MAX_LINK_KLEIN).chars().count()),
     );
     out
 }
