@@ -145,7 +145,17 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   belegen, nicht über compendium.ch.** Dieselbe Fachinformation steht auf
   ch.oddb.org und ist dort frei zugänglich. Die Fachinfo einer Zulassung
   liegt unter `https://ch.oddb.org/de/gcc/fachinfo/reg/<Swissmedic-Nr>`, die
-  Suche unter `.../search/zone/drugs/search_query/<name>`. Die Seite steht
+  Suche unter `.../search/zone/drugs/search_query/<name>`.
+- **Verlinkt wird das Kapitel, nicht die ganze Fachinformation:**
+  `.../fachinfo/reg/<Nr>/chapter/<kapitel>`. Wer eine Aussage belegt, verlinkt
+  das Kapitel, in dem sie steht – sonst muss der Leser eine zwanzigseitige
+  Fachinfo durchsuchen. Die Kapitel heissen `composition`, `galenic_form`,
+  `indications`, `usage` (Dosierung), `contra_indications`, `restrictions`
+  (Warnhinweise), `interactions`, `pregnancy`, `driving_ability`,
+  `unwanted_effects`, `overdose`, `effects`, `kinetic`, `preclinic`,
+  `other_advice`, `iksnrs`, `packages`, `registration_owner`, `date`. Die
+  Liste stammt aus der Kapitelnavigation der Seite selbst; im Zweifel dort
+  nachsehen statt raten. Die Seite steht
   hinter einem Bot-Schutz (Anubis): `curl` und einfache Fetch-Werkzeuge
   bekommen die Challenge-Seite, ein echter Browser kommt durch.
 - **Der Interaktionscheck kommt aus [SDIF](https://sdif.oddb.org/?tab=check)**, dem
