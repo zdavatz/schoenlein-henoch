@@ -1,0 +1,658 @@
+// Inhalt des Informationsblatts zur IgA-Vaskulitis (Purpura Schoenlein-Henoch).
+// Copyright (C) 2026 Zeno R.R. Davatz
+//
+// Dieses Programm ist freie Software: Sie koennen es weitergeben und/oder
+// veraendern, unter den Bedingungen der GNU General Public License, wie von
+// der Free Software Foundation veroeffentlicht, entweder Version 3 der
+// Lizenz oder (nach Ihrer Wahl) jeder spaeteren Version. Siehe LICENSE.
+//
+// Kein Ersatz fuer eine aerztliche Beurteilung.
+//
+// Der gesamte Text steht hier als Daten; `html.rs` und `pdf.rs` sind zwei
+// Ausgaben derselben Struktur. Wer Text aendert, aendert ihn nur hier.
+
+/// Textstueck innerhalb eines Absatzes.
+pub enum Span {
+    /// Fliesstext.
+    T(&'static str),
+    /// Fett.
+    B(&'static str),
+    /// Kursiv.
+    I(&'static str),
+    /// Darf nicht umbrechen – Messwerte wie "83 g/l". Im HTML `span.nb`,
+    /// im PDF mit geschuetzten Leerzeichen.
+    N(&'static str),
+}
+
+/// Eine klickbare Zeile. Im PDF steht sie stets allein auf ihrer Zeile, weil
+/// die Link-Annotationen ueber die Schriftgroesse zugeordnet werden.
+pub struct Verweis {
+    pub text: &'static str,
+    pub url: &'static str,
+}
+
+pub struct Tabelle {
+    pub kopf: &'static [&'static str],
+    /// Spaltengewichte fuer den PDF-Satz.
+    pub gewichte: &'static [usize],
+    pub zeilen: &'static [&'static [&'static [Span]]],
+}
+
+pub enum Block {
+    H2(&'static str),
+    H3(&'static str),
+    P(&'static [Span]),
+    /// Randbemerkung, kleiner gesetzt.
+    Klein(&'static [Span]),
+    Liste(&'static [&'static [Span]]),
+    Tab(&'static Tabelle),
+    Chronik(&'static [(&'static str, &'static [Span])]),
+    /// Kasten mit der Ausgangslage.
+    Lead {
+        werte: &'static str,
+        blocks: &'static [Block],
+    },
+    /// Roter Warnkasten.
+    Alarm {
+        titel: &'static str,
+        blocks: &'static [Block],
+    },
+    Adresse {
+        name: &'static str,
+        rolle: &'static [Span],
+        zeilen: &'static [&'static [Span]],
+        links: &'static [Verweis],
+    },
+    /// Freistehende klickbare Zeilen.
+    Kontakt(&'static [Verweis]),
+}
+
+pub const TITEL: &str = "IgA-Vaskulitis";
+pub const TITEL2: &str = "(Purpura Schönlein-Henoch)";
+pub const UNTERTITEL: &str =
+    "Krankheitsbild, notwendige Abklärungen und die Spezialistinnen und Spezialisten in Zürich";
+pub const STAND: &str =
+    "Informationsblatt für die Patientin und ihre Angehörigen · Stand 28. August 2026 · zum Mitnehmen zum Arzttermin";
+pub const KOPFZEILE: &str = "IgA-Vaskulitis (Purpura Schönlein-Henoch)";
+
+pub const SCHLUSS: &[Span] = &[Span::T(
+    "Von Heberdens Buben bis zum Fluoreszenzmikroskop vergingen 172 Jahre. Das Kortison, \
+     das im Abschnitt zur Behandlung steht, war schon zwei Jahrzehnte in Gebrauch, bevor \
+     man wusste, wogegen es eigentlich wirkt.",
+)];
+
+pub const FUSS: &[Span] = &[Span::T(
+    "Dieses Blatt fasst den Stand der veröffentlichten Literatur zusammen und ersetzt keine \
+     ärztliche Beurteilung. Es ist dafür gedacht, zum Termin mitgenommen zu werden, damit die \
+     entscheidenden Fragen gestellt und die richtigen Untersuchungen angeordnet werden. Angaben \
+     zu Adressen, Präparaten und Zuständigkeiten sind am 28. August 2026 überprüft worden; \
+     Sprechstunden, Zulassungen und Zuständigkeiten ändern sich.",
+)];
+
+use Block::*;
+use Span::{B, I, N, T};
+
+// ---------------------------------------------------------------------------
+// Tabellen
+// ---------------------------------------------------------------------------
+
+static T_VERLAUF: Tabelle = Tabelle {
+    kopf: &["Beobachtung", "Warum sie zählt"],
+    gewichte: &[32, 68],
+    zeilen: &[
+        &[
+            &[B("Wochenlang kein Appetit")],
+            &[T(
+                "Wochen ohne Nahrung heissen Gewichtsverlust und Mangelernährung. Das ist eine \
+                 eigene Behandlungsaufgabe und nicht nur ein Begleitumstand. Beim Wiederaufbau \
+                 der Ernährung nach langem Fasten droht zudem das Refeeding-Syndrom – \
+                 Verschiebungen von Phosphat, Kalium und Magnesium, die überwacht gehören.",
+            )],
+        ],
+        &[
+            &[B("Starke Bauchschmerzen")],
+            &[T(
+                "Die Bauchbeteiligung ist bei dieser Krankheit häufig und der Ort, an dem sie \
+                 gefährlich wird: Schleimhautblutung, Darmwandödem mit Passagestörung, seltener \
+                 Einstülpung oder Durchblutungsstörung.",
+            )],
+        ],
+        &[
+            &[B("Wenig Schlaf pro Nacht")],
+            &[T(
+                "Schmerz, der den Schlaf über Wochen zerreisst, ist ein Mass für die Stärke der \
+                 Beschwerden – und Schlafmangel verschlechtert bei einer 84-Jährigen Kreislauf, \
+                 Orientierung und Sturzrisiko zusätzlich.",
+            )],
+        ],
+        &[
+            &[B("Erbrechen, jedes Mal nachdem eine Kleinigkeit gegessen wurde")],
+            &[T(
+                "Das ist der wichtigste Punkt der Liste. Erbrechen kurz nach dem Essen heisst, \
+                 dass der Mageninhalt nicht weiterkommt. Erbrechen gehört zu den Leitzeichen \
+                 einer Passagestörung; bei weiter unten liegendem Hindernis wird es gallig.",
+            )],
+        ],
+        &[
+            &[B("Sehr wenig getrunken, keine Lust zu trinken")],
+            &[T(
+                "Im Alter lässt das Durstgefühl nach – Austrocknung ist dann die Regel und nicht \
+                 die Ausnahme. Sie verschlechtert die Nierenfunktion, verstärkt die Verstopfung \
+                 und macht schwindlig. Und sie nimmt jedem Abführmittel die Grundlage: Diese \
+                 Mittel brauchen Wasser, um zu wirken.",
+            )],
+        ],
+        &[
+            &[B("Seit etwa vier bis fünf Wochen gar kein Stuhlgang mehr")],
+            &[T(
+                "Ausbleibender Stuhl gehört zusammen mit Erbrechen und Bauchschmerz zum \
+                 klassischen Bild des Darmverschlusses. Ausbleibender Stuhl ",
+            ), B("und"), T(
+                " ausbleibender Windabgang ist der Notfall, nicht die Sprechstunde.",
+            )],
+        ],
+    ],
+};
+
+static T_ABKLAERUNG: Tabelle = Tabelle {
+    kopf: &["Bereich", "Untersuchung und wozu"],
+    gewichte: &[24, 76],
+    zeilen: &[
+        &[
+            &[B("Blutbild")],
+            &[T("Hämoglobin im Verlauf, MCV, Retikulozyten – sie zeigen, ob das Knochenmark auf den Verlust antwortet. Dazu die Thrombozytenzahl.")],
+        ],
+        &[
+            &[B("Eisen")],
+            &[T("Ferritin "), B("und"), T(" Transferrinsättigung, immer zusammen mit CRP. Ferritin steigt bei Entzündung an – ein normaler Wert schliesst einen Eisenmangel dann nicht aus.")],
+        ],
+        &[
+            &[B("Niere")],
+            &[T("Kreatinin, eGFR, Albumin im Blut – der Verlauf, nicht nur der Einzelwert.")],
+        ],
+        &[
+            &[B("Blutzerfall")],
+            &[T("LDH, Haptoglobin, Bilirubin – trennt einen Zerfall der roten Blutkörperchen vom Blutverlust nach aussen.")],
+        ],
+        &[
+            &[B("Urin")],
+            &[T("Status und Sediment (Erythrozyten, Akanthozyten, Zylinder) sowie "), B("Protein-Kreatinin-Quotient im Spoturin"), T(". Die wichtigste wiederholte Kontrolle überhaupt.")],
+        ],
+        &[
+            &[B("Immunologie")],
+            &[B("ANCA"), T(" – schliesst die im Alter deutlich häufigere ANCA-assoziierte Vaskulitis aus, die anders und dringlicher behandelt wird. Dazu Komplement C3/C4, Kryoglobuline, Hepatitis B und C, Eiweisselektrophorese und Immunfixation zur Suche nach einem Paraprotein.")],
+        ],
+        &[
+            &[B("Gerinnung")],
+            &[T("Quick/INR und Thrombozytenzahl. Eine Purpura bei zu wenigen Blutplättchen ist eine ganz andere Krankheit mit anderer Behandlung.")],
+        ],
+        &[
+            &[B("Ernährung")],
+            &[T("Gewichtsverlauf, Albumin, Phosphat, Kalium, Magnesium. Nach Wochen ohne Nahrung sind diese Werte die Voraussetzung dafür, dass der Kostaufbau sicher beginnen kann.")],
+        ],
+        &[
+            &[B("Bauch, dringlich")],
+            &[T("Computertomografie des Bauches bei starken Bauchschmerzen, Erbrechen und ausbleibendem Stuhl – sie zeigt Wandschwellung, Passagestörung, Durchblutungsstörung und Komplikationen. Dieser Schritt kommt "), B("vor"), T(" jedem Abführmittel durch den Mund.")],
+        ],
+        &[
+            &[B("Darm")],
+            &[T("Magen- und Darmspiegelung. Beantwortet Blutungsquelle und Tumorfrage gemeinsam – deshalb der ergiebigste einzelne Schritt, sobald eine Passagestörung ausgeschlossen ist.")],
+        ],
+        &[
+            &[B("Haut")],
+            &[T("Biopsie einer frischen Läsion mit direkter Immunfluoreszenz auf IgA. Nur solange frische Flecken da sind.")],
+        ],
+        &[
+            &[B("Nierengewebe")],
+            &[T("Nierenbiopsie bei relevantem Eiweissverlust oder fallender Nierenfunktion. Sie entscheidet über die Therapie.")],
+        ],
+    ],
+};
+
+static T_ABFUEHR: Tabelle = Tabelle {
+    kopf: &["Präparat", "Wirkstoff", "Aroma und Süssstoff laut Fachinformation"],
+    gewichte: &[26, 26, 48],
+    zeilen: &[
+        &[
+            &[B("Movicol neutral"), T(", "), B("Movicol Junior neutral")],
+            &[T("Macrogol 3350 mit Elektrolyten")],
+            &[B("Keines."), T(" Für die neutrale Variante nennt die Fachinformation weder ein Aroma noch einen Süssstoff.")],
+        ],
+        &[
+            &[B("Laxipeg aromafrei")],
+            &[T("Macrogol 4000")],
+            &[B("Hilfsstoffe: keine."), T(" Wörtlich so in der Fachinformation.")],
+        ],
+        &[
+            &[T("Movicol")],
+            &[T("Macrogol 3350 mit Elektrolyten")],
+            &[T("Acesulfam-Kalium (E950), Limetten- und Zitronenaroma")],
+        ],
+        &[
+            &[T("Movicol Chocolat")],
+            &[T("Macrogol 3350 mit Elektrolyten")],
+            &[T("Acesulfam-Kalium (E950), Schokoladenaroma, dazu Benzylalkohol im Aroma")],
+        ],
+        &[
+            &[T("Transipeg, Transipeg forte")],
+            &[T("Macrogol 3350 mit Elektrolyten")],
+            &[T("Aspartam (E951), Acesulfam-Kalium")],
+        ],
+        &[
+            &[T("Laxipeg banane")],
+            &[T("Macrogol 4000")],
+            &[T("Acesulfam-Kalium (E950), Bananenaroma")],
+        ],
+        &[
+            &[T("Duphalac, Gatinar, Rudolac")],
+            &[T("Lactulose-Sirup")],
+            &[T("Kein Zusatz nötig – der Wirkstoff selbst ist ein Zucker. Duphalac nennt unter Hilfsstoffen: keine.")],
+        ],
+        &[
+            &[T("Importal")],
+            &[T("Lactitol")],
+            &[T("Zuckeralkohol, gleiches Prinzip wie Lactulose.")],
+        ],
+    ],
+};
+
+static T_DARMSPIEGELUNG: Tabelle = Tabelle {
+    kopf: &["Vorbereitung auf die Darmspiegelung", "Wirkstoff", "Aroma und Süssstoff"],
+    gewichte: &[26, 26, 48],
+    zeilen: &[
+        &[
+            &[T("Moviprep, Moviprep Orange")],
+            &[T("Macrogol 3350, Natriumsulfat, Ascorbat")],
+            &[T("Aspartam (E951), 0,233 g je Beutel, Acesulfam-Kalium, Zitronenaroma – dazu literweise zu trinken")],
+        ],
+        &[
+            &[T("Picoprep, CitraFleet")],
+            &[T("Natriumpicosulfat, Magnesiumoxid, Citronensäure")],
+            &[T("Saccharin-Natrium (E954), Orangenaroma – wirkt zusätzlich stimulierend auf die Darmbewegung")],
+        ],
+        &[
+            &[T("Plenvu, Clensia, Cololyt")],
+            &[T("Macrogol mit Elektrolyten")],
+            &[T("Dieselbe Gruppe; die Zusammensetzung steht in der jeweiligen Fachinformation.")],
+        ],
+    ],
+};
+
+static CHRONIK: &[(&str, &[Span])] = &[
+    ("1801", &[
+        B("William Heberden, London."),
+        T(" Beschreibt in seinen "), I("Commentaries"), T(" einen fünfjährigen Buben: Flecken an den Beinen, Bauchschmerzen, blutiger Stuhl, geschwollene Gelenke, Blut im Urin. Das vollständige Bild, 36 Jahre vor Schönlein – nur zieht niemand einen Schluss daraus. Eines bleibt bemerkenswert: Schon der allererste beschriebene Fall war ein Kind. Das prägt die Literatur bis heute und ist der Grund, warum über alte Patientinnen so wenig zu finden ist."),
+    ]),
+    ("1837", &[
+        B("Johann Lukas Schönlein, Zürich."),
+        T(" Schönlein war 1832 in Würzburg im Zug der Demagogenverfolgung nach dem Hambacher Fest seiner Ämter enthoben worden; die eben gegründete Universität Zürich holte ihn 1833. In seinen Zürcher Jahren prägt er den Begriff "), I("Peliosis rheumatica"), T(" – griechisch "), I("pelios"), T(", fahl-blauschwarz. Sein Beitrag ist nicht die Beobachtung der Flecken, die kannte man, sondern die Verknüpfung: Hautblutung und Gelenkschmerz sind eine Krankheit und nicht zwei. Geschrieben hat er es nie selbst. Er publizierte fast nichts; seine Studenten schrieben die Vorlesungen mit und gaben sie heraus, von einer der Ausgaben distanzierte er sich ausdrücklich. Im selben Jahr findet er in Zürich den Erreger des Favus – einer der ersten Nachweise überhaupt, dass ein Mikroorganismus eine menschliche Krankheit verursacht, Jahrzehnte vor Koch und Pasteur."),
+    ]),
+    ("1868-1899", &[
+        B("Eduard Heinrich Henoch, Berlin."),
+        T(" Henoch hörte Schönlein als Student und leitete später die Kinderabteilung der Charité. 1868 beschreibt er die Verbindung von Kolik, blutigem Durchfall, Gelenkschmerz und Ausschlag – der Bauch kommt dazu. 1874 legt er vier Kinderfälle mit dem vollständigen Quartett vor. 1899 betont er, wie häufig eine Nephritis dazugehört. Damit ist das Bild fertig, und zwar in genau der Reihenfolge, in der die Medizin die Krankheit bis heute begreift: erst was man sieht, dann was weh tut, zuletzt was gefährlich ist."),
+    ]),
+    ("1914-1948", &[
+        B("Die Allergie-Epoche."),
+        T(" Osler vermutet 1914, es steckten anaphylaktische Vorgänge dahinter; Frank und Glanzmann prägen daraufhin den Namen «anaphylaktoide Purpura». Im Mechanismus falsch, in der Denkrichtung richtig – das Immunsystem war im Spiel. 1948 spannt Douglas Gairdner im "), I("Quarterly Journal of Medicine"), T(" die beiden Namen endgültig zusammen. Ab da heisst sie Schönlein-Henoch-Syndrom."),
+    ]),
+    ("1968-1973", &[
+        B("Der Beweis."),
+        T(" Jean Berger beschreibt 1968 in Paris eine Nierenkrankheit mit IgA-Ablagerungen im Mesangium – gegen die damalige Lehre, nach der IgG das schädigende Immunglobulin sei. 1973 zeigen Baart de la Faille-Kuyper und Mitarbeiter im "), I("Lancet"), T(" dasselbe IgA in den Hautgefässen "), B("und"), T(" im Nierenmesangium von Schönlein-Henoch-Patienten. Damit ist klar, was 172 Jahre lang nur ein Muster von Symptomen war: eine Krankheit der IgA-Immunkomplexe. Und es erklärt, warum ausgerechnet Haut, Darm und Niere zusammen erkranken – sie haben nichts gemeinsam ausser der Grösse ihrer Gefässe."),
+    ]),
+    ("2012", &[
+        B("Der Name fällt."),
+        T(" Die Chapel Hill Consensus Conference benennt die Vaskulitiden nach ihrer Ursache statt nach ihren Entdeckern. Aus Purpura Schönlein-Henoch wird IgA-Vaskulitis. Beide Namen laufen bis heute nebeneinander; im Klinikalltag hört man das alte oft."),
+    ]),
+];
+
+// ---------------------------------------------------------------------------
+// Das Dokument
+// ---------------------------------------------------------------------------
+
+pub static DOKUMENT: &[Block] = &[
+    Lead {
+        werte: "Ausgangslage: Patientin, 84 Jahre · Hämoglobin von 108 auf 83 g/l gefallen",
+        blocks: &[
+            P(&[T("Drei Dinge daran sind wichtig, und sie sind nicht dasselbe.")]),
+            P(&[
+                B("Der Wert."), T(" "), N("83 g/l"), T(" ist eine mittelschwere Blutarmut; der Normbereich für Frauen liegt bei etwa "), N("117–157 g/l"), T(". Die üblichen Transfusionsgrenzen liegen bei "), N("70 g/l"), T(", bei bekannter Herzkrankheit bei "), N("80 g/l"), T(". 83 liegt knapp darüber – also nicht automatisch transfusionsbedürftig, aber in dem Bereich, in dem der Zustand der Patientin entscheidet und nicht die Zahl."),
+            ]),
+            P(&[
+                B("Das Tempo."), T(" Der Abfall um "), N("25 g/l"), T(" ist der eigentliche Befund. Eine Blutarmut durch Entzündung oder Nierenschwäche entwickelt sich über Monate. Ein Abfall innert Wochen spricht für Blutverlust – bei dieser Krankheit in erster Linie aus dem Darm. Das gehört rasch abgeklärt und nicht in eine Sprechstunde in sechs Wochen."),
+            ]),
+            P(&[
+                B("Der Bauch."), T(" Seit Wochen kein Appetit, starke Bauchschmerzen, wenig Schlaf, immer wieder Erbrechen – jedes Mal, nachdem eine Kleinigkeit gegessen wurde –, kaum Flüssigkeit, und seit etwa vier bis fünf Wochen gar kein Stuhlgang mehr. Diese Kombination ist keine gewöhnliche Verstopfung; sie ist das Bild einer Passagestörung und der dringlichste Teil dieses Blattes. Siehe den Abschnitt «Was seit Wochen läuft»."),
+            ]),
+            P(&[
+                B("Und ein Vorlauf."), T(" Es gab schon einmal einen massiven Ausschlag an den Beinen, nach einer Phase starker Belastung. Damit ist das heutige Bild wahrscheinlich kein Erstereignis – siehe den Abschnitt «Ein früherer Schub»."),
+            ]),
+        ],
+    },
+    Alarm {
+        titel: "Was nicht warten darf",
+        blocks: &[
+            P(&[
+                T("Bei "), B("schwarzem oder blutigem Stuhl"), T(", "), B("Erbrechen von grün-gelber Galle"), T(", "), B("ausbleibendem Stuhl- und Windabgang"), T(", starken Bauchschmerzen, Schwindel oder Schwarzwerden beim Aufstehen, Atemnot, Herzrasen oder Brustschmerzen gehört die Patientin auf den Notfall – nicht in die Sprechstunde."),
+            ]),
+            P(&[
+                T("Wochenlang kein Stuhlgang zusammen mit Erbrechen nach jedem Essen erfüllt diese Bedingung bereits. Das gehört heute abgeklärt, mit einem Bild vom Bauch – und ohne dass vorher ein Abführmittel durch den Mund gegeben wird."),
+            ]),
+            P(&[T("Notfallstation Universitätsspital Zürich, Schmelzbergstrasse 8, 8091 Zürich, rund um die Uhr:")]),
+            Kontakt(&[
+                Verweis { text: "Notfall USZ: +41 44 255 11 11", url: "tel:+41442551111" },
+                Verweis { text: "Ambulanz: 144", url: "tel:144" },
+            ]),
+        ],
+    },
+
+    H2("Was seit Wochen läuft"),
+    P(&[T("Was die Patientin seit Wochen erlebt, gehört zusammen auf ein Blatt. Einzeln klingt jeder Punkt nach einer Unannehmlichkeit; zusammen ergeben sie etwas anderes.")]),
+    Tab(&T_VERLAUF),
+    P(&[
+        T("Zusammengenommen ist das die klassische Kombination einer "), B("Passagestörung"), T(": Erbrechen kurz nach dem Essen, ausbleibender Stuhl über Wochen, starker Bauchschmerz. Bei einer IgA-Vaskulitis ist der naheliegende Mechanismus ein Darmwandödem – die entzündete, geschwollene Wand behindert die Passage. Es kommen aber auch die Erklärungen infrage, die bei einer 84-Jährigen ohnehin auf der Liste stehen, ein Tumor voran. Beides klärt dasselbe: ein Bild vom Bauch."),
+    ]),
+    P(&[
+        T("Daraus folgen zwei Dinge. Erstens: Ein Abführmittel durch den Mund ist in dieser Lage nicht die Antwort, sondern das Gegenteil davon – die Fachinformationen aller dieser Mittel führen Darmverschluss und Obstruktion als Gegenanzeige. Zweitens: Wer seit Wochen weder isst noch trinkt, trocknet aus und verliert Gewicht. Wie Flüssigkeit und Nahrung sichergestellt werden, wenn durch den Mund nichts drin bleibt, ist eine eigene Frage – notfalls über die Vene oder eine Magensonde, und der Kostaufbau überwacht."),
+    ]),
+
+    H2("Den Hämoglobinwert richtig lesen"),
+    P(&[
+        T("Ein verbreitetes Missverständnis, das hier viel ändert: "), B("Tief ist nicht besser, tief ist schlechter."), T(" Hämoglobin ist der rote Blutfarbstoff, der den Sauerstoff transportiert. Weniger Hämoglobin heisst weniger Sauerstoff in den Geweben. Der Normbereich für Frauen liegt bei rund "), N("117–157 g/l"), T("; 108 war bereits zu tief, 83 ist eine deutliche Blutarmut."),
+    ]),
+    P(&[
+        T("Die Verwechslung dahinter ist naheliegend: "), B("HbA1c"), T(", das «Hämoglobin A1c», ist der Langzeit-Blutzuckerwert – und dort ist tief tatsächlich besser. Dieser Wert misst aber, wie stark der Zucker das Hämoglobin verzuckert hat, nicht wie viel Hämoglobin überhaupt vorhanden ist. Gleicher Wortstamm, gegenläufige Richtung."),
+    ]),
+    P(&[T("Die einzige Lage, in der ein Arzt Hämoglobin absichtlich senkt, ist die Polyzythämie: zu viel davon, das Blut wird zu dickflüssig, dann Aderlass. Das ist das Gegenteil dieser Situation.")]),
+    P(&[
+        T("Was "), N("83 g/l"), T(" mit 84 Jahren praktisch bedeutet: Der Körper gleicht den Mangel mit höherem Puls und schnellerer Atmung aus. Daraus werden Müdigkeit, Schwindel beim Aufstehen, Kurzatmigkeit und Sturzgefahr – bei vorgeschädigtem Herz auch Angina pectoris. Genau darum liegt die Transfusionsgrenze bei bekannter Herzkrankheit bei 80 statt "), N("70 g/l"), T("."),
+    ]),
+
+    H2("Was die Krankheit ist"),
+    P(&[T("Die IgA-Vaskulitis – der ältere Name Purpura Schönlein-Henoch ist noch geläufig – ist eine Entzündung der kleinsten Blutgefässe. Antikörper der Klasse IgA lagern sich in den Gefässwänden ab, das Immunsystem reagiert darauf, und die Gefässe werden durchlässig und brüchig. Weil solche kleinen Gefässe überall im Körper liegen, betrifft die Krankheit vier Bereiche, klassisch in dieser Kombination:")]),
+    Liste(&[
+        &[B("Haut."), T(" Tastbare Purpura: rötlich-violette Flecken, die sich beim Darüberstreichen erhaben anfühlen und auf Druck nicht verblassen. Typisch an Unterschenkeln und Gesäss. Das ist meist das erste und sichtbarste Zeichen – und das harmloseste.")],
+        &[B("Gelenke."), T(" Schmerzen und Schwellungen, meist Sprung- und Kniegelenke. Vorübergehend, ohne bleibenden Schaden.")],
+        &[B("Magen-Darm-Trakt."), T(" Kolikartige Bauchschmerzen, Übelkeit, Erbrechen, Blut im Stuhl. Dieselbe Gefässentzündung schädigt die Darmschleimhaut; vor allem im Zwölffingerdarm entstehen Geschwüre, die bluten. Schwillt die Wand an, stört das die Passage.")],
+        &[B("Niere."), T(" Der Punkt, der über den Verlauf entscheidet. Blut und Eiweiss im Urin, oft ohne dass die Patientin etwas davon spürt. Deshalb ist die regelmässige Urinkontrolle aussagekräftiger als das Befinden.")],
+    ]),
+    P(&[T("Die Diagnose stützt sich auf das klinische Bild und, wo möglich, auf eine Hautbiopsie mit direkter Immunfluoreszenz: Der Nachweis von IgA in der Gefässwand ist der Beweis. Entscheidend dabei – die Probe muss aus einer "), B("frischen"), T(" Hautstelle stammen, jünger als etwa 48 Stunden. An abgeheilten Flecken findet sich nichts mehr.")]),
+
+    H2("Ist das ansteckend? Nein"),
+    P(&[T("In den entzündeten Gefässen sitzen keine Bakterien, sondern "), B("Immunkomplexe aus körpereigenen Antikörpern"), T(". Die Krankheit ist keine Infektion und "), B("nicht übertragbar"), T(" – niemand im Haushalt ist gefährdet, es braucht keine Isolation.")]),
+    P(&[T("Daraus folgt der Punkt, der im Alltag am meisten zählt: "), B("Antibiotika behandeln die Vaskulitis nicht."), T(" Sie behandeln eine Infektion, falls gerade eine besteht – aber sie bringen weder den Ausschlag noch die Bauchschmerzen noch die Nierenbeteiligung zum Verschwinden. Deshalb steht im Abschnitt zur Behandlung Kortison und kein Antibiotikum.")]),
+    H3("Bakterien sind aber oft der Funke"),
+    P(&[T("Ein grosser Teil der Fälle beginnt "), B("ein bis drei Wochen nach einem Infekt"), T(", meist der oberen Atemwege; die Angaben schwanken je nach Studie zwischen etwa 50 und 90 Prozent. Am häufigsten genannt wird "), B("Streptococcus der Gruppe A"), T(", derselbe Erreger, der die eitrige Angina verursacht; bei über 30 Prozent der Patienten mit Nierenbeteiligung liessen sich Streptokokken kulturell nachweisen. Der Infekt ist also oft der Auslöser, aber nicht die Krankheit – wenn der Ausschlag erscheint, ist die Angina meist längst vorbei.")]),
+    H3("Was dazwischen passiert"),
+    P(&[T("Die Schleimhäute bilden gegen den Infekt "), B("IgA"), T(". Das ist der Antikörper der Schleimhäute, und das ist seine normale Aufgabe. Bei veranlagten Menschen fehlt einem Teil dieser IgA1-Moleküle ein Zucker an der Scharnierregion, die "), B("Galaktose"), T(". Das Immunsystem erkennt diese fehlerhaft beschichteten eigenen Antikörper als fremd und bildet IgG-Antikörper gegen das eigene IgA.")]),
+    P(&[T("Beide verklumpen zu Immunkomplexen, die im Blut zirkulieren und sich dort festsetzen, wo die Gefässe am engsten sind: Haut, Darm, Nierenmesangium. Dort aktivieren sie das Komplementsystem, und dieses entzündet die Gefässwand. Der Fehler liegt also nicht im Bakterium, sondern im Zuckermantel eines körpereigenen Antikörpers – das Bakterium stösst nur an.")]),
+    H3("Und in diesem Fall"),
+    P(&[T("Bei einer 84-jährigen Patientin verschiebt sich die Auslöserfrage. Der Infekt als Auslöser ist die Regel "), I("bei Kindern"), T(". Im Alter stehen zwei andere Möglichkeiten weiter vorn: "), B("Medikamente"), T(" und eine noch unentdeckte "), B("Tumorerkrankung"), T(" – siehe den folgenden Abschnitt. Die Frage «welcher Infekt war es?» ist hier weniger ergiebig als «welche Medikamente sind in den letzten Wochen neu dazugekommen?» und «wurde nach einem Tumor gesucht?».")]),
+    P(&[T("Ein Nachtrag zum Geschichtskapitel am Schluss: Schönlein nannte die Krankheit 1837 "), I("Peliosis rheumatica"), T(". Er ahnte den Zusammenhang, ohne ihn erklären zu können – die Streptokokken-Verbindung stellt sie in dieselbe Familie wie das rheumatische Fieber. Beides ist das Immunsystem, das nach einer Halsentzündung über das Ziel hinausschiesst.")]),
+
+    H2("Warum das Alter den Unterschied macht"),
+    P(&[T("Fast alles, was man über diese Krankheit liest, stammt aus der Kinderheilkunde. Dort ist sie häufig, verläuft meist harmlos und heilt von selbst aus. Bei Erwachsenen ist sie selten – rund 0,8 bis 1,8 Fälle auf 100'000 Personen im Jahr – und sie verhält sich anders:")]),
+    Liste(&[
+        &[T("Nieren- und Darmbeteiligung sind häufiger und ausgeprägter als bei Kindern.")],
+        &[T("Alter über 65 Jahre, Eiweissverlust über den Urin, nachlassende Nierenfunktion und Blut im Urin sind die ungünstigen Zeichen.")],
+        &[T("Eine Darmblutung ist nicht nur ein Problem für sich, sondern ein Warnzeichen für die Niere. In einer Untersuchung an Erwachsenen mit Nierenbeteiligung landeten die Betroffenen mit Darmblutung weit häufiger in einem dauerhaften Nierenversagen und weit seltener in einer Ausheilung als die ohne.")],
+        &[T("Bei älteren Menschen kann eine IgA-Vaskulitis die Begleiterscheinung einer noch unentdeckten Krebserkrankung sein. In einer Übersichtsarbeit entwickelten rund 16 Prozent der erwachsenen Betroffenen einen Tumor, zu gut zwei Dritteln solide Tumoren – Lunge, Prostata, Brust –, zum übrigen Drittel Lymphome und Leukämien. Verbindliche Suchempfehlungen gibt es nicht, aber im hohen Alter ist die Frage zu stellen.")],
+    ]),
+    P(&[T("Der letzte Punkt, der Hämoglobin-Abfall und der seit Wochen fehlende Stuhlgang hängen zusammen: Ein Bild vom Bauch und anschliessend eine Magen- und Darmspiegelung beantworten dieselben Fragen in einem Durchgang – wo es blutet, was die Passage behindert, und ob etwas dahintersteckt.")]),
+
+    H2("Ein früherer Schub"),
+    P(&[T("Tastbare Purpura an den Unterschenkeln ist die Signatur dieser Krankheit. Ist das schon einmal aufgetreten, ist das heutige Bild wahrscheinlich ein "), B("Rezidiv"), T(" – und das ändert die Einordnung.")]),
+    P(&[T("Bei Erwachsenen kehrt die IgA-Vaskulitis in etwa "), B("43 Prozent"), T(" der Fälle wieder, gut ein Viertel davon mehrfach; nur rund die Hälfte erreicht eine vollständige Remission. Wiederkehren ist bei Erwachsenen die Regel und nicht die Ausnahme, und höheres Alter beim Erstauftreten ist selbst ein Vorhersagefaktor für Rückfälle. Die Tumorfrage bleibt dabei auf dem Tisch: Die Suche wird ausdrücklich bei "), B("neu aufgetretener oder wiederkehrender"), T(" IgA-Vaskulitis im Alter empfohlen – ein Rezidiv entlastet nicht.")]),
+    H3("Die Frage, auf die es ankommt"),
+    P(&[B("Wurde damals der Urin kontrolliert?"), T(" Daran entscheidet sich, wie lange die Niere schon unter Beschuss steht. Eine Nierenbeteiligung tritt oft erst Wochen nach dem Ausschlag auf und macht keine Beschwerden – sie zeigt sich nur im Urin. Wurde der erste Schub als Hautsache abgetan und hat niemand Urinstatus und Protein-Kreatinin-Quotient bestimmt, kann die Niere seither still gelitten haben. Das würde erklären, warum das Bild heute schwerer ist.")]),
+    P(&[T("Und falls damals eine Diagnose gestellt wurde: Gab es eine Hautbiopsie? Ein IgA-Nachweis in der Gefässwand von damals wäre heute Gold wert – er erspart die Frage, ob es dieselbe Krankheit ist.")]),
+    H3("Zum Stress als Auslöser"),
+    P(&[T("Für die IgA-Vaskulitis speziell ist psychischer Stress "), B("kein belegter Auslöser"), T(". Belegt sind Infekte, Medikamente und Tumoren. Es gibt eine Untersuchung, nach der Vaskulitis-Patienten den Stress sehr häufig als Ursache annehmen, ohne dass sich das wissenschaftlich stützen liess – und nach der diese Überzeugung mit mehr Erschöpfung und Funktionseinbussen einherging. Für andere Vaskulitiden, etwa die ANCA-assoziierte, gibt es Hinweise auf Stress als Schubauslöser.")]),
+    P(&[T("Plausibel, aber nicht gesichert, ist die indirekte Kette: Stress schwächt die Infektabwehr, und Infekte sind der belegte Auslöser. Eine belastende Phase mit einer verschleppten Erkältung darin ist naheliegend – nur erinnert man hinterher den Stress und nicht das Halsweh. Die praktische Folge: Die Stress-Erklärung darf die Suche nach dem tatsächlichen Auslöser nicht ersetzen. Hier heisst das vor allem: Welche Medikamente sind neu dazugekommen?")]),
+    H3("Was bei wiederkehrender Beinpurpura dazugehört"),
+    P(&[T("Ein wiederholtes Auftreten macht drei Untersuchungen wichtiger, die in der Tabelle weiter oben ohnehin stehen:")]),
+    Liste(&[
+        &[B("Eiweisselektrophorese und Immunfixation"), T(" – eine IgA-Paraprotein-assoziierte Vaskulitis (MGUS, Myelom) sieht klinisch gleich aus und kommt im Alter vor.")],
+        &[B("Kryoglobuline, Hepatitis B und C"), T(" – die kryoglobulinämische Vaskulitis ist der klassische Nachahmer bei rezidivierender Beinpurpura.")],
+        &[B("Medikamentenanamnese über Jahre"), T(" – eine arzneimittelbedingte leukozytoklastische Vaskulitis kehrt wieder, solange das auslösende Mittel wiederkehrt.")],
+    ]),
+    H3("Nicht verwechseln: Purpura senilis"),
+    P(&[T("Die Purpura senilis ist bei 84-Jährigen sehr häufig: flache, nicht erhabene Blutungen, meist an Unterarmen und Handrücken, aus brüchigen Gefässen und oft unter Blutverdünnern. Sie ist harmlos und hat mit der Vaskulitis nichts zu tun. Das Unterscheidungsmerkmal ist einfach – "), B("tastbar erhaben und an den Unterschenkeln"), T(" spricht für die Vaskulitis, "), B("flach und an den Unterarmen"), T(" für Altershaut. Existieren Fotos des damaligen Ausschlags, klärt das die Frage in Sekunden.")]),
+
+    H2("Woher der Blutverlust kommen kann"),
+    Liste(&[
+        &[B("Blutung aus dem Magen-Darm-Trakt."), T(" Die naheliegendste Erklärung. Die Vaskulitis schädigt die Schleimhaut, am häufigsten im Zwölffingerdarm. Die Blutung muss nicht sichtbar sein – sie kann über Wochen sickern, ohne dass der Stuhl auffällt. Kommt seit Wochen ohnehin kein Stuhl, fällt dieser Hinweis ganz weg.")],
+        &[B("Medikamente."), T(" Kortison zusammen mit Schmerzmitteln vom NSAR-Typ (Ibuprofen, Diclofenac, Naproxen) erhöht das Geschwürrisiko erheblich; NSAR belasten zusätzlich die Niere. Blutverdünner verstärken jede vorhandene Blutungsquelle. Die vollständige Medikamentenliste gehört auf den Tisch, rezeptfreie Mittel eingeschlossen.")],
+        &[B("Eine zweite, unabhängige Quelle."), T(" Mit 84 Jahren ist ein Dickdarmtumor oder ein Magengeschwür statistisch häufiger als die Vaskulitis selbst. Beides würde den Blutverlust erklären – und zusammen mit der ausbleibenden Passage womöglich auch den Rest.")],
+        &[B("Die Niere."), T(" Bei nachlassender Nierenfunktion bildet der Körper weniger Erythropoetin, das Hormon für die Blutbildung. Das erklärt eine langsam sinkende Kurve, keinen Sturz um "), N("25 g/l"), T(" in kurzer Zeit.")],
+        &[B("Mangelernährung."), T(" Wochen ohne Nahrung liefern zu wenig Eisen, Folsäure und Vitamin B12. Als alleinige Erklärung für dieses Tempo zu langsam, als verstärkender Faktor real – und mit drei Laborwerten geprüft.")],
+        &[B("Entzündungsanämie."), T(" Ebenso: als Grundrauschen möglich, für diesen Verlauf zu langsam.")],
+        &[B("Blutentnahmen und Verdünnung."), T(" Bei häufigen Kontrollen und Infusionen banal, aber vor der grossen Abklärung in einer Minute geprüft.")],
+    ]),
+
+    H2("Was abgeklärt gehört"),
+    Tab(&T_ABKLAERUNG),
+
+    H2("Zur Behandlung"),
+    P(&[T("Die Therapie führen die Spezialisten; hier steht nur, was den Rahmen erklärt.")]),
+    P(&[T("Sind allein Haut und Gelenke betroffen, wird oft beobachtet und nur gegen die Beschwerden behandelt. Sobald Darm oder Niere beteiligt sind, kommt Kortison zum Einsatz, üblicherweise Prednison um 1 mg pro Kilogramm Körpergewicht mit anschliessendem Ausschleichen. Eine frühe Kortisonbehandlung senkt die Wahrscheinlichkeit eines bleibenden Nierenschadens deutlich. Bei schwerer Nierenbeteiligung kommen zusätzliche Immunsuppressiva in Frage – das entscheidet die Nierenbiopsie.")]),
+    P(&[T("Im hohen Alter gilt: die niedrigste wirksame Dosis, und die Nebenwirkungen von Anfang an mitbehandeln – Magenschutz, Blutzucker, Knochendichte, Infektrisiko.")]),
+    P(&[T("Drei Punkte, die sich anzusprechen lohnen:")]),
+    Liste(&[
+        &[B("NSAR meiden."), T(" Ibuprofen, Diclofenac, Naproxen belasten Niere und Magenschleimhaut gleichzeitig – beides genau dort, wo die Krankheit ohnehin angreift. Paracetamol ist die verträglichere Alternative.")],
+        &[B("Blutdruck einstellen."), T(" Bei Eiweiss im Urin schützt ein ACE-Hemmer oder ein Sartan die Niere zusätzlich.")],
+        &[B("Was durch den Mund nicht geht, geht durch die Vene."), T(" Solange Erbrechen jede Mahlzeit beendet, ist auch die Aufnahme von Medikamenten unsicher. Das gehört bei der Verordnung mitbedacht.")],
+    ]),
+    P(&[T("Und die Nachkontrolle: Urin und Blutdruck regelmässig über mindestens sechs bis zwölf Monate, bei Erwachsenen eher länger. Eine Nierenbeteiligung kann auch dann noch auftreten, wenn der Ausschlag längst verschwunden ist. Genau das ist der häufigste Fehler – die Kontrollen enden, sobald die Haut wieder sauber aussieht.")]),
+
+    H2("Abführmittel: welche es gibt und warum sie süss sind"),
+    P(&[T("Vorbemerkung, weil sie in dieser Lage alles andere überwiegt: Solange Erbrechen nach jedem Essen und wochenlang fehlender Stuhlgang nicht abgeklärt sind, ist die Frage nach dem richtigen Abführmittel die zweite Frage. Die erste steht im Abschnitt oben. Was hier folgt, gilt für die Zeit danach – und für den Fall, dass ein Mittel bereits verordnet ist und schlecht vertragen wird.")]),
+    P(&[T("Dass ein Abführmittel zum Trinken süss ist, ist kein Zufall des Herstellers. Bei der einen Gruppe ist der Wirkstoff selbst ein Zucker; bei der anderen ist die Süsse ein Zusatz – und den gibt es auch ohne.")]),
+    P(&[
+        B("Lactulose ist der Zucker."), T(" Duphalac, Gatinar und Rudolac sind Lactulose-Sirup. Die Fachinformation nennt unter Hilfsstoffen: keine. Süss ist hier nicht ein Zusatz, sondern der Wirkstoff, und daran lässt sich nichts ändern. Lactulose wird nicht aufgenommen, sondern im Dickdarm von Bakterien "), B("vergoren"), T(" – dabei entstehen Gase. Blähungen sind deshalb kein Nebeneffekt, sondern das Stoffwechselprodukt. In den Zulassungsstudien war Durchfall sehr häufig (13,1 Prozent), Flatulenz, Bauchschmerzen, Übelkeit und Erbrechen häufig. Importal (Lactitol) ist ein Zuckeralkohol und funktioniert nach demselben Prinzip."),
+    ]),
+    P(&[
+        B("Macrogol ist von sich aus geschmacklos."), T(" Es ist ein inertes Polymer: Es wird weder aufgenommen noch von Bakterien verstoffwechselt, sondern bindet osmotisch Wasser und geht unverändert durch. Keine Vergärung, entsprechend "), B("deutlich weniger Gas"), T(". Die Süsse der gängigen Präparate kommt aus Aroma und Süssstoff – und genau die gibt es auch weggelassen:"),
+    ]),
+    Tab(&T_ABFUEHR),
+    P(&[T("Und die Mittel, die zur Vorbereitung einer Darmspiegelung literweise getrunken werden – die süssesten von allen:")]),
+    Tab(&T_DARMSPIEGELUNG),
+    P(&[
+        B("Was man konkret verlangen kann:"), T(" "), B("Movicol neutral"), T(" oder "), B("Laxipeg aromafrei"), T(". Beide sind in der Schweiz zugelassen und kassenpflichtig, beide enthalten weder Aroma noch Süssstoff. Von Movicol neutral gibt es auch eine Junior-Packung, wenn eine kleinere Dosis leichter fällt."),
+    ]),
+    P(&[T("Der Cochrane-Vergleich gibt Macrogol gegenüber Lactulose ohnehin durchweg den Vorzug: bessere Stuhlfrequenz, bessere Stuhlform, weniger Bauchschmerzen, weniger Bedarf an Zusatzmitteln. Der Wechsel löst also nicht nur das Geschmacksproblem.")]),
+    H3("Drei Punkte aus den Fachinformationen, die hier besonders zählen"),
+    Liste(&[
+        &[B("Bei Darmverschluss verboten."), T(" Alle diese Mittel führen intestinale Obstruktion, Ileus und Perforation als Gegenanzeige. Duphalac verlangt darüber hinaus ausdrücklich, dass schmerzhafte Bauchsymptome unklarer Ursache "), B("vor"), T(" Behandlungsbeginn abgeklärt werden, um eine nicht diagnostizierte Obstruktion auszuschliessen. Bei seit Wochen fehlendem Stuhlgang ist das keine Formalie.")],
+        &[B("Ohne Flüssigkeit keine Wirkung."), T(" Duphalac empfiehlt während einer Abführbehandlung 1,5 bis 2 Liter am Tag. Für Movicol steht ausdrücklich, dass die zubereitete Lösung die reguläre Flüssigkeitszufuhr "), B("nicht ersetzt"), T("; ein Beutel wird in 125 ml Wasser gelöst. Wer kaum trinkt, dem hilft das Mittel wenig – und die Austrocknung trifft ausgerechnet die Niere.")],
+        &[B("Im Alter die kleinere Dosis."), T(" Für Menschen über 65 genügt bei Movicol laut Fachinformation normalerweise ein Beutel täglich statt ein bis zwei.")],
+    ]),
+    H3("Wenn es trotzdem zu süss bleibt"),
+    Liste(&[
+        &[T("Zuerst die aromafreie Variante verlangen – das löst das Problem an der Wurzel und nicht am Symptom.")],
+        &[T("Kalt trinken, mit dem Strohhalm. Kälte dämpft die Süssempfindung. Praktisch dazu: Die zubereitete Lösung von "), B("Movicol neutral"), T(" hält sich im Kühlschrank 24 Stunden, die aromatisierten Varianten nur 6 – die neutrale lässt sich also am Vorabend ansetzen.")],
+        &[T("Ob statt Wasser Bouillon oder ungesüsster Tee in Frage kommt, gehört mit der Apotheke oder der Ärztin geklärt; die Fachinformation sieht Wasser vor.")],
+        &[T("Die Tagesmenge über den Tag verteilen statt auf einmal.")],
+    ]),
+
+    Alarm {
+        titel: "Erbrechen von Galle ist kein Geschmacksproblem",
+        blocks: &[
+            P(&[T("Grün-gelbe Galle zu erbrechen heisst, dass Darminhalt rückwärts läuft. Bei Bauchbeteiligung einer Vaskulitis und gleichzeitig fallendem Hämoglobin ist das ein Warnzeichen für einen "), B("Subileus"), T(" – die entzündete, geschwollene Darmwand behindert die Passage. Ein Darmwandödem mit Passagestörung ist eine bekannte Komplikation genau dieser Krankheit.")]),
+            P(&[T("Trifft das zu, ist ein Abführmittel durch den Mund nicht nur wirkungslos, sondern falsch: Man drückt Flüssigkeit gegen einen Engpass. Dann hilft auch der Wechsel auf Macrogol nichts. Dazu kommen die Aspirationsgefahr beim Erbrechen und der Flüssigkeitsverlust – der trifft ausgerechnet die Niere, das Organ, das hier ohnehin gefährdet ist.")]),
+            P(&[B("Zwei Fragen gehören heute geklärt, nicht nächste Woche.")]),
+            P(&[B("Wofür ist das Abführmittel gedacht?"), T(" Ist es die Vorbereitung auf die Darmspiegelung, ist Erbrechen unter der Spülung zwar häufig – aber mit Galle und Aufstossen gehört die Vorbereitung abgebrochen und die Ärztin informiert, nicht durchgezogen. Ist es gegen gewöhnliche Verstopfung, gilt dieselbe Abklärungspflicht.")]),
+            P(&[B("Gehen Winde und Stuhl noch ab?"), T(" Wenn nicht, ist das der Notfall und nicht die Sprechstunde.")]),
+            P(&[T("Behält sie Mittel durch den Mund schlecht, gibt es den rektalen Weg – Glyzerinzäpfchen oder ein kleines Klistier –, der den Magen umgeht. Ob das hier passt, entscheidet die Ärztin: Bei möglicher Passagestörung ist auch das nicht beliebig, und stimulierende Mittel wie Bisacodyl oder Natriumpicosulfat treiben die Darmbewegung gegen den Engpass.")]),
+        ],
+    },
+
+    H2("Die Adressen in Zürich"),
+    P(&[T("Eine eigene Sprechstunde für die Purpura Schönlein-Henoch gibt es nicht. Zuständig sind zwei Fächer gemeinsam – Rheumatologie für die Vaskulitis, Nephrologie für die Niere. Bei einer Darmblutung oder einer Passagestörung kommt die Gastroenterologie dazu.")]),
+    H3("Rheumatologie"),
+    Adresse {
+        name: "Vaskulitis-Sprechstunde, Klinik für Rheumatologie, Universitätsspital Zürich",
+        rolle: &[T("Leitung: PD Dr. med. Carmen-Marina Mihai")],
+        zeilen: &[
+            &[T("Post: Universitätsspital Zürich, Disposition, Klinik für Rheumatologie, Rämistrasse 100, 8091 Zürich")],
+            &[T("Sprechzimmer: G5, Empfang J, The Circle 59, 8058 Zürich-Flughafen")],
+        ],
+        links: &[
+            Verweis { text: "Anmeldung Disposition Rheumatologie: +41 44 255 26 87", url: "tel:+41442552687" },
+            Verweis { text: "dispo.ruz@usz.ch", url: "mailto:dispo.ruz@usz.ch" },
+            Verweis { text: "usz.ch/sprechstunde/vaskulitis", url: "https://www.usz.ch/sprechstunde/vaskulitis/" },
+        ],
+    },
+    H3("Nephrologie"),
+    Adresse {
+        name: "Dr. med. Stephanie Damm, Oberärztin",
+        rolle: &[T("Klinik für Nephrologie USZ · Schwerpunkt Glomerulonephritis und Vaskulitis, Nierenbeteiligung bei rheumatischen Erkrankungen. Für diesen Fall die fachlich genaueste Adresse.")],
+        zeilen: &[&[T("Rämistrasse 100, 8091 Zürich")]],
+        links: &[
+            Verweis { text: "+41 44 255 33 84", url: "tel:+41442553384" },
+            Verweis { text: "stephanie.damm@usz.ch", url: "mailto:stephanie.damm@usz.ch" },
+            Verweis { text: "usz.ch/fachbereich/nephrologie/team", url: "https://www.usz.ch/fachbereich/nephrologie/team/" },
+        ],
+    },
+    Adresse {
+        name: "Prof. Dr. med. Britta George, Klinikdirektorin",
+        rolle: &[T("Klinik für Nephrologie USZ · Schwerpunkt glomeruläre Erkrankungen, Nierentransplantation, genetische Nierenerkrankungen")],
+        zeilen: &[],
+        links: &[
+            Verweis { text: "+41 44 255 33 84", url: "tel:+41442553384" },
+            Verweis { text: "britta.george@usz.ch", url: "mailto:britta.george@usz.ch" },
+        ],
+    },
+    H3("Notfall"),
+    Adresse {
+        name: "Notfallstation Universitätsspital Zürich",
+        rolle: &[T("Rund um die Uhr geöffnet, für alle Erwachsenen")],
+        zeilen: &[&[T("Schmelzbergstrasse 8, 8091 Zürich")]],
+        links: &[
+            Verweis { text: "+41 44 255 11 11", url: "tel:+41442551111" },
+            Verweis { text: "Ambulanz: 144", url: "tel:144" },
+        ],
+    },
+    H3("Zur Anmeldung"),
+    P(&[T("Weder am Universitätsspital noch am Kinderspital ist eine Selbstanmeldung möglich – es braucht die Zuweisung durch den Haus- oder Facharzt. Wer nicht wochenlang warten will, lässt die Zuweisung an die oben genannte Person adressieren und schreibt zwei Dinge ausdrücklich hinein: den Hämoglobin-Verlauf ("), I("Abfall von 108 auf "), T("83 g/l) und die Bauchsituation ("), I("seit vier bis fünf Wochen kein Stuhlgang, Erbrechen nach jeder Nahrungsaufnahme"), T("). Das ändert die Dringlichkeitsstufe. Beim zweiten Punkt ist allerdings der Notfall der schnellere Weg als jede Zuweisung.")]),
+    Klein(&[T("Am Rande, weil die Krankheit gewöhnlich Kinder betrifft: Für Kinder und Jugendliche ist das Universitäts-Kinderspital Zürich das Referenzzentrum, mit einer gemeinsamen rheumatologisch-nephrologischen Sprechstunde für Vaskulitiden mit Nierenbeteiligung. Für die vorliegende Situation ist das nicht die zuständige Stelle.")]),
+    Kontakt(&[
+        Verweis { text: "Kinderspital Zürich, Rheumatologie: +41 44 249 75 80", url: "tel:+41442497580" },
+        Verweis { text: "Kinderspital Zürich, Nephrologie: +41 44 249 63 30", url: "tel:+41442496330" },
+    ]),
+
+    H2("Was zum Termin mitgehört"),
+    Liste(&[
+        &[T("Alle Hämoglobinwerte mit Datum – die Kurve sagt mehr als der letzte Punkt")],
+        &[T("Ein Verlaufsblatt zum Bauch: seit wann kein Appetit, seit wann kein Stuhlgang, wie oft Erbrechen und in welchem Abstand zum Essen, wie viel getrunken wird")],
+        &[T("Das Gewicht, wenn möglich mit einem früheren Wert zum Vergleich")],
+        &[T("Die vollständige Medikamentenliste, rezeptfreie Schmerz- und Abführmittel eingeschlossen – mit dem Namen des Abführmittels auf der Packung")],
+        &[T("Fotos des Ausschlags mit Datum. Purpura heilt oft schneller ab, als ein Termin zustande kommt.")],
+        &[T("Angaben zum früheren Schub: wann, wie lange, was wurde gemacht, wurde der Urin kontrolliert, gab es eine Biopsie")],
+        &[T("Bisherige Urin- und Nierenwerte")],
+    ]),
+
+    H2("Fragen, die sich lohnen"),
+    Liste(&[
+        &[T("Seit vier bis fünf Wochen kein Stuhlgang und Erbrechen nach jedem Essen – ist ein Darmverschluss ausgeschlossen, und mit welcher Untersuchung?")],
+        &[T("Ist eine Computertomografie des Bauches geplant, und wann?")],
+        &[T("Wie wird die Flüssigkeitszufuhr sichergestellt, wenn kaum getrunken wird und Erbrechen dazukommt?")],
+        &[T("Nach Wochen ohne Nahrung: Wie wird der Kostaufbau begleitet, und werden Phosphat, Kalium und Magnesium dabei kontrolliert?")],
+        &[T("Wofür ist das Abführmittel verordnet – gegen Verstopfung oder als Vorbereitung der Darmspiegelung? Und ist es in dieser Lage überhaupt zulässig?")],
+        &[T("Kann statt eines aromatisierten Präparats Movicol neutral oder Laxipeg aromafrei verschrieben werden – ohne Aroma und ohne Süssstoff?")],
+        &[T("Ist eine Magen- und Darmspiegelung geplant – und wann?")],
+        &[T("Wie hoch ist der Eiweissverlust im Urin, gemessen als Protein-Kreatinin-Quotient?")],
+        &[T("Wurde ANCA bestimmt, also die im Alter häufigere Vaskulitisform ausgeschlossen?")],
+        &[T("Wurde eine Hautbiopsie gemacht, solange frische Flecken vorhanden waren?")],
+        &[T("Ist bei diesem Verlauf eine Nierenbiopsie angezeigt?")],
+        &[T("Welche der aktuellen Medikamente belasten Magen oder Niere?")],
+        &[T("Wie oft und über welchen Zeitraum wird der Urin kontrolliert?")],
+        &[T("Ist bei einer Erstmanifestation in diesem Alter eine Tumorsuche vorgesehen?")],
+        &[T("Wurde nach dem früheren Ausschlag an den Beinen der Urin kontrolliert – und mit welchem Ergebnis?")],
+        &[T("Ging ein Infekt voraus – und welche Medikamente sind in den letzten Wochen neu dazugekommen?")],
+    ]),
+
+    H2("Wie die Krankheit entdeckt wurde"),
+    P(&[T("Der Doppelname führt in die Irre. Keiner der beiden hat die Krankheit als Erster gesehen, und was sie wirklich ist, wusste bis 1973 niemand.")]),
+    Chronik(CHRONIK),
+];
+
+// ---------------------------------------------------------------------------
+// Quellen
+// ---------------------------------------------------------------------------
+//
+// Die Arzneimittelangaben stammen aus den Fachinformationen auf ch.oddb.org
+// (Open Drug Database, ywesee GmbH). Bewusst nicht compendium.ch: dieselbe
+// Fachinfo steht auf ch.oddb.org und ist dort frei zugaenglich.
+
+pub static QUELLEN: &[(&str, Verweis)] = &[
+    ("Vaskulitis-Sprechstunde, Universitätsspital Zürich",
+     Verweis { text: "https://www.usz.ch/sprechstunde/vaskulitis/", url: "https://www.usz.ch/sprechstunde/vaskulitis/" }),
+    ("Team der Klinik für Nephrologie, Universitätsspital Zürich",
+     Verweis { text: "https://www.usz.ch/fachbereich/nephrologie/team/", url: "https://www.usz.ch/fachbereich/nephrologie/team/" }),
+    ("Notfall, Universitätsspital Zürich",
+     Verweis { text: "https://www.usz.ch/notfall/", url: "https://www.usz.ch/notfall/" }),
+    ("IgA-Vaskulitis, Kispi-Wiki (Behandlungsstandard des Kinderspitals Zürich)",
+     Verweis { text: "https://www.kispi-wiki.ch/interdisziplinare-notfallstation-ins/notfalle/purpura-schonlein-henoch", url: "https://www.kispi-wiki.ch/interdisziplinare-notfallstation-ins/notfalle/purpura-schonlein-henoch" }),
+    ("Immunoglobulin A (IgA) Vasculitis in the Elderly. PMC9978861",
+     Verweis { text: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9978861/", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9978861/" }),
+    ("Shimamura et al.: Gastrointestinal bleeding is associated with renal prognosis in adult patients with IgA vasculitis with nephritis. J Gen Fam Med 2020",
+     Verweis { text: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6942937/", url: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6942937/" }),
+    ("Toker et al.: IgA vasculitis and malignancy – a systematic review. J Eur Acad Dermatol Venereol 2024",
+     Verweis { text: "https://onlinelibrary.wiley.com/doi/10.1111/jdv.19411", url: "https://onlinelibrary.wiley.com/doi/10.1111/jdv.19411" }),
+    ("The association between adult IgA vasculitis and cancer – a prospective observational study. PMC11893613",
+     Verweis { text: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11893613/", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC11893613/" }),
+    ("IgA-Vaskulitis im Erwachsenenalter. Medical Tribune Schweiz",
+     Verweis { text: "https://medical-tribune.ch/news/medizin/4000106652/iga-vaskulitis-im-erwachsenenalter/", url: "https://medical-tribune.ch/news/medizin/4000106652/iga-vaskulitis-im-erwachsenenalter/" }),
+    ("IgA Vasculitis (Henoch-Schönlein Purpura). StatPearls, NCBI Bookshelf",
+     Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK537252/", url: "https://www.ncbi.nlm.nih.gov/books/NBK537252/" }),
+    ("Pathogenesis of IgA Vasculitis: An Up-To-Date Review. Front Immunol 2021",
+     Verweis { text: "https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2021.771619/full", url: "https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2021.771619/full" }),
+    ("IgA vasculitis: refractory and relapsing disease course in the adult population. Clin Kidney J 2021",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/34345419/", url: "https://pubmed.ncbi.nlm.nih.gov/34345419/" }),
+    ("Predictive factors of relapse in adult Henoch-Schönlein purpura",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/22441366/", url: "https://pubmed.ncbi.nlm.nih.gov/22441366/" }),
+    ("Causal Attributions about Disease-Onset and Relapse in Patients with Systemic Vasculitis. PMC4008683",
+     Verweis { text: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4008683/", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4008683/" }),
+    ("Zum Bild der Passagestörung: Small Bowel Obstruction. StatPearls, NCBI Bookshelf",
+     Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK448079/", url: "https://www.ncbi.nlm.nih.gov/books/NBK448079/" }),
+    ("Zum Kostaufbau nach langem Fasten: Refeeding Syndrome. StatPearls, NCBI Bookshelf",
+     Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK564513/", url: "https://www.ncbi.nlm.nih.gov/books/NBK564513/" }),
+    ("Zum nachlassenden Durstgefühl im Alter: Adult Dehydration. StatPearls, NCBI Bookshelf",
+     Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK555956/", url: "https://www.ncbi.nlm.nih.gov/books/NBK555956/" }),
+    ("Lee-Robichaud H et al.: Lactulose versus Polyethylene Glycol for Chronic Constipation. Cochrane Database Syst Rev 2010; CD007570",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/20614462/", url: "https://pubmed.ncbi.nlm.nih.gov/20614462/" }),
+    ("Fachinformation Movicol / Movicol neutral / Movicol Chocolat, ch.oddb.org",
+     Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/58420", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/58420" }),
+    ("Fachinformation Laxipeg banane / Laxipeg aromafrei, ch.oddb.org",
+     Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/62765", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/62765" }),
+    ("Fachinformation Transipeg / Transipeg forte, ch.oddb.org",
+     Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/53282", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/53282" }),
+    ("Fachinformation Duphalac (Lactulose), ch.oddb.org",
+     Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/32894", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/32894" }),
+    ("Fachinformation Gatinar (Lactulose), ch.oddb.org",
+     Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/37585", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/37585" }),
+    ("Fachinformation Rudolac (Lactulose), ch.oddb.org",
+     Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/51067", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/51067" }),
+    ("Fachinformation Importal (Lactitol), ch.oddb.org",
+     Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/52785", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/52785" }),
+    ("Fachinformation Moviprep, ch.oddb.org",
+     Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/57900", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/57900" }),
+    ("Fachinformation Picoprep, ch.oddb.org",
+     Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/62754", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/62754" }),
+    ("Fachinformation Cololyt, ch.oddb.org",
+     Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/48205", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/48205" }),
+    ("Alle Präparate im Direktvergleich: Macrogol-Kombinationen (A06AD65) auf ch.oddb.org",
+     Verweis { text: "https://ch.oddb.org/de/gcc/search/zone/drugs/search_query/movicol", url: "https://ch.oddb.org/de/gcc/search/zone/drugs/search_query/movicol" }),
+    ("Zur Geschichte: Johann Lukas Schönlein, Deutsche Biographie",
+     Verweis { text: "https://www.deutsche-biographie.de/sfz79016.html", url: "https://www.deutsche-biographie.de/sfz79016.html" }),
+    ("Schönlein's Allgemeine und specielle Pathologie und Therapie, 1837 (Digitalisat)",
+     Verweis { text: "https://archive.org/details/drjlschnleinsall01schn", url: "https://archive.org/details/drjlschnleinsall01schn" }),
+    ("Gairdner D.: The Schönlein-Henoch syndrome (anaphylactoid purpura). Q J Med 1948; 17: 95-122",
+     Verweis { text: "https://academic.oup.com/qjmed/article-abstract/17/2/95/1534443", url: "https://academic.oup.com/qjmed/article-abstract/17/2/95/1534443" }),
+    ("Osler W.: The visceral lesions of purpura and allied conditions. BMJ 1914",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/20767027/", url: "https://pubmed.ncbi.nlm.nih.gov/20767027/" }),
+    ("Berger J., Hinglais N.: Les dépôts intercapillaires d'IgA-IgG. J Urol Nephrol 1968 – Übersicht",
+     Verweis { text: "https://www.ajkd.org/article/S0272-6386(11)00809-2/fulltext", url: "https://www.ajkd.org/article/S0272-6386(11)00809-2/fulltext" }),
+    ("Jennette JC et al.: 2012 Revised International Chapel Hill Consensus Conference Nomenclature of Vasculitides. Arthritis Rheum 2013",
+     Verweis { text: "https://onlinelibrary.wiley.com/doi/10.1002/art.37715", url: "https://onlinelibrary.wiley.com/doi/10.1002/art.37715" }),
+];

@@ -1,6 +1,7 @@
-# Erzeugtes PDF - reproduzierbar aus src/
-iga-vaskulitis.pdf
+# Das fertige Blatt liegt im Repositorium, damit man es ohne Rust-Toolchain
+# herunterladen kann. Andere PDFs bleiben draussen.
 *.pdf
+!iga-vaskulitis.pdf
 
 # Nichts davon gehoert je in ein oeffentliches Repositorium
 credentials
@@ -8,3 +9,10 @@ token*.json
 client_secret_*.json
 *.env
 send_*.py
+
+# Erzeugte Zwischenstufen - reproduzierbar aus src/ mit `make`
+iga-vaskulitis.html
+pruef*.png
+
+# Rust
+target/

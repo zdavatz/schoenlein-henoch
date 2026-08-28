@@ -1,0 +1,13 @@
+[package]
+name = "schoenlein-henoch"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "infoblatt"
+path = "src/main.rs"
+
+[dependencies]
+anyhow = "1"
+genpdf = "0.2"
+lopdf = "0.34"

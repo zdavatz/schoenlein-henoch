@@ -13,10 +13,13 @@ Unterschiede stehen hier zusammengetragen.
 
 Ein konkreter, anonymisierter Fall: eine Patientin von 84 Jahren, deren
 Hämoglobin innert kurzer Zeit von 108 auf 83 g/l gefallen ist, mit einem
-massiven Ausschlag an den Beinen in der Vorgeschichte. Die «Ausgangslage»
-im Dokument beschreibt diesen Fall. Namen kommen keine vor.
+massiven Ausschlag an den Beinen in der Vorgeschichte. Dazu seit Wochen
+kein Appetit, starke Bauchschmerzen, wenig Schlaf, Erbrechen nach jeder
+Nahrungsaufnahme, kaum Flüssigkeit und seit etwa vier bis fünf Wochen gar
+kein Stuhlgang mehr. Die «Ausgangslage» im Dokument beschreibt diesen Fall.
+Namen kommen keine vor.
 
-Drei Punkte, an denen sich das Blatt aufhängt, weil sie leicht falsch
+Vier Punkte, an denen sich das Blatt aufhängt, weil sie leicht falsch
 verstanden werden:
 
 - **Beim Hämoglobin ist tief schlechter, nicht besser.** Die Verwechslung
@@ -28,36 +31,56 @@ verstanden werden:
 - **Die Krankheit ist nicht ansteckend**, aber der Funke ist häufig ein
   Infekt – bei 50 bis 90 Prozent geht einer voraus, oft mit Streptokokken
   der Gruppe A. Zwischen Infekt und Ausbruch liegen ein bis drei Wochen.
+- **Wochenlang kein Stuhlgang und Erbrechen nach jedem Essen ist keine
+  Verstopfung.** Das ist das Bild einer Passagestörung, und in dieser Lage
+  ist ein Abführmittel durch den Mund nicht die Antwort, sondern in allen
+  Fachinformationen eine Gegenanzeige.
 
 ## Was drinsteht
 
 Krankheitsbild und die vier betroffenen Bereiche · Hämoglobinwert lesen ·
 Ansteckung und Auslöser · warum das Alter den Verlauf ändert · was ein
-früherer Schub bedeutet · Herkunft des Blutverlusts · eine Tabelle der
-notwendigen Abklärungen · Behandlung · Abführmittel bei dieser Konstellation
-(Macrogol statt Lactulose) · Adressen in Zürich · was zum Termin mitgehört ·
-Fragen, die sich zu stellen lohnen · die Entdeckungsgeschichte von Heberden
-1801 bis zur Chapel-Hill-Nomenklatur 2012 · Quellen.
+früherer Schub bedeutet · der Verlauf der letzten Wochen und was er bedeutet ·
+Herkunft des Blutverlusts · eine Tabelle der
+notwendigen Abklärungen · Behandlung · eine Übersicht der Abführmittel zum
+Trinken, die es in der Schweiz gibt, mit Wirkstoff und Süssstoff je Präparat
+und den beiden aromafreien Alternativen · Adressen in Zürich · was zum
+Termin mitgehört · Fragen, die sich zu stellen lohnen · die
+Entdeckungsgeschichte von Heberden 1801 bis zur Chapel-Hill-Nomenklatur
+2012 · Quellen.
 
 Belegt ist alles mit der zitierten Literatur, im Dokument am Schluss
-verlinkt. Die Adressen sind öffentliche Angaben von Universitätsspital und
-Kinderspital Zürich, überprüft am 27. August 2026.
+verlinkt. Die Arzneimittelangaben stammen aus den Fachinformationen auf
+[ch.oddb.org](https://ch.oddb.org). Die Adressen sind öffentliche Angaben
+von Universitätsspital und Kinderspital Zürich, überprüft am
+28. August 2026.
 
 ## Bauen
 
 ```bash
-make          # erzeugt iga-vaskulitis.pdf
-make open     # baut und öffnet
+make          # erzeugt iga-vaskulitis.html und iga-vaskulitis.pdf
+make open     # baut und öffnet das PDF
+make pruef    # Seitenbilder zur Sichtprüfung
 ```
 
 Oder von Hand:
 
 ```bash
-weasyprint src/iga-vaskulitis.html iga-vaskulitis.pdf
+cargo run --release
+cargo run --release -- --html raus.html --pdf raus.pdf
 ```
 
-Gebraucht wird [WeasyPrint](https://weasyprint.org/) (entwickelt mit 66.0).
-Die Warnung `Unable to subset font with Harfbuzz` ist harmlos.
+Gebraucht wird eine Rust-Toolchain (entwickelt mit 1.93). Beide Ausgaben
+entstehen im selben Lauf. Das fertige
+[`iga-vaskulitis.pdf`](iga-vaskulitis.pdf) liegt im Repositorium, damit man
+es ohne Toolchain herunterladen und ausdrucken kann; es wird bei jeder
+inhaltlichen Änderung neu gebaut und mitcommittet. Das HTML ist eine
+Zwischenstufe und bleibt draussen.
+
+Das PDF entsteht ohne Chrome und ohne WeasyPrint: [genpdf](https://crates.io/crates/genpdf)
+schreibt über printpdf, [lopdf](https://crates.io/crates/lopdf) legt die
+Hyperlinks nach, DejaVu Sans wird eingebettet – dieselbe Pipeline wie in
+[adhs-expert](https://github.com/zdavatz/adhs-expert).
 
 ## Keine ärztliche Beurteilung
 
