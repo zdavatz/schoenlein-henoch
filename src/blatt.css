@@ -159,8 +159,3 @@
 
   /* Randbemerkung im Fliesstext. */
   .klein { font-size: 9pt; color: #5a6068; }
-
-  /* Klickbare Zeilen. Sie stehen im PDF stets allein auf ihrer Zeile, weil
-     dort die Link-Annotationen ueber die Schriftgroesse zugeordnet werden;
-     im HTML wird das nachgebildet, damit beide Ausgaben gleich aussehen. */
-  .kontakt.frei { margin: 0 0 1mm 0; font-size: 9.5pt; }

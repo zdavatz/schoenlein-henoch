@@ -63,8 +63,6 @@ pub enum Block {
         zeilen: &'static [&'static [Span]],
         links: &'static [Verweis],
     },
-    /// Freistehende klickbare Zeilen.
-    Kontakt(&'static [Verweis]),
 }
 
 pub const TITEL: &str = "IgA-Vaskulitis";
@@ -74,12 +72,6 @@ pub const UNTERTITEL: &str =
 pub const STAND: &str =
     "Informationsblatt für die Patientin und ihre Angehörigen · Stand 28. August 2026 · zum Mitnehmen zum Arzttermin";
 pub const KOPFZEILE: &str = "IgA-Vaskulitis (Purpura Schönlein-Henoch)";
-
-pub const SCHLUSS: &[Span] = &[Span::T(
-    "Von Heberdens Buben bis zum Fluoreszenzmikroskop vergingen 172 Jahre. Das Kortison, \
-     das im Abschnitt zur Behandlung steht, war schon zwei Jahrzehnte in Gebrauch, bevor \
-     man wusste, wogegen es eigentlich wirkt.",
-)];
 
 pub const FUSS: &[Span] = &[Span::T(
     "Dieses Blatt fasst den Stand der veröffentlichten Literatur zusammen und ersetzt keine \
@@ -287,15 +279,15 @@ static CHRONIK: &[(&str, &[Span])] = &[
         B("Johann Lukas Schönlein, Zürich."),
         T(" Schönlein war 1832 in Würzburg im Zug der Demagogenverfolgung nach dem Hambacher Fest seiner Ämter enthoben worden; die eben gegründete Universität Zürich holte ihn 1833. In seinen Zürcher Jahren prägt er den Begriff "), I("Peliosis rheumatica"), T(" – griechisch "), I("pelios"), T(", fahl-blauschwarz. Sein Beitrag ist nicht die Beobachtung der Flecken, die kannte man, sondern die Verknüpfung: Hautblutung und Gelenkschmerz sind eine Krankheit und nicht zwei. Geschrieben hat er es nie selbst. Er publizierte fast nichts; seine Studenten schrieben die Vorlesungen mit und gaben sie heraus, von einer der Ausgaben distanzierte er sich ausdrücklich. Im selben Jahr findet er in Zürich den Erreger des Favus – einer der ersten Nachweise überhaupt, dass ein Mikroorganismus eine menschliche Krankheit verursacht, Jahrzehnte vor Koch und Pasteur."),
     ]),
-    ("1868-1899", &[
+    ("1868–1899", &[
         B("Eduard Heinrich Henoch, Berlin."),
         T(" Henoch hörte Schönlein als Student und leitete später die Kinderabteilung der Charité. 1868 beschreibt er die Verbindung von Kolik, blutigem Durchfall, Gelenkschmerz und Ausschlag – der Bauch kommt dazu. 1874 legt er vier Kinderfälle mit dem vollständigen Quartett vor. 1899 betont er, wie häufig eine Nephritis dazugehört. Damit ist das Bild fertig, und zwar in genau der Reihenfolge, in der die Medizin die Krankheit bis heute begreift: erst was man sieht, dann was weh tut, zuletzt was gefährlich ist."),
     ]),
-    ("1914-1948", &[
+    ("1914–1948", &[
         B("Die Allergie-Epoche."),
         T(" Osler vermutet 1914, es steckten anaphylaktische Vorgänge dahinter; Frank und Glanzmann prägen daraufhin den Namen «anaphylaktoide Purpura». Im Mechanismus falsch, in der Denkrichtung richtig – das Immunsystem war im Spiel. 1948 spannt Douglas Gairdner im "), I("Quarterly Journal of Medicine"), T(" die beiden Namen endgültig zusammen. Ab da heisst sie Schönlein-Henoch-Syndrom."),
     ]),
-    ("1968-1973", &[
+    ("1968–1973", &[
         B("Der Beweis."),
         T(" Jean Berger beschreibt 1968 in Paris eine Nierenkrankheit mit IgA-Ablagerungen im Mesangium – gegen die damalige Lehre, nach der IgG das schädigende Immunglobulin sei. 1973 zeigen Baart de la Faille-Kuyper und Mitarbeiter im "), I("Lancet"), T(" dasselbe IgA in den Hautgefässen "), B("und"), T(" im Nierenmesangium von Schönlein-Henoch-Patienten. Damit ist klar, was 172 Jahre lang nur ein Muster von Symptomen war: eine Krankheit der IgA-Immunkomplexe. Und es erklärt, warum ausgerechnet Haut, Darm und Niere zusammen erkranken – sie haben nichts gemeinsam ausser der Grösse ihrer Gefässe."),
     ]),
@@ -310,6 +302,11 @@ static CHRONIK: &[(&str, &[Span])] = &[
 // ---------------------------------------------------------------------------
 
 pub static DOKUMENT: &[Block] = &[
+    H2("Wie die Krankheit entdeckt wurde"),
+    P(&[T("Der Doppelname führt in die Irre. Keiner der beiden hat die Krankheit als Erster gesehen, und was sie wirklich ist, wusste bis 1973 niemand.")]),
+    Chronik(CHRONIK),
+    Klein(&[T("Von Heberdens Buben bis zum Fluoreszenzmikroskop vergingen 172 Jahre. Das Kortison, das weiter unten im Abschnitt zur Behandlung steht, war schon zwei Jahrzehnte in Gebrauch, bevor man wusste, wogegen es eigentlich wirkt.")]),
+
     Lead {
         werte: "Ausgangslage: Patientin, 84 Jahre · Hämoglobin von 108 auf 83 g/l gefallen",
         blocks: &[
@@ -328,23 +325,6 @@ pub static DOKUMENT: &[Block] = &[
             ]),
         ],
     },
-    Alarm {
-        titel: "Was nicht warten darf",
-        blocks: &[
-            P(&[
-                T("Bei "), B("schwarzem oder blutigem Stuhl"), T(", "), B("Erbrechen von grün-gelber Galle"), T(", "), B("ausbleibendem Stuhl- und Windabgang"), T(", starken Bauchschmerzen, Schwindel oder Schwarzwerden beim Aufstehen, Atemnot, Herzrasen oder Brustschmerzen gehört die Patientin auf den Notfall – nicht in die Sprechstunde."),
-            ]),
-            P(&[
-                T("Wochenlang kein Stuhlgang zusammen mit Erbrechen nach jedem Essen erfüllt diese Bedingung bereits. Das gehört heute abgeklärt, mit einem Bild vom Bauch – und ohne dass vorher ein Abführmittel durch den Mund gegeben wird."),
-            ]),
-            P(&[T("Notfallstation Universitätsspital Zürich, Schmelzbergstrasse 8, 8091 Zürich, rund um die Uhr:")]),
-            Kontakt(&[
-                Verweis { text: "Notfall USZ: +41 44 255 11 11", url: "tel:+41442551111" },
-                Verweis { text: "Ambulanz: 144", url: "tel:144" },
-            ]),
-        ],
-    },
-
     H2("Was seit Wochen läuft"),
     P(&[T("Was die Patientin seit Wochen erlebt, gehört zusammen auf ein Blatt. Einzeln klingt jeder Punkt nach einer Unannehmlichkeit; zusammen ergeben sie etwas anderes.")]),
     Tab(&T_VERLAUF),
@@ -352,7 +332,10 @@ pub static DOKUMENT: &[Block] = &[
         T("Zusammengenommen ist das die klassische Kombination einer "), B("Passagestörung"), T(": Erbrechen kurz nach dem Essen, ausbleibender Stuhl über Wochen, starker Bauchschmerz. Bei einer IgA-Vaskulitis ist der naheliegende Mechanismus ein Darmwandödem – die entzündete, geschwollene Wand behindert die Passage. Es kommen aber auch die Erklärungen infrage, die bei einer 84-Jährigen ohnehin auf der Liste stehen, ein Tumor voran. Beides klärt dasselbe: ein Bild vom Bauch."),
     ]),
     P(&[
-        T("Daraus folgen zwei Dinge. Erstens: Ein Abführmittel durch den Mund ist in dieser Lage nicht die Antwort, sondern das Gegenteil davon – die Fachinformationen aller dieser Mittel führen Darmverschluss und Obstruktion als Gegenanzeige. Zweitens: Wer seit Wochen weder isst noch trinkt, trocknet aus und verliert Gewicht. Wie Flüssigkeit und Nahrung sichergestellt werden, wenn durch den Mund nichts drin bleibt, ist eine eigene Frage – notfalls über die Vene oder eine Magensonde, und der Kostaufbau überwacht."),
+        T("Daraus folgen zwei Dinge. Erstens: Ein Abführmittel durch den Mund ist in dieser Lage nicht die Antwort, sondern das Gegenteil davon – die Fachinformationen aller dieser Mittel führen Darmverschluss und Obstruktion als Gegenanzeige. Zweitens: Wer seit Wochen weder isst noch trinkt, trocknet aus und verliert Gewicht."),
+    ]),
+    P(&[
+        B("Die Infusion ist deshalb richtig."), T(" Wenn durch den Mund nichts drin bleibt, füllt sie das Blutvolumen wieder auf – kristalloide Lösungen sind bei Austrocknung und Blutverlust das Mittel erster Wahl. Das ist bei dieser Patientin gleich dreifach von Nutzen: Der Kreislauf bekommt wieder Volumen, gegen Schwindel und Schwarzwerden beim Aufstehen; die Niere bekommt wieder Durchblutung, und sie ist bei dieser Krankheit ohnehin das gefährdete Organ; und der Körper braucht Wasser, damit ein Abführmittel überhaupt wirken kann. Für Nahrung gilt dasselbe in eigener Rechnung – nach Wochen ohne Essen gehört der Kostaufbau überwacht."),
     ]),
 
     H2("Den Hämoglobinwert richtig lesen"),
@@ -363,6 +346,9 @@ pub static DOKUMENT: &[Block] = &[
         T("Die Verwechslung dahinter ist naheliegend: "), B("HbA1c"), T(", das «Hämoglobin A1c», ist der Langzeit-Blutzuckerwert – und dort ist tief tatsächlich besser. Dieser Wert misst aber, wie stark der Zucker das Hämoglobin verzuckert hat, nicht wie viel Hämoglobin überhaupt vorhanden ist. Gleicher Wortstamm, gegenläufige Richtung."),
     ]),
     P(&[T("Die einzige Lage, in der ein Arzt Hämoglobin absichtlich senkt, ist die Polyzythämie: zu viel davon, das Blut wird zu dickflüssig, dann Aderlass. Das ist das Gegenteil dieser Situation.")]),
+    P(&[
+        B("Und was die Infusion mit dem Wert macht."), T(" Hämoglobin ist eine Konzentration, kein Vorrat: gemessen wird, wie viel Farbstoff in einem Liter Blut steckt. Wer seit Wochen kaum trinkt, hat weniger Flüssigkeit im Kreislauf – das dickt das Blut ein und lässt den Wert "), B("besser"), T(" aussehen, als er ist. Läuft dann die Infusion, verdünnt sich das Blut wieder, und das Hämoglobin kann weiter fallen, ohne dass ein einziger Tropfen zusätzlich verloren gegangen wäre. Dasselbe gilt umgekehrt für eine frische Blutung: Der Wert sinkt erst mit der Verdünnung, über 24 bis 72 Stunden. Zwei praktische Folgen: "), N("83 g/l"), T(", bei einer ausgetrockneten Patientin gemessen, ist eher zu günstig als zu schlecht – und ein Abfall unter laufender Infusion ist zuerst Verdünnung und nicht automatisch eine neue Blutung. Auseinanderhalten lässt sich das nur im Verlauf, zusammen mit Puls, Blutdruck und dem Aussehen des Stuhls."),
+    ]),
     P(&[
         T("Was "), N("83 g/l"), T(" mit 84 Jahren praktisch bedeutet: Der Körper gleicht den Mangel mit höherem Puls und schnellerer Atmung aus. Daraus werden Müdigkeit, Schwindel beim Aufstehen, Kurzatmigkeit und Sturzgefahr – bei vorgeschädigtem Herz auch Angina pectoris. Genau darum liegt die Transfusionsgrenze bei bekannter Herzkrankheit bei 80 statt "), N("70 g/l"), T("."),
     ]),
@@ -387,7 +373,7 @@ pub static DOKUMENT: &[Block] = &[
     P(&[T("Beide verklumpen zu Immunkomplexen, die im Blut zirkulieren und sich dort festsetzen, wo die Gefässe am engsten sind: Haut, Darm, Nierenmesangium. Dort aktivieren sie das Komplementsystem, und dieses entzündet die Gefässwand. Der Fehler liegt also nicht im Bakterium, sondern im Zuckermantel eines körpereigenen Antikörpers – das Bakterium stösst nur an.")]),
     H3("Und in diesem Fall"),
     P(&[T("Bei einer 84-jährigen Patientin verschiebt sich die Auslöserfrage. Der Infekt als Auslöser ist die Regel "), I("bei Kindern"), T(". Im Alter stehen zwei andere Möglichkeiten weiter vorn: "), B("Medikamente"), T(" und eine noch unentdeckte "), B("Tumorerkrankung"), T(" – siehe den folgenden Abschnitt. Die Frage «welcher Infekt war es?» ist hier weniger ergiebig als «welche Medikamente sind in den letzten Wochen neu dazugekommen?» und «wurde nach einem Tumor gesucht?».")]),
-    P(&[T("Ein Nachtrag zum Geschichtskapitel am Schluss: Schönlein nannte die Krankheit 1837 "), I("Peliosis rheumatica"), T(". Er ahnte den Zusammenhang, ohne ihn erklären zu können – die Streptokokken-Verbindung stellt sie in dieselbe Familie wie das rheumatische Fieber. Beides ist das Immunsystem, das nach einer Halsentzündung über das Ziel hinausschiesst.")]),
+    P(&[T("Ein Nachtrag zum Geschichtskapitel am Anfang: Schönlein nannte die Krankheit 1837 "), I("Peliosis rheumatica"), T(". Er ahnte den Zusammenhang, ohne ihn erklären zu können – die Streptokokken-Verbindung stellt sie in dieselbe Familie wie das rheumatische Fieber. Beides ist das Immunsystem, das nach einer Halsentzündung über das Ziel hinausschiesst.")]),
 
     H2("Warum das Alter den Unterschied macht"),
     P(&[T("Fast alles, was man über diese Krankheit liest, stammt aus der Kinderheilkunde. Dort ist sie häufig, verläuft meist harmlos und heilt von selbst aus. Bei Erwachsenen ist sie selten – rund 0,8 bis 1,8 Fälle auf 100'000 Personen im Jahr – und sie verhält sich anders:")]),
@@ -426,7 +412,7 @@ pub static DOKUMENT: &[Block] = &[
         &[B("Die Niere."), T(" Bei nachlassender Nierenfunktion bildet der Körper weniger Erythropoetin, das Hormon für die Blutbildung. Das erklärt eine langsam sinkende Kurve, keinen Sturz um "), N("25 g/l"), T(" in kurzer Zeit.")],
         &[B("Mangelernährung."), T(" Wochen ohne Nahrung liefern zu wenig Eisen, Folsäure und Vitamin B12. Als alleinige Erklärung für dieses Tempo zu langsam, als verstärkender Faktor real – und mit drei Laborwerten geprüft.")],
         &[B("Entzündungsanämie."), T(" Ebenso: als Grundrauschen möglich, für diesen Verlauf zu langsam.")],
-        &[B("Blutentnahmen und Verdünnung."), T(" Bei häufigen Kontrollen und Infusionen banal, aber vor der grossen Abklärung in einer Minute geprüft.")],
+        &[B("Verdünnung durch die Infusion."), T(" Sie senkt den gemessenen Wert, ohne dass Blut verloren geht – siehe oben. Zusammen mit häufigen Blutentnahmen erklärt das einen Teil des Abfalls und ist vor der grossen Abklärung in einer Minute geprüft.")],
     ]),
 
     H2("Was abgeklärt gehört"),
@@ -460,20 +446,13 @@ pub static DOKUMENT: &[Block] = &[
         B("Was man konkret verlangen kann:"), T(" "), B("Movicol neutral"), T(" oder "), B("Laxipeg aromafrei"), T(". Beide sind in der Schweiz zugelassen und kassenpflichtig, beide enthalten weder Aroma noch Süssstoff. Von Movicol neutral gibt es auch eine Junior-Packung, wenn eine kleinere Dosis leichter fällt."),
     ]),
     P(&[T("Der Cochrane-Vergleich gibt Macrogol gegenüber Lactulose ohnehin durchweg den Vorzug: bessere Stuhlfrequenz, bessere Stuhlform, weniger Bauchschmerzen, weniger Bedarf an Zusatzmitteln. Der Wechsel löst also nicht nur das Geschmacksproblem.")]),
-    H3("Drei Punkte aus den Fachinformationen, die hier besonders zählen"),
+    H3("Vier Punkte aus den Fachinformationen, die hier besonders zählen"),
     Liste(&[
         &[B("Bei Darmverschluss verboten."), T(" Alle diese Mittel führen intestinale Obstruktion, Ileus und Perforation als Gegenanzeige. Duphalac verlangt darüber hinaus ausdrücklich, dass schmerzhafte Bauchsymptome unklarer Ursache "), B("vor"), T(" Behandlungsbeginn abgeklärt werden, um eine nicht diagnostizierte Obstruktion auszuschliessen. Bei seit Wochen fehlendem Stuhlgang ist das keine Formalie.")],
         &[B("Ohne Flüssigkeit keine Wirkung."), T(" Duphalac empfiehlt während einer Abführbehandlung 1,5 bis 2 Liter am Tag. Für Movicol steht ausdrücklich, dass die zubereitete Lösung die reguläre Flüssigkeitszufuhr "), B("nicht ersetzt"), T("; ein Beutel wird in 125 ml Wasser gelöst. Wer kaum trinkt, dem hilft das Mittel wenig – und die Austrocknung trifft ausgerechnet die Niere.")],
         &[B("Im Alter die kleinere Dosis."), T(" Für Menschen über 65 genügt bei Movicol laut Fachinformation normalerweise ein Beutel täglich statt ein bis zwei.")],
+        &[B("Die neutrale Variante lässt sich vorbereiten."), T(" Die zubereitete Lösung von Movicol neutral ist im Kühlschrank 24 Stunden haltbar, die der aromatisierten Varianten nur 6 – die neutrale kann also am Vorabend angesetzt und kalt getrunken werden.")],
     ]),
-    H3("Wenn es trotzdem zu süss bleibt"),
-    Liste(&[
-        &[T("Zuerst die aromafreie Variante verlangen – das löst das Problem an der Wurzel und nicht am Symptom.")],
-        &[T("Kalt trinken, mit dem Strohhalm. Kälte dämpft die Süssempfindung. Praktisch dazu: Die zubereitete Lösung von "), B("Movicol neutral"), T(" hält sich im Kühlschrank 24 Stunden, die aromatisierten Varianten nur 6 – die neutrale lässt sich also am Vorabend ansetzen.")],
-        &[T("Ob statt Wasser Bouillon oder ungesüsster Tee in Frage kommt, gehört mit der Apotheke oder der Ärztin geklärt; die Fachinformation sieht Wasser vor.")],
-        &[T("Die Tagesmenge über den Tag verteilen statt auf einmal.")],
-    ]),
-
     Alarm {
         titel: "Erbrechen von Galle ist kein Geschmacksproblem",
         blocks: &[
@@ -482,7 +461,6 @@ pub static DOKUMENT: &[Block] = &[
             P(&[B("Zwei Fragen gehören heute geklärt, nicht nächste Woche.")]),
             P(&[B("Wofür ist das Abführmittel gedacht?"), T(" Ist es die Vorbereitung auf die Darmspiegelung, ist Erbrechen unter der Spülung zwar häufig – aber mit Galle und Aufstossen gehört die Vorbereitung abgebrochen und die Ärztin informiert, nicht durchgezogen. Ist es gegen gewöhnliche Verstopfung, gilt dieselbe Abklärungspflicht.")]),
             P(&[B("Gehen Winde und Stuhl noch ab?"), T(" Wenn nicht, ist das der Notfall und nicht die Sprechstunde.")]),
-            P(&[T("Behält sie Mittel durch den Mund schlecht, gibt es den rektalen Weg – Glyzerinzäpfchen oder ein kleines Klistier –, der den Magen umgeht. Ob das hier passt, entscheidet die Ärztin: Bei möglicher Passagestörung ist auch das nicht beliebig, und stimulierende Mittel wie Bisacodyl oder Natriumpicosulfat treiben die Darmbewegung gegen den Engpass.")]),
         ],
     },
 
@@ -534,12 +512,6 @@ pub static DOKUMENT: &[Block] = &[
     },
     H3("Zur Anmeldung"),
     P(&[T("Weder am Universitätsspital noch am Kinderspital ist eine Selbstanmeldung möglich – es braucht die Zuweisung durch den Haus- oder Facharzt. Wer nicht wochenlang warten will, lässt die Zuweisung an die oben genannte Person adressieren und schreibt zwei Dinge ausdrücklich hinein: den Hämoglobin-Verlauf ("), I("Abfall von 108 auf "), T("83 g/l) und die Bauchsituation ("), I("seit vier bis fünf Wochen kein Stuhlgang, Erbrechen nach jeder Nahrungsaufnahme"), T("). Das ändert die Dringlichkeitsstufe. Beim zweiten Punkt ist allerdings der Notfall der schnellere Weg als jede Zuweisung.")]),
-    Klein(&[T("Am Rande, weil die Krankheit gewöhnlich Kinder betrifft: Für Kinder und Jugendliche ist das Universitäts-Kinderspital Zürich das Referenzzentrum, mit einer gemeinsamen rheumatologisch-nephrologischen Sprechstunde für Vaskulitiden mit Nierenbeteiligung. Für die vorliegende Situation ist das nicht die zuständige Stelle.")]),
-    Kontakt(&[
-        Verweis { text: "Kinderspital Zürich, Rheumatologie: +41 44 249 75 80", url: "tel:+41442497580" },
-        Verweis { text: "Kinderspital Zürich, Nephrologie: +41 44 249 63 30", url: "tel:+41442496330" },
-    ]),
-
     H2("Was zum Termin mitgehört"),
     Liste(&[
         &[T("Alle Hämoglobinwerte mit Datum – die Kurve sagt mehr als der letzte Punkt")],
@@ -571,9 +543,6 @@ pub static DOKUMENT: &[Block] = &[
         &[T("Ging ein Infekt voraus – und welche Medikamente sind in den letzten Wochen neu dazugekommen?")],
     ]),
 
-    H2("Wie die Krankheit entdeckt wurde"),
-    P(&[T("Der Doppelname führt in die Irre. Keiner der beiden hat die Krankheit als Erster gesehen, und was sie wirklich ist, wusste bis 1973 niemand.")]),
-    Chronik(CHRONIK),
 ];
 
 // ---------------------------------------------------------------------------
@@ -591,8 +560,6 @@ pub static QUELLEN: &[(&str, Verweis)] = &[
      Verweis { text: "https://www.usz.ch/fachbereich/nephrologie/team/", url: "https://www.usz.ch/fachbereich/nephrologie/team/" }),
     ("Notfall, Universitätsspital Zürich",
      Verweis { text: "https://www.usz.ch/notfall/", url: "https://www.usz.ch/notfall/" }),
-    ("IgA-Vaskulitis, Kispi-Wiki (Behandlungsstandard des Kinderspitals Zürich)",
-     Verweis { text: "https://www.kispi-wiki.ch/interdisziplinare-notfallstation-ins/notfalle/purpura-schonlein-henoch", url: "https://www.kispi-wiki.ch/interdisziplinare-notfallstation-ins/notfalle/purpura-schonlein-henoch" }),
     ("Immunoglobulin A (IgA) Vasculitis in the Elderly. PMC9978861",
      Verweis { text: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9978861/", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9978861/" }),
     ("Shimamura et al.: Gastrointestinal bleeding is associated with renal prognosis in adult patients with IgA vasculitis with nephritis. J Gen Fam Med 2020",
@@ -615,6 +582,10 @@ pub static QUELLEN: &[(&str, Verweis)] = &[
      Verweis { text: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4008683/", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC4008683/" }),
     ("Zum Bild der Passagestörung: Small Bowel Obstruction. StatPearls, NCBI Bookshelf",
      Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK448079/", url: "https://www.ncbi.nlm.nih.gov/books/NBK448079/" }),
+    ("Zur Infusion: Crystalloid Solutions in Intravenous Fluid Therapy. StatPearls, NCBI Bookshelf",
+     Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK500033/", url: "https://www.ncbi.nlm.nih.gov/books/NBK500033/" }),
+    ("Zur Verdünnung des Hämoglobinwerts: Acute Anemia. StatPearls, NCBI Bookshelf",
+     Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK537232/", url: "https://www.ncbi.nlm.nih.gov/books/NBK537232/" }),
     ("Zum Kostaufbau nach langem Fasten: Refeeding Syndrome. StatPearls, NCBI Bookshelf",
      Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK564513/", url: "https://www.ncbi.nlm.nih.gov/books/NBK564513/" }),
     ("Zum nachlassenden Durstgefühl im Alter: Adult Dehydration. StatPearls, NCBI Bookshelf",

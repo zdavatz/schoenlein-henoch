@@ -22,7 +22,7 @@ use genpdf::style::{Color, Style};
 use genpdf::{Alignment, Element, Margins};
 
 use crate::inhalt::{Block, Span, Tabelle, Verweis};
-use crate::inhalt::{DOKUMENT, FUSS, KOPFZEILE, QUELLEN, SCHLUSS, STAND, TITEL, TITEL2, UNTERTITEL};
+use crate::inhalt::{DOKUMENT, FUSS, KOPFZEILE, QUELLEN, STAND, TITEL, TITEL2, UNTERTITEL};
 
 // --- Schriftgroessen -------------------------------------------------------
 //
@@ -83,16 +83,44 @@ fn link_text(url: &str) -> String {
 // Absaetze
 // ---------------------------------------------------------------------------
 
+/// Zeichen, die nie am Zeilenanfang stehen duerfen.
+const NACHKLAPP: [char; 8] = [',', '.', ';', ':', '!', '?', ')', '\u{bb}'];
+
 fn absatz(sp: &[Span], basis: Style) -> Paragraph {
-    let mut p = Paragraph::default();
+    // genpdf zerlegt jedes Textstueck einzeln in Woerter und darf an jeder
+    // Grenze zwischen zwei Stuecken umbrechen; ein fuehrendes Leerzeichen
+    // wird dabei ein Wort fuer sich. Beides ergibt haessliche Zeilenanfaenge -
+    // eine Zeile, die mit einem Leerzeichen beginnt, oder ein Semikolon, das
+    // von seinem Wort abgerissen wird. Deshalb wandern fuehrende Leerzeichen
+    // und Satzzeichen vorher ans Ende des vorangehenden Stuecks.
+    let mut teile: Vec<(String, Style)> = Vec::new();
     for s in sp {
-        match s {
-            Span::T(t) => p.push_styled(*t, basis),
-            Span::B(t) => p.push_styled(*t, basis.bold()),
-            Span::I(t) => p.push_styled(*t, basis.italic()),
+        let (text, stil) = match s {
+            Span::T(t) => ((*t).to_string(), basis),
+            Span::B(t) => ((*t).to_string(), basis.bold()),
+            Span::I(t) => ((*t).to_string(), basis.italic()),
             // Messwerte duerfen nicht umbrechen.
-            Span::N(t) => p.push_styled(t.replace(' ', "\u{00a0}"), basis),
+            Span::N(t) => (t.replace(' ', "\u{00a0}"), basis),
+        };
+        let mut rest = text.as_str();
+        if let Some((vorher, _)) = teile.last_mut() {
+            while let Some(c) = rest.chars().next() {
+                if c == ' ' || NACHKLAPP.contains(&c) {
+                    vorher.push(c);
+                    rest = &rest[c.len_utf8()..];
+                } else {
+                    break;
+                }
+            }
         }
+        if !rest.is_empty() {
+            teile.push((rest.to_string(), stil));
+        }
+    }
+
+    let mut p = Paragraph::default();
+    for (text, stil) in teile {
+        p.push_styled(text, stil);
     }
     p
 }
@@ -224,11 +252,6 @@ fn baue(bs: &[Block], ziel: &mut LinearLayout) {
                 }
                 ziel.push(innen.padded(Margins::trbl(0, 0, 4, 2)));
             }
-            Block::Kontakt(vs) => {
-                for v in *vs {
-                    ziel.push(verweiszeile(v, LINK_GROSS).padded(Margins::trbl(0, 0, 1, 0)));
-                }
-            }
         }
     }
 }
@@ -241,7 +264,6 @@ fn urls() -> Vec<&'static str> {
             match b {
                 Block::Lead { blocks, .. } | Block::Alarm { blocks, .. } => sammle(blocks, out),
                 Block::Adresse { links, .. } => out.extend(links.iter().map(|v| v.url)),
-                Block::Kontakt(vs) => out.extend(vs.iter().map(|v| v.url)),
                 _ => {}
             }
         }
@@ -261,9 +283,6 @@ fn anzeigelaengen() -> Vec<usize> {
                 Block::Lead { blocks, .. } | Block::Alarm { blocks, .. } => sammle(blocks, out),
                 Block::Adresse { links, .. } => {
                     out.extend(links.iter().map(|v| link_text(v.text).chars().count()))
-                }
-                Block::Kontakt(vs) => {
-                    out.extend(vs.iter().map(|v| link_text(v.text).chars().count()))
                 }
                 _ => {}
             }
@@ -451,11 +470,6 @@ pub fn render(out: &Path, font_dir: &str) -> Result<usize> {
     let mut korpus = LinearLayout::vertical();
     baue(DOKUMENT, &mut korpus);
     doc.push(korpus);
-
-    doc.push(
-        absatz(SCHLUSS, Style::new().with_font_size(S_KLEIN).with_color(GRAU))
-            .padded(Margins::trbl(2, 0, 2, 0)),
-    );
 
     doc.push(ueberschrift("Quellen", S_H2, BORDEAUX));
     let mut quellen = LinearLayout::vertical();

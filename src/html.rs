@@ -4,7 +4,7 @@
 use std::fmt::Write as _;
 
 use crate::inhalt::{Block, Span, Tabelle, Verweis};
-use crate::inhalt::{DOKUMENT, FUSS, KOPFZEILE, QUELLEN, SCHLUSS, STAND, TITEL, TITEL2, UNTERTITEL};
+use crate::inhalt::{DOKUMENT, FUSS, KOPFZEILE, QUELLEN, STAND, TITEL, TITEL2, UNTERTITEL};
 
 const CSS: &str = include_str!("blatt.css");
 
@@ -131,11 +131,6 @@ fn blocks(out: &mut String, bs: &[Block]) {
                 }
                 out.push_str("</div>\n\n");
             }
-            Block::Kontakt(vs) => {
-                for v in *vs {
-                    verweis(out, v, "kontakt frei");
-                }
-            }
         }
     }
 }
@@ -161,9 +156,7 @@ pub fn render() -> String {
 
     blocks(&mut out, DOKUMENT);
 
-    out.push_str("<p class=\"schluss\">");
-    spans(&mut out, SCHLUSS);
-    out.push_str("</p>\n\n<h2>Quellen</h2>\n<ul class=\"quellen\">\n");
+    out.push_str("\n<h2>Quellen</h2>\n<ul class=\"quellen\">\n");
     for (label, v) in QUELLEN {
         let _ = write!(
             out,

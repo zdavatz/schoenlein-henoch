@@ -5,9 +5,12 @@ Hinweise für Claude Code (claude.ai/code) zur Arbeit an diesem Repositorium.
 ## Überblick
 
 Erzeugt ein **HTML und ein PDF** zur **IgA-Vaskulitis (Purpura
-Schönlein-Henoch)**: Krankheitsbild, Verlauf der letzten Wochen,
-Abklärungen, Warnzeichen, Abführmittel, die Sprechstunden in Zürich,
-Entdeckungsgeschichte, Quellen.
+Schönlein-Henoch)**: Entdeckungsgeschichte, Krankheitsbild, Verlauf der
+letzten Wochen, Abklärungen, Behandlung, Abführmittel, die Sprechstunden in
+Zürich, Quellen.
+
+Die **Entdeckungsgeschichte steht zuoberst**, vor der Ausgangslage – so
+gewünscht. Wer Abschnitte umstellt, lässt sie vorn.
 
 Kommentare, Dokumententexte und Commit-Messages sind auf Deutsch
 (Schweizer Rechtschreibung: **ss statt ß**).
@@ -87,6 +90,12 @@ adhs-expert: Höhen vorab messen und den Umbruch selbst setzen.
 - **Jede medizinische Aussage gehört belegt**, nicht aus dem Gedächtnis
   geschrieben. Die Quellen stehen am Schluss des Dokuments verlinkt; neue
   Aussagen kommen mit einer neuen Quelle oder gar nicht.
+- **Keine allgemeinen Ratschläge.** Alles im Blatt muss belegt *und* auf
+  diese Patientin zugeschnitten sein. Herausgeflogen sind darum: die
+  generische Warnzeichenliste «Was nicht warten darf», die Haushaltstipps
+  gegen den süssen Geschmack (Strohhalm, Bouillon, Tagesmenge verteilen),
+  der Hinweis auf den rektalen Weg und der Abschnitt zum Kinderspital samt
+  Kispi-Wiki-Quelle. Nichts davon wieder einbauen, ohne zu fragen.
 - **Arzneimittelangaben ausschliesslich über [ch.oddb.org](https://ch.oddb.org)
   belegen, nicht über compendium.ch.** Dieselbe Fachinformation steht auf
   ch.oddb.org und ist dort frei zugänglich. Die Fachinfo einer Zulassung

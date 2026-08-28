@@ -1,8 +1,8 @@
 # IgA-Vaskulitis (Purpura Schönlein-Henoch)
 
-Ein Informationsblatt zum Krankheitsbild: was die Krankheit ist, was beim
-Verdacht abgeklärt gehört, welche Warnzeichen nicht warten dürfen, wo in
-Zürich die Sprechstunden dafür sind – und wie die Krankheit entdeckt wurde.
+Ein Informationsblatt zum Krankheitsbild: wie die Krankheit entdeckt wurde,
+was sie ist, was bei dieser Patientin abgeklärt gehört und wo in Zürich die
+Sprechstunden dafür sind.
 
 Das Blatt ist entstanden, weil zu dieser Krankheit im deutschen Sprachraum
 vor allem Material für Kinder zu finden ist. Bei Erwachsenen, und erst recht
@@ -35,19 +35,29 @@ verstanden werden:
   Verstopfung.** Das ist das Bild einer Passagestörung, und in dieser Lage
   ist ein Abführmittel durch den Mund nicht die Antwort, sondern in allen
   Fachinformationen eine Gegenanzeige.
+- **Die Infusion füllt das Blutvolumen wieder auf** – richtig bei einer
+  Patientin, die kaum trinkt. Sie verdünnt aber auch: Der gemessene
+  Hämoglobinwert kann danach weiter fallen, ohne dass zusätzlich Blut
+  verloren geht.
 
 ## Was drinsteht
 
-Krankheitsbild und die vier betroffenen Bereiche · Hämoglobinwert lesen ·
+Das Blatt beginnt mit der Entdeckungsgeschichte von Heberden 1801 bis zur
+Chapel-Hill-Nomenklatur 2012 und geht von dort in den Fall.
+
+Krankheitsbild und die vier betroffenen Bereiche · Hämoglobinwert lesen und
+was die Infusion mit ihm macht ·
 Ansteckung und Auslöser · warum das Alter den Verlauf ändert · was ein
 früherer Schub bedeutet · der Verlauf der letzten Wochen und was er bedeutet ·
-Herkunft des Blutverlusts · eine Tabelle der
-notwendigen Abklärungen · Behandlung · eine Übersicht der Abführmittel zum
-Trinken, die es in der Schweiz gibt, mit Wirkstoff und Süssstoff je Präparat
-und den beiden aromafreien Alternativen · Adressen in Zürich · was zum
-Termin mitgehört · Fragen, die sich zu stellen lohnen · die
-Entdeckungsgeschichte von Heberden 1801 bis zur Chapel-Hill-Nomenklatur
-2012 · Quellen.
+Herkunft des Blutverlusts · eine Tabelle der notwendigen Abklärungen ·
+Behandlung · eine Übersicht der Abführmittel zum Trinken, die es in der
+Schweiz gibt, mit Wirkstoff und Süssstoff je Präparat und den beiden
+aromafreien Alternativen · Adressen in Zürich · was zum Termin mitgehört ·
+Fragen, die sich zu stellen lohnen · Quellen.
+
+**Keine allgemeinen Ratschläge.** Was hier steht, ist belegt und auf diese
+Patientin zugeschnitten. Generische Warnzeichenlisten, Haushaltstipps und
+Angaben, die Kinder betreffen, sind bewusst nicht drin.
 
 Belegt ist alles mit der zitierten Literatur, im Dokument am Schluss
 verlinkt. Die Arzneimittelangaben stammen aus den Fachinformationen auf
