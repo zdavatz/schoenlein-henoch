@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<!--
+  IgA-Vaskulitis (Purpura Schoenlein-Henoch) - Informationsblatt
+  Copyright (C) 2026 Zeno R.R. Davatz
+
+  Dieses Programm ist freie Software: Sie koennen es weitergeben und/oder
+  veraendern, unter den Bedingungen der GNU General Public License, wie von
+  der Free Software Foundation veroeffentlicht, entweder Version 3 der
+  Lizenz oder (nach Ihrer Wahl) jeder spaeteren Version.
+
+  Die Veroeffentlichung erfolgt in der Hoffnung, dass sie nuetzlich ist,
+  aber OHNE JEDE GEWAEHRLEISTUNG - sogar ohne die implizite Garantie der
+  MARKTGAENGIGKEIT oder EIGNUNG FUER EINEN BESTIMMTEN ZWECK. Siehe die GNU
+  General Public License fuer weitere Einzelheiten.
+
+  Sie sollten eine Kopie der GNU General Public License zusammen mit diesem
+  Programm erhalten haben. Wenn nicht, siehe <https://www.gnu.org/licenses/>.
+
+  Kein Ersatz fuer eine aerztliche Beurteilung.
+-->
+<html lang="de-CH">
+<head>
+<meta charset="utf-8">
+<title>IgA-Vaskulitis - Krankheitsbild und Spezialisten in Zürich</title>
+<style>
+  @page {
+    size: A4;
+    margin: 20mm 18mm 18mm 18mm;
+    @bottom-center {
+      content: "IgA-Vaskulitis (Purpura Schönlein-Henoch) · Seite " counter(page) " von " counter(pages);
+      font-family: "DejaVu Sans", "Liberation Sans", sans-serif;
+      font-size: 7.5pt;
+      color: #8a8f98;
+    }
+  }
+  @page :first { margin-top: 16mm; }
+
+  * { box-sizing: border-box; }
+  html { font-size: 10pt; }
+  body {
+    font-family: "DejaVu Sans", "Liberation Sans", sans-serif;
+    color: #1d2129;
+    line-height: 1.5;
+    hyphens: auto;
+  }
+
+  h1 {
+    font-size: 19pt;
+    line-height: 1.2;
+    margin: 0 0 2mm 0;
+    color: #7a1f2b;
+    letter-spacing: -0.2pt;
+  }
+  .untertitel {
+    font-size: 11pt;
+    color: #4a5058;
+    margin: 0 0 4mm 0;
+    line-height: 1.35;
+  }
+  .stand {
+    font-size: 8pt;
+    color: #8a8f98;
+    border-top: 0.4pt solid #d5d8dd;
+    padding-top: 2mm;
+    margin: 0 0 7mm 0;
+  }
+
+  h2 {
+    font-size: 12.5pt;
+    color: #7a1f2b;
+    margin: 8mm 0 2.5mm 0;
+    padding-bottom: 1.2mm;
+    border-bottom: 0.8pt solid #e3d4d6;
+    break-after: avoid;
+  }
+  h3 {
+    font-size: 10.5pt;
+    margin: 5mm 0 1.5mm 0;
+    color: #1d2129;
+    break-after: avoid;
+  }
+  p { margin: 0 0 2.8mm 0; }
+  ul { margin: 0 0 3mm 0; padding-left: 5mm; }
+  li { margin-bottom: 1.6mm; }
+  strong { color: #12151a; }
+
+  .lead {
+    font-size: 10.5pt;
+    background: #f6f3ef;
+    border-left: 2.5pt solid #b08d57;
+    padding: 4mm 5mm 2.5mm 5mm;
+    margin-bottom: 5mm;
+  }
+  .lead p:last-child { margin-bottom: 0; }
+  .lead .werte {
+    font-size: 12pt;
+    font-weight: bold;
+    color: #7a1f2b;
+    display: block;
+    margin-bottom: 1.5mm;
+  }
+
+  .alarm {
+    border: 1pt solid #a83232;
+    background: #fbf1f1;
+    padding: 4mm 5mm 3mm 5mm;
+    margin: 5mm 0;
+    break-inside: avoid;
+  }
+  .alarm h3 {
+    margin: 0 0 1.5mm 0;
+    color: #a83232;
+    font-size: 10.5pt;
+  }
+  .alarm p:last-child { margin-bottom: 0; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+    margin: 0 0 4mm 0;
+  }
+  th {
+    text-align: left;
+    background: #f0f1f3;
+    padding: 2mm 2.5mm;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.4pt;
+    color: #4a5058;
+    border-bottom: 0.6pt solid #c9ccd1;
+  }
+  td {
+    padding: 2.2mm 2.5mm;
+    border-bottom: 0.4pt solid #e1e3e7;
+    vertical-align: top;
+  }
+  td.feld { width: 30mm; font-weight: bold; color: #12151a; }
+  tr { break-inside: avoid; }
+
+  .adresse {
+    border-left: 2pt solid #b8bcc3;
+    padding: 0 0 0 4mm;
+    margin: 0 0 5mm 0;
+    break-inside: avoid;
+  }
+  .adresse .name { font-weight: bold; font-size: 10.5pt; color: #12151a; }
+  .adresse .rolle { color: #4a5058; }
+  .adresse .kontakt { font-size: 9pt; color: #3a4048; margin-top: 1.2mm; }
+  .adresse p { margin-bottom: 0.8mm; }
+
+  table.chronik { margin-top: 1mm; }
+  table.chronik td { border-bottom: none; padding: 0 0 3.5mm 0; }
+  table.chronik td.jahr {
+    width: 24mm;
+    font-weight: bold;
+    color: #7a1f2b;
+    font-size: 10pt;
+    padding-right: 4mm;
+    border-right: 0.6pt solid #e3d4d6;
+    white-space: nowrap;
+  }
+  table.chronik td.was { padding-left: 4mm; font-size: 9.5pt; }
+  table.chronik td.was p { margin-bottom: 0; }
+  .schluss { font-size: 9.5pt; color: #3a4048; border-top: 0.4pt solid #d5d8dd; padding-top: 2.5mm; margin-top: 1mm; }
+
+  a { color: #7a1f2b; text-decoration: none; border-bottom: 0.3pt solid #d8c0c3; }
+  .alarm a { color: #a83232; border-bottom-color: #dfb5b5; }
+  .quellen a { color: #4a5058; border-bottom-color: #c9ccd1; }
+  .kontakt a { color: #7a1f2b; }
+
+  .quellen { font-size: 8pt; color: #5a6068; line-height: 1.45; break-inside: avoid; }
+  .quellen li { margin-bottom: 1mm; }
+  .fuss {
+    margin-top: 7mm;
+    padding-top: 2.5mm;
+    border-top: 0.4pt solid #d5d8dd;
+    font-size: 8pt;
+    color: #8a8f98;
+  }
+  .nb { white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<h1>IgA-Vaskulitis<br>(Purpura Schönlein-Henoch)</h1>
+<p class="untertitel">Krankheitsbild, notwendige Abklärungen und die Spezialistinnen und Spezialisten in Zürich</p>
+<p class="stand">Informationsblatt für die Patientin und ihre Angehörigen · Stand 27. August 2026 · zum Mitnehmen zum Arzttermin</p>
+
+<div class="lead">
+  <span class="werte">Ausgangslage: Patientin, 84 Jahre · Hämoglobin von 108 auf <span class="nb">83&nbsp;g/l</span> gefallen</span>
+  <p>Zwei Dinge daran sind wichtig, und sie sind nicht dasselbe.</p>
+  <p><strong>Der Wert.</strong> <span class="nb">83&nbsp;g/l</span> ist eine mittelschwere Blutarmut; der Normbereich für Frauen liegt bei etwa <span class="nb">117–157&nbsp;g/l</span>. Die üblichen Transfusionsgrenzen liegen bei <span class="nb">70&nbsp;g/l</span>, bei bekannter Herzkrankheit bei <span class="nb">80&nbsp;g/l</span>. 83 liegt knapp darüber – also nicht automatisch transfusionsbedürftig, aber in dem Bereich, in dem der Zustand der Patientin entscheidet und nicht die Zahl.</p>
+  <p><strong>Das Tempo.</strong> Der Abfall um <span class="nb">25&nbsp;g/l</span> ist der eigentliche Befund. Eine Blutarmut durch Entzündung oder Nierenschwäche entwickelt sich über Monate. Ein Abfall innert Wochen spricht für Blutverlust – bei dieser Krankheit in erster Linie aus dem Darm. Das gehört rasch abgeklärt und nicht in eine Sprechstunde in sechs Wochen.</p>
+  <p><strong>Und ein Vorlauf.</strong> Es gab schon einmal einen massiven Ausschlag an den Beinen, nach einer Phase starker Belastung. Damit ist das heutige Bild wahrscheinlich kein Erstereignis – siehe den Abschnitt «Ein früherer Schub».</p>
+</div>
+
+<div class="alarm">
+  <h3>Was nicht warten darf</h3>
+  <p>Bei <strong>schwarzem oder blutigem Stuhl</strong>, <strong>Erbrechen von grün-gelber Galle</strong>, ausbleibendem Stuhl- und Windabgang, starken Bauchschmerzen, Schwindel oder Schwarzwerden beim Aufstehen, Atemnot, Herzrasen oder Brustschmerzen gehört die Patientin auf den Notfall – nicht in die Sprechstunde.</p>
+  <p>Notfallstation Universitätsspital Zürich, Schmelzbergstrasse 8, 8091 Zürich, rund um die Uhr · <strong><a href="tel:+41442551111">+41 44 255 11 11</a></strong> · Ambulanz <strong><a href="tel:144">144</a></strong></p>
+</div>
+
+<h2>Den Hämoglobinwert richtig lesen</h2>
+
+<p>Ein verbreitetes Missverständnis, das hier viel ändert: <strong>Tief ist nicht besser, tief ist schlechter.</strong> Hämoglobin ist der rote Blutfarbstoff, der den Sauerstoff transportiert. Weniger Hämoglobin heisst weniger Sauerstoff in den Geweben. Der Normbereich für Frauen liegt bei rund <span class="nb">117–157&nbsp;g/l</span>; 108 war bereits zu tief, 83 ist eine deutliche Blutarmut.</p>
+
+<p>Die Verwechslung dahinter ist naheliegend: <strong>HbA1c</strong>, das «Hämoglobin A1c», ist der Langzeit-Blutzuckerwert – und dort ist tief tatsächlich besser. Dieser Wert misst aber, wie stark der Zucker das Hämoglobin verzuckert hat, nicht wie viel Hämoglobin überhaupt vorhanden ist. Gleicher Wortstamm, gegenläufige Richtung.</p>
+
+<p>Die einzige Lage, in der ein Arzt Hämoglobin absichtlich senkt, ist die Polyzythämie: zu viel davon, das Blut wird zu dickflüssig, dann Aderlass. Das ist das Gegenteil dieser Situation.</p>
+
+<p>Was <span class="nb">83&nbsp;g/l</span> mit 84 Jahren praktisch bedeutet: Der Körper gleicht den Mangel mit höherem Puls und schnellerer Atmung aus. Daraus werden Müdigkeit, Schwindel beim Aufstehen, Kurzatmigkeit und Sturzgefahr – bei vorgeschädigtem Herz auch Angina pectoris. Genau darum liegt die Transfusionsgrenze bei bekannter Herzkrankheit bei 80 statt <span class="nb">70&nbsp;g/l</span>.</p>
+
+<h2>Was die Krankheit ist</h2>
+
+<p>Die IgA-Vaskulitis – der ältere Name Purpura Schönlein-Henoch ist noch geläufig – ist eine Entzündung der kleinsten Blutgefässe. Antikörper der Klasse IgA lagern sich in den Gefässwänden ab, das Immunsystem reagiert darauf, und die Gefässe werden durchlässig und brüchig. Weil solche kleinen Gefässe überall im Körper liegen, betrifft die Krankheit vier Bereiche, klassisch in dieser Kombination:</p>
+
+<ul>
+  <li><strong>Haut.</strong> Tastbare Purpura: rötlich-violette Flecken, die sich beim Darüberstreichen erhaben anfühlen und auf Druck nicht verblassen. Typisch an Unterschenkeln und Gesäss. Das ist meist das erste und sichtbarste Zeichen – und das harmloseste.</li>
+  <li><strong>Gelenke.</strong> Schmerzen und Schwellungen, meist Sprung- und Kniegelenke. Vorübergehend, ohne bleibenden Schaden.</li>
+  <li><strong>Magen-Darm-Trakt.</strong> Kolikartige Bauchschmerzen, Übelkeit, Blut im Stuhl. Dieselbe Gefässentzündung schädigt die Darmschleimhaut; vor allem im Zwölffingerdarm entstehen Geschwüre, die bluten.</li>
+  <li><strong>Niere.</strong> Der Punkt, der über den Verlauf entscheidet. Blut und Eiweiss im Urin, oft ohne dass die Patientin etwas davon spürt. Deshalb ist die regelmässige Urinkontrolle aussagekräftiger als das Befinden.</li>
+</ul>
+
+<p>Die Diagnose stützt sich auf das klinische Bild und, wo möglich, auf eine Hautbiopsie mit direkter Immunfluoreszenz: Der Nachweis von IgA in der Gefässwand ist der Beweis. Entscheidend dabei – die Probe muss aus einer <strong>frischen</strong> Hautstelle stammen, jünger als etwa 48 Stunden. An abgeheilten Flecken findet sich nichts mehr.</p>
+
+<h2>Ist das ansteckend? Nein</h2>
+
+<p>In den entzündeten Gefässen sitzen keine Bakterien, sondern <strong>Immunkomplexe aus körpereigenen Antikörpern</strong>. Die Krankheit ist keine Infektion und <strong>nicht übertragbar</strong> – niemand im Haushalt ist gefährdet, es braucht keine Isolation.</p>
+
+<p>Daraus folgt der Punkt, der im Alltag am meisten zählt: <strong>Antibiotika behandeln die Vaskulitis nicht.</strong> Sie behandeln eine Infektion, falls gerade eine besteht – aber sie bringen weder den Ausschlag noch die Bauchschmerzen noch die Nierenbeteiligung zum Verschwinden. Deshalb steht im Abschnitt zur Behandlung Kortison und kein Antibiotikum.</p>
+
+<h3>Bakterien sind aber oft der Funke</h3>
+
+<p>Ein grosser Teil der Fälle beginnt <strong>ein bis drei Wochen nach einem Infekt</strong>, meist der oberen Atemwege; die Angaben schwanken je nach Studie zwischen etwa 50 und 90 Prozent. Am häufigsten genannt wird <strong>Streptococcus der Gruppe A</strong>, derselbe Erreger, der die eitrige Angina verursacht; bei über 30 Prozent der Patienten mit Nierenbeteiligung liessen sich Streptokokken kulturell nachweisen. Der Infekt ist also oft der Auslöser, aber nicht die Krankheit – wenn der Ausschlag erscheint, ist die Angina meist längst vorbei.</p>
+
+<h3>Was dazwischen passiert</h3>
+
+<p>Die Schleimhäute bilden gegen den Infekt <strong>IgA</strong>. Das ist der Antikörper der Schleimhäute, und das ist seine normale Aufgabe. Bei veranlagten Menschen fehlt einem Teil dieser IgA1-Moleküle ein Zucker an der Scharnierregion, die <strong>Galaktose</strong>. Das Immunsystem erkennt diese fehlerhaft beschichteten eigenen Antikörper als fremd und bildet IgG-Antikörper gegen das eigene IgA.</p>
+
+<p>Beide verklumpen zu Immunkomplexen, die im Blut zirkulieren und sich dort festsetzen, wo die Gefässe am engsten sind: Haut, Darm, Nierenmesangium. Dort aktivieren sie das Komplementsystem, und dieses entzündet die Gefässwand. Der Fehler liegt also nicht im Bakterium, sondern im Zuckermantel eines körpereigenen Antikörpers – das Bakterium stösst nur an.</p>
+
+<h3>Und in diesem Fall</h3>
+
+<p>Bei einer 84-jährigen Patientin verschiebt sich die Auslöserfrage. Der Infekt als Auslöser ist die Regel <em>bei Kindern</em>. Im Alter stehen zwei andere Möglichkeiten weiter vorn: <strong>Medikamente</strong> und eine noch unentdeckte <strong>Tumorerkrankung</strong> – siehe den folgenden Abschnitt. Die Frage «welcher Infekt war es?» ist hier weniger ergiebig als «welche Medikamente sind in den letzten Wochen neu dazugekommen?» und «wurde nach einem Tumor gesucht?».</p>
+
+<p>Ein Nachtrag zum Geschichtskapitel am Schluss: Schönlein nannte die Krankheit 1837 <em>Peliosis rheumatica</em>. Er ahnte den Zusammenhang, ohne ihn erklären zu können – die Streptokokken-Verbindung stellt sie in dieselbe Familie wie das rheumatische Fieber. Beides ist das Immunsystem, das nach einer Halsentzündung über das Ziel hinausschiesst.</p>
+
+<h2>Warum das Alter den Unterschied macht</h2>
+
+<p>Fast alles, was man über diese Krankheit liest, stammt aus der Kinderheilkunde. Dort ist sie häufig, verläuft meist harmlos und heilt von selbst aus. Bei Erwachsenen ist sie selten – rund 0,8 bis 1,8 Fälle auf 100'000 Personen im Jahr – und sie verhält sich anders:</p>
+
+<ul>
+  <li>Nieren- und Darmbeteiligung sind häufiger und ausgeprägter als bei Kindern.</li>
+  <li>Alter über 65 Jahre, Eiweissverlust über den Urin, nachlassende Nierenfunktion und Blut im Urin sind die ungünstigen Zeichen.</li>
+  <li>Eine Darmblutung ist nicht nur ein Problem für sich, sondern ein Warnzeichen für die Niere. In einer Untersuchung an Erwachsenen mit Nierenbeteiligung landeten die Betroffenen mit Darmblutung weit häufiger in einem dauerhaften Nierenversagen und weit seltener in einer Ausheilung als die ohne.</li>
+  <li>Bei älteren Menschen kann eine IgA-Vaskulitis die Begleiterscheinung einer noch unentdeckten Krebserkrankung sein. In einer Übersichtsarbeit entwickelten rund 16 Prozent der erwachsenen Betroffenen einen Tumor, zu gut zwei Dritteln solide Tumoren – Lunge, Prostata, Brust –, zum übrigen Drittel Lymphome und Leukämien. Verbindliche Suchempfehlungen gibt es nicht, aber im hohen Alter ist die Frage zu stellen.</li>
+</ul>
+
+<p>Der letzte Punkt und der Hämoglobin-Abfall hängen zusammen: Eine Magen- und Darmspiegelung beantwortet beide Fragen in einem Durchgang – wo es blutet, und ob etwas dahintersteckt.</p>
+
+<h2>Ein früherer Schub</h2>
+
+<p>Tastbare Purpura an den Unterschenkeln ist die Signatur dieser Krankheit. Ist das schon einmal aufgetreten, ist das heutige Bild wahrscheinlich ein <strong>Rezidiv</strong> – und das ändert die Einordnung.</p>
+
+<p>Bei Erwachsenen kehrt die IgA-Vaskulitis in etwa <strong>43 Prozent</strong> der Fälle wieder, gut ein Viertel davon mehrfach; nur rund die Hälfte erreicht eine vollständige Remission. Wiederkehren ist bei Erwachsenen die Regel und nicht die Ausnahme, und höheres Alter beim Erstauftreten ist selbst ein Vorhersagefaktor für Rückfälle. Die Tumorfrage bleibt dabei auf dem Tisch: Die Suche wird ausdrücklich bei <strong>neu aufgetretener oder wiederkehrender</strong> IgA-Vaskulitis im Alter empfohlen – ein Rezidiv entlastet nicht.</p>
+
+<h3>Die Frage, auf die es ankommt</h3>
+
+<p><strong>Wurde damals der Urin kontrolliert?</strong> Daran entscheidet sich, wie lange die Niere schon unter Beschuss steht. Eine Nierenbeteiligung tritt oft erst Wochen nach dem Ausschlag auf und macht keine Beschwerden – sie zeigt sich nur im Urin. Wurde der erste Schub als Hautsache abgetan und hat niemand Urinstatus und Protein-Kreatinin-Quotient bestimmt, kann die Niere seither still gelitten haben. Das würde erklären, warum das Bild heute schwerer ist.</p>
+
+<p>Und falls damals eine Diagnose gestellt wurde: Gab es eine Hautbiopsie? Ein IgA-Nachweis in der Gefässwand von damals wäre heute Gold wert – er erspart die Frage, ob es dieselbe Krankheit ist.</p>
+
+<h3>Zum Stress als Auslöser</h3>
+
+<p>Für die IgA-Vaskulitis speziell ist psychischer Stress <strong>kein belegter Auslöser</strong>. Belegt sind Infekte, Medikamente und Tumoren. Es gibt eine Untersuchung, nach der Vaskulitis-Patienten den Stress sehr häufig als Ursache annehmen, ohne dass sich das wissenschaftlich stützen liess – und nach der diese Überzeugung mit mehr Erschöpfung und Funktionseinbussen einherging. Für andere Vaskulitiden, etwa die ANCA-assoziierte, gibt es Hinweise auf Stress als Schubauslöser.</p>
+
+<p>Plausibel, aber nicht gesichert, ist die indirekte Kette: Stress schwächt die Infektabwehr, und Infekte sind der belegte Auslöser. Eine belastende Phase mit einer verschleppten Erkältung darin ist naheliegend – nur erinnert man hinterher den Stress und nicht das Halsweh. Die praktische Folge: Die Stress-Erklärung darf die Suche nach dem tatsächlichen Auslöser nicht ersetzen. Hier heisst das vor allem: Welche Medikamente sind neu dazugekommen?</p>
+
+<h3>Was bei wiederkehrender Beinpurpura dazugehört</h3>
+
+<p>Ein wiederholtes Auftreten macht drei Untersuchungen wichtiger, die in der Tabelle weiter unten ohnehin stehen:</p>
+<ul>
+  <li><strong>Eiweisselektrophorese und Immunfixation</strong> – eine IgA-Paraprotein-assoziierte Vaskulitis (MGUS, Myelom) sieht klinisch gleich aus und kommt im Alter vor.</li>
+  <li><strong>Kryoglobuline, Hepatitis B und C</strong> – die kryoglobulinämische Vaskulitis ist der klassische Nachahmer bei rezidivierender Beinpurpura.</li>
+  <li><strong>Medikamentenanamnese über Jahre</strong> – eine arzneimittelbedingte leukozytoklastische Vaskulitis kehrt wieder, solange das auslösende Mittel wiederkehrt.</li>
+</ul>
+
+<h3>Nicht verwechseln: Purpura senilis</h3>
+
+<p>Die Purpura senilis ist bei 84-Jährigen sehr häufig: flache, nicht erhabene Blutungen, meist an Unterarmen und Handrücken, aus brüchigen Gefässen und oft unter Blutverdünnern. Sie ist harmlos und hat mit der Vaskulitis nichts zu tun. Das Unterscheidungsmerkmal ist einfach – <strong>tastbar erhaben und an den Unterschenkeln</strong> spricht für die Vaskulitis, <strong>flach und an den Unterarmen</strong> für Altershaut. Existieren Fotos des damaligen Ausschlags, klärt das die Frage in Sekunden.</p>
+
+<h2>Woher der Blutverlust kommen kann</h2>
+
+<ul>
+  <li><strong>Blutung aus dem Magen-Darm-Trakt.</strong> Die naheliegendste Erklärung. Die Vaskulitis schädigt die Schleimhaut, am häufigsten im Zwölffingerdarm. Die Blutung muss nicht sichtbar sein – sie kann über Wochen sickern, ohne dass der Stuhl auffällt.</li>
+  <li><strong>Medikamente.</strong> Kortison zusammen mit Schmerzmitteln vom NSAR-Typ (Ibuprofen, Diclofenac, Naproxen) erhöht das Geschwürrisiko erheblich; NSAR belasten zusätzlich die Niere. Blutverdünner verstärken jede vorhandene Blutungsquelle. Die vollständige Medikamentenliste gehört auf den Tisch, rezeptfreie Mittel eingeschlossen.</li>
+  <li><strong>Eine zweite, unabhängige Quelle.</strong> Mit 84 Jahren ist ein Dickdarmtumor oder ein Magengeschwür statistisch häufiger als die Vaskulitis selbst. Beides würde den Blutverlust erklären – und unter Umständen auch die Vaskulitis.</li>
+  <li><strong>Die Niere.</strong> Bei nachlassender Nierenfunktion bildet der Körper weniger Erythropoetin, das Hormon für die Blutbildung. Das erklärt eine langsam sinkende Kurve, keinen Sturz um <span class="nb">25&nbsp;g/l</span> in kurzer Zeit.</li>
+  <li><strong>Entzündungsanämie.</strong> Ebenso: als Grundrauschen möglich, für diesen Verlauf zu langsam.</li>
+  <li><strong>Blutentnahmen und Verdünnung.</strong> Bei häufigen Kontrollen und Infusionen banal, aber vor der grossen Abklärung in einer Minute geprüft.</li>
+</ul>
+
+<h2>Was abgeklärt gehört</h2>
+
+<table>
+  <thead><tr><th>Bereich</th><th>Untersuchung und wozu</th></tr></thead>
+  <tbody>
+    <tr><td class="feld">Blutbild</td><td>Hämoglobin im Verlauf, MCV, Retikulozyten – sie zeigen, ob das Knochenmark auf den Verlust antwortet. Dazu die Thrombozytenzahl.</td></tr>
+    <tr><td class="feld">Eisen</td><td>Ferritin <strong>und</strong> Transferrinsättigung, immer zusammen mit CRP. Ferritin steigt bei Entzündung an – ein normaler Wert schliesst einen Eisenmangel dann nicht aus.</td></tr>
+    <tr><td class="feld">Niere</td><td>Kreatinin, eGFR, Albumin im Blut – der Verlauf, nicht nur der Einzelwert.</td></tr>
+    <tr><td class="feld">Blutzerfall</td><td>LDH, Haptoglobin, Bilirubin – trennt einen Zerfall der roten Blutkörperchen vom Blutverlust nach aussen.</td></tr>
+    <tr><td class="feld">Urin</td><td>Status und Sediment (Erythrozyten, Akanthozyten, Zylinder) sowie <strong>Protein-Kreatinin-Quotient im Spoturin</strong>. Die wichtigste wiederholte Kontrolle überhaupt.</td></tr>
+    <tr><td class="feld">Immunologie</td><td><strong>ANCA</strong> – schliesst die im Alter deutlich häufigere ANCA-assoziierte Vaskulitis aus, die anders und dringlicher behandelt wird. Dazu Komplement C3/C4, Kryoglobuline, Hepatitis B und C, Eiweisselektrophorese und Immunfixation zur Suche nach einem Paraprotein.</td></tr>
+    <tr><td class="feld">Gerinnung</td><td>Quick/INR und Thrombozytenzahl. Eine Purpura bei zu wenigen Blutplättchen ist eine ganz andere Krankheit mit anderer Behandlung.</td></tr>
+    <tr><td class="feld">Darm</td><td>Magen- und Darmspiegelung. Beantwortet Blutungsquelle und Tumorfrage gemeinsam – deshalb der ergiebigste einzelne Schritt.</td></tr>
+    <tr><td class="feld">Haut</td><td>Biopsie einer frischen Läsion mit direkter Immunfluoreszenz auf IgA. Nur solange frische Flecken da sind.</td></tr>
+    <tr><td class="feld">Nierengewebe</td><td>Nierenbiopsie bei relevantem Eiweissverlust oder fallender Nierenfunktion. Sie entscheidet über die Therapie.</td></tr>
+    <tr><td class="feld">Bildgebung</td><td>Computertomografie des Bauches bei starken Bauchschmerzen – zeigt Wandschwellung, Durchblutungsstörung, Komplikationen.</td></tr>
+  </tbody>
+</table>
+
+<h2>Zur Behandlung</h2>
+
+<p>Die Therapie führen die Spezialisten; hier steht nur, was den Rahmen erklärt.</p>
+
+<p>Sind allein Haut und Gelenke betroffen, wird oft beobachtet und nur gegen die Beschwerden behandelt. Sobald Darm oder Niere beteiligt sind, kommt Kortison zum Einsatz, üblicherweise Prednison um 1 mg pro Kilogramm Körpergewicht mit anschliessendem Ausschleichen. Eine frühe Kortisonbehandlung senkt die Wahrscheinlichkeit eines bleibenden Nierenschadens deutlich. Bei schwerer Nierenbeteiligung kommen zusätzliche Immunsuppressiva in Frage – das entscheidet die Nierenbiopsie.</p>
+
+<p>Im hohen Alter gilt: die niedrigste wirksame Dosis, und die Nebenwirkungen von Anfang an mitbehandeln – Magenschutz, Blutzucker, Knochendichte, Infektrisiko.</p>
+
+<p>Zwei Punkte, die sich anzusprechen lohnen:</p>
+<ul>
+  <li><strong>NSAR meiden.</strong> Ibuprofen, Diclofenac, Naproxen belasten Niere und Magenschleimhaut gleichzeitig – beides genau dort, wo die Krankheit ohnehin angreift. Paracetamol ist die verträglichere Alternative.</li>
+  <li><strong>Blutdruck einstellen.</strong> Bei Eiweiss im Urin schützt ein ACE-Hemmer oder ein Sartan die Niere zusätzlich.</li>
+</ul>
+
+<p>Und die Nachkontrolle: Urin und Blutdruck regelmässig über mindestens sechs bis zwölf Monate, bei Erwachsenen eher länger. Eine Nierenbeteiligung kann auch dann noch auftreten, wenn der Ausschlag längst verschwunden ist. Genau das ist der häufigste Fehler – die Kontrollen enden, sobald die Haut wieder sauber aussieht.</p>
+
+<h2>Abführmittel: Macrogol statt Lactulose</h2>
+
+<p>Dass ein Abführmittel zu süss ist und Aufstossen und Blähungen macht, ist kein Zufall, sondern eine Frage des Wirkprinzips.</p>
+
+<p><strong>Lactulose</strong> (Duphalac, Gatinar) ist ein Zucker. Sie wird nicht aufgenommen, sondern im Dickdarm von Bakterien <strong>vergoren</strong> – dabei entstehen Wasserstoff, Kohlendioxid und Methan. Das Gas ist kein Nebeneffekt, es ist das Stoffwechselprodukt. Blähungen, Aufstossen und Völlegefühl gehören zur Wirkweise. Und weil Lactulose ein Zuckersirup ist, ist sie süss; daran lässt sich nichts ändern.</p>
+
+<p><strong>Macrogol</strong> (Movicol, Transipeg) ist ein inertes Polymer. Es wird weder aufgenommen noch von Bakterien verstoffwechselt, sondern bindet osmotisch Wasser und geht unverändert durch. Keine Vergärung, entsprechend <strong>deutlich weniger Gas</strong>. Der Cochrane-Vergleich gibt Macrogol gegenüber Lactulose durchweg den Vorzug: bessere Stuhlfrequenz, bessere Stuhlform, weniger Bauchschmerzen, weniger Bedarf an Zusatzmitteln.</p>
+
+<p>Gegen die Süsse konkret:</p>
+<ul>
+  <li>Nach der <strong>aromafreien</strong> Variante fragen – Macrogol gibt es ohne Geschmackszusatz.</li>
+  <li>Statt in Wasser in <strong>Bouillon</strong> oder ungesüsstem Tee auflösen. Salzig schlägt süss.</li>
+  <li>Kalt trinken, mit dem Strohhalm. Kälte dämpft die Süssempfindung spürbar.</li>
+  <li>Die Tagesmenge über den Tag verteilen statt auf einmal.</li>
+</ul>
+
+<div class="alarm">
+  <h3>Erbrechen von Galle ist kein Geschmacksproblem</h3>
+  <p>Grün-gelbe Galle zu erbrechen heisst, dass Darminhalt rückwärts läuft. Bei Bauchbeteiligung einer Vaskulitis und gleichzeitig fallendem Hämoglobin ist das ein Warnzeichen für einen <strong>Subileus</strong> – die entzündete, geschwollene Darmwand behindert die Passage. Ein Darmwandödem mit Passagestörung ist eine bekannte Komplikation genau dieser Krankheit.</p>
+  <p>Trifft das zu, ist ein Abführmittel durch den Mund nicht nur wirkungslos, sondern falsch: Man drückt Flüssigkeit gegen einen Engpass. Dann hilft auch der Wechsel auf Macrogol nichts. Dazu kommen die Aspirationsgefahr beim Erbrechen und der Flüssigkeitsverlust – der trifft ausgerechnet die Niere, das Organ, das hier ohnehin gefährdet ist.</p>
+  <p><strong>Zwei Fragen gehören heute geklärt, nicht nächste Woche.</strong></p>
+  <p><strong>Wofür ist das Abführmittel gedacht?</strong> Ist es die Vorbereitung auf die Darmspiegelung, ist Erbrechen unter der Spülung zwar häufig – aber mit Galle und Aufstossen gehört die Vorbereitung abgebrochen und die Ärztin informiert, nicht durchgezogen. Ist es gegen gewöhnliche Verstopfung, gilt dieselbe Abklärungspflicht.</p>
+  <p><strong>Gehen Winde und Stuhl noch ab?</strong> Wenn nicht, ist das der Notfall und nicht die Sprechstunde.</p>
+  <p>Behält sie Mittel durch den Mund schlecht, gibt es den rektalen Weg – Glyzerinzäpfchen oder ein kleines Klistier –, der den Magen umgeht. Ob das hier passt, entscheidet die Ärztin: Bei möglicher Passagestörung ist auch das nicht beliebig, und stimulierende Mittel wie Bisacodyl oder Natriumpicosulfat treiben die Darmbewegung gegen den Engpass.</p>
+</div>
+
+<h2>Die Adressen in Zürich</h2>
+
+<p>Eine eigene Sprechstunde für die Purpura Schönlein-Henoch gibt es nicht. Zuständig sind zwei Fächer gemeinsam – Rheumatologie für die Vaskulitis, Nephrologie für die Niere. Bei einer Darmblutung kommt die Gastroenterologie dazu.</p>
+
+<h3>Rheumatologie</h3>
+<div class="adresse">
+  <p class="name"><a href="https://www.usz.ch/sprechstunde/vaskulitis/">Vaskulitis-Sprechstunde, Klinik für Rheumatologie, Universitätsspital Zürich</a></p>
+  <p class="rolle">Leitung: PD Dr. med. Carmen-Marina Mihai</p>
+  <p class="kontakt">
+    Anmeldung über die Disposition Rheumatologie: <a href="tel:+41442552687">+41 44 255 26 87</a> · <a href="mailto:dispo.ruz@usz.ch">dispo.ruz@usz.ch</a><br>
+    Post: Universitätsspital Zürich, Disposition, Klinik für Rheumatologie, Rämistrasse 100, 8091 Zürich<br>
+    Sprechzimmer: G5, Empfang J, The Circle 59, 8058 Zürich-Flughafen
+  </p>
+</div>
+
+<h3>Nephrologie</h3>
+<div class="adresse">
+  <p class="name"><a href="https://www.usz.ch/fachbereich/nephrologie/team/">Dr. med. Stephanie Damm, Oberärztin</a></p>
+  <p class="rolle">Klinik für Nephrologie USZ · Schwerpunkt Glomerulonephritis und Vaskulitis, Nierenbeteiligung bei rheumatischen Erkrankungen. Für diesen Fall die fachlich genaueste Adresse.</p>
+  <p class="kontakt"><a href="tel:+41442553384">+41 44 255 33 84</a> · <a href="mailto:stephanie.damm@usz.ch">stephanie.damm@usz.ch</a><br>Rämistrasse 100, 8091 Zürich</p>
+</div>
+<div class="adresse">
+  <p class="name">Prof. Dr. med. Britta George, Klinikdirektorin</p>
+  <p class="rolle">Klinik für Nephrologie USZ · Schwerpunkt glomeruläre Erkrankungen, Nierentransplantation, genetische Nierenerkrankungen</p>
+  <p class="kontakt"><a href="tel:+41442553384">+41 44 255 33 84</a> · <a href="mailto:britta.george@usz.ch">britta.george@usz.ch</a></p>
+</div>
+
+<h3>Notfall</h3>
+<div class="adresse">
+  <p class="name">Notfallstation Universitätsspital Zürich</p>
+  <p class="rolle">Rund um die Uhr geöffnet, für alle Erwachsenen</p>
+  <p class="kontakt">Schmelzbergstrasse 8, 8091 Zürich · <a href="tel:+41442551111">+41 44 255 11 11</a> · Ambulanz <a href="tel:144">144</a></p>
+</div>
+
+<h3>Zur Anmeldung</h3>
+<p>Weder am Universitätsspital noch am Kinderspital ist eine Selbstanmeldung möglich – es braucht die Zuweisung durch den Haus- oder Facharzt. Wer nicht wochenlang warten will, lässt die Zuweisung an die oben genannte Person adressieren und den Hämoglobin-Verlauf ausdrücklich hineinschreiben: <em>Abfall von 108 auf <span class="nb">83&nbsp;g/l</span></em>. Das ändert die Dringlichkeitsstufe.</p>
+
+<p style="font-size:9pt; color:#5a6068;">Am Rande, weil die Krankheit gewöhnlich Kinder betrifft: Für Kinder und Jugendliche ist das Universitäts-Kinderspital Zürich das Referenzzentrum, mit einer gemeinsamen rheumatologisch-nephrologischen Sprechstunde für Vaskulitiden mit Nierenbeteiligung – Rheumatologie <a href="tel:+41442497580">+41 44 249 75 80</a>, Nephrologie <a href="tel:+41442496330">+41 44 249 63 30</a>. Für die vorliegende Situation ist das nicht die zuständige Stelle.</p>
+
+<h2>Was zum Termin mitgehört</h2>
+<ul>
+  <li>Alle Hämoglobinwerte mit Datum – die Kurve sagt mehr als der letzte Punkt</li>
+  <li>Die vollständige Medikamentenliste, rezeptfreie Schmerzmittel eingeschlossen</li>
+  <li>Fotos des Ausschlags mit Datum. Purpura heilt oft schneller ab, als ein Termin zustande kommt.</li>
+  <li>Angaben zum früheren Schub: wann, wie lange, was wurde gemacht, wurde der Urin kontrolliert, gab es eine Biopsie</li>
+  <li>Bisherige Urin- und Nierenwerte</li>
+  <li>Notizen zu Stuhl (Farbe, Blut), Bauchschmerzen, Gelenkbeschwerden – mit Datum</li>
+</ul>
+
+<h2>Fragen, die sich lohnen</h2>
+<ul>
+  <li>Ist eine Magen- und Darmspiegelung geplant – und wann?</li>
+  <li>Wie hoch ist der Eiweissverlust im Urin, gemessen als Protein-Kreatinin-Quotient?</li>
+  <li>Wurde ANCA bestimmt, also die im Alter häufigere Vaskulitisform ausgeschlossen?</li>
+  <li>Wurde eine Hautbiopsie gemacht, solange frische Flecken vorhanden waren?</li>
+  <li>Ist bei diesem Verlauf eine Nierenbiopsie angezeigt?</li>
+  <li>Welche der aktuellen Medikamente belasten Magen oder Niere?</li>
+  <li>Wie oft und über welchen Zeitraum wird der Urin kontrolliert?</li>
+  <li>Ist bei einer Erstmanifestation in diesem Alter eine Tumorsuche vorgesehen?</li>
+  <li>Wurde nach dem früheren Ausschlag an den Beinen der Urin kontrolliert – und mit welchem Ergebnis?</li>
+  <li>Gibt es von damals eine Hautbiopsie mit Immunfluoreszenz?</li>
+  <li>Ging ein Infekt voraus – und welche Medikamente sind in den letzten Wochen neu dazugekommen?</li>
+  <li>Wofür ist das Abführmittel verordnet – gegen Verstopfung oder als Vorbereitung der Darmspiegelung?</li>
+  <li>Ist das Erbrechen von Galle als möglicher Subileus abgeklärt worden?</li>
+  <li>Kann auf aromafreies Macrogol gewechselt werden statt Lactulose, die naturgemäss Gas macht?</li>
+</ul>
+
+<h2>Wie die Krankheit entdeckt wurde</h2>
+
+<p>Der Doppelname führt in die Irre. Keiner der beiden hat die Krankheit als Erster gesehen, und was sie wirklich ist, wusste bis 1973 niemand.</p>
+
+<table class="chronik">
+<tr>
+  <td class="jahr">1801</td>
+  <td class="was"><p><strong>William Heberden, London.</strong> Beschreibt in seinen <em>Commentaries</em> einen fünfjährigen Buben: Flecken an den Beinen, Bauchschmerzen, blutiger Stuhl, geschwollene Gelenke, Blut im Urin. Das vollständige Bild, 36 Jahre vor Schönlein – nur zieht niemand einen Schluss daraus. Eines bleibt bemerkenswert: Schon der allererste beschriebene Fall war ein Kind. Das prägt die Literatur bis heute und ist der Grund, warum über alte Patientinnen so wenig zu finden ist.</p></td>
+</tr>
+<tr>
+  <td class="jahr">1837</td>
+  <td class="was"><p><strong>Johann Lukas Schönlein, Zürich.</strong> Schönlein war 1832 in Würzburg im Zug der Demagogenverfolgung nach dem Hambacher Fest seiner Ämter enthoben worden; die eben gegründete Universität Zürich holte ihn 1833. In seinen Zürcher Jahren prägt er den Begriff <em>Peliosis rheumatica</em> – griechisch <em>pelios</em>, fahl-blauschwarz. Sein Beitrag ist nicht die Beobachtung der Flecken, die kannte man, sondern die Verknüpfung: Hautblutung und Gelenkschmerz sind eine Krankheit und nicht zwei. Geschrieben hat er es nie selbst. Er publizierte fast nichts; seine Studenten schrieben die Vorlesungen mit und gaben sie heraus, von einer der Ausgaben distanzierte er sich ausdrücklich. Im selben Jahr findet er in Zürich den Erreger des Favus – einer der ersten Nachweise überhaupt, dass ein Mikroorganismus eine menschliche Krankheit verursacht, Jahrzehnte vor Koch und Pasteur.</p></td>
+</tr>
+<tr>
+  <td class="jahr">1868–1899</td>
+  <td class="was"><p><strong>Eduard Heinrich Henoch, Berlin.</strong> Henoch hörte Schönlein als Student und leitete später die Kinderabteilung der Charité. 1868 beschreibt er die Verbindung von Kolik, blutigem Durchfall, Gelenkschmerz und Ausschlag – der Bauch kommt dazu. 1874 legt er vier Kinderfälle mit dem vollständigen Quartett vor. 1899 betont er, wie häufig eine Nephritis dazugehört. Damit ist das Bild fertig, und zwar in genau der Reihenfolge, in der die Medizin die Krankheit bis heute begreift: erst was man sieht, dann was weh tut, zuletzt was gefährlich ist.</p></td>
+</tr>
+<tr>
+  <td class="jahr">1914–1948</td>
+  <td class="was"><p><strong>Die Allergie-Epoche.</strong> Osler vermutet 1914, es steckten anaphylaktische Vorgänge dahinter; Frank und Glanzmann prägen daraufhin den Namen «anaphylaktoide Purpura». Im Mechanismus falsch, in der Denkrichtung richtig – das Immunsystem war im Spiel. 1948 spannt Douglas Gairdner im <em>Quarterly Journal of Medicine</em> die beiden Namen endgültig zusammen. Ab da heisst sie Schönlein-Henoch-Syndrom.</p></td>
+</tr>
+<tr>
+  <td class="jahr">1968–1973</td>
+  <td class="was"><p><strong>Der Beweis.</strong> Jean Berger beschreibt 1968 in Paris eine Nierenkrankheit mit IgA-Ablagerungen im Mesangium – gegen die damalige Lehre, nach der IgG das schädigende Immunglobulin sei. 1973 zeigen Baart de la Faille-Kuyper und Mitarbeiter im <em>Lancet</em> dasselbe IgA in den Hautgefässen <strong>und</strong> im Nierenmesangium von Schönlein-Henoch-Patienten. Damit ist klar, was 172 Jahre lang nur ein Muster von Symptomen war: eine Krankheit der IgA-Immunkomplexe. Und es erklärt, warum ausgerechnet Haut, Darm und Niere zusammen erkranken – sie haben nichts gemeinsam ausser der Grösse ihrer Gefässe.</p></td>
+</tr>
+<tr>
+  <td class="jahr">2012</td>
+  <td class="was"><p><strong>Der Name fällt.</strong> Die Chapel Hill Consensus Conference benennt die Vaskulitiden nach ihrer Ursache statt nach ihren Entdeckern. Aus Purpura Schönlein-Henoch wird IgA-Vaskulitis. Beide Namen laufen bis heute nebeneinander; im Klinikalltag hört man das alte oft.</p></td>
+</tr>
+</table>
+
+<p class="schluss">Von Heberdens Buben bis zum Fluoreszenzmikroskop vergingen 172 Jahre. Das Kortison, das im Abschnitt zur Behandlung steht, war schon zwei Jahrzehnte in Gebrauch, bevor man wusste, wogegen es eigentlich wirkt.</p>
+
+<h2>Quellen</h2>
+<ul class="quellen">
+  <li><a href="https://www.usz.ch/sprechstunde/vaskulitis/">Vaskulitis-Sprechstunde, Universitätsspital Zürich</a></li>
+  <li><a href="https://www.usz.ch/fachbereich/nephrologie/team/">Team der Klinik für Nephrologie, Universitätsspital Zürich</a></li>
+  <li><a href="https://www.usz.ch/notfall/">Notfall, Universitätsspital Zürich</a></li>
+  <li><a href="https://www.kispi.uzh.ch/kinderspital/fachkompetenzen/angebot-fuer-patientinnen-und-patienten/rheumatologie">Rheumatologie, Universitäts-Kinderspital Zürich</a></li>
+  <li><a href="https://www.kispi-wiki.ch/interdisziplinare-notfallstation-ins/notfalle/purpura-schonlein-henoch">IgA-Vaskulitis, Kispi-Wiki (Behandlungsstandard des Kinderspitals Zürich)</a></li>
+  <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9978861/">Immunoglobulin A (IgA) Vasculitis in the Elderly. PMC9978861</a></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6942937/">Shimamura et al.: Gastrointestinal bleeding is associated with renal prognosis in adult patients with IgA vasculitis with nephritis. J Gen Fam Med 2020</a></li>
+  <li><a href="https://onlinelibrary.wiley.com/doi/10.1111/jdv.19411">Toker et al.: IgA vasculitis and malignancy – a systematic review. J Eur Acad Dermatol Venereol 2024</a></li>
+  <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11893613/">The association between adult IgA vasculitis and cancer – a prospective observational study. PMC11893613</a></li>
+  <li><a href="https://medical-tribune.ch/news/medizin/4000106652/iga-vaskulitis-im-erwachsenenalter/">IgA-Vaskulitis im Erwachsenenalter. Medical Tribune Schweiz</a></li>
+  <li><a href="https://www.deutsche-biographie.de/sfz79016.html">Zur Geschichte: Johann Lukas Schönlein, Deutsche Biographie – Würzburg, Zürich 1833–1839, Berlin</a></li>
+  <li><a href="https://archive.org/details/drjlschnleinsall01schn">Dr. J. L. Schönlein’s Allgemeine und specielle Pathologie und Therapie, nach dessen Vorlesungen niedergeschrieben und herausgegeben von einigen seiner Zuhörer, 1837 (Digitalisat)</a></li>
+  <li><a href="https://academic.oup.com/qjmed/article-abstract/17/2/95/1534443">Gairdner D.: The Schönlein-Henoch syndrome (anaphylactoid purpura). Q J Med 1948; 17: 95–122</a></li>
+  <li><a href="https://pubmed.ncbi.nlm.nih.gov/20767027/">Osler W.: The visceral lesions of purpura and allied conditions. BMJ 1914</a></li>
+  <li><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Baart+de+la+Faille-Kuyper+IgA+Henoch">Baart de la Faille-Kuyper EH et al.: IgA-deposits in cutaneous blood-vessel walls and mesangium in Henoch-Schönlein syndrome. Lancet 1973</a></li>
+  <li><a href="https://www.ajkd.org/article/S0272-6386(11)00809-2/fulltext">Berger J., Hinglais N.: Les dépôts intercapillaires d’IgA-IgG. J Urol Nephrol 1968 – Übersicht: IgA nephropathy, progress before and since Berger</a></li>
+  <li><a href="https://pubmed.ncbi.nlm.nih.gov/34345419/">IgA vasculitis (Henoch-Schönlein purpura): refractory and relapsing disease course in the adult population. Clin Kidney J 2021</a></li>
+  <li><a href="https://pubmed.ncbi.nlm.nih.gov/22441366/">Predictive factors of relapse in adult Henoch-Schönlein purpura</a></li>
+  <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4008683/">Causal Attributions about Disease-Onset and Relapse in Patients with Systemic Vasculitis. PMC4008683</a></li>
+  <li><a href="https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2021.771619/full">Pathogenesis of IgA Vasculitis: An Up-To-Date Review. Front Immunol 2021</a></li>
+  <li><a href="https://www.ncbi.nlm.nih.gov/books/NBK537252/">IgA Vasculitis (Henoch-Schönlein Purpura). StatPearls, NCBI Bookshelf</a></li>
+  <li><a href="https://pubmed.ncbi.nlm.nih.gov/20614462/">Lee-Robichaud H et al.: Lactulose versus Polyethylene Glycol for Chronic Constipation. Cochrane Database Syst Rev 2010; CD007570</a></li>
+  <li><a href="https://onlinelibrary.wiley.com/doi/10.1002/art.37715">Jennette JC et al.: 2012 Revised International Chapel Hill Consensus Conference Nomenclature of Vasculitides. Arthritis Rheum 2013</a></li>
+</ul>
+
+<p class="fuss">Dieses Blatt fasst den Stand der veröffentlichten Literatur zusammen und ersetzt keine ärztliche Beurteilung. Es ist dafür gedacht, zum Termin mitgenommen zu werden, damit die entscheidenden Fragen gestellt und die richtigen Untersuchungen angeordnet werden. Angaben zu Adressen und Zuständigkeiten sind am 27. August 2026 überprüft worden; Sprechstunden und Zuständigkeiten ändern sich.</p>
+
+</body>
+</html>

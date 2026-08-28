@@ -1,0 +1,10 @@
+# Erzeugtes PDF - reproduzierbar aus src/
+iga-vaskulitis.pdf
+*.pdf
+
+# Nichts davon gehoert je in ein oeffentliches Repositorium
+credentials
+token*.json
+client_secret_*.json
+*.env
+send_*.py
