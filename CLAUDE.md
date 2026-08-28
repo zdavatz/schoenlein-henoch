@@ -99,6 +99,14 @@ dabei an, was ihr folgt (`folgehoehe()`, gedeckelt auf `MITNEHMEN_MAX`),
 sonst steht sie allein am Seitenfuss. `umbruch_offen` lässt genau einen
 erzwungenen Umbruch zu und verhindert die Endlosschleife.
 
+**Ein Wort, das breiter ist als seine Tabellenspalte, lässt genpdf
+stillschweigend weg** – der Text fehlt im PDF, und nichts schlägt fehl. Genau
+das ist mit «kontraindiziert» in der Interaktionstabelle passiert. `zellhoehe()`
+meldet solche Wörter jetzt auf stderr und setzt `WORT_ZU_BREIT`; `render()`
+bricht am Ende damit ab. **Diese Prüfung nie entfernen** – sie ist neben der
+Link-Zählung die zweite Absicherung gegen still verlorenen Inhalt. Abhilfe:
+Spaltengewichte in `src/inhalt.rs` anpassen oder kürzer formulieren.
+
 **`MASS_DEBUG=1` zeigt die Schätzungen** – je Element geschätzte Höhe,
 verbleibende Höhe und ob umbrochen wurde, danach die tatsächlich gesetzte
 Höhe. Die Schätzung lag zuletzt rund 1,5 % über dem Satz. Wer `baue()`
@@ -135,6 +143,29 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   Suche unter `.../search/zone/drugs/search_query/<name>`. Die Seite steht
   hinter einem Bot-Schutz (Anubis): `curl` und einfache Fetch-Werkzeuge
   bekommen die Challenge-Seite, ein echter Browser kommt durch.
+- **Der Interaktionscheck kommt aus [SDIF](https://sdif.oddb.org)**, dem
+  Werkzeug in `~/.software/sdif` – nicht aus dem Gedächtnis und nicht von
+  einer fremden Website. Der Lauf, auf dem der Abschnitt beruht:
+
+  ```bash
+  cd ~/.software/sdif
+  ./target/release/sdif check Novalgin Spiricort Movicol Duphalac Cardiax
+  ```
+
+  Die EPha-Einstufungen (A bis X) stehen zusätzlich in `db/interactions.db`
+  und lassen sich direkt abfragen:
+
+  ```bash
+  sqlite3 db/interactions.db "select atc2, risk_class, effect, measures \
+    from epha_interactions where atc1='N02BB02' and risk_class in ('C','D','X');"
+  ```
+
+  Die Namensauflösung ist die Fehlerquelle: «Paracetamol» landet auf einem
+  Kombipräparat mit Tramadol, «Dafalgan» auf Co-Dafalgan mit Codein, und der
+  ATC-Name «Macrogol, Kombinationen» erzeugt Treffer über das Wort
+  «Kombinationen». Für niedrig dosiertes Aspirin `Cardiax` nehmen, nicht
+  `Aspirin`. Jeden Treffer gegen die Fachinformation nachlesen, bevor er ins
+  Blatt kommt.
 - Die Angaben zu Erwachsenen und Betagten sind der Kern. Das meiste, was
   man auf Deutsch zu dieser Krankheit findet, betrifft Kinder und führt bei
   einer 84-jährigen Patientin in die Irre.

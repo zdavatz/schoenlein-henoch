@@ -275,6 +275,40 @@ static T_DARMSPIEGELUNG: Tabelle = Tabelle {
     chronik: false,
 };
 
+static T_INTERAKTION: Tabelle = Tabelle {
+    kopf: &["Mit Novalgin zusammen", "Klasse", "Was der Check sagt"],
+    gewichte: &[22, 24, 54],
+    zeilen: &[
+        &[
+            &[B("Methotrexat")],
+            &[B("X – kontraindiziert")],
+            &[T("Erhöhtes Risiko für Blutbildveränderungen; die Kombination ist wegen des negativen Nutzen-Risiko-Profils kontraindiziert. Zur Schmerzstillung gehört ein Mittel mit geringerem Potenzial für Knochenmarksschäden. "), B("Die wichtigste Zeile dieser Tabelle:"), T(" Methotrexat ist in der Rheumatologie ein gängiges Mittel. Wer es nimmt, darf Novalgin nicht bekommen.")],
+        ],
+        &[
+            &[B("Clozapin")],
+            &[B("X – kontraindiziert")],
+            &[T("Ebenfalls erhöhtes Risiko für Blutbildveränderungen. Die Fachinformation von Clozapin verbietet die gleichzeitige Anwendung von Mitteln, die eine Agranulozytose auslösen können.")],
+        ],
+        &[
+            &[T("Carbamazepin")],
+            &[T("C – regelmässige Überwachung")],
+            &[T("Erhöhtes Agranulozytoserisiko, möglicherweise additive Knochenmarksdepression. Bei Kombination ist das Blutbild engmaschig zu kontrollieren.")],
+        ],
+        &[
+            &[T("Niedrig dosiertes Aspirin (ASS 100)")],
+            &[T("C – regelmässige Überwachung")],
+            &[T("Verminderte gerinnungshemmende Wirkung; beide konkurrieren an derselben Bindungsstelle der COX-1. Massnahme: "), B("Aspirin 30 bis 60 Minuten vor Metamizol geben"), T(" – oder für die Schmerzen auf Paracetamol ausweichen.")],
+        ],
+        &[
+            &[T("Bupropion")],
+            &[T("C – regelmässige Überwachung")],
+            &[T("Metamizol induziert CYP2B6 und CYP3A4 und erhöht damit den aktiven Abbaustoff von Bupropion.")],
+        ],
+    ],
+    linien: true,
+    chronik: false,
+};
+
 static T_CHRONIK: Tabelle = Tabelle {
     kopf: &[],
     gewichte: &[16, 84],
@@ -453,6 +487,23 @@ pub static DOKUMENT: &[Block] = &[
     ]),
     P(&[T("Zuerst zu klären sind zwei Gegenanzeigen: eine "), B("eingeschränkte Knochenmarksfunktion oder Blutbildungsstörung"), T(" und eine frühere Agranulozytose unter Pyrazolonen. Und falls sie niedrig dosiertes Aspirin zum Herzschutz nimmt: Metamizol schwächt dessen Wirkung auf die Blutplättchen ab.")]),
 
+    H2("Interaktionscheck"),
+    P(&[T("Geprüft mit "), B("SDIF"), T(", dem Swiss Drug Interaction Finder: Er wertet die Interaktionsangaben aus den Schweizer Fachinformationen aus und gleicht sie mit der EPha-Datenbank ab, die jede Kombination von A bis X einstuft – A keine Massnahmen, C regelmässige Überwachung, D Kombination vermeiden, X kontraindiziert. Der Lauf vom 28. August 2026 mit Novalgin, Kortison, Macrogol, Lactulose und niedrig dosiertem Aspirin ergab Folgendes.")]),
+    P(&[
+        B("Der Vorbehalt zuerst:"), T(" Geprüft ist nur, was auf diesem Blatt steht. Die vollständige Medikamentenliste kennt nur die Patientin selbst, und sie gehört zum Termin mitgebracht – rezeptfreie Mittel eingeschlossen. Ein maschineller Check kann nur vergleichen, was man ihm gibt."),
+    ]),
+    Tab(&T_INTERAKTION),
+    H3("Was bei Kortison dazukommt"),
+    Liste(&[
+        &[B("Aspirin und Kortison: Klasse C."), T(" Erhöhtes Risiko einer Blutung im Magen-Darm-Trakt durch additive Schädigung der Magenschleimhaut. Das Risiko steigt ausdrücklich mit höherem Lebensalter, mit einer Vorgeschichte von Geschwüren und unter gleichzeitiger Blutverdünnung – alle drei gehören hier geprüft. Empfohlene Massnahme: klinische Überwachung auf Geschwüre und die "), B("vorbeugende Gabe eines Protonenpumpenhemmers"), T(". Das deckt sich mit dem Magenschutz, der im Abschnitt zur Behandlung ohnehin steht.")],
+        &[B("Lactulose und Kortison."), T(" Kortikosteroide senken das Kalium, und die Duphalac-Fachinformation nennt Lactulose als Mittel, das diesen Kaliumverlust theoretisch verstärkt. Bei einer Patientin, deren Kalium nach Wochen ohne Nahrung ohnehin überwacht gehört, ist das ein weiteres Argument für Macrogol.")],
+    ]),
+    H3("Ohne Treffer"),
+    P(&[T("Novalgin mit Macrogol, mit Lactulose, mit Paracetamol, mit einem Protonenpumpenhemmer und mit einem ACE-Hemmer: kein Treffer. Macrogol hat in der EPha-Datenbank überhaupt keinen Eintrag – es wird nicht aufgenommen und interagiert praktisch nicht. Auch das spricht für Movicol neutral.")]),
+    H3("Ein Fund am Rande, der hier zählt"),
+    P(&[T("Beim Auflösen des Namens «Paracetamol» griff der Check auf Kombinationspräparate zu, die zusätzlich Tramadol oder Codein enthalten; die dortigen Warnungen betrafen den Opioid-Anteil und nicht das Paracetamol. Als Interaktion ist das ein Fehlalarm – als Hinweis ist es der praktisch wichtigste des ganzen Laufs: "), B("Opioide verstopfen."), T(" Die Duphalac-Fachinformation führt Opiate ausdrücklich unter den Substanzen, die die Wirkung von Lactulose abschwächen, weil sie selbst obstipierend wirken. Bei einer Patientin, die seit Wochen keinen Stuhlgang hat, ist ein opioidhaltiges Schmerzmittel – Codein, Tramadol – das Falsche. Novalgin enthält keines, und das ist ein Punkt zu seinen Gunsten.")]),
+    P(&[T("Zwei weitere Treffer des Laufs sind ebenfalls keine: Der Check meldete «kontraindiziert» zwischen Aspirin und Movicol, weil er im Namen «Macrogol, Kombinationen» das Wort «Kombinationen» als Wirkstoff las, und er ordnete Novalgin einer Regel für Aspirin und NSAR zu, obwohl Metamizol keines von beiden ist. Wer maschinell prüft, muss die Treffer nachlesen; die Fachinformation entscheidet, nicht die Trefferliste.")]),
+
     H2("Abführmittel: welche es gibt und warum sie süss sind"),
     P(&[T("Vorbemerkung, weil sie in dieser Lage alles andere überwiegt: Solange Erbrechen nach jedem Essen und wochenlang fehlender Stuhlgang nicht abgeklärt sind, ist die Frage nach dem richtigen Abführmittel die zweite Frage. Die erste steht im Abschnitt oben. Was hier folgt, gilt für die Zeit danach – und für den Fall, dass ein Mittel bereits verordnet ist und schlecht vertragen wird.")]),
     P(&[T("Dass ein Abführmittel zum Trinken süss ist, ist kein Zufall des Herstellers. Bei der einen Gruppe ist der Wirkstoff selbst ein Zucker; bei der anderen ist die Süsse ein Zusatz – und den gibt es auch ohne.")]),
@@ -541,6 +592,8 @@ pub static DOKUMENT: &[Block] = &[
         &[T("Wie wird die Flüssigkeitszufuhr sichergestellt, wenn kaum getrunken wird und Erbrechen dazukommt?")],
         &[T("Nach Wochen ohne Nahrung: Wie wird der Kostaufbau begleitet, und werden Phosphat, Kalium und Magnesium dabei kontrolliert?")],
         &[T("Sie bekommt Novalgin: Wird darunter das Differentialblutbild kontrolliert, und sind Knochenmarkserkrankung und frühere Agranulozytose ausgeschlossen?")],
+        &[T("Nimmt sie Methotrexat, Clozapin oder Carbamazepin? Die ersten beiden sind zusammen mit Novalgin kontraindiziert, beim dritten steigt das Agranulozytoserisiko.")],
+        &[T("Falls Aspirin zum Herzschutz läuft: Wird es 30 bis 60 Minuten vor Novalgin gegeben, und ist unter Kortison ein Magenschutz verordnet?")],
         &[T("Kann der Kreatininwert durch Metamizol verfälscht sein – und wie wird die Nierenfunktion dann beurteilt?")],
         &[T("Wofür ist das Abführmittel verordnet – gegen Verstopfung oder als Vorbereitung der Darmspiegelung? Und ist es in dieser Lage überhaupt zulässig?")],
         &[T("Kann statt eines aromatisierten Präparats Movicol neutral oder Laxipeg aromafrei verschrieben werden – ohne Aroma und ohne Süssstoff?")],
@@ -605,6 +658,10 @@ pub static QUELLEN: &[(&str, Verweis)] = &[
      Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK555956/", url: "https://www.ncbi.nlm.nih.gov/books/NBK555956/" }),
     ("Lee-Robichaud H et al.: Lactulose versus Polyethylene Glycol for Chronic Constipation. Cochrane Database Syst Rev 2010; CD007570",
      Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/20614462/", url: "https://pubmed.ncbi.nlm.nih.gov/20614462/" }),
+    ("SDIF – Swiss Drug Interaction Finder, Interaktionscheck auf Basis der Schweizer Fachinformationen und EPha",
+     Verweis { text: "https://sdif.oddb.org", url: "https://sdif.oddb.org" }),
+    ("EPha.ch – die abgestuften Interaktionsdaten hinter dem Check",
+     Verweis { text: "https://epha.ch", url: "https://epha.ch" }),
     ("Fachinformation Novalgin Tropfen (Metamizol), ch.oddb.org",
      Verweis { text: "https://ch.oddb.org/de/gcc/fachinfo/reg/16952", url: "https://ch.oddb.org/de/gcc/fachinfo/reg/16952" }),
     ("Fachinformation Novalgin-F Tabletten (Metamizol), ch.oddb.org",

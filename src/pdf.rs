@@ -13,6 +13,7 @@
 // `/Link`-Annotationen mit `lopdf`.
 
 use std::path::Path;
+use std::sync::atomic::{AtomicBool, Ordering};
 
 use anyhow::{anyhow, Result};
 use genpdf::elements::{LinearLayout, Paragraph, UnorderedList};
@@ -152,6 +153,12 @@ const ZELL_Y: f64 = 1.0;
 
 const LINIE: Color = Color::Rgb(0xc9, 0xcc, 0xd1);
 
+/// Gesetzt, sobald ein einzelnes Wort breiter ist als seine Spalte. genpdf
+/// laesst ein solches Wort **stillschweigend weg** - der Text fehlt dann im
+/// PDF, ohne dass irgendetwas fehlschlaegt. `render` bricht deshalb am Ende
+/// ab, wenn dieses Flag steht.
+static WORT_ZU_BREIT: AtomicBool = AtomicBool::new(false);
+
 /// Schaetzt die Hoehe einer Zelle, indem sie genpdfs Wortumbruch nachbildet:
 /// gebrochen wird an Leerzeichen, das Leerzeichen bleibt beim Wort davor.
 fn zellhoehe(fc: &FontCache, sp: &[Span], basis: Style, breite: f64) -> f64 {
@@ -162,6 +169,15 @@ fn zellhoehe(fc: &FontCache, sp: &[Span], basis: Style, breite: f64) -> f64 {
         zh = zh.max(f64::from(stil.line_height(fc)));
         for wort in text.split_inclusive(' ') {
             let w = f64::from(stil.str_width(fc, wort));
+            if w > breite {
+                WORT_ZU_BREIT.store(true, Ordering::Relaxed);
+                eprintln!(
+                    "Wort passt nicht in die Spalte: «{}» braucht {:.1} mm, verfügbar sind {:.1} mm",
+                    wort.trim(),
+                    w,
+                    breite
+                );
+            }
             if x + w > breite && x > 0.0 {
                 zeilen += 1;
                 x = w;
@@ -785,6 +801,14 @@ pub fn render(out: &Path, font_dir: &str) -> Result<usize> {
 
     doc.render_to_file(out)
         .map_err(|e| anyhow!("PDF schreiben {}: {}", out.display(), e))?;
+
+    if WORT_ZU_BREIT.load(Ordering::Relaxed) {
+        return Err(anyhow!(
+            "Mindestens ein Wort ist breiter als seine Tabellenspalte (siehe Meldungen oben). \
+             genpdf lässt ein solches Wort stillschweigend weg – der Text fehlt dann im PDF. \
+             Spaltengewichte in src/inhalt.rs anpassen oder kürzer formulieren."
+        ));
+    }
 
     let urls = urls();
     let laengen = anzeigelaengen();

@@ -55,7 +55,8 @@ was die Infusion mit ihm macht ·
 was den Schub ausgelöst haben kann · warum das Alter den Verlauf ändert · was ein
 früherer Schub bedeutet · der Verlauf der letzten Wochen und was er bedeutet ·
 Herkunft des Blutverlusts · eine Tabelle der notwendigen Abklärungen ·
-Behandlung · Novalgin und was dabei zu kontrollieren ist · eine Übersicht
+Behandlung · Novalgin und was dabei zu kontrollieren ist · ein
+Interaktionscheck der beteiligten Medikamente · eine Übersicht
 der Abführmittel zum Trinken, die es in der
 Schweiz gibt, mit Wirkstoff und Süssstoff je Präparat und den beiden
 aromafreien Alternativen · Adressen in Zürich · was zum Termin mitgehört ·
@@ -67,7 +68,9 @@ Anmeldeprozeduren, Haftungshinweise und Angaben, die Kinder betreffen, sind
 bewusst nicht drin.
 
 Belegt ist alles mit der zitierten Literatur, im Dokument am Schluss
-verlinkt. Die Arzneimittelangaben stammen aus den Fachinformationen auf
+verlinkt. Der Interaktionscheck stammt aus
+[SDIF](https://sdif.oddb.org), dem Swiss Drug Interaction Finder, der die
+Schweizer Fachinformationen mit den abgestuften EPha-Daten abgleicht. Die Arzneimittelangaben stammen aus den Fachinformationen auf
 [ch.oddb.org](https://ch.oddb.org). Die Adressen sind öffentliche Angaben
 von Universitätsspital und Kinderspital Zürich, überprüft am
 28. August 2026.
