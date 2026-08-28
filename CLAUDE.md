@@ -143,7 +143,7 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   Suche unter `.../search/zone/drugs/search_query/<name>`. Die Seite steht
   hinter einem Bot-Schutz (Anubis): `curl` und einfache Fetch-Werkzeuge
   bekommen die Challenge-Seite, ein echter Browser kommt durch.
-- **Der Interaktionscheck kommt aus [SDIF](https://sdif.oddb.org)**, dem
+- **Der Interaktionscheck kommt aus [SDIF](https://sdif.oddb.org/?tab=check)**, dem
   Werkzeug in `~/.software/sdif` – nicht aus dem Gedächtnis und nicht von
   einer fremden Website. Der Lauf, auf dem der Abschnitt beruht:
 

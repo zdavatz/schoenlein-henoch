@@ -659,7 +659,7 @@ pub static QUELLEN: &[(&str, Verweis)] = &[
     ("Lee-Robichaud H et al.: Lactulose versus Polyethylene Glycol for Chronic Constipation. Cochrane Database Syst Rev 2010; CD007570",
      Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/20614462/", url: "https://pubmed.ncbi.nlm.nih.gov/20614462/" }),
     ("SDIF – Swiss Drug Interaction Finder, Interaktionscheck auf Basis der Schweizer Fachinformationen und EPha",
-     Verweis { text: "https://sdif.oddb.org", url: "https://sdif.oddb.org" }),
+     Verweis { text: "https://sdif.oddb.org/?tab=check", url: "https://sdif.oddb.org/?tab=check" }),
     ("EPha.ch – die abgestuften Interaktionsdaten hinter dem Check",
      Verweis { text: "https://epha.ch", url: "https://epha.ch" }),
     ("Fachinformation Novalgin Tropfen (Metamizol), ch.oddb.org",

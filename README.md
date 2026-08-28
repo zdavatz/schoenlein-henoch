@@ -69,7 +69,7 @@ bewusst nicht drin.
 
 Belegt ist alles mit der zitierten Literatur, im Dokument am Schluss
 verlinkt. Der Interaktionscheck stammt aus
-[SDIF](https://sdif.oddb.org), dem Swiss Drug Interaction Finder, der die
+[SDIF](https://sdif.oddb.org/?tab=check), dem Swiss Drug Interaction Finder, der die
 Schweizer Fachinformationen mit den abgestuften EPha-Daten abgleicht. Die Arzneimittelangaben stammen aus den Fachinformationen auf
 [ch.oddb.org](https://ch.oddb.org). Die Adressen sind öffentliche Angaben
 von Universitätsspital und Kinderspital Zürich, überprüft am
