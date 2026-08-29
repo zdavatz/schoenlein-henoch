@@ -18,8 +18,9 @@ kein Appetit, starke Bauchschmerzen, wenig Schlaf, Erbrechen nach jeder
 Nahrungsaufnahme, kaum Flüssigkeit und seit etwa vier bis fünf Wochen gar
 kein Stuhlgang mehr. Inzwischen ist das Hämoglobin nochmals gefallen und
 wird transfundiert, der Stuhl ist schwarz und flüssig mit weissem Schleim
-dazwischen, es ist Blut im Urin, und der Harnleiter ist an mehreren
-Stellen gestaut. Die «Ausgangslage» im Dokument beschreibt diesen Fall.
+dazwischen, es wird schwarz erbrochen, die Darmspiegelung hat nichts
+gefunden ausser einem gestörten Transport, es ist Blut im Urin, und der
+Harnleiter ist an mehreren Stellen gestaut. Die «Ausgangslage» im Dokument beschreibt diesen Fall.
 Namen kommen keine vor.
 
 Die Punkte, an denen sich das Blatt aufhängt, weil sie leicht falsch
@@ -94,6 +95,22 @@ verstanden werden:
   der Krummdarm mit 61,3 Prozent am häufigsten befallen – dorthin muss das
   Gerät, so wie es bei der Magenspiegelung bis in den absteigenden
   Zwölffingerdarm muss.
+- **Kaffeesatz oben und Teerstuhl unten sind dasselbe Blut.** Schwarzes
+  Erbrochenes ist Blut, das in der Magensäure gelegen hat. Damit ist die
+  Quelle im oberen Verdauungstrakt lokalisiert – und die Blutung im Stuhl
+  geklärt. Das Blut im Urin ist damit *nicht* geklärt: Das sind zwei
+  getrennte Blutungen an zwei Orten, und keine erklärt die andere.
+- **Eine unauffällige Darmspiegelung widerspricht dem Teerstuhl nicht.**
+  Teerstuhl entsteht oberhalb; dorthin schaut sie gar nicht. Sie erledigt
+  den Dickdarmtumor und den Dickdarm als Quelle – mehr nicht. Offen bleiben
+  zwei Rückfragen: Wie weit kam das Gerät, und wie sauber war der Darm nach
+  vier bis fünf Wochen ohne Stuhlgang?
+- **«Der Darm transportiert nicht richtig» heisst Passagestörung ohne
+  mechanisches Hindernis.** Neben der Vaskulitis selbst kommen Kalium,
+  Magnesium und die Schilddrüse in Frage – alle drei mit Blutwerten
+  geprüft, und der TSH stand bisher nicht auf der Liste. Für die
+  Kapselendoskopie ist eine Motilitätsstörung ohne Enge übrigens kein
+  Hinderungsgrund; entscheidend ist, ob es eine Enge gibt.
 
 ## Was drinsteht
 
