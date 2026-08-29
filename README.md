@@ -119,17 +119,32 @@ verstanden werden:
   Magnesium und die Schilddrüse bleiben auf der Liste, weil sie sich
   beheben lassen.
 - **Ödeme sind eine Bilanz, kein Symptom.** Eiweissverlust über die Niere,
-  zu wenig Eiweiss von vorn, das Kortison (die Spiricort-Fachinformation
-  führt Natrium- und Wasserretention samt Kaliumverlust auf), das Volumen
-  aus Infusion und Transfusion, das Herz – hier trifft vieles gleichzeitig
-  zu. Der springende Punkt ist ein anderer: **Ödeme gab es beim früheren
+  zu wenig Eiweiss von vorn, das Volumen aus Infusion und Transfusion, das
+  Herz. Der springende Punkt ist ein anderer: **Ödeme gab es beim früheren
   Schub schon.** Das macht es wahrscheinlicher, dass die Niere damals schon
   beteiligt war, und verschiebt die Frage nach der Nierenbiopsie.
-- **Unter Kortison verläuft eine Darmblutung symptomarm.** Die
-  Fachinformation von Spiricort sagt es ausdrücklich, und für das
-  Magengeschwür: «häufig ohne die typische Symptomatik». Das erklärt, wie
-  eine Blutung so weit kommen konnte, ohne die erwarteten Schmerzen zu
-  machen.
+- **Sie hat nie Kortison bekommen** – jetzt nicht und beim früheren Schub
+  auch nicht. Der heutige Schub ist also unbehandelt, der damalige war es
+  auch. Dafür und dagegen lässt sich einiges sagen, und beides steht im
+  Blatt: gegen eine Behandlung die laufende Blutung und das Infektrisiko im
+  Alter, für sie die beteiligte Niere und der schwere Darmbefall. KDIGO
+  nennt für den Fall, dass man es versucht, ein Schema mit reduzierter
+  Dosis samt Infektprophylaxe – und verlangt, das Risiko im Verlauf immer
+  wieder neu einzuschätzen.
+- **Bei einer Glomerulonephritis gibt es zwei Mechanismen, die von aussen
+  gleich aussehen.** Der entzündete Filter mit Halbmonden – dort greift die
+  Immunbehandlung. Und Erythrozytenzylinder, die die Nierenkanälchen
+  verstopfen – bei über 50-Jährigen mit sichtbarem Blut im Urin fanden sich
+  die in *allen* Biopsien, und Immunsuppression änderte dort nichts an der
+  Prognose, führte aber bei 27 Prozent zu schweren Komplikationen. Getrennt
+  werden sie nur durch die Nierenbiopsie – die KDIGO ohnehin verlangt,
+  sobald die Eiweissausscheidung vier Wochen lang über 0,5 g/Tag liegt oder
+  die Nierenfunktion eingeschränkt ist.
+- **Der geblähte Darm ist das, was sie am meisten belastet.** Fällt die
+  Peristaltik aus, bleibt das Gas liegen und nimmt den Weg nach oben. Dass
+  der Wind abgeht, wenn auch schwer, ist die beruhigende Hälfte – bleibt er
+  ganz aus und wird der Bauch praller, ist es die andere. Weder Säureblocker
+  noch Abführmittel bewegen Gas; nur der Transport tut das.
 
 ## Was drinsteht
 
