@@ -16,3 +16,6 @@ pruef*.png
 
 # Rust
 target/
+
+# enthaelt Mailadresse, Patientenname und Geburtsdatum - bleibt lokal
+entwurf_*.py

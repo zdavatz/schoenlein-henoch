@@ -273,6 +273,25 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   Anwendungspasswörter in eingecheckten Dateien. Ein `.gitignore`-Eintrag
   ist eine Vorsichtsmassnahme, kein Schutz – ein `git add -f` genügt. Vor
   jedem Commit `git status` prüfen.
+- **Die Versandskripte bleiben lokal und gehen direkt über die Gmail-API**,
+  nicht über die MCP-Schnittstelle. Diese schreibt beim Anlegen eines
+  Entwurfs **jeden Link zu einer Google-Umleitung um**
+  (`https://www.google.com/url?q=…&source=gmail&ust=…`); wer die
+  MIME-Nachricht selbst baut und hochlädt, umgeht das. Dieselbe Mechanik wie
+  `entwurf_curtins.py` in `~/.software/adhs-expert`:
+
+  ```python
+  SCOPES = ["https://www.googleapis.com/auth/gmail.compose"]   # Entwurf
+  SCOPES = ["https://www.googleapis.com/auth/gmail.send"]      # Versand
+  BASIS  = ~/.software/fundaziun-davaz   # token_compose.json, token_send.json,
+                                         # client_secret_*.json
+  ```
+
+  `send_*.py` verschickt, `entwurf_*.py` legt an; beide Muster stehen im
+  `.gitignore`, weil die Dateien Mailadressen, Patientenname und
+  Geburtsdatum im Klartext tragen. Der Name der Patientin darf in eine Mail
+  an ihre behandelnden Ärzte – dorthin gehört er –, aber in keine Datei,
+  die auch nur in die Nähe eines Commits kommt.
 - Die Mailadressen in den Adressangaben sind öffentliche Kontaktangaben des
   Universitätsspitals Zürich, keine privaten.
 
