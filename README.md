@@ -17,7 +17,8 @@ massiven Ausschlag an den Beinen in der Vorgeschichte. Dazu seit Wochen
 kein Appetit, starke Bauchschmerzen, wenig Schlaf, Erbrechen nach jeder
 Nahrungsaufnahme, kaum Flüssigkeit und seit etwa vier bis fünf Wochen gar
 kein Stuhlgang mehr. Inzwischen ist das Hämoglobin nochmals gefallen und
-wird transfundiert, es ist Blut im Urin, und der Harnleiter ist an mehreren
+wird transfundiert, der Stuhl ist schwarz und flüssig mit weissem Schleim
+dazwischen, es ist Blut im Urin, und der Harnleiter ist an mehreren
 Stellen gestaut. Die «Ausgangslage» im Dokument beschreibt diesen Fall.
 Namen kommen keine vor.
 
@@ -82,6 +83,17 @@ verstanden werden:
   nützlichste Zahl kommt danach: Eine Einheit hebt das Hämoglobin um rund
   10 g/l. Bleibt der Anstieg aus oder fällt der Wert wieder, blutet es
   weiter – ein härterer Beweis als jede Stuhlfarbe.
+- **«Schwarz und flüssig» ist keine Farbangabe, sondern Teerstuhl.** Damit
+  hat die Spiegelung eine Frist statt einer Empfehlung: Beide
+  Fachgesellschaften nennen für die akute obere Blutung 24 Stunden. Die
+  Farbe sagt allerdings nichts darüber, ob gerade jetzt geblutet wird – nach
+  einer Blutung sieht der Stuhl bis zu fünf Tage so aus. Und Eisen und
+  Wismut färben ihn ebenso; die Medikamentenliste kommt vor dem Auge.
+- **Der weisse Schleim kommt von unten, die schwarze Farbe von oben.** Zwei
+  Befunde, zwei Orte. Bei der Darmspiegelung war in der Erwachsenen-Studie
+  der Krummdarm mit 61,3 Prozent am häufigsten befallen – dorthin muss das
+  Gerät, so wie es bei der Magenspiegelung bis in den absteigenden
+  Zwölffingerdarm muss.
 
 ## Was drinsteht
 

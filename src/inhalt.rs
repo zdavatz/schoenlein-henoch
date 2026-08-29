@@ -152,7 +152,9 @@ static T_VERLAUF: Tabelle = Tabelle {
             ), B("und"), T(
                 " ausbleibender Windabgang ist der Notfall, nicht die Sprechstunde. Dass die \
                  Passage wieder offen ist, entschärft genau diesen Punkt – siehe den Abschnitt \
-                 «Was sich gebessert hat».",
+                 «Was sich gebessert hat». Wie er aussieht, ist allerdings ein eigener Befund: \
+                 schwarz und flüssig, mit weissem Schleim dazwischen – siehe den Abschnitt \
+                 «Dunkler Stuhl: Galle oder Blut?».",
             )],
         ],
     ],
@@ -210,7 +212,7 @@ static T_ABKLAERUNG: Tabelle = Tabelle {
         ],
         &[
             &[B("Darm")],
-            &[T("Magen- und Darmspiegelung. Beantwortet Blutungsquelle und Tumorfrage gemeinsam – deshalb der ergiebigste einzelne Schritt, sobald eine Passagestörung ausgeschlossen ist. Bei der Magenspiegelung gehören zwei Dinge dazu: Gewebeproben aus dem "), B("absteigenden Zwölffingerdarm"), T(", wo die Vaskulitis sitzt, und der Test auf Helicobacter pylori aus denselben Proben.")],
+            &[T("Magen- und Darmspiegelung. Beantwortet Blutungsquelle und Tumorfrage gemeinsam – deshalb der ergiebigste einzelne Schritt, sobald eine Passagestörung ausgeschlossen ist. Seit der Stuhl schwarz und flüssig ist, hat dieser Schritt eine Frist: Bei akuter Blutung im oberen Verdauungstrakt nennen beide Fachgesellschaften "), B("24 Stunden"), T(". Bei der Magenspiegelung gehören zwei Dinge dazu: Gewebeproben aus dem "), B("absteigenden Zwölffingerdarm"), T(", wo die Vaskulitis sitzt, und der Test auf Helicobacter pylori aus denselben Proben. Bei der Darmspiegelung muss das Gerät bis in den "), B("Krummdarm"), T("; dort ist der Befall am häufigsten.")],
         ],
         &[
             &[B("Haut")],
@@ -440,7 +442,7 @@ pub static DOKUMENT: &[Block] = &[
                 B("Und der Stand heute."), T(" Der Stuhlgang ist wieder in Gang und der Ausschlag an den Beinen geht zurück. Zwei echte Besserungen – der Hämoglobinabfall ist damit aber nicht erklärt. Siehe den Abschnitt «Was sich gebessert hat»."),
             ]),
             P(&[
-                B("Und was seither dazugekommen ist."), T(" Das Hämoglobin ist "), B("nochmals gefallen"), T(". Blut im Urin, mit blossem Auge sichtbar. Ein Harnleiter, der an mehreren Stellen gestaut ist. Ein Magen, der weiter gebläht ist und aufstossen lässt. Und deshalb eine laufende Bluttransfusion. Damit ist der Hämoglobinabfall nicht erklärt, sondern nur ersetzt – die Frage nach der Quelle steht unverändert. Siehe die Abschnitte «Blut im Urin», «Der gestaute Harnleiter» und «Die Transfusion»."),
+                B("Und was seither dazugekommen ist."), T(" Der Stuhl ist "), B("schwarz und flüssig"), T(", mit weissem Schleim dazwischen. Das Hämoglobin ist nochmals gefallen. Blut im Urin, mit blossem Auge sichtbar. Ein Harnleiter, der an mehreren Stellen gestaut ist. Ein Magen, der weiter gebläht ist und aufstossen lässt. Und deshalb eine laufende Bluttransfusion. Damit ist der Hämoglobinabfall nicht erklärt, sondern nur ersetzt – die Frage nach der Quelle steht unverändert. Siehe die Abschnitte «Blut im Urin», «Der gestaute Harnleiter» und «Die Transfusion»."),
             ]),
         ],
     },
@@ -595,7 +597,7 @@ pub static DOKUMENT: &[Block] = &[
 
     H2("Woher der Blutverlust kommen kann"),
     Liste(&[
-        &[B("Blutung im Zwölffingerdarm."), T(" Die Vaskulitis schädigt die Schleimhaut am häufigsten dort, gleich hinter dem Magen. Die Blutung muss nicht sichtbar sein – sie kann über Wochen sickern, ohne dass der Stuhl auffällt. Solange gar kein Stuhl kam, fiel dieser Hinweis ganz weg; jetzt, wo die Passage wieder offen ist, steht er wieder zur Verfügung. Seit Blut im Urin ist, steht diese Erklärung wieder zuoberst: Der Urin zeigt, dass die Vaskulitis aktiv ist, und eine aktive Vaskulitis ist es, die im Darm blutet – siehe den Abschnitt «Blut im Urin».")],
+        &[B("Blutung im Zwölffingerdarm."), T(" Seit der Stuhl schwarz und flüssig ist, steht diese Erklärung nicht mehr zur Auswahl, sondern zur Bestätigung: Teerstuhl heisst Blut aus dem oberen Verdauungstrakt. Die Vaskulitis schädigt die Schleimhaut am häufigsten dort, gleich hinter dem Magen. Die Blutung muss nicht sichtbar sein – sie kann über Wochen sickern, ohne dass der Stuhl auffällt. Solange gar kein Stuhl kam, fiel dieser Hinweis ganz weg; jetzt, wo die Passage wieder offen ist, steht er wieder zur Verfügung. Seit Blut im Urin ist, steht diese Erklärung wieder zuoberst: Der Urin zeigt, dass die Vaskulitis aktiv ist, und eine aktive Vaskulitis ist es, die im Darm blutet – siehe den Abschnitt «Blut im Urin».")],
         &[B("Die Magenentzündung."), T(" Eine entzündete, erodierte Schleimhaut ist eine Blutungsquelle; das Ob steht nicht mehr in Frage, nur das Wie viel – und woher die Entzündung kommt. Dass es unter Pantoprazol nicht besser geworden ist, spricht dafür, dass sie nicht die ganze Erklärung ist. Siehe den Abschnitt «Die neue Diagnose: starke Magenentzündung».")],
         &[B("Die Harnwege."), T(" Neu auf dieser Liste, und sie gehört hierher, seit das Blut im Urin sichtbar ist. Blut, das den Nierenfilter passiert, ist bei dieser Krankheit typischerweise nur unter dem Mikroskop zu sehen; was den Urin mit blossem Auge färbt und Gerinnsel bildet, kann eine andere Grössenordnung haben. Welche der beiden es ist, entscheidet das Sediment – siehe den Abschnitt «Blut im Urin».")],
         &[B("Medikamente."), T(" Kortison zusammen mit Schmerzmitteln vom NSAR-Typ (Ibuprofen, Diclofenac, Naproxen) erhöht das Geschwürrisiko erheblich; NSAR belasten zusätzlich die Niere. Blutverdünner verstärken jede vorhandene Blutungsquelle. Die vollständige Medikamentenliste gehört auf den Tisch, rezeptfreie Mittel eingeschlossen.")],
@@ -614,6 +616,20 @@ pub static DOKUMENT: &[Block] = &[
     P(&[B("Der billigste Hinweis steckt im Blut, das ohnehin abgenommen wird."), T(" Bei einer Blutung im oberen Verdauungstrakt wird das Bluteiweiss im Darm verdaut und aufgenommen; der Harnstoff im Blut steigt daraufhin, das Kreatinin nicht. Ein Verhältnis von Harnstoff zu Kreatinin über 30 vervielfacht die Chance auf eine obere Blutungsquelle um das Siebenfache; eine "), L("Metaanalyse", "https://onlinelibrary.wiley.com/doi/10.1111/jgh.70224"), T(" fand den besten Trennwert bei 22, mit 66 Prozent Sensitivität und 71 Prozent Spezifität. Ein Beweis ist das nicht, aber ein Hinweis, der weder eine zusätzliche Entnahme noch einen weiteren Termin kostet.")]),
     Klein(&[T("Ein Fallstrick beim Nachrechnen: Diese Grenzwerte gelten für die amerikanischen Einheiten, Harnstoffstickstoff und Kreatinin je in mg/dl; dort liegt der übliche Bereich bei etwa 8 bis 15. Schweizer Labors geben Harnstoff in mmol/l und Kreatinin in µmol/l an, und in dieser Rechnung sehen dieselben Verhältnisse ganz anders aus – der übliche Bereich liegt dann "), L("bei etwa 40 bis 100", "https://litfl.com/urea-creatinine-ratio/"), T(". Wer die Zahlen des Laborberichts direkt gegen die 30 hält, bekommt Unsinn heraus. Die Rechnung gehört der Ärztin; hier steht sie, damit die Frage überhaupt gestellt wird.")]),
     P(&[T("Und wie die Frage auch ausgeht: Der Hämoglobinabfall braucht eine Erklärung. Fällt der Stuhl als Quelle aus, rücken die übrigen Einträge der Liste oben nach vorn – und der wirksamste nächste Schritt bleibt derselbe, den dieses Blatt an mehreren Stellen nennt: die Spiegelung, die Blutungsquelle und Tumorfrage in einem Durchgang beantwortet.")]),
+
+    H3("Die Beschreibung ist jetzt eine andere"),
+    P(&[T("Inzwischen liegt eine genauere Auskunft vor: "), B("schwarz und flüssig"), T(", mit weissem Schleim dazwischen. Das ist keine Farbangabe mehr, sondern die Beschreibung von Teerstuhl. Dasselbe Kapitel, das oben schon zitiert ist, definiert die Meläna als "), L("schwarzen, teerartigen Stuhl", "https://www.ncbi.nlm.nih.gov/books/NBK411/"), T(" – und hebt hervor, dass Betroffene sich vor allem an die klebrige Beschaffenheit erinnern. Zusammen mit dem nochmals gefallenen Hämoglobin und der Transfusion ist die Frage dieses Abschnitts damit praktisch beantwortet. Die Galle erklärt einen dunklen ersten Stuhl nach Wochen ohne Stuhlgang. Sie erklärt keinen schwarzen, flüssigen Stuhl bei gleichzeitig weiter fallendem Hämoglobin.")]),
+    P(&[T("Drei Vorbehalte bleiben, und sie kosten alle nichts:")]),
+    Liste(&[
+        &[B("Erst die Medikamentenliste, dann das Auge."), T(" Eisenpräparate und Wismut färben den Stuhl ebenso schwarz. Ob eines davon läuft, ist in einer Minute geklärt und entscheidet mehr als jede Beschreibung.")],
+        &[B("Läuft ein Abführmittel?"), T(" Dann gehört ihm die flüssige Beschaffenheit zugerechnet – die Farbe aber nicht. Beides sauber auseinanderzuhalten spart eine Fehldeutung in beide Richtungen.")],
+        &[B("Die Farbe sagt nichts über jetzt."), T(" Ein bis zwei Liter Blut lassen den Stuhl "), L("bis zu fünf Tage lang", "https://www.ncbi.nlm.nih.gov/books/NBK411/"), T(" teerartig aussehen; der erste solche Stuhl erscheint 4 bis 20 Stunden nach der Blutung. Der Stuhl beweist also, "), B("dass"), T(" geblutet wurde, nicht dass gerade jetzt geblutet wird. Was jetzt blutet, verrät der Hämoglobinverlauf nach der Transfusion.")],
+    ]),
+    P(&[B("Und daraus folgt eine Frist, keine Empfehlung."), T(" Teerstuhl ist das Leitzeichen der akuten Blutung im oberen Verdauungstrakt. Für diese Lage empfiehlt die europäische Fachgesellschaft nach der Kreislaufstabilisierung die Magenspiegelung "), L("innerhalb von 24 Stunden", "https://pubmed.ncbi.nlm.nih.gov/33567467/"), T(" – eine starke Empfehlung. Die amerikanische Fachgesellschaft schlägt dieselben "), L("24 Stunden ab Vorstellung", "https://doi.org/10.14309/ajg.0000000000001245"), T(" vor, und zwar ausdrücklich unabhängig davon, ob das Risiko als hoch oder niedrig eingeschätzt wird. An allen anderen Stellen sagt dieses Blatt, die Spiegelung sei der ergiebigste Schritt. Hier sagt es etwas Schärferes: Sie hat eine Uhr.")]),
+
+    H3("Der weisse Schleim"),
+    P(&[T("Er gehört nicht zur selben Geschichte. Die schwarze Farbe kommt von oben, aus Magen oder Zwölffingerdarm; Schleim kommt von unten. Er ist ein Erzeugnis der Darmschleimhaut, und eine "), L("gereizte Schleimhaut", "https://my.clevelandclinic.org/health/symptoms/mucus-in-stool"), T(" gibt mehr davon ab. Zwei Erklärungen liegen nahe: ein Dickdarm, der nach vier bis fünf Wochen Stillstand wieder in Gang kommt – und der Dickdarmbefall der Vaskulitis selbst.")]),
+    P(&[T("Dazu liefert dieselbe Untersuchung an 108 Erwachsenen, die weiter oben die Magenspiegelungen ausgewertet hat, auch die Zahlen für unten. Bei den 31 "), L("Darmspiegelungen", "https://pmc.ncbi.nlm.nih.gov/articles/PMC11429444/"), T(" war der Krummdarm in 61,3 Prozent befallen, der Dickdarm in 38,7 und der Enddarm in 22,6 Prozent. "), B("Daraus folgt dasselbe wie oben, nur am anderen Ende:"), T(" Das Gerät muss bis in den Krummdarm, das letzte Stück Dünndarm vor dem Übergang in den Dickdarm. Wer dort nicht hinschaut, sieht die Stelle nicht, an der die Vaskulitis bei der Darmspiegelung am häufigsten sitzt.")]),
 
     H2("Was abgeklärt gehört"),
     Tab(&T_ABKLAERUNG),
@@ -779,7 +795,10 @@ pub static DOKUMENT: &[Block] = &[
     H2("Fragen, die sich lohnen"),
     Liste(&[
         &[T("Nach vier bis fünf Wochen ohne Stuhlgang geht die Passage wieder – ist damit geklärt, warum sie stand, oder steht die Untersuchung des Bauches weiter aus?")],
-        &[T("Der dunkle Stuhl wurde mit der Galle erklärt – womit wurde Blut als Quelle ausgeschlossen?")],
+        &[T("Der Stuhl ist schwarz und flüssig: Hat jemand vom Fach ihn gesehen und als Teerstuhl beurteilt – und ist er dokumentiert?")],
+        &[T("Läuft ein Eisenpräparat oder ein Wismutpräparat? Beide färben den Stuhl ebenfalls schwarz.")],
+        &[T("Teerstuhl ist das Leitzeichen der oberen Blutung, und beide Fachgesellschaften nennen dafür 24 Stunden bis zur Magenspiegelung – wann ist sie angesetzt?")],
+        &[T("Woher kommt der weisse Schleim? Wird bei der Darmspiegelung bis in den Krummdarm geschaut, wo der Befall am häufigsten ist?")],
         &[T("Wie stehen Harnstoff und Kreatinin aus derselben Blutentnahme zueinander?")],
         &[T("Es ist Blut im Urin: Wurde ein Sediment untersucht, und kommt das Blut aus der Niere oder aus den ableitenden Harnwegen – Akanthozyten, Erythrozytenzylinder?")],
         &[T("Der Harnleiter ist an mehreren Stellen gestaut – wodurch? Gerinnsel, die Vaskulitis selbst oder etwas Urologisches?")],
@@ -994,6 +1013,12 @@ pub static QUELLEN: &[(&str, Verweis)] = &[
      Verweis { text: "hospital.blood.co.uk – Single unit blood transfusions", url: "https://hospital.blood.co.uk/patient-services/patient-blood-management/appropriate-use-of-blood-components/single-unit-blood-transfusions/" }),
     ("Single Unit Transfusion of Red Cells – Guidance Resource. NHS National Services Scotland",
      Verweis { text: "nss.nhs.scot – Single unit transfusion guidance", url: "https://www.nss.nhs.scot/media/6134/single_unit_transfusion_guidance-draft_14final-pdf.pdf" }),
+    ("Gralnek IM et al.: Endoscopic diagnosis and management of nonvariceal upper gastrointestinal hemorrhage. ESGE Guideline Update 2021. Endoscopy 2021; 53: 300-332. PMID 33567467",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/33567467/", url: "https://pubmed.ncbi.nlm.nih.gov/33567467/" }),
+    ("Laine L et al.: ACG Clinical Guideline – Upper Gastrointestinal and Ulcer Bleeding. Am J Gastroenterol 2021; 116: 899-917",
+     Verweis { text: "https://doi.org/10.14309/ajg.0000000000001245", url: "https://doi.org/10.14309/ajg.0000000000001245" }),
+    ("Zum Schleim im Stuhl: Mucus in Stool. Cleveland Clinic",
+     Verweis { text: "my.clevelandclinic.org – Mucus in Stool", url: "https://my.clevelandclinic.org/health/symptoms/mucus-in-stool" }),
     ("KDIGO 2025 Clinical Practice Guideline for the Management of IgA Nephropathy and IgA Vasculitis. Kidney Int 2025",
      Verweis { text: "https://doi.org/10.1016/j.kint.2025.04.004", url: "https://doi.org/10.1016/j.kint.2025.04.004" }),
 ];
