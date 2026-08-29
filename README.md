@@ -16,10 +16,12 @@ Hämoglobin innert kurzer Zeit von 108 auf 83 g/l gefallen ist, mit einem
 massiven Ausschlag an den Beinen in der Vorgeschichte. Dazu seit Wochen
 kein Appetit, starke Bauchschmerzen, wenig Schlaf, Erbrechen nach jeder
 Nahrungsaufnahme, kaum Flüssigkeit und seit etwa vier bis fünf Wochen gar
-kein Stuhlgang mehr. Die «Ausgangslage» im Dokument beschreibt diesen Fall.
+kein Stuhlgang mehr. Inzwischen ist das Hämoglobin nochmals gefallen und
+wird transfundiert, es ist Blut im Urin, und der Harnleiter ist an mehreren
+Stellen gestaut. Die «Ausgangslage» im Dokument beschreibt diesen Fall.
 Namen kommen keine vor.
 
-Sechs Punkte, an denen sich das Blatt aufhängt, weil sie leicht falsch
+Die Punkte, an denen sich das Blatt aufhängt, weil sie leicht falsch
 verstanden werden:
 
 - **Beim Hämoglobin ist tief schlechter, nicht besser.** Die Verwechslung
@@ -63,6 +65,23 @@ verstanden werden:
   pflanzlicher Nahrung um 79 bis 94 Prozent; eine Stunde Abstand halbiert
   den Effekt. Unter einem Protonenpumpenhemmer kommt Eisen ohnehin
   schlechter an – bei einem Hämoglobin von 83 g/l ist das keine Feinheit.
+- **Blut aus dem Magen kann nicht in den Urin gelangen.** Verdauungstrakt
+  und Harnwege sind getrennt; die einzige Spur, die eine Magenblutung im
+  Labor hinterlässt, ist ein steigender Harnstoff. Blut im Urin heisst
+  deshalb: ein zweiter Ort. Bei dieser Krankheit ist das kein Zufall,
+  sondern ihr Bauplan – dieselben IgA-Ablagerungen in Haut, Darm und Niere.
+  Das Blut im Urin spricht damit **für** die Darmblutung, nicht gegen sie.
+- **Ein gestauter Harnleiter an mehreren Stellen ist die eigentliche
+  Information.** Ein Stein oder ein Tumor sitzt an einer Stelle. Mehrere
+  Engstellen sprechen für Gerinnsel oder für eine Entzündung entlang der
+  Wand – die stenosierende Ureteritis dieser Vaskulitis gibt es, sie ist
+  selten und fast nur bei Kindern beschrieben, und sie spricht auf Kortison
+  an. Mit 84 Jahren steht daneben die urologische Abklärung, die das Alter
+  allein schon auslöst.
+- **Eine Transfusion ersetzt den Verlust, sie erklärt ihn nicht.** Die
+  nützlichste Zahl kommt danach: Eine Einheit hebt das Hämoglobin um rund
+  10 g/l. Bleibt der Anstieg aus oder fällt der Wert wieder, blutet es
+  weiter – ein härterer Beweis als jede Stuhlfarbe.
 
 ## Was drinsteht
 
@@ -72,7 +91,10 @@ Chapel-Hill-Nomenklatur 2012 und geht von dort in den Fall.
 Der Verlauf der letzten Wochen und was er bedeutet · den Hämoglobinwert
 lesen und was die Infusion mit ihm macht · Krankheitsbild und die vier
 betroffenen Bereiche · was den Schub ausgelöst haben kann · warum das Alter
-den Verlauf ändert · belegte Fälle älterer Frauen, nah an 84 · was ein früherer Schub bedeutet · Herkunft des
+den Verlauf ändert · belegte Fälle älterer Frauen, nah an 84 · was ein früherer Schub bedeutet ·
+warum Blut im Urin nicht aus dem Magen kommen kann und was das Sediment
+darüber entscheidet · der gestaute Harnleiter und seine drei Erklärungen ·
+die Transfusion und die Zahl, die danach zählt · Herkunft des
 Blutverlusts · eine Tabelle der notwendigen Abklärungen · Behandlung ·
 Novalgin und was dabei zu kontrollieren ist · die Magenentzündung und woher
 sie kommen kann · Pantoprazol, sein Zeitpunkt und seine Folgen · was sie
@@ -98,7 +120,7 @@ Die Arzneimittelangaben stammen aus den Fachinformationen auf
 [SDIF](https://sdif.oddb.org), dem Swiss Drug Interaction Finder, der die
 Schweizer Fachinformationen mit den abgestuften EPha-Daten abgleicht. Die
 Adressen sind öffentliche Angaben des Universitätsspitals Zürich, überprüft
-am 28. August 2026.
+am 29. August 2026.
 
 ## Bauen
 

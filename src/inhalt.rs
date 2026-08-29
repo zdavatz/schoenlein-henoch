@@ -77,7 +77,7 @@ pub const TITEL2: &str = "(Purpura Schönlein-Henoch)";
 pub const UNTERTITEL: &str =
     "Krankheitsbild, notwendige Abklärungen und die Spezialistinnen und Spezialisten in Zürich";
 pub const STAND: &str =
-    "Informationsblatt für die Patientin und ihre Angehörigen · Stand 28. August 2026 · zum Mitnehmen zum Arzttermin";
+    "Informationsblatt für die Patientin und ihre Angehörigen · Stand 29. August 2026 · zum Mitnehmen zum Arzttermin";
 pub const KOPFZEILE: &str = "IgA-Vaskulitis (Purpura Schönlein-Henoch)";
 
 
@@ -135,6 +135,16 @@ static T_VERLAUF: Tabelle = Tabelle {
             )],
         ],
         &[
+            &[B("Der Magen ist gebläht, sie muss aufstossen – auch unter Pantoprazol")],
+            &[T(
+                "Das ist der Punkt, an dem der Säureblocker die Antwort schuldig bleibt. Ein \
+                 Völlegefühl mit Aufstossen, das unter voller Säurehemmung fortbesteht, hält die \
+                 Frage offen, ob der Mageninhalt weiterkommt – dieselbe Frage wie beim Erbrechen, \
+                 nur leiser gestellt. Sie gehört zu den Gründen, die Spiegelung nicht weiter zu \
+                 verschieben.",
+            )],
+        ],
+        &[
             &[B("Über vier bis fünf Wochen gar kein Stuhlgang – inzwischen wieder in Gang")],
             &[T(
                 "Ausbleibender Stuhl gehört zusammen mit Erbrechen und Bauchschmerz zum \
@@ -167,12 +177,16 @@ static T_ABKLAERUNG: Tabelle = Tabelle {
             &[T("Kreatinin, eGFR, Albumin im Blut – der Verlauf, nicht nur der Einzelwert. Dazu der "), B("Harnstoff aus derselben Entnahme"), T(": Wie er zum Kreatinin steht, ist ein Hinweis darauf, ob eine Blutungsquelle oben liegt – siehe den Abschnitt «Dunkler Stuhl: Galle oder Blut?».")],
         ],
         &[
+            &[B("Harnwege")],
+            &[T("Ultraschall der Nieren und ableitenden Harnwege, "), B("wiederholt"), T(" – er zeigt den Stau ohne Kontrastmittel und ohne Strahlung. Dazu, wegen sichtbaren Bluts im Urin und des Alters, die urologische Abklärung mit Blasenspiegelung und Bildgebung der oberen Harnwege; die Computertomografie des Bauches lässt sich als CT-Urografie fahren und beantwortet dann beide Fragen auf einmal.")],
+        ],
+        &[
             &[B("Blutzerfall")],
             &[T("LDH, Haptoglobin, Bilirubin – trennt einen Zerfall der roten Blutkörperchen vom Blutverlust nach aussen.")],
         ],
         &[
             &[B("Urin")],
-            &[T("Status und Sediment (Erythrozyten, Akanthozyten, Zylinder) sowie "), B("Protein-Kreatinin-Quotient im Spoturin"), T(". Die wichtigste wiederholte Kontrolle überhaupt.")],
+            &[T("Status und Sediment (Erythrozyten, "), B("Akanthozyten"), T(", Erythrozytenzylinder) sowie "), B("Protein-Kreatinin-Quotient im Spoturin"), T(". Die wichtigste wiederholte Kontrolle überhaupt – und jetzt, wo Blut im Urin ist, die Untersuchung, die entscheidet, ob es aus der Niere oder aus den ableitenden Harnwegen kommt. Ein Streifentest allein beantwortet das nicht.")],
         ],
         &[
             &[B("Immunologie")],
@@ -185,6 +199,10 @@ static T_ABKLAERUNG: Tabelle = Tabelle {
         &[
             &[B("Ernährung")],
             &[T("Gewichtsverlauf, Albumin, Phosphat, Kalium, Magnesium. Nach Wochen ohne Nahrung sind diese Werte die Voraussetzung dafür, dass der Kostaufbau sicher beginnen kann. Magnesium steht unter Pantoprazol ein zweites Mal auf dieser Liste.")],
+        ],
+        &[
+            &[B("Nach der Transfusion")],
+            &[T("Hämoglobin am Tag danach. Eine Einheit hebt den Wert um rund "), N("10 g/l"), T("; bleibt der Anstieg aus oder fällt der Wert wieder, läuft die Blutung weiter. Dazu die Flüssigkeitsbilanz, weil die Infusion daneben weiterläuft.")],
         ],
         &[
             &[B("Bauch, dringlich")],
@@ -410,7 +428,7 @@ pub static DOKUMENT: &[Block] = &[
                 B("Der Wert."), T(" "), N("83 g/l"), T(" ist eine mittelschwere Blutarmut; der Normbereich für Frauen liegt bei etwa "), N("117–157 g/l"), T(". Die üblichen Transfusionsgrenzen liegen bei "), N("70 g/l"), T(", bei bekannter Herzkrankheit bei "), N("80 g/l"), T(". 83 liegt knapp darüber – also nicht automatisch transfusionsbedürftig, aber in dem Bereich, in dem der Zustand der Patientin entscheidet und nicht die Zahl."),
             ]),
             P(&[
-                B("Das Tempo."), T(" Der Abfall um "), N("25 g/l"), T(" ist der eigentliche Befund. Eine Blutarmut durch Entzündung oder Nierenschwäche entwickelt sich über Monate. Ein Abfall innert Wochen spricht für Blutverlust – bei dieser Krankheit in erster Linie aus dem Darm. Das gehört rasch abgeklärt und nicht in eine Sprechstunde in sechs Wochen."),
+                B("Das Tempo."), T(" Der Abfall um "), N("25 g/l"), T(" war der eigentliche Befund – und er ist nicht stehengeblieben. Eine Blutarmut durch Entzündung oder Nierenschwäche entwickelt sich über Monate. Ein Abfall innert Wochen spricht für Blutverlust; ein Abfall, der weitergeht, spricht für einen Blutverlust, der weitergeht. Bei dieser Krankheit in erster Linie aus dem Darm. Das gehört rasch abgeklärt und nicht in eine Sprechstunde in sechs Wochen."),
             ]),
             P(&[
                 B("Der Bauch."), T(" Seit Wochen kein Appetit, starke Bauchschmerzen, wenig Schlaf, immer wieder Erbrechen – jedes Mal, nachdem eine Kleinigkeit gegessen wurde –, kaum Flüssigkeit, und über vier bis fünf Wochen gar kein Stuhlgang. Diese Kombination ist keine gewöhnliche Verstopfung; sie ist das Bild einer Passagestörung. Siehe den Abschnitt «Was seit Wochen läuft»."),
@@ -419,7 +437,10 @@ pub static DOKUMENT: &[Block] = &[
                 B("Und ein Vorlauf."), T(" Es gab schon einmal einen massiven Ausschlag an den Beinen, nach einer Phase starker Belastung. Damit ist das heutige Bild wahrscheinlich kein Erstereignis – siehe den Abschnitt «Ein früherer Schub»."),
             ]),
             P(&[
-                B("Und der Stand heute."), T(" Der Stuhlgang ist wieder in Gang, der Ausschlag an den Beinen geht zurück, der Urin wurde untersucht und war unauffällig. Drei echte Besserungen – der Hämoglobinabfall ist damit aber nicht erklärt. Siehe den Abschnitt «Was sich gebessert hat»."),
+                B("Und der Stand heute."), T(" Der Stuhlgang ist wieder in Gang und der Ausschlag an den Beinen geht zurück. Zwei echte Besserungen – der Hämoglobinabfall ist damit aber nicht erklärt. Siehe den Abschnitt «Was sich gebessert hat»."),
+            ]),
+            P(&[
+                B("Und was seither dazugekommen ist."), T(" Das Hämoglobin ist "), B("nochmals gefallen"), T(". Blut im Urin, mit blossem Auge sichtbar. Ein Harnleiter, der an mehreren Stellen gestaut ist. Ein Magen, der weiter gebläht ist und aufstossen lässt. Und deshalb eine laufende Bluttransfusion. Damit ist der Hämoglobinabfall nicht erklärt, sondern nur ersetzt – die Frage nach der Quelle steht unverändert. Siehe die Abschnitte «Blut im Urin», «Der gestaute Harnleiter» und «Die Transfusion»."),
             ]),
         ],
     },
@@ -437,7 +458,7 @@ pub static DOKUMENT: &[Block] = &[
     ]),
 
     H2("Was sich gebessert hat"),
-    P(&[T("Drei Dinge haben sich geändert, und alle drei sind echte Besserung: Der Stuhlgang ist wieder in Gang, der Ausschlag an den Beinen geht zurück, und der Urin wurde untersucht und war unauffällig. Was jede der drei Meldungen beantwortet – und was sie ausdrücklich nicht beantwortet – steht hier. Zwei weitere Änderungen haben eigene Abschnitte, weil mehr an ihnen hängt: Sie isst und trinkt wieder, und der Bauchbefund hat einen Namen bekommen.")]),
+    P(&[T("Zwei Dinge haben sich geändert, und beide sind echte Besserung: Der Stuhlgang ist wieder in Gang, und der Ausschlag an den Beinen geht zurück. Was jede der beiden Meldungen beantwortet – und was sie ausdrücklich nicht beantwortet – steht hier. Die dritte Meldung, der unauffällige Urin, stand bis vor kurzem ebenfalls an dieser Stelle; sie ist überholt und hat einen eigenen Abschnitt bekommen. Weitere Änderungen ebenso, weil mehr an ihnen hängt: Sie isst und trinkt wieder, der Bauchbefund hat einen Namen bekommen, und sie bekommt Blut.")]),
 
     H3("Der Stuhlgang ist wieder in Gang"),
     P(&[T("Das ist die wichtigste der drei Meldungen. Der Verdacht, der über allem stand – Passagestörung, im schlimmsten Fall Darmverschluss –, ist damit entschärft: Was durchgeht, ist nicht verschlossen. Der Notfallgrund fällt weg.")]),
@@ -448,10 +469,10 @@ pub static DOKUMENT: &[Block] = &[
     P(&[B("Das Fenster für die Hautbiopsie schliesst sich."), T(" Der Beweis der Diagnose ist der IgA-Nachweis in der Gefässwand, und er gelingt nur an einer frischen Läsion, jünger als etwa 48 Stunden; an abgeheilten Flecken findet sich nichts mehr. Wer die Diagnose sichern will, hat dafür so lange Zeit, wie noch frische Flecken nachkommen – danach nicht mehr. Dasselbe gilt für Fotos mit Datum, und die kosten nichts.")]),
     P(&[B("Die Urinkontrolle fängt jetzt erst an."), T(" Der häufigste Fehler bei dieser Krankheit ist, die Kontrollen zu beenden, sobald die Haut wieder sauber aussieht. Die Nierenbeteiligung "), L("entwickelt sich", "https://www.aafp.org/pubs/afp/issues/2020/0815/p229.html"), T(" typischerweise ein bis drei Monate nach dem Ausschlag und kann sich bis zu sechs Monate verzögern; 91 Prozent treten innerhalb von sechs Wochen auf, 97 Prozent innerhalb von sechs Monaten. Der abheilende Ausschlag ist deshalb kein Grund, mit dem Urin aufzuhören – er markiert den Beginn der Zeit, in der hingeschaut werden muss.")]),
 
-    H3("Der Urin ist unauffällig"),
-    P(&[T("Die beste Nachricht des Blattes: Das Organ, das über den Verlauf entscheidet, zeigt im Moment nichts. Zwei Einschränkungen gehören dazu, und keine davon ist eine Spitzfindigkeit.")]),
-    P(&[B("Was genau wurde gemacht?"), T(" Ein Streifentest allein ist nicht dasselbe wie Status, Sediment und Protein-Kreatinin-Quotient. Der Streifen misst eine Konzentration, und deshalb hängt sein Ergebnis daran, wie verdünnt der Urin ist – unter laufender Infusion ist er verdünnt. In einer Untersuchung an 2932 Urinproben wurde eine erhebliche Eiweissausscheidung in den verdünnten Proben vom Streifentest "), L("nicht erkannt", "https://pmc.ncbi.nlm.nih.gov/articles/PMC5063823/"), T(". Der Protein-Kreatinin-Quotient hat dieses Problem nicht: Er bezieht das Eiweiss auf das Kreatinin und ist damit von der Verdünnung unabhängig. Die Frage lautet also nicht «war der Urin gut», sondern «welche Untersuchungen waren darin enthalten, und wie hoch war der Quotient».")]),
-    P(&[B("Ein normaler Befund ist eine Momentaufnahme."), T(" Urin und Blutdruck gehören über mindestens sechs Monate kontrolliert, ausdrücklich auch dann, wenn der erste Befund normal war. Der Wert des heutigen Ergebnisses liegt nicht darin, dass es die Frage schliesst, sondern darin, dass es der erste Punkt einer Kurve ist.")]),
+    H3("Der Urin – diese Meldung ist überholt"),
+    P(&[T("Hier stand die beste Nachricht des Blattes: Das Organ, das über den Verlauf entscheidet, zeige im Moment nichts. Das gilt nicht mehr. Inzwischen ist Blut im Urin, sichtbar, und der Harnleiter ist an mehreren Stellen gestaut. Beides hat weiter unten einen eigenen Abschnitt.")]),
+    P(&[T("Zwei Sätze aus der alten Fassung bleiben trotzdem stehen, weil sie sich rückblickend als die richtigen erwiesen haben. Der erste: "), B("Ein unauffälliger Streifentest ist nicht dasselbe wie ein unauffälliger Urin."), T(" Der Streifen misst eine Konzentration, und deshalb hängt sein Ergebnis daran, wie verdünnt der Urin ist – unter laufender Infusion ist er verdünnt. In einer Untersuchung an 2932 Urinproben wurde eine erhebliche Eiweissausscheidung in den verdünnten Proben vom Streifentest "), L("nicht erkannt", "https://pmc.ncbi.nlm.nih.gov/articles/PMC5063823/"), T(". Der Protein-Kreatinin-Quotient hat dieses Problem nicht: Er bezieht das Eiweiss auf das Kreatinin und ist von der Verdünnung unabhängig.")]),
+    P(&[T("Der zweite: "), B("Ein normaler Befund ist eine Momentaufnahme."), T(" Urin und Blutdruck gehören über mindestens sechs Monate kontrolliert, ausdrücklich auch dann, wenn der erste Befund normal war. Genau so ist es gekommen. Der Wert des damaligen Ergebnisses lag nie darin, dass es die Frage schloss, sondern darin, dass es der erste Punkt einer Kurve war – und die Kurve hat sich inzwischen bewegt.")]),
 
     H3("Was offen bleibt: die 25 g/l"),
     P(&[T("Keine der drei Meldungen erklärt den Hämoglobinabfall. Der unauffällige Urin sagt etwas über die Niere und nichts über den Blutverlust – die langsame Blutarmut aus nachlassender Nierenfunktion passt zu diesem Tempo ohnehin nicht. Und die Auskunft, der dunkle Stuhl sei Galle gewesen, nimmt, falls sie zutrifft, die naheliegendste Quelle aus der Rechnung. Damit wird die Frage nicht kleiner, sondern dringlicher: Es fehlen "), N("25 g/l"), T(", und die wahrscheinlichste Erklärung wäre gerade ausgeschieden. Wie sich das ohne grossen Aufwand weiterverfolgen lässt, steht im Abschnitt «Dunkler Stuhl: Galle oder Blut?».")]),
@@ -467,6 +488,27 @@ pub static DOKUMENT: &[Block] = &[
     ]),
     P(&[B("Der wichtigste Satz zu dieser Diagnose steht in der Fachinformation des neuen Medikaments."), T(" Sie nennt "), L("Warnsymptome", "https://ch.oddb.org/de/gcc/fachinfo/reg/58350/chapter/restrictions"), T(", bei denen eine bösartige Erkrankung ausgeschlossen werden "), B("muss"), T(": unerklärlicher Gewichtsverlust, wiederholtes Erbrechen, Schluckstörung, Bluterbrechen, Blutarmut, Teerstuhl. Drei davon treffen hier sicher zu – Gewichtsverlust, wiederholtes Erbrechen, Blutarmut –, und der vierte ist genau die offene Frage aus dem Abschnitt «Dunkler Stuhl: Galle oder Blut?». Die Begründung steht gleich dahinter: Die Behandlung mit Pantoprazol kann die Symptome kaschieren und die Diagnosestellung dadurch verzögern.")]),
     P(&[T("Das kehrt eine naheliegende Erwartung um. Der Magenschutz macht die Spiegelung nicht weniger dringend, sondern dringender – er nimmt die Beschwerden weg, ohne die Frage zu beantworten, woher sie kamen. Wird es unter dem Mittel besser, ist das eine Erleichterung und kein Befund.")]),
+    P(&[B("Inzwischen hat sich diese Frage beantwortet, und zwar in die unangenehme Richtung."), T(" Der Magen ist weiter gebläht, das Aufstossen hält an. Unter Pantoprazol ist es also nicht besser geworden. Damit entfällt die Erleichterung und der Befund bleibt stehen: Beschwerden, die unter voller Säurehemmung fortbestehen, sind mit der Säure nicht erklärt. Die Warnsymptome aus der Fachinformation gelten unverändert – und die Begründung, mit der sie dort stehen, greift jetzt doppelt. Ein Mittel, dem man zutraut, die Symptome zu kaschieren, hat sie nicht einmal kaschiert.")]),
+
+    H2("Blut im Urin: warum das nicht aus dem Magen kommen kann"),
+    P(&[T("Die Frage liegt nahe, und ihre Antwort ist eindeutig: Blut aus dem Magen kann nicht in den Urin gelangen. Verdauungstrakt und Harnwege sind zwei getrennte Rohrsysteme; sie berühren einander nirgends. Was im Magen blutet, nimmt den Weg durch den Darm – und wird dort verdaut wie Nahrung. Genau davon handelt der Abschnitt «Dunkler Stuhl: Galle oder Blut?»: Das Bluteiweiss wird aufgenommen, und der Harnstoff im Blut steigt. Das ist die einzige Spur, die eine Blutung im Magen jenseits des Stuhls hinterlässt – Harnstoff im Blut, nicht Blut im Urin.")]),
+    P(&[B("Es sind also zwei Blutungsorte und nicht einer."), T(" Das ist bei dieser Krankheit kein Zufall, sondern ihr Bauplan. Die IgA-Vaskulitis ist eine Entzündung der kleinen Gefässe, und die IgA-Ablagerungen sitzen "), L("in Magen-Darm-Trakt, Gelenken, Haut und Nieren", "https://www.aafp.org/pubs/afp/issues/2020/0815/p229.html"), T(" zugleich. Der Ausschlag an den Beinen, der Bauch und der Urin sind nicht drei Krankheiten, sondern derselbe Vorgang an drei Orten. Wer jetzt Blut im Urin sieht, sieht nichts Neues – er sieht das dritte Organ.")]),
+    P(&[B("Deshalb spricht das Blut im Urin nicht gegen die Darmblutung, sondern für sie."), T(" Es zeigt, dass die Vaskulitis in diesem Moment aktiv ist, und eine aktive Vaskulitis ist genau die Erklärung, die eine Blutung im Zwölffingerdarm braucht. Dass beides zusammen die ungünstige Kombination ist, zeigt eine "), L("Untersuchung an 30 Erwachsenen", "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6942937/"), T(" mit IgA-Vaskulitis und Nierenbeteiligung: Von den zehn mit einer Magen-Darm-Blutung wurden 50 Prozent dialysepflichtig, von den zwanzig übrigen 5 Prozent. Die Zahl gehört mit Vorsicht gelesen – 30 Patienten sind wenig, und in der um Bluthochdruck und Eiweissausscheidung bereinigten Rechnung war der Zusammenhang nicht mehr statistisch gesichert. Als Richtungsangabe taugt sie trotzdem, und sie zeigt dorthin, wohin dieses Blatt an mehreren Stellen zeigt: zur Spiegelung.")]),
+    P(&[B("Was sichtbares Blut bedeutet – und was nicht."), T(" Die Patientin berichtet eine Makrohämaturie, also mit blossem Auge sichtbares Blut. Das ist ein anderer Befund als die mikroskopische Hämaturie. Die Nierenbeteiligung dieser Krankheit zeigt sich typischerweise unter dem Mikroskop: "), L("mikroskopische Hämaturie, Erythrozytenzylinder, Eiweiss im Urin", "https://www.aafp.org/pubs/afp/issues/2020/0815/p229.html"), T(", bis hin zum offenen Nierenversagen. Sichtbares Blut kommt vor, ist aber zugleich der Befund, mit dem in den Fallberichten eine seltene Komplikation begonnen hat, die durch den gestauten Harnleiter neu im Raum steht – siehe den nächsten Abschnitt.")]),
+    P(&[B("Eine einzige Untersuchung entscheidet, woher das Blut kommt."), T(" Ein Streifentest genügt dafür nicht; er wird auch dann positiv, wenn nur freier Blutfarbstoff im Urin ist, ohne rote Blutkörperchen. Das Sediment sagt mehr. Rote Blutkörperchen, die den Nierenfilter passiert haben, sehen anders aus als solche, die aus Harnleiter oder Blase stammen: "), B("Akanthozyten"), T(" heissen die ringförmigen Zellen mit den bläschenartigen Ausstülpungen. In der Arbeit, die sie beschrieben hat, fanden sich Akanthozyten von mindestens 5 Prozent bei 75 von 143 Patienten mit gesicherter Glomerulonephritis, also mit einer Empfindlichkeit von 52 Prozent – aber nur bei 4 von 187 mit nicht-glomerulärer Ursache, einer "), L("Spezifität von 98 Prozent", "https://pubmed.ncbi.nlm.nih.gov/1921146/"), T(". Übersetzt: Findet man sie, ist die Frage entschieden; findet man sie nicht, ist nichts ausgeschlossen. Erythrozytenzylinder beweisen den Ursprung in der Niere ebenso, weil sie nur im Nierenkanälchen entstehen können.")]),
+    P(&[T("Dazu gehört, aus derselben Probe, der Protein-Kreatinin-Quotient. Er beantwortet die zweite Hälfte der Frage. Blut allein ist das eine, Blut zusammen mit Eiweissverlust das andere – am Eiweissverlust hängt die Prognose, und an ihm entscheidet sich, ob eine Nierenbiopsie angezeigt ist.")]),
+    P(&[B("Und was das Alter dazu sagt."), T(" Eine Auswertung des japanischen Nierenbiopsie-Registers vergleicht Erwachsene zwischen 19 und 64 Jahren mit über 65-Jährigen, alle mit gesicherter IgA-Vaskulitis-Nephritis. Die Älteren starteten nicht schlechter, aber ihr Verlauf war steiler: Ein Anstieg des Kreatinins um die Hälfte trat bei "), L("21,7 gegenüber 4,7 Prozent", "https://pmc.ncbi.nlm.nih.gov/articles/PMC5940189/"), T(" ein, beobachtet über im Mittel 3,9 Jahre. Das Nierenüberleben nach neun Jahren war in beiden Gruppen gut, 91,4 gegenüber 93,6 Prozent – erreicht allerdings unter konsequenter Behandlung mit Kortison und einem Blutdruckmittel aus der RAS-Gruppe. Der Schluss der Autoren ist genau der, der hier zählt: Jenseits von 65 gehört der Verlauf der Nierenfunktion sorgfältig überwacht.")]),
+
+    H2("Der gestaute Harnleiter"),
+    P(&[T("Diese Auskunft ist neu und sie wiegt schwer. Ein gestauter Harnleiter heisst, dass der Urin nicht abfliesst. Hält das an, leidet die Niere an einem Hindernis unterhalb ihrer selbst – ein Nierenversagen, das nicht in der Niere entsteht und sich, anders als die übrigen Formen, allein durch die Wiederherstellung des Abflusses beheben lässt. Verfolgen lässt es sich am Kreatinin; das Bild dazu liefert der Ultraschall, und der kostet weder Kontrastmittel noch Strahlung und lässt sich beliebig oft wiederholen.")]),
+    P(&[B("«An mehreren Stellen» ist dabei die eigentliche Information."), T(" Ein Stein sitzt an einer Stelle, ein Tumor ebenso. Mehrere Engstellen sprechen entweder für etwas, das dem Harnleiter der Länge nach zusetzt, oder für etwas, das wandert. Drei Erklärungen stehen nebeneinander, und sie sind nicht gleich wahrscheinlich:")]),
+    Liste(&[
+        &[B("Gerinnsel."), T(" Bei sichtbarem Blut im Urin die naheliegendste Erklärung und die einzige, die von selbst mehrere Stellen betrifft: Blut gerinnt auch in den Harnwegen. Sie erklärt zudem, warum der Stau erst jetzt auffällt, zusammen mit der Makrohämaturie und nicht vorher.")],
+        &[B("Die Vaskulitis selbst."), T(" Es gibt sie, die stenosierende Ureteritis bei dieser Krankheit – dieselbe entzündete, geschwollene Wand wie im Darm, nur im Harnleiter. Sie ist selten; die Übersichten zählen für dreissig Jahre rund vierzehn beschriebene Fälle, und "), B("beschrieben sind sie fast nur bei Kindern"), T(". Die Berichte lesen sich allerdings wie diese Woche: Ein 14-Jähriger bekam 15 Tage nach Beginn der Purpura eine "), L("beidseitige Harnleiterenge", "https://pubmed.ncbi.nlm.nih.gov/9091100/"), T(", aufgefallen durch Flankenschmerz, Makrohämaturie und Nierenversagen – unter Kortison wurden beide Harnleiter wieder durchgängig und die Nierenfunktion normalisierte sich. In einem anderen Fall zeigte die Gewebeprobe aus dem Harnleiter eine "), L("schwere blutige Ureteritis mit Vaskulitis", "https://pubmed.ncbi.nlm.nih.gov/6854750/"), T(". Und ein dritter Bericht zeigt, wohin es führt, wenn man es übersieht: eine funktionslose Niere, die entfernt werden musste – der "), L("Ultraschall war in der ersten Woche normal", "https://pubmed.ncbi.nlm.nih.gov/18219497/"), T(", die Diagnose fiel erst acht Monate später. Dass sie ohnehin Kortison bekommt, ist vor diesem Hintergrund kein Nebenumstand.")],
+        &[B("Die urologische Ursache, die das Alter vorgibt."), T(" Für sichtbares Blut im Urin gilt, was die amerikanische Urologenvereinigung für die Abklärung festlegt: Ein "), L("Alter ab 60 Jahren", "https://www.auanet.org/guidelines-and-quality/guidelines/microhematuria"), T(" ist für sich allein schon ein Hochrisikomerkmal, und dann gehören Blasenspiegelung und eine Bildgebung der oberen Harnwege dazu, im Regelfall eine CT-Urografie. Diese Regel steht hier nicht, weil ein Tumor wahrscheinlich wäre, sondern weil das Alter sie auslöst.")],
+    ]),
+    P(&[B("Daraus folgt etwas sehr Praktisches."), T(" Die Computertomografie des Bauches steht in diesem Blatt seit der ersten Fassung, wegen der Passagestörung. Als CT-Urografie gefahren, beantwortet dieselbe Untersuchung im selben Durchgang auch, wo der Harnleiter gestaut ist und wodurch. Ein Termin, ein Kontrastmittel, zwei Fragen. Ob das Kontrastmittel bei der aktuellen Nierenfunktion vertretbar ist, entscheidet die Ärztin – die Frage gehört gestellt, und der Ultraschall bleibt daneben das Mittel, das sich ohne Bedenken wiederholen lässt.")]),
+    P(&[T("Und eine Warnung, die aus den Fallberichten kommt: Der Stau muss nicht von Anfang an da sein und nicht dauerhaft bleiben. In zwei der drei genannten Fälle war die erste Bildgebung unauffällig. Wer einmal gestaut war, gehört deshalb nachkontrolliert, auch wenn es zwischendurch besser aussieht.")]),
 
     H2("Den Hämoglobinwert richtig lesen"),
     P(&[
@@ -482,6 +524,14 @@ pub static DOKUMENT: &[Block] = &[
     P(&[
         T("Was "), N("83 g/l"), T(" mit 84 Jahren praktisch bedeutet: Der Körper gleicht den Mangel mit höherem Puls und schnellerer Atmung aus. Daraus werden Müdigkeit, Schwindel beim Aufstehen, Kurzatmigkeit und Sturzgefahr – bei vorgeschädigtem Herz auch Angina pectoris. Genau darum liegt die Transfusionsgrenze bei bekannter Herzkrankheit bei 80 statt "), N("70 g/l"), T("."),
     ]),
+
+    H2("Die Transfusion"),
+    P(&[T("Das Hämoglobin ist nochmals gefallen, und jetzt läuft ein Erythrozytenkonzentrat. Damit ist zuerst einmal das Richtige geschehen: Wenn der Wert weiter fällt und die Patientin darunter leidet, ersetzt man, was fehlt. Nur ersetzt eine Transfusion genau das und nichts weiter. Sie erklärt den Verlust nicht und sie stellt ihn nicht ab. Der Satz, der in diesem Blatt an mehreren Stellen steht, gilt danach unverändert: Die Blutungsquelle ist nicht gefunden.")]),
+    P(&[B("Der erneute Abfall ist dabei selbst ein Befund, und zwar der wichtigste."), T(" Weiter oben steht, dass ein sinkendes Hämoglobin unter laufender Infusion zuerst Verdünnung ist und nicht automatisch eine neue Blutung. Dieses Argument trägt nicht mehr. Die Infusion läuft seit Tagen, die Austrocknung ist ausgeglichen, und der Wert fällt trotzdem weiter – so weit, dass transfundiert werden muss. Das ist kein Rechenfehler der Verdünnung mehr, sondern ein Verlust, der anhält. Und ein Verlust, der anhält, hat eine Quelle, die noch offen ist.")]),
+    P(&[B("Die nützlichste Zahl kommt erst nach der Konserve."), T(" Als Faustregel hebt eine Einheit das Hämoglobin um rund "), N("10 g/l"), T(" – genauer: "), L("4 ml Spendererythrozyten je Kilogramm", "https://www.nss.nhs.scot/media/6134/single_unit_transfusion_guidance-draft_14final-pdf.pdf"), T(" Körpergewicht, und die Näherung gilt für einen nicht blutenden Erwachsenen von 70 bis 80 kg. Daraus wird der wichtigste Messwert der nächsten Tage: das Hämoglobin am Tag nach der Transfusion. Steigt es um deutlich weniger als erwartet oder fällt es wieder, dann blutet es weiter – und das ist ein härterer Beweis als jede Stuhlfarbe und jede Vermutung.")]),
+    P(&[B("Warum Einheit für Einheit."), T(" Die Empfehlung lautet, eine Einheit zu geben und danach neu zu beurteilen: Sind die Beschwerden besser? Gibt es Zeichen einer Reaktion? Wie steht der neue Wert? Das "), L("vermeidet unnötige Transfusionen", "https://hospital.blood.co.uk/patient-services/patient-blood-management/appropriate-use-of-blood-components/single-unit-blood-transfusions/"), T(" und senkt das Risiko der Kreislaufüberlastung. Ein Vorbehalt gehört dazu, und er trifft womöglich genau hier zu: Die Regel gilt ausdrücklich nicht für Patienten mit einer klinisch bedeutsamen aktiven Blutung. Ob das auf sie zutrifft, ist die offene Frage dieses ganzen Blattes.")]),
+    P(&[B("Die Kreislaufüberlastung ist bei ihr keine Formalie."), T(" TACO heisst diese Komplikation, und sie ist "), L("die häufigste Todesursache", "https://www.lifeblood.com.au/health-professionals/clinical-practice/adverse-events/TACO"), T(" unter den transfusionsbedingten Zwischenfällen, die der amerikanischen Arzneimittelbehörde gemeldet werden – 62 der gemeldeten Todesfälle zwischen 2016 und 2020, also 34 Prozent; im britischen Meldesystem waren es zwischen 2010 und 2024 157 Todesfälle oder 41,4 Prozent. Besonders anfällig sind Menschen über 60, und eine förmliche Risikoeinschätzung vor der Transfusion wird namentlich für über 70-Jährige verlangt. Dazu kommen als Risikofaktoren eine Herz- oder Nierenerkrankung und eine ausgeprägte Blutarmut. Praktisch heisst das: langsam transfundieren, an ein Entwässerungsmittel denken – und die Flüssigkeitsbilanz mitrechnen, denn die NaCl-Infusion läuft ja daneben weiter.")]),
+    P(&[B("Und warum zurückhaltend nicht sparsam heisst."), T(" Bei akuter Blutung im oberen Verdauungstrakt ist weniger Blut das bessere Ergebnis. In einer Studie an 921 Patienten wurde die Hälfte erst ab "), N("70 g/l"), T(" transfundiert, die andere schon ab "), N("90 g/l"), T(". Die "), L("Überlebenswahrscheinlichkeit nach sechs Wochen", "https://pubmed.ncbi.nlm.nih.gov/23281973/"), T(" lag in der zurückhaltenden Gruppe bei 95 gegenüber 91 Prozent, Nachblutungen traten bei 10 statt 16 Prozent auf, unerwünschte Ereignisse bei 40 statt 48 Prozent. Die internationalen Empfehlungen von 2023 ziehen daraus die Linie, die auch am Anfang dieses Blattes steht: "), L("70 g/l bei stabilen Erwachsenen", "https://pubmed.ncbi.nlm.nih.gov/37824153/"), T(", 80 bei vorbestehender Herz-Kreislauf-Erkrankung. Wer bei 83 transfundiert, tut das also nicht wegen der Zahl, sondern wegen der Patientin – und das ist zulässig, sofern es so begründet wird.")]),
 
     H2("Was die Krankheit ist"),
     P(&[T("Die IgA-Vaskulitis – der ältere Name Purpura Schönlein-Henoch ist noch geläufig – ist eine Entzündung der kleinsten Blutgefässe. Antikörper der Klasse IgA lagern sich in den Gefässwänden ab, das Immunsystem reagiert darauf, und die Gefässe werden durchlässig und brüchig. Weil solche kleinen Gefässe überall im Körper liegen, betrifft die Krankheit vier Bereiche, klassisch in dieser Kombination:")]),
@@ -545,8 +595,9 @@ pub static DOKUMENT: &[Block] = &[
 
     H2("Woher der Blutverlust kommen kann"),
     Liste(&[
-        &[B("Die Magenentzündung."), T(" Seit der neuen Diagnose steht diese Erklärung nicht mehr unter den Möglichkeiten, sondern an ihrer Spitze: Eine entzündete, erodierte Schleimhaut ist eine Blutungsquelle. Was offen bleibt, ist nicht mehr das Ob, sondern das Wie viel – und woher die Entzündung kommt. Siehe den Abschnitt «Die neue Diagnose: starke Magenentzündung».")],
-        &[B("Blutung weiter unten im Magen-Darm-Trakt."), T(" Die Vaskulitis schädigt die Schleimhaut am häufigsten im Zwölffingerdarm, also gleich hinter dem Magen. Die Blutung muss nicht sichtbar sein – sie kann über Wochen sickern, ohne dass der Stuhl auffällt. Solange gar kein Stuhl kam, fiel dieser Hinweis ganz weg; jetzt, wo die Passage wieder offen ist, steht er wieder zur Verfügung – siehe den nächsten Abschnitt.")],
+        &[B("Blutung im Zwölffingerdarm."), T(" Die Vaskulitis schädigt die Schleimhaut am häufigsten dort, gleich hinter dem Magen. Die Blutung muss nicht sichtbar sein – sie kann über Wochen sickern, ohne dass der Stuhl auffällt. Solange gar kein Stuhl kam, fiel dieser Hinweis ganz weg; jetzt, wo die Passage wieder offen ist, steht er wieder zur Verfügung. Seit Blut im Urin ist, steht diese Erklärung wieder zuoberst: Der Urin zeigt, dass die Vaskulitis aktiv ist, und eine aktive Vaskulitis ist es, die im Darm blutet – siehe den Abschnitt «Blut im Urin».")],
+        &[B("Die Magenentzündung."), T(" Eine entzündete, erodierte Schleimhaut ist eine Blutungsquelle; das Ob steht nicht mehr in Frage, nur das Wie viel – und woher die Entzündung kommt. Dass es unter Pantoprazol nicht besser geworden ist, spricht dafür, dass sie nicht die ganze Erklärung ist. Siehe den Abschnitt «Die neue Diagnose: starke Magenentzündung».")],
+        &[B("Die Harnwege."), T(" Neu auf dieser Liste, und sie gehört hierher, seit das Blut im Urin sichtbar ist. Blut, das den Nierenfilter passiert, ist bei dieser Krankheit typischerweise nur unter dem Mikroskop zu sehen; was den Urin mit blossem Auge färbt und Gerinnsel bildet, kann eine andere Grössenordnung haben. Welche der beiden es ist, entscheidet das Sediment – siehe den Abschnitt «Blut im Urin».")],
         &[B("Medikamente."), T(" Kortison zusammen mit Schmerzmitteln vom NSAR-Typ (Ibuprofen, Diclofenac, Naproxen) erhöht das Geschwürrisiko erheblich; NSAR belasten zusätzlich die Niere. Blutverdünner verstärken jede vorhandene Blutungsquelle. Die vollständige Medikamentenliste gehört auf den Tisch, rezeptfreie Mittel eingeschlossen.")],
         &[B("Eine zweite, unabhängige Quelle."), T(" Mit 84 Jahren ist ein Dickdarmtumor oder ein Magengeschwür statistisch häufiger als die Vaskulitis selbst. Beides würde den Blutverlust erklären – und zusammen mit der ausbleibenden Passage womöglich auch den Rest.")],
         &[B("Die Niere."), T(" Bei nachlassender Nierenfunktion bildet der Körper weniger Erythropoetin, das Hormon für die Blutbildung. Das erklärt eine langsam sinkende Kurve, keinen Sturz um "), N("25 g/l"), T(" in kurzer Zeit.")],
@@ -720,6 +771,9 @@ pub static DOKUMENT: &[Block] = &[
         &[T("Wann der Stuhlgang wieder eingesetzt hat, wie der erste aussah, wie er sich seither verändert – und ob ihn jemand vom Fach gesehen hat")],
         &[T("Den Befund zur Magenentzündung im Wortlaut: wie und wo sie festgestellt wurde, ob eine Spiegelung stattgefunden hat, ob Gewebeproben entnommen wurden und aus welchem Abschnitt")],
         &[T("Wann Pantoprazol begonnen hat, in welcher Dosis, und zu welcher Tageszeit es im Verhältnis zum Frühstück eingenommen wird")],
+        &[T("Den Urinbefund im Wortlaut: seit wann Blut sichtbar ist, ob ein Sediment untersucht wurde und was darin stand – Akanthozyten, Erythrozytenzylinder, Protein-Kreatinin-Quotient")],
+        &[T("Den Befund zum gestauten Harnleiter: womit er erhoben wurde, an welchen Stellen und auf welcher Seite, und ob es eine frühere Aufnahme zum Vergleich gibt")],
+        &[T("Die Transfusion mit Datum: wie viele Einheiten, und der Hämoglobinwert davor und am Tag danach")],
     ]),
 
     H2("Fragen, die sich lohnen"),
@@ -727,7 +781,14 @@ pub static DOKUMENT: &[Block] = &[
         &[T("Nach vier bis fünf Wochen ohne Stuhlgang geht die Passage wieder – ist damit geklärt, warum sie stand, oder steht die Untersuchung des Bauches weiter aus?")],
         &[T("Der dunkle Stuhl wurde mit der Galle erklärt – womit wurde Blut als Quelle ausgeschlossen?")],
         &[T("Wie stehen Harnstoff und Kreatinin aus derselben Blutentnahme zueinander?")],
-        &[T("Der Urin war unauffällig – war das ein Streifentest allein oder Status, Sediment und Protein-Kreatinin-Quotient?")],
+        &[T("Es ist Blut im Urin: Wurde ein Sediment untersucht, und kommt das Blut aus der Niere oder aus den ableitenden Harnwegen – Akanthozyten, Erythrozytenzylinder?")],
+        &[T("Der Harnleiter ist an mehreren Stellen gestaut – wodurch? Gerinnsel, die Vaskulitis selbst oder etwas Urologisches?")],
+        &[T("Staut es einseitig oder beidseitig, und wie hat sich das Kreatinin seither entwickelt?")],
+        &[T("Lässt sich die Computertomografie des Bauches als CT-Urografie fahren, damit Darm und Harnwege in einem Durchgang beantwortet sind?")],
+        &[T("Kommt eine stenosierende Ureteritis infrage – die Harnleiterbeteiligung dieser Vaskulitis? Sie ist selten und fast nur bei Kindern beschrieben, aber sie spricht auf Kortison an.")],
+        &[T("Wird der Ultraschall der Harnwege wiederholt, auch wenn er zwischendurch normal ausfällt?")],
+        &[T("Wie hoch war das Hämoglobin vor der Transfusion, und wie hoch ist es am Tag danach? Bleibt der erwartete Anstieg von rund 10 g/l je Einheit aus, blutet es weiter.")],
+        &[T("Wird Einheit für Einheit transfundiert und dazwischen neu beurteilt – und ist bei 84 Jahren an die Kreislaufüberlastung gedacht, samt Bilanz mit der laufenden Infusion?")],
         &[T("Ist eine Computertomografie des Bauches geplant, und wann?")],
         &[T("Wie wird die Flüssigkeitszufuhr sichergestellt, wenn kaum getrunken wird und Erbrechen dazukommt?")],
         &[T("Nach Wochen ohne Nahrung: Wie wird der Kostaufbau begleitet, und werden Phosphat, Kalium und Magnesium dabei kontrolliert?")],
@@ -750,7 +811,7 @@ pub static DOKUMENT: &[Block] = &[
         &[T("Der Ausschlag geht zurück: Wird die Hautbiopsie jetzt gemacht, solange noch frische Flecken da sind?")],
         &[T("Ist bei diesem Verlauf eine Nierenbiopsie angezeigt?")],
         &[T("Welche der aktuellen Medikamente belasten Magen oder Niere?")],
-        &[T("Wie oft und über welchen Zeitraum wird der Urin kontrolliert – auch jetzt, wo der Befund normal war und der Ausschlag abheilt?")],
+        &[T("Wie oft und über welchen Zeitraum werden Urin und Blutdruck kontrolliert – mindestens sechs Monate?")],
         &[T("Ist bei einer Erstmanifestation in diesem Alter eine Tumorsuche vorgesehen?")],
         &[T("Wurde nach dem früheren Ausschlag an den Beinen der Urin kontrolliert – und mit welchem Ergebnis?")],
         &[T("Ging ein Infekt voraus – und welche Medikamente sind in den letzten Wochen neu dazugekommen?")],
@@ -909,10 +970,30 @@ pub static QUELLEN: &[(&str, Verweis)] = &[
      Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/28605168/", url: "https://pubmed.ncbi.nlm.nih.gov/28605168/" }),
     ("Audemard-Verger A et al.: Impact of aging on phenotype and prognosis in IgA vasculitis. Rheumatology 2021; 60: 4245-51. PMID 33410479",
      Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/33410479/", url: "https://pubmed.ncbi.nlm.nih.gov/33410479/" }),
-    ("Komatsu H et al.: Clinical manifestations of Henoch-Schönlein purpura nephritis and IgA nephropathy: a nationwide study. PLoS One 2018; 13: e0196955. PMID 29738576",
+    ("Komatsu H et al.: Distinct characteristics and outcomes in elderly-onset IgA vasculitis with nephritis. Japan Renal Biopsy Registry. PLoS One 2018; 13: e0196955. PMID 29738576",
      Verweis { text: "https://doi.org/10.1371/journal.pone.0196955", url: "https://doi.org/10.1371/journal.pone.0196955" }),
     ("Pillebout E et al.: Addition of cyclophosphamide to corticosteroids for adult HSP (CESAR). Kidney Int 2010; 78: 495-502. PMID 20505654",
      Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/20505654/", url: "https://pubmed.ncbi.nlm.nih.gov/20505654/" }),
+    ("Köhler H, Wandel E, Brunck B: Acanthocyturia – a characteristic marker for glomerular bleeding. Kidney Int 1991; 40: 115-20. PMID 1921146",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/1921146/", url: "https://pubmed.ncbi.nlm.nih.gov/1921146/" }),
+    ("Maherzi A et al.: Urétérite sténosante bilatérale au décours du purpura rhumatoïde. Arch Pédiatr 1997; 4: 36-9. PMID 9091100",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/9091100/", url: "https://pubmed.ncbi.nlm.nih.gov/9091100/" }),
+    ("Kher KK, Sheth KJ, Makker SP: Stenosing ureteritis in Henoch-Schönlein purpura. J Urol 1983; 129: 1040-2. PMID 6854750",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/6854750/", url: "https://pubmed.ncbi.nlm.nih.gov/6854750/" }),
+    ("Siomou E et al.: Masked severe stenosing ureteritis – a rare complication of Henoch-Schönlein purpura. Pediatr Nephrol 2008; 23: 821-5. PMID 18219497",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/18219497/", url: "https://pubmed.ncbi.nlm.nih.gov/18219497/" }),
+    ("Microhematuria: AUA/SUFU Guideline. American Urological Association",
+     Verweis { text: "auanet.org – Microhematuria: AUA/SUFU Guideline", url: "https://www.auanet.org/guidelines-and-quality/guidelines/microhematuria" }),
+    ("Carson JL et al.: Red Blood Cell Transfusion – 2023 AABB International Guidelines. JAMA 2023; 330: 1892-1902. PMID 37824153",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/37824153/", url: "https://pubmed.ncbi.nlm.nih.gov/37824153/" }),
+    ("Villanueva C et al.: Transfusion strategies for acute upper gastrointestinal bleeding. N Engl J Med 2013; 368: 11-21. PMID 23281973",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/23281973/", url: "https://pubmed.ncbi.nlm.nih.gov/23281973/" }),
+    ("Transfusion-associated circulatory overload (TACO). Australian Red Cross Lifeblood",
+     Verweis { text: "lifeblood.com.au – TACO", url: "https://www.lifeblood.com.au/health-professionals/clinical-practice/adverse-events/TACO" }),
+    ("Single unit blood transfusions. NHS Blood and Transplant",
+     Verweis { text: "hospital.blood.co.uk – Single unit blood transfusions", url: "https://hospital.blood.co.uk/patient-services/patient-blood-management/appropriate-use-of-blood-components/single-unit-blood-transfusions/" }),
+    ("Single Unit Transfusion of Red Cells – Guidance Resource. NHS National Services Scotland",
+     Verweis { text: "nss.nhs.scot – Single unit transfusion guidance", url: "https://www.nss.nhs.scot/media/6134/single_unit_transfusion_guidance-draft_14final-pdf.pdf" }),
     ("KDIGO 2025 Clinical Practice Guideline for the Management of IgA Nephropathy and IgA Vasculitis. Kidney Int 2025",
      Verweis { text: "https://doi.org/10.1016/j.kint.2025.04.004", url: "https://doi.org/10.1016/j.kint.2025.04.004" }),
 ];

@@ -242,6 +242,12 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
 - **Keine Namen.** Der Anlass ist ein realer Fall; die Person wird nirgends
   benannt. Alter, Laborwerte, Beschwerden und Verlauf sind ausdrücklich in
   Ordnung, Namen und Angehörige nicht.
+- **Fotos aus dem Spital tragen Namen mit.** Das Etikett einer Blutkonserve
+  führt Name, Geburtsdatum, Patientennummer und den Namen des Arztes; ein
+  Pumpendisplay die Station. Aus solchen Bildern kommt ausschliesslich der
+  Sachverhalt ins Blatt – «es läuft ein Erythrozytenkonzentrat» –, nie das
+  Bild, nie ein Ausschnitt daraus, nie eine Angabe vom Etikett. Auch nicht
+  in einen Commit, einen Dateinamen oder eine Mail.
 - Keine privaten Mailadressen, keine Zugangsdaten, keine
   Anwendungspasswörter in eingecheckten Dateien. Ein `.gitignore`-Eintrag
   ist eine Vorsichtsmassnahme, kein Schutz – ein `git add -f` genügt. Vor
