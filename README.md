@@ -15,8 +15,7 @@ Ein konkreter, anonymisierter Fall: eine Patientin von 84 Jahren, deren
 Hämoglobin innert kurzer Zeit von 108 auf 83 g/l gefallen ist, mit einem
 massiven Ausschlag an den Beinen in der Vorgeschichte. Dazu seit Wochen
 kein Appetit, starke Bauchschmerzen, wenig Schlaf, Erbrechen nach jeder
-Nahrungsaufnahme, kaum Flüssigkeit und seit etwa vier bis fünf Wochen gar
-kein Stuhlgang mehr. Inzwischen ist das Hämoglobin nochmals gefallen und
+Nahrungsaufnahme, kaum Flüssigkeit und eine Woche lang gar kein Stuhlgang. Inzwischen ist das Hämoglobin nochmals gefallen und
 wird transfundiert, der Stuhl ist schwarz und flüssig mit weissem Schleim
 dazwischen, es wird schwarz erbrochen, die Darmspiegelung hat nichts
 gefunden ausser einem gestörten Transport, es ist Blut im Urin, und der
@@ -103,14 +102,34 @@ verstanden werden:
 - **Eine unauffällige Darmspiegelung widerspricht dem Teerstuhl nicht.**
   Teerstuhl entsteht oberhalb; dorthin schaut sie gar nicht. Sie erledigt
   den Dickdarmtumor und den Dickdarm als Quelle – mehr nicht. Offen bleiben
-  zwei Rückfragen: Wie weit kam das Gerät, und wie sauber war der Darm nach
-  vier bis fünf Wochen ohne Stuhlgang?
+  zwei Rückfragen: Wie weit kam das Gerät, und wie sauber war der Darm?
 - **«Der Darm transportiert nicht richtig» heisst Passagestörung ohne
   mechanisches Hindernis.** Neben der Vaskulitis selbst kommen Kalium,
   Magnesium und die Schilddrüse in Frage – alle drei mit Blutwerten
   geprüft, und der TSH stand bisher nicht auf der Liste. Für die
   Kapselendoskopie ist eine Motilitätsstörung ohne Enge übrigens kein
   Hinderungsgrund; entscheidend ist, ob es eine Enge gibt.
+- **Die fehlende Peristaltik hängt mit der Vaskulitis zusammen.** Die
+  Übersicht zur Magen-Darm-Beteiligung von Vaskulitiden führt den
+  paralytischen Ileus ausdrücklich auf – und nennt für die IgA-Vaskulitis
+  denselben absteigenden Zwölffingerdarm und denselben Krummdarm, die im
+  Blatt schon aus der Erwachsenen-Studie stehen. Zwei Wege, ein Ergebnis.
+  Dass Luft bis zum Würgen aufgestossen wird, ist dieselbe Störung von oben
+  gesehen. Der Zusammenhang beweist die Ursache aber nicht: Kalium,
+  Magnesium und die Schilddrüse bleiben auf der Liste, weil sie sich
+  beheben lassen.
+- **Ödeme sind eine Bilanz, kein Symptom.** Eiweissverlust über die Niere,
+  zu wenig Eiweiss von vorn, das Kortison (die Spiricort-Fachinformation
+  führt Natrium- und Wasserretention samt Kaliumverlust auf), das Volumen
+  aus Infusion und Transfusion, das Herz – hier trifft vieles gleichzeitig
+  zu. Der springende Punkt ist ein anderer: **Ödeme gab es beim früheren
+  Schub schon.** Das macht es wahrscheinlicher, dass die Niere damals schon
+  beteiligt war, und verschiebt die Frage nach der Nierenbiopsie.
+- **Unter Kortison verläuft eine Darmblutung symptomarm.** Die
+  Fachinformation von Spiricort sagt es ausdrücklich, und für das
+  Magengeschwür: «häufig ohne die typische Symptomatik». Das erklärt, wie
+  eine Blutung so weit kommen konnte, ohne die erwarteten Schmerzen zu
+  machen.
 
 ## Was drinsteht
 
