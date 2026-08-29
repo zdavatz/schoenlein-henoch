@@ -140,6 +140,17 @@ verstanden werden:
   werden sie nur durch die Nierenbiopsie – die KDIGO ohnehin verlangt,
   sobald die Eiweissausscheidung vier Wochen lang über 0,5 g/Tag liegt oder
   die Nierenfunktion eingeschränkt ist.
+- **Was früher gegen Verstopfung half, kann jetzt schaden.** Spinat hat ihr
+  einmal geholfen – nur wirken Ballaststoffe über das Volumen, und Volumen
+  braucht eine Peristaltik, die es weiterschiebt. Die fehlt, und die
+  Blähung ist ihre Hauptbeschwerde. Nebenbei zwei Richtigstellungen: Die
+  Oxalsäure des Spinats hemmt die Eisenaufnahme *nicht* (ETH Zürich, mit
+  markiertem Eisen gemessen) – Spinat ist aber auch keine Antwort auf einen
+  Blutverlust dieser Grössenordnung. Und unter den Hausmitteln waren Kiwi,
+  Backpflaumen und Flohsamen gleich wirksam; die Kiwi machte am wenigsten
+  Blähungen, was hier den Ausschlag gäbe. Magnesium als Abführmittel ist
+  bei 84 Jahren und möglicher Nierenbeteiligung gerade nicht das
+  Naheliegende.
 - **Der geblähte Darm ist das, was sie am meisten belastet.** Fällt die
   Peristaltik aus, bleibt das Gas liegen und nimmt den Weg nach oben. Dass
   der Wind abgeht, wenn auch schwer, ist die beruhigende Hälfte – bleibt er
