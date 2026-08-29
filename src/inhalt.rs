@@ -200,7 +200,7 @@ static T_ABKLAERUNG: Tabelle = Tabelle {
         ],
         &[
             &[B("Ernährung")],
-            &[T("Gewichtsverlauf, Albumin, Phosphat, Kalium, Magnesium. Nach Wochen ohne Nahrung sind diese Werte die Voraussetzung dafür, dass der Kostaufbau sicher beginnen kann. Magnesium steht unter Pantoprazol ein zweites Mal auf dieser Liste.")],
+            &[T("Gewichtsverlauf, Albumin, "), B("Phosphat"), T(", Kalium, Magnesium – nach Wochen ohne Nahrung die Voraussetzung dafür, dass der Kostaufbau sicher beginnen kann, und bei Gefährdeten in den ersten drei Tagen alle zwölf Stunden zu kontrollieren. Magnesium steht unter Pantoprazol ein zweites Mal auf dieser Liste. Dazu "), B("Thiamin (Vitamin B1) 100 mg vor der ersten Kohlenhydratgabe"), T(", dann zweimal täglich über sieben bis zehn Tage – siehe den Abschnitt zum Kostaufbau.")],
         ],
         &[
             &[B("Nach der Transfusion")],
@@ -763,6 +763,15 @@ pub static DOKUMENT: &[Block] = &[
     P(&[B("Der Zucker ist hier kein Einwand."), T(" Nach Wochen ohne Nahrung sind Kalorien, die freiwillig hineingehen, ein Gewinn. Was in diesen Tagen zählt, ist nicht die Menge Zucker, sondern das, was schon im Abschnitt zum Kostaufbau steht: Phosphat, Kalium und Magnesium gehören kontrolliert.")]),
     P(&[B("Zum Zimt eine Zahl, damit die Frage vom Tisch ist."), T(" Cassia-Zimt – der übliche Haushaltszimt – enthält Cumarin, im Mittel rund 3 Gramm je Kilogramm Zimt, im Höchstfall 10. Die duldbare tägliche Aufnahme liegt "), L("nach Einschätzung des deutschen Bundesinstituts für Risikobewertung", "https://www.bfr.bund.de/de/service/haeufig-gestellte-fragen/thema/faq-zu-cumarin-in-zimt-und-anderen-lebensmitteln/"), T(" bei 0,1 mg Cumarin je Kilogramm Körpergewicht und Tag; für 60 kg Körpergewicht sind das rund 2 Gramm Cassia-Zimt am Tag, also etwa ein gestrichener Teelöffel. Eine Prise im Tee bleibt weit darunter. Dieselbe Stelle hält ausdrücklich fest, dass bislang kein Fall von Leberschaden nach dem Verzehr von Zimt beschrieben ist. Ceylon-Zimt enthält ohnehin nur wenig Cumarin.")]),
 
+    H3("Der Kostaufbau nach Wochen ohne Nahrung"),
+    P(&[T("Der Vergleich mit einem langen Hungerstreik trifft den Kern, und die Antwort dort lautet: Nach langem Fasten ist nicht das Essen das Risiko, sondern das Tempo, mit dem es zurückkommt. Der Fachbegriff dafür ist das "), B("Refeeding-Syndrom"), T(".")]),
+    P(&[B("Was dabei geschieht."), T(" Im Fasten stellt der Körper um. Kommen wieder Kohlenhydrate, schüttet er Insulin aus, und Insulin treibt Phosphat, Kalium und Magnesium aus dem Blut in die Zellen. Die Blutwerte fallen binnen Stunden bis Tagen, obwohl doch gerade wieder gegessen wird. Das Kennzeichen ist der "), L("Abfall des Phosphats", "https://www.ncbi.nlm.nih.gov/books/NBK564513/"), T(".")]),
+    P(&[B("Und warum das gerade bei ihr doppelt zählt."), T(" Phosphatmangel senkt die Pumpkraft des Herzens und macht Rhythmusstörungen. Vor allem aber senkt er das 2,3-DPG in den roten Blutkörperchen – und dadurch hält das Hämoglobin den Sauerstoff fester und gibt ihn im Gewebe schlechter ab. Bei einer Patientin mit "), N("83 g/l"), T(" und laufender Transfusion heisst das: Das wenige Hämoglobin, das vorhanden ist, würde auch noch schlechter liefern. Schwere Formen können bis zum Atemversagen führen. Der Kostaufbau ist damit keine Nebensache neben der Blutung, sondern hängt direkt an demselben Problem.")]),
+    P(&[B("Wer als gefährdet gilt."), T(" Die britische Leitlinie nennt vier Merkmale: ein Körpermassenindex unter 16, ein unbeabsichtigter Gewichtsverlust von mehr als 15 Prozent in drei bis sechs Monaten, "), B("kaum oder keine Nahrung über mehr als zehn Tage"), T(", oder tiefe Werte von Kalium, Phosphat oder Magnesium schon vor Beginn der Ernährung. Das dritte Merkmal war hier über Wochen erfüllt, und das vierte ist genau das, was dieses Blatt an mehreren Stellen zu messen verlangt.")]),
+    P(&[B("Was daraus als Vorgehen folgt."), T(" Langsam anfangen – "), L("10 bis 20 kcal je Kilogramm", "https://www.ncbi.nlm.nih.gov/books/NBK564513/"), T(" in den ersten 24 Stunden, danach alle ein bis zwei Tage um etwa ein Drittel des Ziels steigern. "), B("Thiamin, also Vitamin B1, 100 mg vor der ersten Kohlenhydratgabe"), T(", dann zweimal täglich über sieben bis zehn Tage; das schützt vor einer bleibenden neurologischen Schädigung. Und bei Gefährdeten Kalium, Magnesium und Phosphat in den ersten drei Tagen alle zwölf Stunden kontrollieren und ersetzen, danach dreimal in der Folgewoche.")]),
+    P(&[T("Thiamin stand in diesem Blatt bisher nirgends – es steht jetzt in der Abklärungstabelle. Es ist billig, es wird vor dem Essen gegeben und nicht danach, und wenn es fehlt, ist der Schaden nicht mehr rückgängig zu machen. Das ist die Art von Punkt, die auf einer Station mit einer blutenden Patientin leicht untergeht.")]),
+    P(&[B("Und die Reihenfolge, die sich daraus ergibt."), T(" Erst Menge und Tempo, dann die Konsistenz, dann erst die Speisekarte. Die beiden folgenden Abschnitte behandeln die zweite und die dritte Stufe.")]),
+
     H3("Poulet ging nicht"),
     P(&[T("Ein Versuch mit Poulet endete damit, dass alles wieder herauskam. Das ist keine Unverträglichkeit gegen Huhn, sondern die Regel bei einem Magen, der nicht entleert – und es erklärt zugleich, warum vorher etwas anderes gegangen ist.")]),
     P(&[B("Feste Nahrung ist das Schwierigste, was man einem stehenden Magen zumuten kann."), T(" Der Magen muss Festes erst zerkleinern, bevor es den Magenausgang passieren kann; dafür braucht er die Peristaltik, die hier fehlt. Haferbrei ist bereits fein, Tee ist flüssig – beide passieren, ohne zerkleinert zu werden. Ein Stück Fleisch ist weder das eine noch das andere. Was hier ging und was nicht ging, folgt also keiner Laune, sondern der Konsistenz.")]),
@@ -880,7 +889,20 @@ pub static DOKUMENT: &[Block] = &[
         &[T("Den Bericht der Darmspiegelung im Wortlaut – wie weit das Gerät kam, wie die Vorbereitung beurteilt wurde und was zum Transport festgehalten ist")],
     ]),
 
-    H2("Fragen, die sich lohnen"),
+    H2("Die acht Fragen, auf die es jetzt ankommt"),
+    P(&[T("Die Liste danach ist lang, weil sie über Wochen gewachsen ist. Wenn im Zimmer nur fünf Minuten bleiben, sind es diese acht. Jede davon ändert, was als Nächstes geschieht – die übrigen sind wichtig, aber sie warten.")]),
+    Liste(&[
+        &[B("1. Wann ist die Magenspiegelung?"), T(" Kaffeesatz oben und Teerstuhl unten heissen akute Blutung im oberen Verdauungstrakt. Beide Fachgesellschaften nennen dafür 24 Stunden nach der Kreislaufstabilisierung. Und zur ersten Spiegelung: Wurde bis in den absteigenden Zwölffingerdarm geschaut und dort Gewebe entnommen? Dort sitzt die Vaskulitis in 55,7 Prozent der Fälle, im Magen selbst in 3,3.")],
+        &[B("2. Kommt das Blut im Urin aus der Niere oder aus den Harnwegen?"), T(" Eine Untersuchung entscheidet das: das Urinsediment, mit der Frage nach Akanthozyten und Erythrozytenzylindern, zusammen mit dem Protein-Kreatinin-Quotienten aus derselben Probe. Alles Weitere zur Niere hängt an dieser Antwort.")],
+        &[B("3. Wie hat sich das Kreatinin über die letzten Tage entwickelt?"), T(" Daran entscheidet sich zweierlei: ob eine rasch fortschreitende Glomerulonephritis vorliegt, die anders und dringender behandelt wird – und ob der gestaute Harnleiter der Niere gerade schadet.")],
+        &[B("4. Wodurch ist der Harnleiter gestaut, und muss er entlastet werden?"), T(" Gerinnsel, die Vaskulitis selbst, Druck von aussen oder etwas Urologisches. Und die praktische Anschlussfrage: Lässt sich die ohnehin fällige Computertomografie als CT-Urografie fahren, damit Darm und Harnwege in einem Durchgang beantwortet sind?")],
+        &[B("5. Warum kein Kortison – und wird das neu beurteilt, sobald die Blutung versorgt ist?"), T(" Sie hat nie welches bekommen, auch beim früheren Schub nicht. Gegen eine Behandlung sprechen die laufende Blutung und das Infektrisiko, dafür die beteiligte Niere und der schwere Darmbefall. Die KDIGO-Leitlinie verlangt ausdrücklich, diese Entscheidung im Verlauf neu zu bewerten.")],
+        &[B("6. Sind Kalium, Magnesium, Phosphat und TSH bestimmt – und ist Thiamin gegeben worden, bevor der Kostaufbau begann?"), T(" Das sind die drei behebbaren Erklärungen dafür, dass der Darm nicht transportiert – und der geblähte Darm ist das, was sie am meisten belastet. Alle drei kommen aus der Entnahme, die ohnehin läuft. Beim Kalium gilt: erst messen, dann entscheiden, denn mit gestautem Harnleiter kann es auch in die andere Richtung laufen. Thiamin gehört vor die erste Kohlenhydratgabe, nicht danach – siehe den Abschnitt zum Kostaufbau.")],
+        &[B("7. Wie hoch war das Hämoglobin vor der Transfusion, und wie hoch am Tag danach?"), T(" Eine Einheit hebt den Wert um rund 10 g/l. Bleibt der Anstieg aus oder fällt der Wert wieder, blutet es weiter – das ist der härteste verfügbare Beweis, und er kostet eine Blutentnahme.")],
+        &[B("8. Ist eine Nierenbiopsie angezeigt?"), T(" Die KDIGO-Leitlinie nennt dafür erhebliche Organschädigung, eine Eiweissausscheidung ab 0,5 g/Tag über vier Wochen oder eine eingeschränkte Nierenfunktion. Sie ist zugleich das Einzige, was die beiden Mechanismen trennt, die von aussen gleich aussehen – entzündeter Filter oder verstopfte Kanälchen.")],
+    ]),
+
+    H2("Die vollständige Liste"),
     Liste(&[
         &[T("Nach einer Woche ohne Stuhlgang geht die Passage wieder – ist damit geklärt, warum sie stand, oder steht die Untersuchung des Bauches weiter aus?")],
         &[T("Der Stuhl ist schwarz und flüssig: Hat jemand vom Fach ihn gesehen und als Teerstuhl beurteilt – und ist er dokumentiert?")],
@@ -897,6 +919,8 @@ pub static DOKUMENT: &[Block] = &[
         &[T("Spinat hat früher geholfen: Sind Ballaststoffe bei fehlender Peristaltik jetzt sinnvoll oder eher schädlich?")],
         &[T("Poulet kam vollständig wieder heraus: Wird der Kostaufbau von der Ernährungsberatung begleitet, und in welcher Konsistenz – und wie wird der Eiweissbedarf trotzdem gedeckt?")],
         &[T("Nach dem Erbrechen: Sind Kalium und Chlorid nachkontrolliert worden?")],
+        &[T("Nach Wochen ohne Nahrung: Ist Thiamin gegeben worden, bevor der Kostaufbau begann – und wird das Phosphat mitkontrolliert?")],
+        &[T("Mit welcher Kalorienmenge hat der Kostaufbau begonnen, und in welchem Tempo wird gesteigert?")],
         &[T("Wie stehen Harnstoff und Kreatinin aus derselben Blutentnahme zueinander?")],
         &[T("Es ist Blut im Urin: Wurde ein Sediment untersucht, und kommt das Blut aus der Niere oder aus den ableitenden Harnwegen – Akanthozyten, Erythrozytenzylinder?")],
         &[T("Der Harnleiter ist an mehreren Stellen gestaut – wodurch? Gerinnsel, die Vaskulitis selbst, Druck von aussen durch den geblähten Darm, oder etwas Urologisches?")],
@@ -1124,6 +1148,10 @@ pub static QUELLEN: &[(&str, Verweis)] = &[
      Verweis { text: "https://doi.org/10.14309/ajg.0000000000001245", url: "https://doi.org/10.14309/ajg.0000000000001245" }),
     ("Zum Schleim im Stuhl: Mucus in Stool. Cleveland Clinic",
      Verweis { text: "my.clevelandclinic.org – Mucus in Stool", url: "https://my.clevelandclinic.org/health/symptoms/mucus-in-stool" }),
+    ("Refeeding Syndrome. StatPearls, NCBI Bookshelf",
+     Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK564513/", url: "https://www.ncbi.nlm.nih.gov/books/NBK564513/" }),
+    ("Nutrition support for adults. NICE Clinical Guideline CG32",
+     Verweis { text: "https://www.nice.org.uk/guidance/cg32", url: "https://www.nice.org.uk/guidance/cg32" }),
     ("Olausson EA et al.: A small particle size diet reduces upper gastrointestinal symptoms in patients with diabetic gastroparesis. Am J Gastroenterol 2014; 109: 375-85. PMID 24419482",
      Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/24419482/", url: "https://pubmed.ncbi.nlm.nih.gov/24419482/" }),
     ("Camilleri M et al.: ACG Clinical Guideline – Gastroparesis. Am J Gastroenterol 2022; 117: 1197-1220. PMID 35926490",

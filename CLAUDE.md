@@ -206,8 +206,13 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
 
   ```bash
   cd ~/.software/sdif
-  ./target/release/sdif check Novalgin Pantoprazol Spiricort Movicol Duphalac Cardiax
+  ./target/release/sdif check Novalgin Pantoprazol Movicol Duphalac Cardiax
   ```
+
+  Spiricort war bis zum 29. August 2026 im Warenkorb und ist heraus – die
+  Patientin hat nie Kortikoide bekommen. Wer es wieder aufnimmt, bekommt
+  die beiden Treffer zurück, die im Blatt als «Was mit dem Kortison
+  weggefallen ist» beschrieben sind.
 
   Die EPha-Einstufungen (A bis X) stehen zusätzlich in `db/interactions.db`
   und lassen sich direkt abfragen:
@@ -218,7 +223,7 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   ```
 
   Der Warenkorb lässt sich in der URL mitgeben – im Blatt verlinkt als
-  `?tab=check&drugs=N02BB02-A02BC02-H02AB06-A06AD65-A06AD11-B01AC06`. Die Codes sind
+  `?tab=check&drugs=N02BB02-A02BC02-A06AD65-A06AD11-B01AC06`. Die Codes sind
   ATC, nicht Marken: für die Macrogol-Klasse A06AD65 zeigt die Oberfläche
   irgendein Präparat der Klasse an, nicht zwingend Movicol.
 
@@ -231,6 +236,22 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
 - Die Angaben zu Erwachsenen und Betagten sind der Kern. Das meiste, was
   man auf Deutsch zu dieser Krankheit findet, betrifft Kinder und führt bei
   einer 84-jährigen Patientin in die Irre.
+- **Angaben kommen tröpfchenweise und kippen Prämissen.** Der Fall wird
+  während der Arbeit erzählt, und einzelne Sätze der Angehörigen heben
+  ganze Abschnitte auf: aus «vier bis fünf Wochen ohne Stuhlgang» wurde
+  eine Woche, aus «sie bekommt Kortison» wurde «sie hat nie Kortikoide
+  bekommen». Wenn eine Prämisse fällt, reicht es **nicht**, den einen
+  Absatz zu ändern. `grep` auf den Begriff über `src/inhalt.rs` und
+  `README.md`, jede Fundstelle einzeln beurteilen – Kortison hing an
+  einem Dutzend Stellen, vom Interaktionscheck über die Ödeme bis zur
+  Erklärung der Magenentzündung. Und: Was wegfällt, gehört benannt statt
+  stillschweigend gelöscht, damit nachvollziehbar bleibt, warum eine
+  frühere Fassung etwas anderes sagte.
+- **Eine widerlegte Aussage wird nicht durch ihr Gegenteil ersetzt.** Zum
+  Spinat hiess es zuerst, die Oxalsäure hemme die Eisenaufnahme; die
+  ETH-Arbeit zeigt, dass sie es nicht tut. Im Blatt steht deshalb beides:
+  dass der Volksglaube falsch ist *und* dass Spinat trotzdem keine Antwort
+  auf einen Blutverlust dieser Grössenordnung ist.
 - Adressen, Präparate und Zuständigkeiten veralten. Das Datum in `STAND`
   beim Prüfen mitführen – ebenso das Datum im Abschnitt zum Interaktions-
   check, das den Lauf datiert.

@@ -151,6 +151,24 @@ verstanden werden:
   Blähungen, was hier den Ausschlag gäbe. Magnesium als Abführmittel ist
   bei 84 Jahren und möglicher Nierenbeteiligung gerade nicht das
   Naheliegende.
+- **Nach Wochen ohne Nahrung ist nicht das Essen das Risiko, sondern das
+  Tempo.** Refeeding-Syndrom: Insulin treibt Phosphat, Kalium und Magnesium
+  in die Zellen, die Blutwerte fallen, obwohl wieder gegessen wird. Der
+  Phosphatmangel senkt das 2,3-DPG – das Hämoglobin hält den Sauerstoff
+  dann fester und gibt ihn im Gewebe schlechter ab, bei 83 g/l ein zweiter
+  Schlag auf dasselbe Problem. **Thiamin 100 mg gehört vor die erste
+  Kohlenhydratgabe**, nicht danach; es stand bis dahin nirgends im Blatt.
+- **Poulet kam vollständig wieder heraus – das ist die Regel, nicht die
+  Ausnahme.** Festes muss zerkleinert werden, bevor es den Magenausgang
+  passiert, und dafür fehlt die Peristaltik. Haferbrei und Tee passieren,
+  ein Stück Fleisch nicht. Daraus folgt aber *nicht* weniger Eiweiss – das
+  Problem ist die Form. Reihenfolge: erst Menge und Tempo, dann Konsistenz,
+  dann Speisekarte.
+- **TSH ist das Steuerhormon der Schilddrüse**, und die Leserichtung ist
+  umgekehrt: hoher Wert, Unterfunktion. Sie kann einen Darmstillstand
+  nachahmen. Mit dem Vorbehalt, dass bei akut Schwerkranken die
+  Schilddrüsenwerte häufig verschoben sind – ein auffälliger Wert ist dann
+  Anlass zur Nachkontrolle, keine Diagnose.
 - **Der geblähte Darm ist das, was sie am meisten belastet.** Fällt die
   Peristaltik aus, bleibt das Gas liegen und nimmt den Weg nach oben. Dass
   der Wind abgeht, wenn auch schwer, ist die beruhigende Hälfte – bleibt er
@@ -175,7 +193,8 @@ sie kommen kann · Pantoprazol, sein Zeitpunkt und seine Folgen · was sie
 jetzt isst und trinkt · ein Interaktionscheck der beteiligten Medikamente · eine Übersicht der Abführmittel zum Trinken, die
 es in der Schweiz gibt, mit Wirkstoff und Süssstoff je Präparat und den
 beiden aromafreien Alternativen · Adressen in Zürich · was zum Termin
-mitgehört · Fragen, die sich zu stellen lohnen · Quellen.
+mitgehört · **die acht Fragen, auf die es jetzt ankommt** und danach die
+vollständige Liste · Quellen.
 
 **Keine allgemeinen Ratschläge.** Was hier steht, ist belegt und auf diese
 Patientin zugeschnitten. Generische Warnzeichenlisten, Haushaltstipps,
