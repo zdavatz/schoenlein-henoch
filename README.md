@@ -226,15 +226,17 @@ lesen und was die Infusion mit ihm macht · Krankheitsbild und die vier
 betroffenen Bereiche · was den Schub ausgelöst haben kann · warum das Alter
 den Verlauf ändert · belegte Fälle älterer Frauen, nah an 84 · was ein früherer Schub bedeutet ·
 warum Blut im Urin nicht aus dem Magen kommen kann und was das Sediment
-darüber entscheidet · der gestaute Harnleiter und seine drei Erklärungen ·
-die Transfusion und die Zahl, die danach zählt · Herkunft des
-Blutverlusts · eine Tabelle der notwendigen Abklärungen · Behandlung ·
+darüber entscheidet · der gestaute Harnleiter und seine vier Erklärungen ·
+der Blasenkatheter, was er misst und was er nicht behebt · Ödeme als Bilanz,
+mit dem Kostaufbau als fünfter Erklärung · die Transfusion und die Zahl, die
+danach zählt · die Verlegung ins Universitätsspital und die drei Fäden, die
+dabei nicht abreissen dürfen · Herkunft des Blutverlusts · eine Tabelle der notwendigen Abklärungen · Behandlung ·
 Novalgin und was dabei zu kontrollieren ist · die Magenentzündung und woher
 sie kommen kann · Pantoprazol, sein Zeitpunkt und seine Folgen · was sie
 jetzt isst und trinkt · ein Interaktionscheck der beteiligten Medikamente · eine Übersicht der Abführmittel zum Trinken, die
 es in der Schweiz gibt, mit Wirkstoff und Süssstoff je Präparat und den
 beiden aromafreien Alternativen · Adressen in Zürich · was zum Termin
-mitgehört · **die acht Fragen, auf die es jetzt ankommt** und danach die
+mitgehört, seit der Verlegung eine Übergabeliste · **die acht Fragen, auf die es jetzt ankommt** und danach die
 vollständige Liste · Quellen.
 
 ### Das Begleitblatt zum Kostaufbau

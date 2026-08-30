@@ -315,7 +315,21 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
 
   `send_*.py` verschickt, `entwurf_*.py` legt an; beide Muster stehen im
   `.gitignore`, weil die Dateien Mailadressen, Patientenname und
-  Geburtsdatum im Klartext tragen. Der Name der Patientin darf in eine Mail
+  Geburtsdatum im Klartext tragen. Je Blatt ein Skript: `send_blatt.py`
+  schickt das Hauptblatt, `send_hunger.py` das Begleitblatt.
+
+  **Der Sende-Scope kann nicht nachlesen.** `gmail.send` erlaubt kein
+  `messages.get` – wer mit `token_send.json` prüfen will, ob ein Anhang
+  wirklich mitging, bekommt nichts zurück. Der Nachweis geht über den
+  `sizeEstimate` der gesendeten Nachricht (über die MCP-Schnittstelle
+  abfragbar), verglichen mit der base64-Grösse der Dateien, also
+  `ceil(n/3)*4` je Anhang plus rund 150 KB für Text und Kopfzeilen. Das
+  entscheidet die Frage «war der Anhang dabei?» ohne Lesezugriff.
+
+  **Und die praktische Folge daraus: je Blatt eine Mail.** Zwei PDFs in
+  einer Nachricht von 11 MB sehen im Mailprogramm aus wie eines – die
+  Vorschau klappt sie zusammen, und der zweite Anhang gilt als nicht
+  gesendet. Beim Versand mehrerer Blätter deshalb nicht bündeln. Der Name der Patientin darf in eine Mail
   an ihre behandelnden Ärzte – dorthin gehört er –, aber in keine Datei,
   die auch nur in die Nähe eines Commits kommt.
 - Die Mailadressen in den Adressangaben sind öffentliche Kontaktangaben des
