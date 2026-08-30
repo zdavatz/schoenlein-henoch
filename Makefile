@@ -1,21 +1,24 @@
 # Erzeugt HTML und PDF aus den Rust-Quellen in src/.
 #
-# Beides entsteht im selben Lauf: `src/html.rs` und `src/pdf.rs` sind zwei
-# Ausgaben derselben Datenstruktur in `src/inhalt.rs`.
+# Zwei Blaetter, ein Lauf, dieselbe Pipeline: `src/html.rs` und `src/pdf.rs`
+# setzen jedes Dokument, das ihnen gereicht wird. Das Vaskulitis-Blatt steht
+# in `src/inhalt.rs`, das Begleitblatt zum Kostaufbau in `src/hunger.rs`.
 
-HTML = iga-vaskulitis.html
-PDF  = iga-vaskulitis.pdf
-BIN  = target/release/infoblatt
-QUELLEN = src/main.rs src/inhalt.rs src/html.rs src/pdf.rs src/blatt.css Cargo.toml
+HTML  = iga-vaskulitis.html
+PDF   = iga-vaskulitis.pdf
+HHTML = kostaufbau-nach-hungern.html
+HPDF  = kostaufbau-nach-hungern.pdf
+BIN   = target/release/infoblatt
+QUELLEN = src/main.rs src/inhalt.rs src/hunger.rs src/html.rs src/pdf.rs src/blatt.css Cargo.toml
 
-.PHONY: all open pruef clean
+.PHONY: all open pruef pruef-hunger clean
 
-all: $(PDF)
+all: $(PDF) $(HPDF)
 
 $(BIN): $(QUELLEN)
 	cargo build --release --offline
 
-$(PDF) $(HTML): $(BIN)
+$(PDF) $(HTML) $(HPDF) $(HHTML): $(BIN)
 	./$(BIN)
 
 open: $(PDF)
@@ -27,6 +30,10 @@ pruef: $(PDF)
 	rm -f pruef*.png
 	pdftoppm -png -r 70 $(PDF) pruef
 
+pruef-hunger: $(HPDF)
+	rm -f hunger-pruef*.png
+	pdftoppm -png -r 70 $(HPDF) hunger-pruef
+
 clean:
-	rm -f $(PDF) $(HTML) pruef*.png
+	rm -f $(PDF) $(HTML) $(HPDF) $(HHTML) pruef*.png hunger-pruef*.png
 	cargo clean

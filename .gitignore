@@ -2,6 +2,7 @@
 # herunterladen kann. Andere PDFs bleiben draussen.
 *.pdf
 !iga-vaskulitis.pdf
+!kostaufbau-nach-hungern.pdf
 
 # Nichts davon gehoert je in ein oeffentliches Repositorium
 credentials
@@ -12,7 +13,9 @@ send_*.py
 
 # Erzeugte Zwischenstufen - reproduzierbar aus src/ mit `make`
 iga-vaskulitis.html
+kostaufbau-nach-hungern.html
 pruef*.png
+hunger-pruef*.png
 
 # Rust
 target/

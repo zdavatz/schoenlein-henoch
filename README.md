@@ -4,6 +4,13 @@ Ein Informationsblatt zum Krankheitsbild: wie die Krankheit entdeckt wurde,
 was sie ist, was bei dieser Patientin abgeklärt gehört und wo in Zürich die
 Sprechstunden dafür sind.
 
+Dazu ein **Begleitblatt**,
+[`kostaufbau-nach-hungern.pdf`](kostaufbau-nach-hungern.pdf): Wie ernährt man
+einen Menschen, der wochenlang nichts gegessen hat? Die Antwort steht in der
+Literatur zu Hungerstreikenden, und sie hat einen Punkt, an dem die üblichen
+Empfehlungen nachweislich versagt haben. Beide Blätter entstehen aus derselben
+Rust-Pipeline im selben Lauf.
+
 Das Blatt ist entstanden, weil zu dieser Krankheit im deutschen Sprachraum
 vor allem Material für Kinder zu finden ist. Bei Erwachsenen, und erst recht
 im hohen Alter, verläuft sie anders und wird härter beurteilt. Genau diese
@@ -19,8 +26,11 @@ Nahrungsaufnahme, kaum Flüssigkeit und eine Woche lang gar kein Stuhlgang. Inzw
 wird transfundiert, der Stuhl ist schwarz und flüssig mit weissem Schleim
 dazwischen, es wird schwarz erbrochen, die Darmspiegelung hat nichts
 gefunden ausser einem gestörten Transport, es ist Blut im Urin, und der
-Harnleiter ist an mehreren Stellen gestaut. Die «Ausgangslage» im Dokument beschreibt diesen Fall.
-Namen kommen keine vor.
+Harnleiter ist an mehreren Stellen gestaut. Am 30. August ist das Frühstück
+erstmals wieder drin geblieben, der Wind geht wieder ab, die Transfusion ist
+beendet, der Urin wird über einen Katheter abgeleitet – und die Patientin wird
+ins Universitätsspital verlegt. Die «Ausgangslage» im Dokument beschreibt
+diesen Fall. Namen kommen keine vor.
 
 Die Punkte, an denen sich das Blatt aufhängt, weil sie leicht falsch
 verstanden werden:
@@ -175,6 +185,37 @@ verstanden werden:
   ganz aus und wird der Bauch praller, ist es die andere. Weder Säureblocker
   noch Abführmittel bewegen Gas; nur der Transport tut das.
 
+- **Ein Blasenkatheter entleert die Blase und sonst nichts.** Sitzt der Stau
+  im Harnleiter, ändert er dort nichts – dafür braucht es eine Harnleiterschiene
+  oder eine Nierenfistel. Wofür er hier wirklich taugt, ist die Menge: Nach
+  KDIGO genügt eine Urinmenge unter 0,5 ml/kg/h über sechs Stunden allein, um
+  ein akutes Nierenversagen zu benennen. Und er kann selbst bluten – bei
+  kurzzeitiger Katheterisierung in 4,7 Prozent sichtbar –, was das Sediment
+  nicht überflüssig macht, sondern nötiger.
+
+- **Der Windabgang ist das schwächere der beiden Zeichen.** An der Darmlähmung
+  nach Operationen ist gemessen worden, woran man den wiederhergestellten
+  Transport erkennt: nicht am ersten Wind, sondern an der Kombination aus
+  vertragener fester Kost und Stuhlgang. Haferbrei ist noch keine feste Kost.
+
+- **Eine Verlegung ist die Stelle, an der Information verlorengeht.** In einer
+  Auswertung von 335 Verlegungen war die Übergabedokumentation im Mittel zu
+  58,3 Prozent vollständig; bei 42 Prozent trat innert 24 Stunden ein
+  unerwünschtes Ereignis ein. Die Liste «Was zum Termin mitgehört» ist deshalb
+  zur Übergabeliste geworden.
+
+- **Orales Thiamin hat bei Hungerstreikenden versagt.** 41 Gefangene in Izmir
+  nahmen 200 bis 600 mg täglich als Tablette – alle 41 entwickelten trotzdem ein
+  Wernicke-Korsakow-Syndrom. Bei jemandem, dessen Magen sich nicht entleert und
+  dessen Darm nicht transportiert, ist der Weg durch den Mund für nichts
+  Wichtiges der verlässliche.
+
+- **Geschwollene Knöchel können das Refeeding-Syndrom sein.** In der Berner
+  Serie von 37 Hungerstreik-Aufnahmen war das beidseitige Knöchelödem die
+  klinische Manifestation des einen mittelschweren Falls. Wer nach langem
+  Hungern wieder Kohlenhydrate isst, hält Natrium und Wasser zurück. Das ist
+  die fünfte Erklärung für ihre Ödeme und die unauffälligste.
+
 ## Was drinsteht
 
 Das Blatt beginnt mit der Entdeckungsgeschichte von Heberden 1801 bis zur
@@ -195,6 +236,20 @@ es in der Schweiz gibt, mit Wirkstoff und Süssstoff je Präparat und den
 beiden aromafreien Alternativen · Adressen in Zürich · was zum Termin
 mitgehört · **die acht Fragen, auf die es jetzt ankommt** und danach die
 vollständige Liste · Quellen.
+
+### Das Begleitblatt zum Kostaufbau
+
+[`kostaufbau-nach-hungern.pdf`](kostaufbau-nach-hungern.pdf), acht Seiten,
+beantwortet eine Frage aus dem Hauptblatt ausführlich: Wie ernährt man jemanden
+nach langem Hungern? Von 1945 – als auffiel, dass Befreite nicht am Hunger
+starben, sondern an der ersten Mahlzeit – über die Genfer Handreichung für
+Ärztinnen und Ärzte, die Hungerstreikende begleiten, bis zur Berner Serie von
+37 Aufnahmen. Darin: warum das erste Essen die gefährliche Phase ist, die vier
+Tage, in denen das Refeeding-Syndrom auftritt, die Zahlen für den Beginn, der
+Überwachungsplan, das Thiamin und sein Weg – und ein Abschnitt darüber, was
+sich auf eine Kranke übertragen lässt und was nicht. Die Deklaration von Malta
+steht dabei, weil bei Hungerstreikenden der Frage, wie man ernährt, immer die
+Frage vorausgeht, ob man darf.
 
 **Keine allgemeinen Ratschläge.** Was hier steht, ist belegt und auf diese
 Patientin zugeschnitten. Generische Warnzeichenlisten, Haushaltstipps,
@@ -218,9 +273,10 @@ am 29. August 2026.
 ## Bauen
 
 ```bash
-make          # erzeugt iga-vaskulitis.html und iga-vaskulitis.pdf
-make open     # baut und öffnet das PDF
-make pruef    # Seitenbilder zur Sichtprüfung
+make              # erzeugt beide Blätter, je als HTML und PDF
+make open         # baut und öffnet das Hauptblatt
+make pruef        # Seitenbilder des Hauptblatts zur Sichtprüfung
+make pruef-hunger # dasselbe für das Begleitblatt
 ```
 
 Oder von Hand:
@@ -230,17 +286,22 @@ cargo run --release
 cargo run --release -- --html raus.html --pdf raus.pdf
 ```
 
-Gebraucht wird eine Rust-Toolchain (entwickelt mit 1.93). Beide Ausgaben
-entstehen im selben Lauf. Das fertige
-[`iga-vaskulitis.pdf`](iga-vaskulitis.pdf) liegt im Repositorium, damit man
-es ohne Toolchain herunterladen und ausdrucken kann; es wird bei jeder
-inhaltlichen Änderung neu gebaut und mitcommittet. Das HTML ist eine
-Zwischenstufe und bleibt draussen.
+Gebraucht wird eine Rust-Toolchain (entwickelt mit 1.93). Alle vier Ausgaben
+entstehen im selben Lauf. Die fertigen PDFs
+[`iga-vaskulitis.pdf`](iga-vaskulitis.pdf) und
+[`kostaufbau-nach-hungern.pdf`](kostaufbau-nach-hungern.pdf) liegen im
+Repositorium, damit man sie ohne Toolchain herunterladen und ausdrucken kann;
+sie werden bei jeder inhaltlichen Änderung neu gebaut und mitcommittet. Das
+HTML ist eine Zwischenstufe und bleibt draussen.
 
-Das PDF entsteht ohne Chrome und ohne WeasyPrint: [genpdf](https://crates.io/crates/genpdf)
+Beide PDFs entstehen ohne Chrome und ohne WeasyPrint: [genpdf](https://crates.io/crates/genpdf)
 schreibt über printpdf, [lopdf](https://crates.io/crates/lopdf) legt die
 Hyperlinks nach, DejaVu Sans wird eingebettet – dieselbe Pipeline wie in
 [adhs-expert](https://github.com/zdavatz/adhs-expert).
+
+`src/inhalt.rs` und `src/hunger.rs` sind reine Daten; `src/html.rs` und
+`src/pdf.rs` setzen jedes `Dokument`, das ihnen gereicht wird. Ein drittes
+Blatt wäre eine weitere Datei und drei Zeilen in `src/main.rs`.
 
 Den Absatzsatz macht das Blatt selbst, statt genpdfs `Paragraph` zu nehmen:
 Nur wer weiss, wo ein Wort zu liegen kommt, kann einen Link dahinterlegen.

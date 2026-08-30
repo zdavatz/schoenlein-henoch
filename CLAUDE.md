@@ -4,8 +4,8 @@ Hinweise für Claude Code (claude.ai/code) zur Arbeit an diesem Repositorium.
 
 ## Überblick
 
-Erzeugt ein **HTML und ein PDF** zur **IgA-Vaskulitis (Purpura
-Schönlein-Henoch)**: Entdeckungsgeschichte, Krankheitsbild, Verlauf der
+Erzeugt **zwei Blätter**, je als HTML und PDF. Das Hauptblatt zur
+**IgA-Vaskulitis (Purpura Schönlein-Henoch)**: Entdeckungsgeschichte, Krankheitsbild, Verlauf der
 letzten Wochen, Abklärungen, Behandlung, Abführmittel, die Sprechstunden in
 Zürich, Quellen.
 
@@ -18,16 +18,17 @@ Kommentare, Dokumententexte und Commit-Messages sind auf Deutsch
 ## Build und Ausführung
 
 ```bash
-make          # cargo build --release && ./target/release/infoblatt
-make pruef    # Seitenbilder zur Sichtprüfung
+make              # cargo build --release && ./target/release/infoblatt
+make pruef        # Seitenbilder des Hauptblatts zur Sichtprüfung
+make pruef-hunger # dasselbe für das Begleitblatt
 make open
 ```
 
-Beides – HTML und PDF – entsteht im selben Lauf. `FONT_DIR` überschreibt das
+Alle vier Dateien entstehen im selben Lauf. `FONT_DIR` überschreibt das
 Schriftverzeichnis (Vorgabe `./fonts`). Der Build läuft offline, sofern
 `genpdf 0.2`, `lopdf 0.34` und `anyhow` im Cargo-Cache liegen.
 
-**`iga-vaskulitis.pdf` ist eingecheckt** – es soll ohne Rust-Toolchain
+**Beide PDFs sind eingecheckt** – sie sollen ohne Rust-Toolchain
 herunterladbar sein. Wer den Inhalt ändert, baut neu und commitet das PDF
 mit; sonst steht im Repositorium eine alte Fassung. Das HTML bleibt
 draussen, es ist nur eine Zwischenstufe.
@@ -43,12 +44,31 @@ eingebettet.
 
 | Datei | Aufgabe |
 |---|---|
-| `src/inhalt.rs` | **Der gesamte Text**, als Daten. Wer Inhalt ändert, ändert ihn nur hier. |
+| `src/inhalt.rs` | **Der gesamte Text des Hauptblatts**, als Daten. Wer Inhalt ändert, ändert ihn nur hier. |
+| `src/hunger.rs` | Dasselbe für das Begleitblatt zum Kostaufbau nach langem Hungern |
 | `src/html.rs` | HTML-Ausgabe |
 | `src/blatt.css` | Gestaltung der HTML-Ausgabe, per `include_str!` eingebunden |
 | `src/pdf.rs` | PDF-Satz und Link-Overlay |
 | `src/main.rs` | schreibt beide Dateien |
 | `fonts/` | DejaVu Sans, wird ins PDF eingebettet |
+
+**Zwei Dokumente, eine Pipeline.** `Dokument` in `src/inhalt.rs` bündelt
+Titel, Kolumnentitel, Blocks und Quellen; `html::render(&d)` und
+`pdf::render(&d, …)` setzen jedes Dokument, das ihnen gereicht wird. Ein
+drittes Blatt ist eine weitere Datei nach dem Muster von `src/hunger.rs`, ein
+`mod`, ein `schreibe(…)`-Aufruf und zwei Dateinamen in `src/main.rs`. Zwei
+Fallen dabei:
+
+- **`GEZEICHNET` und `WORT_ZU_BREIT` sind global** und leben länger als ein
+  Dokument. `pdf::render()` leert beide zu Beginn. Ohne das zählt die
+  Link-Prüfung die Striche des vorigen Blattes mit und bricht mit «die
+  Zuordnung wäre verschoben» ab – bei zwei Blättern der erste Fehler, den man
+  sieht.
+- **Der lebende Kolumnentitel steht im CSS**, als `content:`-Zeile der
+  `@page`-Regel in `src/blatt.css`. `html::render` ersetzt darin `KOPFZEILE`
+  durch die Kopfzeile des jeweiligen Dokuments; die Vorgabe im CSS ist die des
+  Vaskulitis-Blattes. Wer den Text im CSS ändert, muss `KOPFZEILE` mitziehen,
+  sonst greift die Ersetzung ins Leere (ein `debug_assert` fängt das ab).
 
 Acht Dinge, die beim Bauen Zeit gekostet haben:
 
@@ -252,6 +272,12 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   ETH-Arbeit zeigt, dass sie es nicht tut. Im Blatt steht deshalb beides:
   dass der Volksglaube falsch ist *und* dass Spinat trotzdem keine Antwort
   auf einen Blutverlust dieser Grössenordnung ist.
+- **Eine Frage, die zweimal gestellt wird, ist ein eigenes Blatt.** Die Frage
+  nach dem Kostaufbau nach langem Hungern kam zweimal; die Antwort passte nicht
+  mehr in einen Abschnitt des Hauptblatts, ohne es zu verziehen. Daraus wurde
+  `src/hunger.rs`. Das Hauptblatt behält den kurzen Abschnitt und verweist
+  darauf – nicht umgekehrt. Wer den einen ändert, prüft den anderen: Thiamin,
+  Phosphat und die vier Tage stehen in beiden.
 - Adressen, Präparate und Zuständigkeiten veralten. Das Datum in `STAND`
   beim Prüfen mitführen – ebenso das Datum im Abschnitt zum Interaktions-
   check, das den Lauf datiert.

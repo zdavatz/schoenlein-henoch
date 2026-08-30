@@ -34,6 +34,22 @@ pub struct Verweis {
     pub url: &'static str,
 }
 
+/// Ein vollstaendiges Blatt: Titel, Text und Quellen. `src/html.rs` und
+/// `src/pdf.rs` setzen jedes Dokument, das hier hereingereicht wird – so
+/// entsteht aus derselben Pipeline neben dem Vaskulitis-Blatt auch das
+/// Blatt zum Kostaufbau in `src/hunger.rs`.
+pub struct Dokument {
+    pub titel: &'static str,
+    pub titel2: &'static str,
+    pub untertitel: &'static str,
+    pub stand: &'static str,
+    /// Lebender Kolumnentitel. Im HTML ersetzt `html::render` damit den
+    /// Vorgabetext der `@page`-Regel in `blatt.css`.
+    pub kopfzeile: &'static str,
+    pub blocks: &'static [Block],
+    pub quellen: &'static [(&'static str, Verweis)],
+}
+
 pub struct Tabelle {
     /// Leer, wenn die Tabelle keine Kopfzeile hat.
     pub kopf: &'static [&'static str],
@@ -77,7 +93,7 @@ pub const TITEL2: &str = "(Purpura Schönlein-Henoch)";
 pub const UNTERTITEL: &str =
     "Krankheitsbild, notwendige Abklärungen und die Spezialistinnen und Spezialisten in Zürich";
 pub const STAND: &str =
-    "Informationsblatt für die Patientin und ihre Angehörigen · Stand 29. August 2026 · zum Mitnehmen zum Arzttermin";
+    "Informationsblatt für die Patientin und ihre Angehörigen · Stand 30. August 2026 · zum Mitnehmen zum Arzttermin";
 pub const KOPFZEILE: &str = "IgA-Vaskulitis (Purpura Schönlein-Henoch)";
 
 
@@ -183,6 +199,10 @@ static T_ABKLAERUNG: Tabelle = Tabelle {
             &[T("Ultraschall der Nieren und ableitenden Harnwege, "), B("wiederholt"), T(" – er zeigt den Stau ohne Kontrastmittel und ohne Strahlung. Dazu, wegen sichtbaren Bluts im Urin und des Alters, die urologische Abklärung mit Blasenspiegelung und Bildgebung der oberen Harnwege; die Computertomografie des Bauches lässt sich als CT-Urografie fahren und beantwortet dann beide Fragen auf einmal.")],
         ],
         &[
+            &[B("Urinmenge")],
+            &[T("Die Bilanz, seit der Katheter liegt: wie viel hinein, wie viel heraus, dazu das Gewicht täglich. Nach der KDIGO-Leitlinie genügt eine Menge unter "), N("0,5 ml"), T(" je Kilogramm und Stunde über sechs Stunden für sich allein, um ein akutes Nierenversagen zu benennen – auch bei unauffälligem Kreatinin. Und der Katheter gehört heraus, sobald diese Messung nicht mehr gebraucht wird.")],
+        ],
+        &[
             &[B("Blutzerfall")],
             &[T("LDH, Haptoglobin, Bilirubin – trennt einen Zerfall der roten Blutkörperchen vom Blutverlust nach aussen.")],
         ],
@@ -200,7 +220,7 @@ static T_ABKLAERUNG: Tabelle = Tabelle {
         ],
         &[
             &[B("Ernährung")],
-            &[T("Gewichtsverlauf, Albumin, "), B("Phosphat"), T(", Kalium, Magnesium – nach Wochen ohne Nahrung die Voraussetzung dafür, dass der Kostaufbau sicher beginnen kann, und bei Gefährdeten in den ersten drei Tagen alle zwölf Stunden zu kontrollieren. Magnesium steht unter Pantoprazol ein zweites Mal auf dieser Liste. Dazu "), B("Thiamin (Vitamin B1) 100 mg vor der ersten Kohlenhydratgabe"), T(", dann zweimal täglich über sieben bis zehn Tage – siehe den Abschnitt zum Kostaufbau.")],
+            &[T("Gewichtsverlauf, Albumin, "), B("Phosphat"), T(", Kalium, Magnesium – nach Wochen ohne Nahrung die Voraussetzung dafür, dass der Kostaufbau sicher beginnen kann, und bei Gefährdeten in den ersten drei Tagen alle zwölf Stunden zu kontrollieren. Magnesium steht unter Pantoprazol ein zweites Mal auf dieser Liste. Dazu "), B("Thiamin (Vitamin B1) 100 mg vor der ersten Kohlenhydratgabe"), T(", dann zweimal täglich über sieben bis zehn Tage – und dazu die Frage nach dem "), B("Weg"), T(": Bei einem Magen, der sich nicht entleert, ist die Tablette unsicher. Siehe den Abschnitt zum Kostaufbau.")],
         ],
         &[
             &[B("Nach der Transfusion")],
@@ -452,8 +472,26 @@ pub static DOKUMENT: &[Block] = &[
             P(&[
                 B("Und was seither dazugekommen ist."), T(" Der Stuhl ist "), B("schwarz und flüssig"), T(", mit weissem Schleim dazwischen. Und schwarz erbrochen: Kaffeesatz. Die Darmspiegelung hat nichts gefunden – ausser, dass der Darm nicht richtig transportiert. Das Hämoglobin ist nochmals gefallen. Blut im Urin, mit blossem Auge sichtbar. Ein Harnleiter, der an mehreren Stellen gestaut ist. Ein geblähter Darm, der ihr am meisten zu schaffen macht; Luft, die sie bis zum Würgen aufstossen lässt und nur schwer nach unten abgeht; der Gastroenterologe spricht von fehlender Peristaltik. Ödeme an den Füssen, die es beim früheren Schub schon gab. Und deshalb eine laufende Bluttransfusion. Damit ist der Hämoglobinabfall nicht erklärt, sondern nur ersetzt – die Frage nach der Quelle steht unverändert. Siehe die Abschnitte «Blut im Urin», «Der gestaute Harnleiter» und «Die Transfusion»."),
             ]),
+            P(&[
+                B("Und der Morgen des 30. August."), T(" Das Frühstück ist drin geblieben – Schwarztee mit Milch und Haferbrei, und diesmal kein Erbrechen. Der Wind geht wieder ab. Die Transfusion ist beendet, die Kochsalzinfusion läuft weiter. Geschlafen hat sie leidlich. Blut im Urin ist weiterhin da, und der Urin wird jetzt über einen Katheter abgeleitet. Das sind mehrere kleine Besserungen an einem Tag – und keine davon beantwortet, woher das Blut kommt. Siehe die Abschnitte «Der Katheter» und «Poulet ging nicht»."),
+            ]),
+            P(&[
+                B("Und heute die Verlegung."), T(" Sie kommt ins Universitätsspital Zürich – in das Haus, dessen Vaskulitis-Sprechstunde und Nephrologie in diesem Blatt seit der ersten Fassung als Adressen stehen. Damit ist dieses Blatt nicht mehr die Vorbereitung auf einen Termin in einigen Wochen, sondern die Unterlage für eine Übergabe von heute. Siehe den Abschnitt «Die Verlegung ins Universitätsspital»."),
+            ]),
         ],
     },
+
+    H2("Die Verlegung ins Universitätsspital"),
+    P(&[T("Zwei Dinge ändern sich damit, und sie ziehen in entgegengesetzte Richtungen.")]),
+    P(&[B("Das Gute zuerst."), T(" Dieses Blatt nennt seit der ersten Fassung zwei Fächer, die gemeinsam zuständig sind – die Rheumatologie für die Vaskulitis, die Nephrologie für die Niere –, und führt am Schluss ihre Adressen auf. Beide sind im Haus, in das sie heute verlegt wird. Der Weg dorthin führte bisher über eine Zuweisung und eine Warteliste; für eine stationäre Patientin ist es ein Konsil, das die behandelnde Abteilung anfordert. Was in diesem Blatt an eine Sprechstunde adressiert war, lässt sich damit im Haus stellen – und die Gastroenterologie steht daneben.")]),
+    P(&[B("Und das, was an einem Verlegungstag regelmässig schiefgeht."), T(" Eine Verlegung ist die Stelle, an der Information verlorengeht. In einer Auswertung von 335 Verlegungen an ein Universitätsspital war die Übergabedokumentation im Mittel zu "), N("58,3 Prozent"), T(" vollständig, und bei 42 Prozent der Patienten trat innert 24 Stunden nach der Ankunft ein unerwünschtes Ereignis ein. Eine "), L("vollständigere Dokumentation", "https://pmc.ncbi.nlm.nih.gov/articles/PMC5096986/"), T(" ging mit geringerer Sterblichkeit, weniger unerwünschten Ereignissen und weniger doppelt gemachter Arbeit einher, auch nachdem die Schwere der Erkrankung herausgerechnet war. Die Einschränkung gehört dazu: Untersucht wurden rückblickend Verlegungen auf Intensivstationen in den Vereinigten Staaten. Was sich überträgt, ist nicht die Zahl, sondern die Stelle, an der es klemmt.")]),
+    P(&[B("Daraus folgt, wofür dieses Blatt ab heute da ist."), T(" Die Liste «Was zum Termin mitgehört» ist eine Übergabeliste geworden. Drei Fäden dürfen dabei nicht abreissen, weil an jedem eine Frist hängt:")]),
+    Liste(&[
+        &[B("Die Blutungsquelle."), T(" Kaffeesatz oben und Teerstuhl unten heissen Blutung im oberen Verdauungstrakt, und dafür nennen die Fachgesellschaften 24 Stunden nach der Kreislaufstabilisierung. Diese Uhr läuft während der Verlegung weiter.")],
+        &[B("Der Hämoglobinwert nach der Transfusion."), T(" Er ist die nützlichste Zahl der ganzen Woche – und er wird genau dann fällig, wenn die Patientin das Haus wechselt. Siehe den Abschnitt «Die Transfusion».")],
+        &[B("Der Kostaufbau."), T(" Er hat gerade begonnen, und die gefährlichen Tage sind die ersten vier. Thiamin, Phosphat, Kalium, Magnesium – siehe den Abschnitt «Der Kostaufbau nach Wochen ohne Nahrung» und das Begleitblatt «Kostaufbau nach langem Hungern».")],
+    ]),
+    P(&[T("Keiner dieser drei Punkte ist neu; alle drei stehen weiter unten ausführlich. Sie stehen hier noch einmal, weil eine Verlegung genau die Art von Ereignis ist, nach der laufende Fragen als beantwortet gelten, ohne beantwortet worden zu sein.")]),
     H2("Was seit Wochen läuft"),
     P(&[T("Was die Patientin in den vergangenen Wochen erlebt hat, gehört zusammen auf ein Blatt. Einzeln klingt jeder Punkt nach einer Unannehmlichkeit; zusammen ergeben sie etwas anderes. Diese Liste ist die Vorgeschichte, mit der man zum Termin geht; was sich davon inzwischen gebessert hat, steht im Abschnitt danach.")]),
     Tab(&T_VERLAUF),
@@ -533,6 +571,14 @@ pub static DOKUMENT: &[Block] = &[
     P(&[B("Daraus folgt etwas sehr Praktisches."), T(" Die Computertomografie des Bauches steht in diesem Blatt seit der ersten Fassung, wegen der Passagestörung. Als CT-Urografie gefahren, beantwortet dieselbe Untersuchung im selben Durchgang auch, wo der Harnleiter gestaut ist und wodurch. Ein Termin, ein Kontrastmittel, zwei Fragen. Ob das Kontrastmittel bei der aktuellen Nierenfunktion vertretbar ist, entscheidet die Ärztin – die Frage gehört gestellt, und der Ultraschall bleibt daneben das Mittel, das sich ohne Bedenken wiederholen lässt.")]),
     P(&[T("Und eine Warnung, die aus den Fallberichten kommt: Der Stau muss nicht von Anfang an da sein und nicht dauerhaft bleiben. In zwei der drei genannten Fälle war die erste Bildgebung unauffällig. Wer einmal gestaut war, gehört deshalb nachkontrolliert, auch wenn es zwischendurch besser aussieht.")]),
 
+    H2("Der Katheter"),
+    P(&[T("Der Urin wird ihr abgeleitet. Das ist eine kleine Meldung mit mehreren Folgen, und die erste ist die, die am leichtesten missverstanden wird.")]),
+    P(&[B("Ein Blasenkatheter entleert die Blase – und sonst nichts."), T(" Das Hindernis, von dem der Abschnitt davor handelt, sitzt weiter oben, im Harnleiter. Dort ändert ein Katheter nichts. Die Fachdarstellung zur Harnstauung trennt das ausdrücklich: Der "), L("Blasenkatheter", "https://www.ncbi.nlm.nih.gov/books/NBK563217/"), T(" ist das Mittel, wenn die Abflussstörung auf Höhe der Blase vermutet wird; sitzt sie im Harnleiter, braucht es eine Harnleiterschiene über die Blasenspiegelung oder eine perkutane Nierenfistel durch die Haut. "), B("Praktisch heisst das:"), T(" Zeigen Kreatinin oder Ultraschall den Stau weiterhin, ist der Katheter nicht die Antwort darauf – dann steht die Frage im Raum, ob die obere Harnableitung eigens entlastet werden muss.")]),
+    P(&[B("Wofür er hier wirklich gut ist: die Menge."), T(" Genau dafür steht er auf der Liste der begründeten Anwendungen – die "), L("genaue Messung der Urinmenge", "https://pmc.ncbi.nlm.nih.gov/articles/PMC9580547/"), T(" ist eine davon. Und diese Messung hat bisher gefehlt. Nach der KDIGO-Leitlinie zum akuten Nierenversagen genügt eine "), L("Urinmenge unter 0,5 ml je Kilogramm und Stunde über sechs Stunden", "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf"), T(" für sich allein, um ein akutes Nierenversagen zu benennen – ohne einen einzigen Kreatininwert. Bei einer Patientin mit laufender Kochsalzinfusion, Ödemen an den Füssen und einer Niere, die bei dieser Krankheit das gefährdete Organ ist, ist die Bilanz deshalb kein Nebenprotokoll, sondern der Messwert, an dem sich zeigt, ob die Zufuhr passt.")]),
+    P(&[B("Und ein Nebeneffekt, der hier zufällt."), T(" Der Urin für Sediment und Protein-Kreatinin-Quotient liegt jetzt griffbereit. Der Abschnitt «Blut im Urin» verlangt beides seit Tagen; die Sammlung ist als Hinderungsgrund damit weg.")]),
+    P(&[B("Was er kostet."), T(" Die Dauer der Katheterisierung ist der "), L("beherrschende Risikofaktor", "https://pmc.ncbi.nlm.nih.gov/articles/PMC9580547/"), T(" für eine katheterassoziierte Harnwegsinfektion; das tägliche Risiko einer Bakteriurie wird mit "), L("3 bis 7 Prozent je Kathetertag", "https://pmc.ncbi.nlm.nih.gov/articles/PMC8992741/"), T(" angegeben. Daraus folgt keine Ablehnung, sondern ein Datum: Der Katheter gehört heraus, sobald die Bilanz nicht mehr gebraucht wird – und wer ihn liegen lässt, sollte sagen können, wofür.")]),
+    P(&[B("Ein Vorbehalt zum Blut im Urin gehört dazu."), T(" Ein Katheter kann selbst bluten. Eine Übersichtsarbeit über die nicht-infektiösen Katheterkomplikationen nennt für die "), L("kurzzeitige Katheterisierung sichtbares Blut im Urin bei 4,7 Prozent", "https://www.ncbi.nlm.nih.gov/books/NBK159201/"), T("; Ursachen sind Reibung an der Harnröhre, ein falscher Weg beim Einführen oder ein im Harnröhrenbereich aufgeblasener Ballon. Damit steht neben Niere und Harnleiter eine dritte Erklärung im Raum. Sie entkräftet die beiden anderen nicht – nach dem Verlauf in diesem Blatt war das sichtbare Blut vor dem Katheter da –, aber sie verlangt zwei Angaben im Bericht: seit wann der Katheter liegt und wie der Urin davor aussah. Und sie macht die Untersuchung, die dieses Blatt ohnehin verlangt, noch wichtiger: Akanthozyten und Erythrozytenzylinder im Sediment trennen die Blutung aus dem Nierenfilter von jeder Blutung weiter unten, den Katheter eingeschlossen.")]),
+
     H2("Ödeme an den Füssen"),
     P(&[T("Wasser im Gewebe ist kein Befund für sich, sondern eine Bilanz: Was die Gefässe nicht halten oder die Niere nicht ausscheidet, sammelt sich unten. Vier Erklärungen kommen infrage, und mehrere davon können gleichzeitig zutreffen. Eine fünfte, die hier zuerst stand, entfällt: Kortison hält Natrium und Wasser zurück – nur hat sie nie welches bekommen. Die Frage lautet deshalb nicht, welche es ist, sondern wie viel von welcher.")]),
     Liste(&[
@@ -540,6 +586,7 @@ pub static DOKUMENT: &[Block] = &[
         &[B("Zu wenig Eiweiss von vorn."), T(" Wochen ohne Nahrung senken das Albumin ebenso, ganz ohne Niere. Die japanische Registerarbeit nennt neben dem Alter über 65 ausdrücklich die "), L("Hypoalbuminämie", "https://pmc.ncbi.nlm.nih.gov/articles/PMC5940189/"), T(" als das, worauf zu achten ist. Beide Wege führen zum selben tiefen Albuminwert; auseinanderhalten lassen sie sich nur, wenn man den Urin dazu misst.")],
         &[B("Die Infusion und die Transfusion."), T(" Wer NaCl und Blut bekommt, bekommt Volumen. Das ist genau die Konstellation, in der die Kreislaufüberlastung droht – siehe den Abschnitt «Die Transfusion». Geschwollene Füsse sind hier also nicht nur ein Befund, sondern auch eine Rückmeldung zur Bilanz.")],
         &[B("Das Herz."), T(" Bei 84 Jahren, unter Blutarmut und Volumenzufuhr, gehört die Frage gestellt. Sie steht hier nicht als Vermutung, sondern als offene Frage an die Ärztin.")],
+        &[B("Der Kostaufbau selbst."), T(" Diese Erklärung ist neu und die unauffälligste von allen. Kohlenhydrate senken die Natriumausscheidung der Niere – wer nach langem Hungern wieder zu essen beginnt, hält Wasser zurück. In der Berner Auswertung von 37 Hungerstreik-Aufnahmen war bei dem einen Fall mit einem mittelschweren Refeeding-Syndrom das "), B("beidseitige Knöchelödem"), T(" die "), L("klinische Manifestation", "https://pubmed.ncbi.nlm.nih.gov/25280415/"), T(" – es war nicht ein Nebenbefund, sondern das, woran man es sah. Sie hat vor wenigen Tagen wieder zu essen begonnen, mit gezuckertem Tee und Haferbrei. Das macht das Wasser in den Füssen nicht harmlos; es macht Phosphat, Kalium und Magnesium zu Werten, die man deswegen anschaut. Ausgeführt ist das im Begleitblatt «Kostaufbau nach langem Hungern».")],
     ]),
     P(&[B("Und jetzt der wichtigste Satz dieses Abschnitts: Ödeme gab es schon beim letzten Mal."), T(" Das ist keine Nebenbeobachtung, sondern ein rückwirkender Befund. Der Abschnitt «Ein früherer Schub» stellt die Frage, ob damals der Urin kontrolliert wurde, und nennt sie die Frage, auf die es ankommt. Ödeme beim damaligen Schub verschieben die wahrscheinliche Antwort: Sie sind das, was man sieht, wenn Eiweiss über die Niere verloren geht, und sie machen es wahrscheinlicher, dass die Niere schon damals beteiligt war. Dann wäre das heutige Bild nicht der Beginn einer Nierenbeteiligung, sondern ihre zweite Runde – und das ändert, wie dringlich eine Nierenbiopsie zu beurteilen ist.")]),
     P(&[T("Beweisen lässt sich das rückwirkend nicht, erfragen schon: Gibt es aus der damaligen Zeit Urinbefunde, Blutdruckwerte, einen Albuminwert? Und wenn nicht, ist das selbst die Antwort auf die Frage, warum heute niemand weiss, wie lange die Niere schon leidet.")]),
@@ -567,6 +614,7 @@ pub static DOKUMENT: &[Block] = &[
     P(&[B("Warum Einheit für Einheit."), T(" Die Empfehlung lautet, eine Einheit zu geben und danach neu zu beurteilen: Sind die Beschwerden besser? Gibt es Zeichen einer Reaktion? Wie steht der neue Wert? Das "), L("vermeidet unnötige Transfusionen", "https://hospital.blood.co.uk/patient-services/patient-blood-management/appropriate-use-of-blood-components/single-unit-blood-transfusions/"), T(" und senkt das Risiko der Kreislaufüberlastung. Ein Vorbehalt gehört dazu, und er trifft womöglich genau hier zu: Die Regel gilt ausdrücklich nicht für Patienten mit einer klinisch bedeutsamen aktiven Blutung. Ob das auf sie zutrifft, ist die offene Frage dieses ganzen Blattes.")]),
     P(&[B("Die Kreislaufüberlastung ist bei ihr keine Formalie."), T(" TACO heisst diese Komplikation, und sie ist "), L("die häufigste Todesursache", "https://www.lifeblood.com.au/health-professionals/clinical-practice/adverse-events/TACO"), T(" unter den transfusionsbedingten Zwischenfällen, die der amerikanischen Arzneimittelbehörde gemeldet werden – 62 der gemeldeten Todesfälle zwischen 2016 und 2020, also 34 Prozent; im britischen Meldesystem waren es zwischen 2010 und 2024 157 Todesfälle oder 41,4 Prozent. Besonders anfällig sind Menschen über 60, und eine förmliche Risikoeinschätzung vor der Transfusion wird namentlich für über 70-Jährige verlangt. Dazu kommen als Risikofaktoren eine Herz- oder Nierenerkrankung und eine ausgeprägte Blutarmut. Praktisch heisst das: langsam transfundieren, an ein Entwässerungsmittel denken – und die Flüssigkeitsbilanz mitrechnen, denn die NaCl-Infusion läuft ja daneben weiter.")]),
     P(&[B("Und warum zurückhaltend nicht sparsam heisst."), T(" Bei akuter Blutung im oberen Verdauungstrakt ist weniger Blut das bessere Ergebnis. In einer Studie an 921 Patienten wurde die Hälfte erst ab "), N("70 g/l"), T(" transfundiert, die andere schon ab "), N("90 g/l"), T(". Die "), L("Überlebenswahrscheinlichkeit nach sechs Wochen", "https://pubmed.ncbi.nlm.nih.gov/23281973/"), T(" lag in der zurückhaltenden Gruppe bei 95 gegenüber 91 Prozent, Nachblutungen traten bei 10 statt 16 Prozent auf, unerwünschte Ereignisse bei 40 statt 48 Prozent. Die internationalen Empfehlungen von 2023 ziehen daraus die Linie, die auch am Anfang dieses Blattes steht: "), L("70 g/l bei stabilen Erwachsenen", "https://pubmed.ncbi.nlm.nih.gov/37824153/"), T(", 80 bei vorbestehender Herz-Kreislauf-Erkrankung. Wer bei 83 transfundiert, tut das also nicht wegen der Zahl, sondern wegen der Patientin – und das ist zulässig, sofern es so begründet wird.")]),
+    P(&[B("Und der Stand von heute: Die Transfusion ist beendet, die Kochsalzinfusion läuft weiter."), T(" Damit wird der Messwert fällig, den dieser Abschnitt oben den nützlichsten der nächsten Tage nennt – das Hämoglobin nach der Konserve. Er beantwortet die Frage, die dieses ganze Blatt trägt, so direkt wie sonst nichts: Hält der Wert, ist die Blutung zum Stillstand gekommen; steigt er deutlich weniger als die rund "), N("10 g/l"), T(" je Einheit oder fällt er wieder, blutet es weiter. Dass nicht weiter transfundiert wird, ist dabei selbst eine Auskunft – jemand hat den erreichten Wert für ausreichend gehalten. Welcher Wert das war, ist die Frage dazu, und sie ist noch offen. Die Infusion bleibt derweil in der Bilanz: Sie bringt Volumen ohne Sauerstoffträger, und seit der Katheter liegt, lässt sich zum ersten Mal messen, was davon wieder herauskommt.")]),
 
     H2("Was die Krankheit ist"),
     P(&[T("Die IgA-Vaskulitis – der ältere Name Purpura Schönlein-Henoch ist noch geläufig – ist eine Entzündung der kleinsten Blutgefässe. Antikörper der Klasse IgA lagern sich in den Gefässwänden ab, das Immunsystem reagiert darauf, und die Gefässe werden durchlässig und brüchig. Weil solche kleinen Gefässe überall im Körper liegen, betrifft die Krankheit vier Bereiche, klassisch in dieser Kombination:")]),
@@ -694,6 +742,7 @@ pub static DOKUMENT: &[Block] = &[
 
     P(&[B("Und was sie im Moment am meisten belastet, ist genau das: der geblähte Darm."), T(" Das ist keine Nebenbeschwerde neben den Blutungen, sondern das Hauptgefühl – und es ist die unmittelbare Folge der fehlenden Peristaltik. Gas entsteht im Darm ständig; weitergetrieben wird es von der Peristaltik. Fällt sie aus, bleibt das Gas liegen, der Bauch spannt, und der Weg des geringsten Widerstands führt nach oben. Das Aufstossen bis zum Würgen ist dasselbe Gas, nur am anderen Ende.")]),
     P(&[T("Zwei Dinge folgen daraus, und sie zeigen in verschiedene Richtungen. Das eine ist beruhigend: "), B("Der Wind geht ab."), T(" Schwer, aber er geht – und er erleichtert sie jedes Mal. Die Verlaufstabelle weiter oben nennt ausbleibenden Stuhl "), B("zusammen mit"), T(" ausbleibendem Windabgang als das, was in den Notfall gehört und nicht in die Sprechstunde. Solange Wind abgeht, ist der Darm nicht verschlossen. Das andere ist die Kehrseite derselben Regel: Bleibt der Wind ganz aus und wird der Bauch dabei praller und schmerzhafter, ist das nichts, womit man bis zum nächsten Termin wartet.")]),
+    P(&[B("Inzwischen geht er wieder besser."), T(" Zusammen mit dem Frühstück, das drin geblieben ist, sind das zwei Zeichen in dieselbe Richtung. Wie viel sie wiegen, ist untersucht – an der Darmlähmung nach Bauchoperationen, wo genau diese Frage seit Jahren gemessen wird. In einer Arbeit an 84 Patienten mit szintigrafisch bestimmtem Darmtransport war es "), B("nicht"), T(" die Zeit bis zum ersten Windabgang, die den wiederhergestellten Transport anzeigte, sondern die "), L("Kombination aus vertragener fester Kost und Stuhlgang", "https://pubmed.ncbi.nlm.nih.gov/23657087/"), T(" – mit einem positiven Vorhersagewert von 93 Prozent, bestätigt an weiteren 320 Patienten. "), B("Das ordnet die beiden Meldungen ein."), T(" Der Wind ist das schwächere der beiden Zeichen, und Haferbrei ist noch keine feste Kost. Beides ist eine echte Besserung – und noch nicht die Auskunft, dass der Transport wiederhergestellt ist. Die Einschränkung gehört dazu: Untersucht wurde die Darmlähmung nach einer Operation und nicht eine bei Vaskulitis.")]),
     P(&[B("Und es zeigt, woran die Erleichterung hängt."), T(" Ein Säureblocker senkt die Säure und bewegt nichts. Ein Abführmittel zielt auf den Stuhl und nicht auf das Gas. Was die Blähung löst, ist der Transport – und der hängt an den vier Erklärungen oben. Drei davon lassen sich mit Blutwerten prüfen und beheben, die vierte ist die Vaskulitis. Deshalb sind Kalium, Magnesium und der TSH-Wert hier nicht bloss eine Frage der Vollständigkeit: Sie sind das Einzige auf dieser Liste, das kurzfristig etwas an dem ändern könnte, was sie am meisten stört.")]),
 
     P(&[B("Und was der Transportbefund für die Kapsel bedeutet."), T(" Die naheliegende Sorge lautet: Bleibt sie stecken? Die europäische Leitlinie ist genauer als die Sorge. Eine "), L("Motilitätsstörung ohne zugrundeliegende Enge ist kein Hinderungsgrund", "https://pubmed.ncbi.nlm.nih.gov/36423618/"), T("; ein Hinderungsgrund ist eine bekannte oder vermutete Enge, solange die Durchgängigkeit nicht belegt ist. Zeichen einer Obstruktion gelten als Risiko für ein Steckenbleiben, und das liegt je nach Fragestellung zwischen 2,1 und 8,2 Prozent. Praktisch heisst das: Die Computertomografie, die in diesem Blatt ohnehin an mehreren Stellen steht, beantwortet genau die Frage, an der die Kapsel hängt – gibt es eine Enge oder nicht.")]),
@@ -770,6 +819,7 @@ pub static DOKUMENT: &[Block] = &[
     P(&[B("Wer als gefährdet gilt."), T(" Die britische Leitlinie nennt vier Merkmale: ein Körpermassenindex unter 16, ein unbeabsichtigter Gewichtsverlust von mehr als 15 Prozent in drei bis sechs Monaten, "), B("kaum oder keine Nahrung über mehr als zehn Tage"), T(", oder tiefe Werte von Kalium, Phosphat oder Magnesium schon vor Beginn der Ernährung. Das dritte Merkmal war hier über Wochen erfüllt, und das vierte ist genau das, was dieses Blatt an mehreren Stellen zu messen verlangt.")]),
     P(&[B("Was daraus als Vorgehen folgt."), T(" Langsam anfangen – "), L("10 bis 20 kcal je Kilogramm", "https://www.ncbi.nlm.nih.gov/books/NBK564513/"), T(" in den ersten 24 Stunden, danach alle ein bis zwei Tage um etwa ein Drittel des Ziels steigern. "), B("Thiamin, also Vitamin B1, 100 mg vor der ersten Kohlenhydratgabe"), T(", dann zweimal täglich über sieben bis zehn Tage; das schützt vor einer bleibenden neurologischen Schädigung. Und bei Gefährdeten Kalium, Magnesium und Phosphat in den ersten drei Tagen alle zwölf Stunden kontrollieren und ersetzen, danach dreimal in der Folgewoche.")]),
     P(&[T("Thiamin stand in diesem Blatt bisher nirgends – es steht jetzt in der Abklärungstabelle. Es ist billig, es wird vor dem Essen gegeben und nicht danach, und wenn es fehlt, ist der Schaden nicht mehr rückgängig zu machen. Das ist die Art von Punkt, die auf einer Station mit einer blutenden Patientin leicht untergeht.")]),
+    P(&[B("Und zum Weg, weil er nicht gleichgültig ist."), T(" Die Erfahrung mit Hungerstreikenden zeigt, dass Thiamin durch den Mund versagen kann, und zwar auch in hoher Dosis. In Izmir wurden 41 Gefangene nachuntersucht, die zwischen 130 und 324 Tagen im Hungerstreik waren und dabei "), L("200 bis 600 mg Thiamin täglich als Tablette", "https://pubmed.ncbi.nlm.nih.gov/16987161/"), T(" bekommen hatten – ein Vielfaches der üblichen Dosis. Alle 41 entwickelten trotzdem ein Wernicke-Korsakow-Syndrom mit bleibender Schädigung. Ein Bericht von 2022 beschreibt dasselbe bei einer Frau nach 237 Tagen und zieht den Schluss, dass vorbeugendes Thiamin "), L("in die Vene oder in den Muskel", "https://pmc.ncbi.nlm.nih.gov/articles/PMC9359357/"), T(" als Standard zu prüfen ist. Der Grund ist einfach: Ein Darm, der lange nichts zu tun hatte, nimmt schlechter auf. "), B("Bei ihr kommt hinzu, dass der Magen sich nicht entleert und der Darm nicht transportiert."), T(" Damit ist der Weg durch den Mund für nichts Wichtiges der verlässliche – die Frage nach dem Weg gehört zu jeder Verordnung, an der etwas hängt. Ausführlich steht das im Begleitblatt «Kostaufbau nach langem Hungern», das dieselbe Frage anhand der Literatur zu Hungerstreikenden durchgeht.")]),
     P(&[B("Und die Reihenfolge, die sich daraus ergibt."), T(" Erst Menge und Tempo, dann die Konsistenz, dann erst die Speisekarte. Die beiden folgenden Abschnitte behandeln die zweite und die dritte Stufe.")]),
 
     H3("Poulet ging nicht"),
@@ -778,6 +828,7 @@ pub static DOKUMENT: &[Block] = &[
     P(&[T("Untersucht ist das an der Gastroparese, der Magenlähmung. In einer randomisierten Studie an 56 Patienten wurde eine Kost aus "), L("kleinen Partikeln", "https://pubmed.ncbi.nlm.nih.gov/24419482/"), T(" gegen gewöhnliche Kost mit unterschiedlicher Partikelgrösse gestellt: Übelkeit und Erbrechen, Völlegefühl und "), B("Blähung"), T(" besserten sich unter der feinen Kost deutlich stärker. Die "), L("Leitlinie der amerikanischen Gastroenterologen", "https://pubmed.ncbi.nlm.nih.gov/35926490/"), T(" empfiehlt für die Gastroparese ausserdem, unverdauliche Faserstoffe aus Gemüse und Obst zu meiden – was sich mit dem deckt, was oben zum Spinat steht. Die Einschränkung gehört dazu: Untersucht wurde eine Magenlähmung bei Diabetes, nicht ein Darmstillstand bei Vaskulitis. Das Prinzip hängt aber an der Mechanik und nicht an der Ursache.")]),
     P(&[B("Was daraus ausdrücklich nicht folgt: weniger Eiweiss."), T(" Sie braucht Eiweiss – die Ödeme, das Albumin und der Kostaufbau nach Wochen ohne Nahrung stehen weiter oben in diesem Blatt. Das Problem ist nicht das Eiweiss, sondern seine Form. Eiweiss in einer Form, die den Magen verlässt, ist eine Aufgabe für die Ernährungsberatung, und der Kostaufbau gehört ohnehin begleitet. Wer aus «Poulet ging nicht» ableitet, es solle weniger gegessen werden, zieht den falschen Schluss.")]),
     P(&[B("Und was das Erbrechen selbst anrichtet, schliesst einen Kreis."), T(" Wer alles wieder erbricht, verliert Flüssigkeit und Kalium. Kaliummangel steht in diesem Blatt schon als eine der Erklärungen für den fehlenden Transport. Damit hängt das eine am anderen: Der stehende Magen führt zum Erbrechen, das Erbrechen kostet Kalium, der Kaliummangel bremst den Transport weiter. Diesen Kreis durchbricht keine Speisekarte, sondern der Ersatz von Flüssigkeit und Elektrolyten – der über die Infusion bereits läuft – zusammen mit der Kontrolle der Werte. Und wiederholtes Erbrechen ist eines der Warnsymptome aus der Fachinformation von Pantoprazol: Es ist nicht neu, aber es ist zurück.")]),
+    P(&[B("Und am nächsten Morgen ist das Frühstück drin geblieben."), T(" Schwarztee mit Milch und Haferbrei, kein Erbrechen. Das ist zuerst eine gute Nachricht und zweitens eine Bestätigung: Genau das sagt der Absatz oben voraus. Was fein oder flüssig ist, passiert den Magenausgang, ohne zerkleinert zu werden; ein Stück Fleisch nicht. Die Regel hat sich damit in beide Richtungen bewährt – einmal, indem sie erklärte, warum etwas misslang, und einmal, indem sie voraussagte, was gelingen würde. "), B("Der Schluss daraus ist nicht «wieder normal essen»,"), T(" sondern: bei der Konsistenz bleiben, die nachweislich geht, und die Speisekarte erst danach erweitern. Und das Erbrechen, das jetzt ausbleibt, hört damit auf, Kalium zu kosten – der Kreis aus dem Absatz davor dreht sich in die andere Richtung.")]),
 
     H3("Spinat, und was sonst noch den Stuhlgang fördert"),
     P(&[T("In Griechenland hat Spinat geholfen, den Stuhlgang wieder in Gang zu bringen. Das ist eine brauchbare Beobachtung und gehört ernst genommen. Nur ist die Lage heute eine andere, und dieselbe Massnahme kann jetzt in die falsche Richtung wirken.")]),
@@ -837,6 +888,7 @@ pub static DOKUMENT: &[Block] = &[
 
     H2("Die Adressen in Zürich"),
     P(&[T("Eine eigene Sprechstunde für die Purpura Schönlein-Henoch gibt es nicht. Zuständig sind zwei Fächer gemeinsam – Rheumatologie für die Vaskulitis, Nephrologie für die Niere. Bei einer Darmblutung oder einer Passagestörung kommt die Gastroenterologie dazu.")]),
+    P(&[B("Seit der Verlegung sind diese Adressen im selben Haus."), T(" Was hier als Weg über eine Anmeldung beschrieben ist, gilt für den ambulanten Fall; für eine stationäre Patientin im Universitätsspital ist es ein Konsil, das die behandelnde Abteilung anfordert. Die Angaben bleiben trotzdem stehen – für die Zeit nach dem Austritt, in der die Kontrollen weiterlaufen müssen, und weil sie sagen, wen es im Haus überhaupt gibt.")]),
     H3("Rheumatologie"),
     Adresse {
         name: "Vaskulitis-Sprechstunde, Klinik für Rheumatologie, Universitätsspital Zürich",
@@ -872,7 +924,12 @@ pub static DOKUMENT: &[Block] = &[
         ],
     },
     H2("Was zum Termin mitgehört"),
+    P(&[T("Diese Liste ist mit der Verlegung zur Übergabeliste geworden. Sie ist nicht als Misstrauen gedacht: Vieles davon geht ohnehin mit. Aber der Abschnitt «Die Verlegung» nennt die Zahl, um die es geht – im Mittel war die Übergabedokumentation zu 58,3 Prozent vollständig –, und die Punkte, die hier fehlen, sind erfahrungsgemäss die, nach denen im neuen Haus zuerst niemand fragt.")]),
     Liste(&[
+        &[T("Den Verlegungsbericht im Wortlaut, mit dem Namen der Ärztin oder des Arztes, die den Fall im abgebenden Haus geführt haben – für Rückfragen, die sich erst später stellen")],
+        &[T("Seit wann der Blasenkatheter liegt, warum er gelegt wurde, und wie der Urin davor aussah")],
+        &[T("Die Ein- und Ausfuhrbilanz seit Beginn der Infusion, mit dem täglichen Gewicht")],
+        &[T("Wann der Kostaufbau begonnen hat und womit – und ob Thiamin gegeben wurde: wann, wie viel, auf welchem Weg")],
         &[T("Alle Hämoglobinwerte mit Datum – die Kurve sagt mehr als der letzte Punkt")],
         &[T("Ein Verlaufsblatt zum Bauch: seit wann kein Appetit, seit wann kein Stuhlgang, wie oft Erbrechen und in welchem Abstand zum Essen, wie viel getrunken wird")],
         &[T("Das Gewicht, wenn möglich mit einem früheren Wert zum Vergleich")],
@@ -1196,6 +1253,37 @@ pub static QUELLEN: &[(&str, Verweis)] = &[
      Verweis { text: "journals.lww.com – Hypokalemia and ileus", url: "https://journals.lww.com/ijam/fulltext/2015/01010/scrutinizing_the_evidence_linking_hypokalemia_and.4.aspx" }),
     ("Hypothyroidism Presenting as Adynamic Ileus Mimicking a Mechanical Small Bowel Obstruction. Cureus 2023. PMC10796157",
      Verweis { text: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10796157/", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC10796157/" }),
+    ("Usher MG et al.: Information handoff and outcomes of critically ill patients transferred between hospitals. J Crit Care 2016; 36: 240-5. PMC5096986",
+     Verweis { text: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5096986/", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC5096986/" }),
+    ("Hydronephrosis and Hydroureter. StatPearls, NCBI Bookshelf",
+     Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK563217/", url: "https://www.ncbi.nlm.nih.gov/books/NBK563217/" }),
+    ("Diagnosis, management, and prevention of catheter-associated urinary tract infections. Infect Dis Clin North Am 2014. PMC9580547",
+     Verweis { text: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9580547/", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9580547/" }),
+    ("Catheter-Associated Urinary Tract Infections: Current Challenges and Future Prospects. PMC8992741",
+     Verweis { text: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8992741/", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC8992741/" }),
+    ("Hollingsworth JM et al.: Determining the noninfectious complications of indwelling urethral catheters. Ann Intern Med 2013; 159: 401-10, zusammengefasst in der DARE-Datenbank",
+     Verweis { text: "https://www.ncbi.nlm.nih.gov/books/NBK159201/", url: "https://www.ncbi.nlm.nih.gov/books/NBK159201/" }),
+    ("KDIGO Clinical Practice Guideline for Acute Kidney Injury 2012 – Definition über die Urinmenge",
+     Verweis { text: "kdigo.org – KDIGO 2012 AKI Guideline", url: "https://kdigo.org/wp-content/uploads/2016/10/KDIGO-2012-AKI-Guideline-English.pdf" }),
+    ("van Bree SH et al.: Identification of clinical outcome measures for recovery of gastrointestinal motility in postoperative ileus. Ann Surg 2014; 259: 708-14. PMID 23657087",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/23657087/", url: "https://pubmed.ncbi.nlm.nih.gov/23657087/" }),
+    ("Eichelberger M, Joray ML, Perrig M, Bodmer M, Stanga Z: Management of patients during hunger strike and refeeding phase. Inselspital Bern. Nutrition 2014; 30: 1372-8. PMID 25280415",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/25280415/", url: "https://pubmed.ncbi.nlm.nih.gov/25280415/" }),
+    ("Başoğlu M et al.: Neurological complications of prolonged hunger strike. Eur J Neurol 2006; 13: 1089-97. PMID 16987161",
+     Verweis { text: "https://pubmed.ncbi.nlm.nih.gov/16987161/", url: "https://pubmed.ncbi.nlm.nih.gov/16987161/" }),
+    ("Wagner P, Bui T: Wernicke-Korsakoff Syndrome in a Hunger Striker Despite Oral Thiamine Supplementation. Int Med Case Rep J 2022; 15: 399-403. PMC9359357",
+     Verweis { text: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9359357/", url: "https://pmc.ncbi.nlm.nih.gov/articles/PMC9359357/" }),
     ("KDIGO 2025 Clinical Practice Guideline for the Management of IgA Nephropathy and IgA Vasculitis. Kidney Int 2025",
      Verweis { text: "https://doi.org/10.1016/j.kint.2025.04.004", url: "https://doi.org/10.1016/j.kint.2025.04.004" }),
 ];
+
+/// Das Vaskulitis-Blatt.
+pub static BLATT: Dokument = Dokument {
+    titel: TITEL,
+    titel2: TITEL2,
+    untertitel: UNTERTITEL,
+    stand: STAND,
+    kopfzeile: KOPFZEILE,
+    blocks: DOKUMENT,
+    quellen: QUELLEN,
+};

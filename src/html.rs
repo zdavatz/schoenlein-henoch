@@ -3,8 +3,8 @@
 
 use std::fmt::Write as _;
 
-use crate::inhalt::{Block, Span, Tabelle, Verweis};
-use crate::inhalt::{DOKUMENT, KOPFZEILE, QUELLEN, STAND, TITEL, TITEL2, UNTERTITEL};
+use crate::inhalt::{Block, Dokument, Span, Tabelle, Verweis};
+use crate::inhalt::KOPFZEILE;
 
 const CSS: &str = include_str!("blatt.css");
 
@@ -139,7 +139,7 @@ fn blocks(out: &mut String, bs: &[Block]) {
     }
 }
 
-pub fn render() -> String {
+pub fn render(d: &Dokument) -> String {
     let mut out = String::with_capacity(96 * 1024);
     out.push_str("<!DOCTYPE html>\n<!--\n");
     out.push_str(
@@ -151,17 +151,21 @@ pub fn render() -> String {
          \x20 Kein Ersatz fuer eine aerztliche Beurteilung.\n",
     );
     out.push_str("-->\n<html lang=\"de-CH\">\n<head>\n<meta charset=\"utf-8\">\n");
-    let _ = write!(out, "<title>{} – {}</title>\n", esc(TITEL), esc(UNTERTITEL));
-    let _ = write!(out, "<style>\n{}</style>\n</head>\n<body>\n\n", CSS);
+    let _ = write!(out, "<title>{} – {}</title>\n", esc(d.titel), esc(d.untertitel));
+    // Die Kopfzeile steht im CSS als Vorgabe des Vaskulitis-Blattes; jedes
+    // andere Dokument setzt hier seine eigene ein.
+    debug_assert!(CSS.contains(KOPFZEILE));
+    let css = CSS.replace(KOPFZEILE, d.kopfzeile);
+    let _ = write!(out, "<style>\n{}</style>\n</head>\n<body>\n\n", css);
 
-    let _ = write!(out, "<h1>{}<br>{}</h1>\n", esc(TITEL), esc(TITEL2));
-    let _ = write!(out, "<p class=\"untertitel\">{}</p>\n", esc(UNTERTITEL));
-    let _ = write!(out, "<p class=\"stand\">{}</p>\n\n", esc(STAND));
+    let _ = write!(out, "<h1>{}<br>{}</h1>\n", esc(d.titel), esc(d.titel2));
+    let _ = write!(out, "<p class=\"untertitel\">{}</p>\n", esc(d.untertitel));
+    let _ = write!(out, "<p class=\"stand\">{}</p>\n\n", esc(d.stand));
 
-    blocks(&mut out, DOKUMENT);
+    blocks(&mut out, d.blocks);
 
     out.push_str("\n<h2>Quellen</h2>\n<ul class=\"quellen\">\n");
-    for (label, v) in QUELLEN {
+    for (label, v) in d.quellen {
         let _ = write!(
             out,
             "  <li>{} · <a href=\"{}\">{}</a></li>\n",
@@ -171,9 +175,5 @@ pub fn render() -> String {
         );
     }
     out.push_str("</ul>\n\n</body>\n</html>\n");
-
-    // Die Kopfzeile taucht im HTML nur im Seitenfuss der Druckausgabe auf;
-    // sie steckt im CSS und wird hier lediglich gegengeprueft.
-    debug_assert!(CSS.contains(KOPFZEILE));
     out
 }

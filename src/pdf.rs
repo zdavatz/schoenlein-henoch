@@ -24,8 +24,7 @@ use genpdf::render::Area;
 use genpdf::style::{Color, Style};
 use genpdf::{Alignment, Context, Element, Margins, Mm, Position, RenderResult, Size};
 
-use crate::inhalt::{Block, Span, Tabelle, Verweis};
-use crate::inhalt::{DOKUMENT, KOPFZEILE, QUELLEN, STAND, TITEL, TITEL2, UNTERTITEL};
+use crate::inhalt::{Block, Dokument, Span, Tabelle, Verweis};
 
 // --- Schriftgroessen -------------------------------------------------------
 const S_H1: u8 = 19;
@@ -884,21 +883,31 @@ fn add_links(pdf: &Path, ziele: &[&str]) -> Result<usize> {
 // Satz
 // ---------------------------------------------------------------------------
 
-pub fn render(out: &Path, font_dir: &str) -> Result<usize> {
+pub fn render(d: &Dokument, out: &Path, font_dir: &str) -> Result<usize> {
+    // Beide Zustaende sind global und leben laenger als ein Dokument. Werden
+    // in einem Lauf mehrere Blaetter gesetzt, muessen sie vorher geleert
+    // werden - sonst zaehlt die Pruefung am Ende die Striche des vorigen
+    // Blattes mit und meldet eine verschobene Zuordnung.
+    GEZEICHNET.lock().expect("Linkliste").clear();
+    WORT_ZU_BREIT.store(false, Ordering::Relaxed);
+
     let family = load_font_family(font_dir)?;
     let mut doc = genpdf::Document::new(family);
-    doc.set_title(format!("{TITEL} {TITEL2} – {UNTERTITEL}"));
+    doc.set_title(format!("{} {} – {}", d.titel, d.titel2, d.untertitel));
     doc.set_minimal_conformance();
     doc.set_font_size(S_TEXT);
     doc.set_line_spacing(ZEILENABSTAND);
 
     let mut deco = genpdf::SimplePageDecorator::new();
     deco.set_margins(RAND_MM as u8);
+    // Der Kolumnentitel wird kopiert: die Kopfzeilen-Funktion lebt laenger
+    // als die Ausleihe von `d`.
+    let kopfzeile = d.kopfzeile.to_string();
     deco.set_header(move |page| {
         let mut p = Paragraph::default();
         if page > 1 {
             p.push_styled(
-                format!("{KOPFZEILE} · Seite {page}"),
+                format!("{kopfzeile} · Seite {page}"),
                 Style::new().with_color(HELLGRAU).with_font_size(S_KOPF),
             );
         }
@@ -909,20 +918,20 @@ pub fn render(out: &Path, font_dir: &str) -> Result<usize> {
 
     // Titelblock
     doc.push(
-        Paragraph::new(TITEL.to_string())
+        Paragraph::new(d.titel.to_string())
             .styled(Style::new().with_font_size(S_H1).with_color(BORDEAUX).bold()),
     );
     doc.push(
-        Paragraph::new(TITEL2.to_string())
+        Paragraph::new(d.titel2.to_string())
             .styled(Style::new().with_font_size(S_H1).with_color(BORDEAUX).bold()),
     );
     doc.push(
-        Paragraph::new(UNTERTITEL.to_string())
+        Paragraph::new(d.untertitel.to_string())
             .styled(Style::new().with_font_size(S_H3).with_color(GRAU))
             .padded(Margins::trbl(2, 0, 1, 0)),
     );
     doc.push(
-        Paragraph::new(STAND.to_string())
+        Paragraph::new(d.stand.to_string())
             .styled(Style::new().with_font_size(S_KLEIN).with_color(HELLGRAU))
             .padded(Margins::trbl(0, 0, 4, 0)),
     );
@@ -933,12 +942,12 @@ pub fn render(out: &Path, font_dir: &str) -> Result<usize> {
         .with_font_size(S_TEXT)
         .with_line_spacing(ZEILENABSTAND);
     let mut korpus = LinearLayout::vertical();
-    baue(DOKUMENT, &mut korpus, doc.font_cache(), grundstil);
+    baue(d.blocks, &mut korpus, doc.font_cache(), grundstil);
     doc.push(korpus);
 
     doc.push(ueberschrift("Quellen", S_H2, BORDEAUX));
     let mut quellen = LinearLayout::vertical();
-    for (label, v) in QUELLEN {
+    for (label, v) in d.quellen {
         quellen.push(
             Paragraph::new(label.to_string())
                 .styled(Style::new().with_font_size(S_KLEIN).with_color(GRAU)),
