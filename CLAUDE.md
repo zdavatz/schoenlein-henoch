@@ -272,6 +272,13 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   ETH-Arbeit zeigt, dass sie es nicht tut. Im Blatt steht deshalb beides:
   dass der Volksglaube falsch ist *und* dass Spinat trotzdem keine Antwort
   auf einen Blutverlust dieser Grössenordnung ist.
+- **Eine Behandlung, die die Angehörigen einer Beschwerde zuordnen, ist oft
+  gegen etwas anderes gerichtet.** «Sie bekommt Sauerstoff wegen der
+  Bauchschmerzen» – Sauerstoff ist kein Schmerzmittel; er läuft, weil ein
+  Messwert zu tief war. Solche Zuordnungen entstehen, weil beides gleichzeitig
+  da ist, und sie sind die ergiebigsten Stellen im ganzen Verlauf: Dahinter
+  steckt regelmässig ein Befund, den niemand erwähnt hat. Nicht die Zuordnung
+  übernehmen, sondern fragen, was gemessen wurde.
 - **Ein negativer Befund ist nur so viel wert wie die Bedingungen, unter denen
   er erhoben wurde.** Dieses Blatt ist dreimal auf dasselbe Muster gestossen:
   Der unauffällige Streifentest war unter laufender Infusion verdünnt; der

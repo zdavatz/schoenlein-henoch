@@ -31,6 +31,9 @@ erstmals wieder drin geblieben, der Wind geht wieder ab, die Transfusion ist
 beendet, der Urin wird abgeleitet – und die Patientin wird ins
 Universitätsspital verlegt.
 
+Am 1. September ist **kein sichtbares Blut mehr im Urin**; Beine und Bauch
+bleiben geschwollen, der Bauch ist unruhig, und sie bekommt Sauerstoff.
+
 **Seit dem 31. August liegt der ärztliche Zwischenbericht zur Verlegung vor**,
 und er verschiebt die Grundlage: Die Beurteilung lautet nicht «IgA-Vaskulitis»,
 sondern *unklares Krankheitsbild* mit drei Möglichkeiten – autoimmun,
@@ -194,6 +197,25 @@ verstanden werden:
   ganz aus und wird der Bauch praller, ist es die andere. Weder Säureblocker
   noch Abführmittel bewegen Gas; nur der Transport tut das.
 
+- **Sauerstoff ist kein Schmerzmittel.** Läuft er, war ein Messwert zu tief –
+  und dafür stehen vier Gründe im Blatt: Erguss und Bauchwasser drücken gegen
+  das Zwerchfell, die Blutarmut bei 75 g/l, die Übersäuerung (Bikarbonat 17,
+  nach der Winter-Formel müsste sie auf ein CO₂ von rund 33 mmHg hinunteratmen)
+  und die Opioide. **Sauerstoff und Opioide zusammen sind etwas anderes als
+  jedes für sich:** Zusätzlicher Sauerstoff verschlechtert die opioidbedingte
+  Atemdepression, statt sie abzufangen – im Versuch trat ein Atemstillstand bei
+  10 von 20 unter Sauerstoff auf gegenüber 2 von 20 bei Raumluft, und die
+  gemessene Sättigung blieb dabei bei 98,7 Prozent. Das Gerät am Finger zeigte
+  nichts. Auf Station war die Häufigkeit solcher Zwischenfälle unter Sauerstoff
+  2,7-fach erhöht, ohne Unterschied bei den Entsättigungen.
+
+- **Verschwundenes Blut im Urin ist kein Befund über die Niere.** Episoden
+  sichtbarer Blutbeimengung dauern bei einer IgA-Erkrankung typischerweise unter
+  drei Tagen und hören von selbst auf – *zwischen* den Episoden bestehen die
+  mikroskopische Blutbeimengung und die Eiweissausscheidung fort. Das Sediment
+  wird dadurch dringender, nicht überflüssig: Solange sichtbar Blut kam, war die
+  Probe reich an Material.
+
 - **Ein Blatt kann nach der falschen Krankheit benannt sein.** Der
   Zwischenbericht führt die Vaskulitis als einen von drei Zweigen – neben
   paraneoplastisch und Peritonealkarzinose. Das Blatt schreibt das an den
@@ -269,7 +291,8 @@ warum Blut im Urin nicht aus dem Magen kommen kann und was das Sediment
 darüber entscheidet · der Zwischenbericht mit allen dokumentierten Zahlen, was er korrigiert und
 was noch aussteht · die vollständige Medikamentenliste und was an ihr für
 den Darm zählt · Aszites, Erguss und das Bauchfell · warum die Darmvorbereitung
-schlecht war und was das für den Befund bedeutet ·
+schlecht war und was das für den Befund bedeutet · der Sauerstoff und was er
+über die Atmung verrät ·
 der gestaute Harnleiter und seine vier Erklärungen ·
 der Blasenkatheter, was er misst und was er nicht behebt · Ödeme als Bilanz,
 mit dem Kostaufbau als fünfter Erklärung · die Transfusion und die Zahl, die
