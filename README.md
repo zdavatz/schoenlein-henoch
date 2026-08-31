@@ -28,9 +28,18 @@ dazwischen, es wird schwarz erbrochen, die Darmspiegelung hat nichts
 gefunden ausser einem gestörten Transport, es ist Blut im Urin, und der
 Harnleiter ist an mehreren Stellen gestaut. Am 30. August ist das Frühstück
 erstmals wieder drin geblieben, der Wind geht wieder ab, die Transfusion ist
-beendet, der Urin wird über einen Katheter abgeleitet – und die Patientin wird
-ins Universitätsspital verlegt. Die «Ausgangslage» im Dokument beschreibt
-diesen Fall. Namen kommen keine vor.
+beendet, der Urin wird abgeleitet – und die Patientin wird ins
+Universitätsspital verlegt.
+
+**Seit dem 31. August liegt der ärztliche Zwischenbericht zur Verlegung vor**,
+und er verschiebt die Grundlage: Die Beurteilung lautet nicht «IgA-Vaskulitis»,
+sondern *unklares Krankheitsbild* mit drei Möglichkeiten – autoimmun,
+paraneoplastisch, Peritonealkarzinose. Dazu Befunde, die vorher fehlten: freie
+Flüssigkeit im Bauch, Erguss in beiden Brustfellhöhlen, eine verdickte Stelle am
+Bauchfell, eine GFR von 30 ml/min – und die vollständige Medikamentenliste.
+
+Die «Ausgangslage» im Dokument beschreibt diesen Fall. Namen kommen keine vor,
+auch keine der behandelnden Ärzte.
 
 Die Punkte, an denen sich das Blatt aufhängt, weil sie leicht falsch
 verstanden werden:
@@ -185,6 +194,26 @@ verstanden werden:
   ganz aus und wird der Bauch praller, ist es die andere. Weder Säureblocker
   noch Abführmittel bewegen Gas; nur der Transport tut das.
 
+- **Ein Blatt kann nach der falschen Krankheit benannt sein.** Der
+  Zwischenbericht führt die Vaskulitis als einen von drei Zweigen – neben
+  paraneoplastisch und Peritonealkarzinose. Das Blatt schreibt das an den
+  Anfang, statt weiterzumachen: Wer es liest, liest die gründliche
+  Ausarbeitung eines Zweiges, während zwei andere offen danebenstehen.
+
+- **Drei Mittel auf der Medikamentenliste verstopfen den Darm** – zwei Opioide
+  und das Mittel gegen Übelkeit –, und ein verstopfter Darm ist die
+  Hauptbeschwerde. Die Fachinformation von Oxycodon nennt Obstipation bei
+  30,5 Prozent, führt Ileus als unerwünschte Wirkung, nennt den paralytischen
+  Ileus als Gegenanzeige und verlangt Abführmittel ab dem ersten Tag. Es ist
+  die einzige der vier Erklärungen für den Stillstand, die sich durch Weglassen
+  prüfen lässt.
+
+- **Ein Albuminwert im Bauchwasser sagt allein nichts.** Erst die Differenz zum
+  Albumin im Blut – der Serum-Aszites-Albumin-Gradient – trennt mit 97 Prozent
+  Treffsicherheit den Pfortaderhochdruck von der Gruppe, in der die
+  Peritonealkarzinose steht. Der Blutwert fehlt im Bericht; ohne ihn ist die
+  Punktion halb ausgewertet.
+
 - **Ein Blasenkatheter entleert die Blase und sonst nichts.** Sitzt der Stau
   im Harnleiter, ändert er dort nichts – dafür braucht es eine Harnleiterschiene
   oder eine Nierenfistel. Wofür er hier wirklich taugt, ist die Menge: Nach
@@ -226,7 +255,10 @@ lesen und was die Infusion mit ihm macht · Krankheitsbild und die vier
 betroffenen Bereiche · was den Schub ausgelöst haben kann · warum das Alter
 den Verlauf ändert · belegte Fälle älterer Frauen, nah an 84 · was ein früherer Schub bedeutet ·
 warum Blut im Urin nicht aus dem Magen kommen kann und was das Sediment
-darüber entscheidet · der gestaute Harnleiter und seine vier Erklärungen ·
+darüber entscheidet · der Zwischenbericht mit allen dokumentierten Zahlen, was er korrigiert und
+was noch aussteht · die vollständige Medikamentenliste und was an ihr für
+den Darm zählt · Aszites, Erguss und das Bauchfell ·
+der gestaute Harnleiter und seine vier Erklärungen ·
 der Blasenkatheter, was er misst und was er nicht behebt · Ödeme als Bilanz,
 mit dem Kostaufbau als fünfter Erklärung · die Transfusion und die Zahl, die
 danach zählt · die Verlegung ins Universitätsspital und die drei Fäden, die

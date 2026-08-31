@@ -272,6 +272,30 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   ETH-Arbeit zeigt, dass sie es nicht tut. Im Blatt steht deshalb beides:
   dass der Volksglaube falsch ist *und* dass Spinat trotzdem keine Antwort
   auf einen Blutverlust dieser Grössenordnung ist.
+- **Ein ärztlicher Bericht ist die beste Quelle über den Fall und die
+  gefährlichste Datei im Verzeichnis.** Er trägt Name, Geburtsdatum, Adresse,
+  die Namen mehrerer Ärzte und oft den Beruf der Patientin. Ins Blatt kommt
+  ausschliesslich der Sachverhalt: Zahlen, Befunde, Daten, Verordnungen. **Der
+  Beruf bleibt draussen** – eine 84-jährige Ärztin eines bestimmten Fachs in
+  Zürich ist identifizierbar, auch ohne Namen. Und die **behandelnden Ärzte
+  werden nicht genannt**: Die Adressen im Blatt sind öffentliche Kontaktangaben
+  des Universitätsspitals, ein Zuweiser ist etwas anderes – sein Name verknüpft
+  den Fall mit einer Praxis. Die Datei selbst gehört nicht ins Repositorium.
+- **Die Arbeitsdiagnose kann unter dem ganzen Dokument wegkippen.** Der
+  Zwischenbericht vom 30. August 2026 beurteilt den Fall als «unklares
+  Krankheitsbild» mit drei Möglichkeiten – autoimmun, paraneoplastisch,
+  Peritonealkarzinose. Das Blatt trägt den Namen der ersten. Richtig ist dann
+  nicht, es umzubenennen oder stillschweigend weiterzuschreiben, sondern es an
+  den Anfang zu stellen: Wer liest, liest die Ausarbeitung eines Zweiges,
+  während zwei andere offen danebenstehen.
+- **Den Interaktionscheck nie auf einem vermuteten Warenkorb stehen lassen.**
+  Der Lauf vom 29. August rechnete mit Novalgin, Aspirin und zwei
+  Abführmitteln; von alldem stand auf der tatsächlichen Liste nur Pantoprazol.
+  Wer ohne die Verordnungsliste prüft, prüft eine Vermutung – das gehört im
+  Abschnitt so benannt, und der Lauf gehört wiederholt, sobald die Liste da
+  ist. Zweitens: **«Verordnet» ist nicht «gegeben».** Reservemedikamente
+  («in R») stehen auf dem Blatt, ohne verabreicht worden zu sein; was zählt,
+  ist das Verabreichungsprotokoll.
 - **Eine Frage, die zweimal gestellt wird, ist ein eigenes Blatt.** Die Frage
   nach dem Kostaufbau nach langem Hungern kam zweimal; die Antwort passte nicht
   mehr in einen Abschnitt des Hauptblatts, ohne es zu verziehen. Daraus wurde
