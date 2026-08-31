@@ -272,6 +272,15 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   ETH-Arbeit zeigt, dass sie es nicht tut. Im Blatt steht deshalb beides:
   dass der Volksglaube falsch ist *und* dass Spinat trotzdem keine Antwort
   auf einen Blutverlust dieser Grössenordnung ist.
+- **Ein negativer Befund ist nur so viel wert wie die Bedingungen, unter denen
+  er erhoben wurde.** Dieses Blatt ist dreimal auf dasselbe Muster gestossen:
+  Der unauffällige Streifentest war unter laufender Infusion verdünnt; der
+  unauffällige Urin war eine Momentaufnahme; die unauffällige Darmspiegelung
+  war schlecht vorbereitet. Bei jedem «unauffällig» im Bericht deshalb die
+  Bedingungen mitlesen und, wenn sie fehlen, danach fragen – sonst wird aus
+  «nichts gesehen» ein «nichts vorhanden». Der Unterschied zwischen
+  ausgeschlossen und unzureichend eingesehen ist der wichtigste Satz, den
+  dieses Blatt an mehreren Stellen wiederholt.
 - **Ein ärztlicher Bericht ist die beste Quelle über den Fall und die
   gefährlichste Datei im Verzeichnis.** Er trägt Name, Geburtsdatum, Adresse,
   die Namen mehrerer Ärzte und oft den Beruf der Patientin. Ins Blatt kommt

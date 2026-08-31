@@ -208,6 +208,17 @@ verstanden werden:
   die einzige der vier Erklärungen für den Stillstand, die sich durch Weglassen
   prüfen lässt.
 
+- **Die Darmvorbereitung scheiterte an derselben Störung, deretwegen gespiegelt
+  wurde.** Wer erbricht, behält die Spüllösung nicht; wer keine Peristaltik hat,
+  transportiert sie nicht weiter. Bei ihr trifft praktisch jeder belegte
+  Risikofaktor zu – Verstopfung (3,6-fach), zu wenig Bewegung (3,1-fach),
+  frühere Bauchoperation (2,7-fach), unvollständiges Trinken (2,4-fach), dazu
+  Alter, Opioide und der Spitalaufenthalt, der das Risiko annähernd verdoppelt.
+  Stationär bleibt der Anteil sauberer Därme unter 50 Prozent. Folge: Der
+  unauffällige Dickdarm ist nicht ausgeschlossen, sondern unzureichend
+  eingesehen – und eine blosse Wiederholung würde aus denselben Gründen wieder
+  scheitern.
+
 - **Ein Albuminwert im Bauchwasser sagt allein nichts.** Erst die Differenz zum
   Albumin im Blut – der Serum-Aszites-Albumin-Gradient – trennt mit 97 Prozent
   Treffsicherheit den Pfortaderhochdruck von der Gruppe, in der die
@@ -257,7 +268,8 @@ den Verlauf ändert · belegte Fälle älterer Frauen, nah an 84 · was ein frü
 warum Blut im Urin nicht aus dem Magen kommen kann und was das Sediment
 darüber entscheidet · der Zwischenbericht mit allen dokumentierten Zahlen, was er korrigiert und
 was noch aussteht · die vollständige Medikamentenliste und was an ihr für
-den Darm zählt · Aszites, Erguss und das Bauchfell ·
+den Darm zählt · Aszites, Erguss und das Bauchfell · warum die Darmvorbereitung
+schlecht war und was das für den Befund bedeutet ·
 der gestaute Harnleiter und seine vier Erklärungen ·
 der Blasenkatheter, was er misst und was er nicht behebt · Ödeme als Bilanz,
 mit dem Kostaufbau als fünfter Erklärung · die Transfusion und die Zahl, die
