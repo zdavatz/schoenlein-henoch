@@ -304,6 +304,13 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   ETH-Arbeit zeigt, dass sie es nicht tut. Im Blatt steht deshalb beides:
   dass der Volksglaube falsch ist *und* dass Spinat trotzdem keine Antwort
   auf einen Blutverlust dieser Grössenordnung ist.
+- **Die Nierenfunktion ist kein Befund für sich, sondern ein Filter über die
+  ganze Medikamentenliste.** Bei einer GFR von 30 gehört jedes Mittel auf dem
+  Blatt daraufhin nachgelesen – und die Fachinformationen sagen es meist
+  ausdrücklich, nur nicht im Kapitel `unwanted_effects`, sondern in `usage`,
+  `restrictions` oder `kinetic`. So steht der entscheidende Satz zu Morphin bei
+  Niereninsuffizienz in der **Pharmakokinetik**, nicht bei den Nebenwirkungen.
+  Wer nur die Nebenwirkungen liest, findet ihn nie.
 - **Eine Medikamentenliste im Bericht ist eine Momentaufnahme, kein Stand.**
   Die Liste vom 30. August führt Novalgin nicht, obwohl es als Infusion läuft,
   und Co-Amoxicillin nicht, weil es vor dem Eintritt lief. Wer aus ihr auf das

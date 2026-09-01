@@ -223,6 +223,29 @@ verstanden werden:
   Infektion, die nicht behandelt wird. Was hier *nicht* zutrifft, ist die
   beruhigende dritte Lesart, ein laufendes Antibiotikum verwische das Bild.
 
+- **Bei einer GFR von 30 ist Morphin das falsche Opioid.** Sein Metabolit
+  Morphin-6-Glukuronid ist laut Fachinformation *stärker und länger wirksam als
+  Morphin selbst*, wird über die Nieren ausgeschieden, und dieselbe Stelle
+  schreibt aus, dass hohe Konzentrationen davon **komatöse Zustände** verursachen
+  können. Dazu: Bei älteren Patienten ist der Abbau verlangsamt. Die
+  Fachliteratur ist eindeutig – Morphin und Codein meiden, Hydromorphon und
+  Oxycodon mit Vorsicht und engmaschiger Überwachung, Methadon und Fentanyl gelten
+  als sicher. Von den beiden Reserve-Opioiden ist also Morphin dasjenige, das
+  hier am wenigsten passt.
+
+- **Und daraus wird eine Kette, deren Glieder einzeln alle belegt sind:**
+  Niereninsuffizienz lässt den wirksamen Morphin-Metaboliten anfluten; 84 Jahre
+  verlangsamen den Abbau zusätzlich; der laufende Sauerstoff verschlechtert die
+  opioidbedingte Atemdepression und macht sie am Fingergerät unsichtbar; und die
+  Azidose mit Bikarbonat 17 macht sie auf gesteigerte Atemarbeit angewiesen –
+  auf genau das, was Opioide dämpfen.
+
+- **Der wichtigste Wert des Berichts fehlt, und zwar wörtlich.** Der Satz
+  «Trotz Rehydrierung am 30.8. Oligurie, Kreatinin…» endet dort. Dabei
+  entscheidet genau diese Zahl: Die Ableitungen liegen seit dem 27. August –
+  war der Stau die Ursache, *muss* das Kreatinin seither fallen. Fällt es nicht,
+  gibt es eine zweite Ursache in der Niere selbst.
+
 - **Novalgin ist kein Antibiotikum.** Die Fachinformation führt als Wirkungen
   nur analgetisch, spasmolytisch und antipyretisch auf; der ATC-Code N02BB02
   steht für Schmerzmittel. Wichtig ist das nicht als Begriffsklärung, sondern
@@ -337,7 +360,8 @@ den Darm zählt · Aszites, Erguss und das Bauchfell · warum die Darmvorbereitu
 schlecht war und was das für den Befund bedeutet · der Sauerstoff und was er
 über die Atmung verrät · grüner Stuhl, Clostridioides difficile und warum der
 Säureblocker daran nichts ändert · Novalgin als Infusion, seine Auflagen und
-warum es kein Antibiotikum ist ·
+warum es kein Antibiotikum ist · die Nierenfunktion und warum Morphin bei
+dieser GFR das falsche Opioid ist ·
 der gestaute Harnleiter und seine vier Erklärungen ·
 der Blasenkatheter, was er misst und was er nicht behebt · Ödeme als Bilanz,
 mit dem Kostaufbau als fünfter Erklärung · die Transfusion und die Zahl, die
