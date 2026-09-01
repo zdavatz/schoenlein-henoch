@@ -272,6 +272,17 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   ETH-Arbeit zeigt, dass sie es nicht tut. Im Blatt steht deshalb beides:
   dass der Volksglaube falsch ist *und* dass Spinat trotzdem keine Antwort
   auf einen Blutverlust dieser Grössenordnung ist.
+- **Eine Medikamentenliste im Bericht ist eine Momentaufnahme, kein Stand.**
+  Die Liste vom 30. August führt Novalgin nicht, obwohl es als Infusion läuft,
+  und Co-Amoxicillin nicht, weil es vor dem Eintritt lief. Wer aus ihr auf das
+  Jetzt schliesst, irrt in beide Richtungen. Beim Schreiben deshalb die
+  **Zeitform** mitführen: «lief vor dem Eintritt» ist etwas anderes als
+  «bekommt» – wer den Fall kennt, merkt den Unterschied sofort, und zu Recht.
+  Und bei Risikofaktoren prüfen, welches **Zeitfenster** die zitierte Studie
+  zählt: bei Clostridioides difficile etwa die Einnahme in den letzten dreissig
+  Tagen, nicht die laufende. Ein Risikofaktor kann erfüllt sein, ohne dass das
+  Mittel noch läuft – das ist kein Wortspiel, sondern der Unterschied zwischen
+  einer haltbaren und einer angreifbaren Begründung.
 - **Der Verabreichungsweg gehört zur Angabe.** «Sie bekommt Novalgin» und «sie
   bekommt Novalgin als Infusion» sind in der Fachinformation zwei verschiedene
   Sachverhalte: Die parenterale Gabe bringt eigene Auflagen mit (höchstens

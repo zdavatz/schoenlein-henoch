@@ -205,9 +205,11 @@ verstanden werden:
   stattgefunden – entweder war die Passage zu schnell oder die Bakterien
   fehlen. Beides trifft zu.
 
-- **Die Risikoliste für Clostridioides difficile liest sich wie ihre
-  Krankengeschichte:** Antibiotikum zwei Tage vor Eintritt, 84 Jahre,
-  Spitalaufenthalt, Säureblocker. Antibiotikum und Säureblocker zusammen ergaben
+- **Die Risikoliste für Clostridioides difficile ist erfüllt – auch ohne
+  laufendes Antibiotikum.** Co-Amoxicillin lief zwei Tage *vor* dem Eintritt und
+  steht nicht mehr auf der Medikamentenliste. Gezählt wird in den Untersuchungen
+  aber die Einnahme in den letzten dreissig Tagen, und dort liegt sie; 84 Jahre,
+  Spitalaufenthalt und Säureblocker kommen dazu. Antibiotikum und Säureblocker zusammen ergaben
   in einer schwedischen Untersuchung mit 43'152 Erkrankten ein Chancenverhältnis
   von 17,5 – für das Antibiotikum allein 15,4, für den Säureblocker allein 2,7.
   **Das ist kein Argument gegen das Pantoprazol** – randomisierte Studien
@@ -215,13 +217,20 @@ verstanden werden:
   Effekt. Es ist ein Argument für eine Stuhlprobe, und zwar heute: Untersucht
   wird nur flüssiger Stuhl.
 
+- **Das CRP steigt, und es läuft kein Antibiotikum.** Zwei Lesarten, beide
+  wichtig: Entweder stammt die Entzündung vom Grundleiden – dann ist der
+  steigende Wert ein Befund über die Krankheit –, oder es besteht eine
+  Infektion, die nicht behandelt wird. Was hier *nicht* zutrifft, ist die
+  beruhigende dritte Lesart, ein laufendes Antibiotikum verwische das Bild.
+
 - **Der Verabreichungsweg ist selbst ein Befund.** Novalgin als Infusion ist in
   der Fachinformation nicht dasselbe wie Novalgin als Tropfen: höchstens
   1 ml/min, erhöhtes Anaphylaxierisiko bei parenteraler Gabe, und vorher den
   Kreislauf stabilisieren. Dafür ist es das einzige Schmerzmittel auf ihrer
-  Liste, das den Darm nicht lähmt. Und ein Satz der Fachinformation trifft jetzt
-  zu, der vorher nicht galt: Unter einer Antibiotikabehandlung können die
-  Symptome einer beginnenden Agranulozytose verschleiert werden.
+  Liste, das den Darm nicht lähmt. Und ein Satz der Fachinformation trifft
+  unmittelbar zu: Wird Metamizol gegen Fieber gegeben, bleiben Symptome einer
+  beginnenden Agranulozytose unbemerkt – das Mittel dämpft ein Warnzeichen, auf
+  das man bei ihm besonders achten soll.
 
 - **Sauerstoff ist kein Schmerzmittel.** Läuft er, war ein Messwert zu tief –
   und dafür stehen vier Gründe im Blatt: Erguss und Bauchwasser drücken gegen
