@@ -34,7 +34,10 @@ Universitätsspital verlegt.
 Am 1. September ist **kein sichtbares Blut mehr im Urin**; Beine und Bauch
 bleiben geschwollen, der Bauch ist unruhig, und sie bekommt Sauerstoff. Später
 am Tag: Wind und Appetit kommen zurück, der Stuhl ist wieder in Gang – aber
-**grün und schwarz und flüssig**. Und Novalgin läuft als Infusion.
+**grün und schwarz und flüssig**. Novalgin läuft als Infusion. Und die
+Patientin sagt, die Nieren funktionierten nicht richtig – was sich mit dem
+Bericht deckt und die Frage nach dem Kreatinin seit der Entlastung vom
+27. August zur dringendsten macht.
 
 **Seit dem 31. August liegt der ärztliche Zwischenbericht zur Verlegung vor**,
 und er verschiebt die Grundlage: Die Beurteilung lautet nicht «IgA-Vaskulitis»,

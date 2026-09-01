@@ -427,7 +427,14 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   **Und die praktische Folge daraus: je Blatt eine Mail.** Zwei PDFs in
   einer Nachricht von 11 MB sehen im Mailprogramm aus wie eines – die
   Vorschau klappt sie zusammen, und der zweite Anhang gilt als nicht
-  gesendet. Beim Versand mehrerer Blätter deshalb nicht bündeln. Der Name der Patientin darf in eine Mail
+  gesendet. Beim Versand mehrerer Blätter deshalb nicht bündeln.
+
+  **Und bei rascher Folge kurz halten.** An einem Tag, an dem stündlich neue
+  Angaben kommen, gehen leicht mehrere Mails an dieselben zwei Menschen. Die
+  zweite und dritte wiederholen dann nicht die erste, sondern bringen die neue
+  Sache – und schliessen mit einem Satz, was aus der vorigen unverändert gilt.
+  Sonst muss der Leser raten, ob etwas zurückgenommen wurde. Es sind Angehörige
+  am Krankenbett und keine Abonnenten. Der Name der Patientin darf in eine Mail
   an ihre behandelnden Ärzte – dorthin gehört er –, aber in keine Datei,
   die auch nur in die Nähe eines Commits kommt.
 - Die Mailadressen in den Adressangaben sind öffentliche Kontaktangaben des
