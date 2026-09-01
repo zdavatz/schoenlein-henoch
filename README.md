@@ -223,6 +223,14 @@ verstanden werden:
   Infektion, die nicht behandelt wird. Was hier *nicht* zutrifft, ist die
   beruhigende dritte Lesart, ein laufendes Antibiotikum verwische das Bild.
 
+- **Novalgin ist kein Antibiotikum.** Die Fachinformation führt als Wirkungen
+  nur analgetisch, spasmolytisch und antipyretisch auf; der ATC-Code N02BB02
+  steht für Schmerzmittel. Wichtig ist das nicht als Begriffsklärung, sondern
+  weil dieselbe Stelle beschreibt, *wie* das Fieber gesenkt wird – über das
+  Wärmezentrum im Hirn. Das Mittel verstellt den Thermostaten und tut nichts
+  gegen die Ursache. Bei steigendem CRP ohne Antibiotikum heisst das:
+  Fieberfreiheit unter Novalgin beweist nichts.
+
 - **Der Verabreichungsweg ist selbst ein Befund.** Novalgin als Infusion ist in
   der Fachinformation nicht dasselbe wie Novalgin als Tropfen: höchstens
   1 ml/min, erhöhtes Anaphylaxierisiko bei parenteraler Gabe, und vorher den
