@@ -336,7 +336,8 @@ was noch aussteht · die vollständige Medikamentenliste und was an ihr für
 den Darm zählt · Aszites, Erguss und das Bauchfell · warum die Darmvorbereitung
 schlecht war und was das für den Befund bedeutet · der Sauerstoff und was er
 über die Atmung verrät · grüner Stuhl, Clostridioides difficile und warum der
-Säureblocker daran nichts ändert ·
+Säureblocker daran nichts ändert · Novalgin als Infusion, seine Auflagen und
+warum es kein Antibiotikum ist ·
 der gestaute Harnleiter und seine vier Erklärungen ·
 der Blasenkatheter, was er misst und was er nicht behebt · Ödeme als Bilanz,
 mit dem Kostaufbau als fünfter Erklärung · die Transfusion und die Zahl, die

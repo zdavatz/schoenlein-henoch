@@ -109,6 +109,38 @@ Acht Dinge, die beim Bauen Zeit gekostet haben:
   Wertangabe: im HTML `span.nb`, im PDF geschützte Leerzeichen. Wer neue
   Messwerte einfügt, muss das mitziehen.
 
+**Inhalt wird per Skript geändert, nicht von Hand** – `src/inhalt.rs` ist
+inzwischen über 1500 Zeilen, und der Text besteht aus verschachtelten
+`Span`-Folgen. Bewährt hat sich ein kurzes Python-Skript mit einer Funktion,
+die den Anker zählt und bei Abweichung abbricht, bevor irgendetwas
+geschrieben wird:
+
+```python
+def rep(alt, neu, anzahl=1):
+    global s, n
+    if s.count(alt) != anzahl:
+        sys.exit("ANKER %d-mal statt %d: %r" % (s.count(alt), anzahl, alt[:100]))
+    s = s.replace(alt, neu); n += 1
+```
+
+Drei Fallen dabei, alle am 1. September 2026 zugeschlagen:
+
+- **Der Commit läuft, auch wenn das Skript abbricht.** `python3 - <<'PY' … PY`
+  und danach `git add -A && git commit` in derselben Bash-Zeile sind durch
+  einen Zeilenumbruch getrennt, nicht durch `&&`. Bricht das Skript an einem
+  Anker ab, schreibt es nichts – und der Commit geht trotzdem hinaus, mit
+  einer Nachricht, die Änderungen behauptet, die nicht drin sind. **Entweder
+  `&&` zwischen Skript und Commit setzen oder `git status --short` dazwischen
+  lesen.**
+- **Gleichlautende Anker.** «Fünf Punkte aus der Fachinformation…» steht
+  sowohl im Novalgin- als auch im Pantoprazol-Abschnitt. Die Zählung fängt
+  das ab; die Abhilfe ist, den vorangehenden, eindeutigen Satz in den Anker
+  zu nehmen.
+- **Eine Ersetzung muss die Span-Folge geschlossen zurücklassen.** Endet der
+  neue Text mitten in einer Klammerfolge, entsteht `…") "), B("…`, und der
+  Compiler meldet «unknown start of token» irgendwo weit entfernt. Deshalb
+  nach **jeder** Skriptausführung `make` laufen lassen, bevor committet wird.
+
 **Sichtprüfung Seite für Seite** nach jeder Änderung: `make pruef` und die
 Bilder ansehen. Achtung: ab zehn Seiten wechselt die Nummerierung der
 Ausgabedateien von `pruef-4.png` auf `pruef-04.png`.
