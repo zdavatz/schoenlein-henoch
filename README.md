@@ -32,7 +32,9 @@ beendet, der Urin wird abgeleitet – und die Patientin wird ins
 Universitätsspital verlegt.
 
 Am 1. September ist **kein sichtbares Blut mehr im Urin**; Beine und Bauch
-bleiben geschwollen, der Bauch ist unruhig, und sie bekommt Sauerstoff.
+bleiben geschwollen, der Bauch ist unruhig, und sie bekommt Sauerstoff. Später
+am Tag: Wind und Appetit kommen zurück, der Stuhl ist wieder in Gang – aber
+**grün und schwarz und flüssig**. Und Novalgin läuft als Infusion.
 
 **Seit dem 31. August liegt der ärztliche Zwischenbericht zur Verlegung vor**,
 und er verschiebt die Grundlage: Die Beurteilung lautet nicht «IgA-Vaskulitis»,
@@ -197,6 +199,30 @@ verstanden werden:
   ganz aus und wird der Bauch praller, ist es die andere. Weder Säureblocker
   noch Abführmittel bewegen Gas; nur der Transport tut das.
 
+- **Grün und schwarz sind zwei Farben mit zwei Herkünften.** Schwarz kommt von
+  oben und lässt die Frist für die Magenspiegelung stehen. Grün kommt von unten
+  und heisst: Der Umbau des Gallenfarbstoffs im Dickdarm hat nicht
+  stattgefunden – entweder war die Passage zu schnell oder die Bakterien
+  fehlen. Beides trifft zu.
+
+- **Die Risikoliste für Clostridioides difficile liest sich wie ihre
+  Krankengeschichte:** Antibiotikum zwei Tage vor Eintritt, 84 Jahre,
+  Spitalaufenthalt, Säureblocker. Antibiotikum und Säureblocker zusammen ergaben
+  in einer schwedischen Untersuchung mit 43'152 Erkrankten ein Chancenverhältnis
+  von 17,5 – für das Antibiotikum allein 15,4, für den Säureblocker allein 2,7.
+  **Das ist kein Argument gegen das Pantoprazol** – randomisierte Studien
+  (8 Studien, 29'880 Teilnehmende) finden für Säureblocker keinen belegbaren
+  Effekt. Es ist ein Argument für eine Stuhlprobe, und zwar heute: Untersucht
+  wird nur flüssiger Stuhl.
+
+- **Der Verabreichungsweg ist selbst ein Befund.** Novalgin als Infusion ist in
+  der Fachinformation nicht dasselbe wie Novalgin als Tropfen: höchstens
+  1 ml/min, erhöhtes Anaphylaxierisiko bei parenteraler Gabe, und vorher den
+  Kreislauf stabilisieren. Dafür ist es das einzige Schmerzmittel auf ihrer
+  Liste, das den Darm nicht lähmt. Und ein Satz der Fachinformation trifft jetzt
+  zu, der vorher nicht galt: Unter einer Antibiotikabehandlung können die
+  Symptome einer beginnenden Agranulozytose verschleiert werden.
+
 - **Sauerstoff ist kein Schmerzmittel.** Läuft er, war ein Messwert zu tief –
   und dafür stehen vier Gründe im Blatt: Erguss und Bauchwasser drücken gegen
   das Zwerchfell, die Blutarmut bei 75 g/l, die Übersäuerung (Bikarbonat 17,
@@ -292,7 +318,8 @@ darüber entscheidet · der Zwischenbericht mit allen dokumentierten Zahlen, was
 was noch aussteht · die vollständige Medikamentenliste und was an ihr für
 den Darm zählt · Aszites, Erguss und das Bauchfell · warum die Darmvorbereitung
 schlecht war und was das für den Befund bedeutet · der Sauerstoff und was er
-über die Atmung verrät ·
+über die Atmung verrät · grüner Stuhl, Clostridioides difficile und warum der
+Säureblocker daran nichts ändert ·
 der gestaute Harnleiter und seine vier Erklärungen ·
 der Blasenkatheter, was er misst und was er nicht behebt · Ödeme als Bilanz,
 mit dem Kostaufbau als fünfter Erklärung · die Transfusion und die Zahl, die

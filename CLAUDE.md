@@ -272,6 +272,14 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   ETH-Arbeit zeigt, dass sie es nicht tut. Im Blatt steht deshalb beides:
   dass der Volksglaube falsch ist *und* dass Spinat trotzdem keine Antwort
   auf einen Blutverlust dieser Grössenordnung ist.
+- **Der Verabreichungsweg gehört zur Angabe.** «Sie bekommt Novalgin» und «sie
+  bekommt Novalgin als Infusion» sind in der Fachinformation zwei verschiedene
+  Sachverhalte: Die parenterale Gabe bringt eigene Auflagen mit (höchstens
+  1 ml/min, erhöhtes Anaphylaxierisiko, vorher den Kreislauf stabilisieren).
+  Dasselbe beim Thiamin, wo der orale Weg nachweislich versagt. Bei jeder
+  Verordnung deshalb nach dem Weg fragen und ihn im Blatt mitführen – und die
+  Fachinfo-Kapitel `restrictions` und `usage` daraufhin lesen, nicht nur
+  `unwanted_effects`.
 - **Eine Behandlung, die die Angehörigen einer Beschwerde zuordnen, ist oft
   gegen etwas anderes gerichtet.** «Sie bekommt Sauerstoff wegen der
   Bauchschmerzen» – Sauerstoff ist kein Schmerzmittel; er läuft, weil ein
