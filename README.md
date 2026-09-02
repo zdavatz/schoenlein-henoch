@@ -62,6 +62,24 @@ gelb ist Galle: Damit ist das Zeichen weg, das die 24-Stunden-Frist für die
 Magenspiegelung ausgelöst hat. Die Farbskala dieses Falles ist damit von
 Darminhalt über Blut zu Galle gegangen, also in die richtige Richtung.
 
+**Am Abend desselben Tages ist links punktiert worden**, knapp ein Liter;
+rechts sei es in Ordnung. Sie schnauft besser und hat mehr Appetit. Damit ist
+die vierte der Fragen im Abschnitt «Der Sauerstoff» beantwortet, und von den
+vier Gründen für ihre Atemnot ist der einzige behandelt, der sich behandeln
+liess – die drei anderen stehen unverändert. Der neue Abschnitt «Ein Liter von
+der linken Lunge» beantwortet auch die Frage, die dazu gestellt wurde: Woher
+kommt so viel Wasser links? Die Seite sortiert die Ursachen. Systemische
+Ursachen – Herzschwäche, Zirrhose, Nierenversagen, Eiweissmangel – machen
+kleine Ergüsse auf **beiden** Seiten; Bauchwasser, das durch das Zwerchfell
+steigt, käme ganz überwiegend **rechts**; und Lungenembolien machen kleine
+Ergüsse, keinen Liter. Übrig bleibt ein Vorgang an den Häuten selbst, also
+dieselben drei Zweige, jetzt auch im Brustraum. Praktisch hängt daran eine
+Frage mit einer Frist von Stunden, und sie ist neu die zweite der jetzt zehn:
+Ist die Flüssigkeit vollständig untersucht worden – Light-Kriterien, Zytologie
+und ein Zellblock für PAX8? Untersuchte Flüssigkeit lässt sich aufheben,
+ununtersuchte wird verworfen, und dann kostet dieselbe Antwort einen zweiten
+Eingriff.
+
 Die «Ausgangslage» im Dokument beschreibt diesen Fall. Namen kommen keine vor,
 auch keine der behandelnden Ärzte.
 
