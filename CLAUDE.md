@@ -337,6 +337,31 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   da ist, und sie sind die ergiebigsten Stellen im ganzen Verlauf: Dahinter
   steckt regelmässig ein Befund, den niemand erwähnt hat. Nicht die Zuordnung
   übernehmen, sondern fragen, was gemessen wurde.
+- **Hinter einer Laienauskunft steht oft eine abgestufte Fachsprache.** «Es
+  wurden ein paar pathologische Zellen gefunden» ist keine Diagnose, sondern
+  die Umschreibung einer Kategorie. Die Zytologie der Ergussflüssigkeiten
+  kennt fünf Stufen, und zu jeder ist das Risiko ausgerechnet: Atypie unklarer
+  Bedeutung 50,8 Prozent, «verdächtig» 91,3, «bösartig» 98,2. Zwischen der
+  ersten und der zweiten liegt der Unterschied zwischen offen und beinahe
+  entschieden – und die Umschreibung deckt beide. Wer mit der Umschreibung
+  weiterrechnet, rechnet mit einem Faktor zwei. Die Regel gilt allgemein: Wo
+  ein Befund abgestuft berichtet wird, ist die **Stufe** die Information, und
+  sie gehört wörtlich erfragt, bevor irgendetwas daraus folgt.
+- **Ein Gewicht ist eine Bilanz, und ein Ödemgewicht ist keine Rechengrundlage.**
+  66 kg bei einem gewohnten Gewicht von 58 sind acht Liter Wasser – die Waage
+  beantwortet die Ein- und Ausfuhrbilanz, bevor ein Bilanzblatt gelesen wird.
+  Zugleich verdeckt sie das, was sie zeigen sollte: Wer wochenlang nichts isst
+  und trotzdem zunimmt, sieht auf der Waage gut ernährt aus. Kalorien- und
+  Urinschwellen rechnen deshalb auf das **Trockengewicht**, nicht auf das
+  Gewicht mit den Ödemen. Wer eine neue Gewichtsangabe bekommt, prüft `grep`
+  auf jede Stelle, die mit Kilogramm rechnet.
+- **Der Kapitel-Link auf ch.oddb.org gehört geöffnet, nicht abgeleitet.** Die
+  Kapitelnamen sind zwar eine feste Liste, aber sie sind nicht dort, wo man sie
+  vermutet: Die Mengenangabe «Na⁺ 154 mmol/l» der Kochsalzlösung steht nicht
+  unter `composition`, sondern unter `galenic_form`; `composition` führt nur
+  Wirk- und Hilfsstoffe ohne Zahlen. Von vier geratenen Kapiteln war eines
+  falsch. Die Prüfung geht nur im Browser (Anubis) und kostet einen Aufruf je
+  Link.
 - **Ein negativer Befund ist nur so viel wert wie die Bedingungen, unter denen
   er erhoben wurde.** Dieses Blatt ist dreimal auf dasselbe Muster gestossen:
   Der unauffällige Streifentest war unter laufender Infusion verdünnt; der

@@ -124,7 +124,7 @@ static DOKUMENT: &[Block] = &[
         &[B("Langsam beginnen."), T(" "), N("10 bis 20 kcal"), T(" je Kilogramm Körpergewicht in den ersten 24 Stunden, bei sehr schwerer Unterernährung die Hälfte davon. Danach alle ein bis zwei Tage um etwa ein Drittel des Ziels steigern.")],
         &[B("Phosphat, Kalium, Magnesium messen – vorher und dann täglich."), T(" Vier Tage lang, bei Hochrisiko in den ersten drei Tagen alle zwölf Stunden. Ergänzen, bevor der Wert fällt, nicht erst danach.")],
         &[B("Flüssigkeit zurückhaltend."), T(" Kohlenhydrate lassen die Niere Natrium und Wasser zurückhalten. Wer grosszügig infundiert, während er zu essen beginnt, überlädt den Kreislauf.")],
-        &[B("Das Gewicht täglich."), T(" Eine rasche Zunahme in den ersten Tagen ist kein Ernährungserfolg, sondern Wasser.")],
+        &[B("Das Gewicht täglich."), T(" Eine rasche Zunahme in den ersten Tagen ist kein Ernährungserfolg, sondern Wasser – und sie ist zugleich die Zahl, auf die nicht gerechnet werden darf: Die Anfangsmenge rechnet auf das Trockengewicht, nicht auf das Gewicht mit den Ödemen.")],
         &[B("Weiche Konsistenz, nicht kleine Menge."), T(" Ein Magen, der lange nichts zu tun hatte, scheitert an festen Stücken, nicht an Kalorien.")],
     ]),
 
@@ -212,7 +212,7 @@ pub static BLATT: Dokument = Dokument {
     titel: "Kostaufbau nach langem Hungern",
     titel2: "(Refeeding-Syndrom)",
     untertitel: "Was die Betreuung von Hungerstreikenden über den Wiederbeginn des Essens weiss",
-    stand: "Begleitblatt zum Informationsblatt IgA-Vaskulitis · Stand 30. August 2026",
+    stand: "Begleitblatt zum Informationsblatt IgA-Vaskulitis · Stand 2. September 2026",
     kopfzeile: "Kostaufbau nach langem Hungern (Refeeding-Syndrom)",
     blocks: DOKUMENT,
     quellen: QUELLEN,

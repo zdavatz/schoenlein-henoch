@@ -46,6 +46,19 @@ paraneoplastisch, Peritonealkarzinose. Dazu Befunde, die vorher fehlten: freie
 Flüssigkeit im Bauch, Erguss in beiden Brustfellhöhlen, eine verdickte Stelle am
 Bauchfell, eine GFR von 30 ml/min – und die vollständige Medikamentenliste.
 
+**Am 2. September kippt der wichtigste ausstehende Befund.** Die Meldung
+lautet, es seien «ein paar pathologische Zellen» gefunden worden, und die
+Patientin geht zum Gynäkologen. Damit werden die beiden Zweige, die neben der
+Vaskulitis offen standen – paraneoplastisch und Peritonealkarzinose –,
+verfolgt statt bloss genannt. Das Blatt schreibt das nicht weg, sondern stellt
+es nach vorn: Der Abschnitt «Die Zellen im Bauchwasser» sagt, welche eine
+Rückfrage darüber entscheidet, wie ernst der Befund ist – nämlich die
+Kategorie im zytologischen Befund, weil zwischen «Atypie unklarer Bedeutung»
+und «verdächtig auf Bösartigkeit» 50,8 gegen 91,3 Prozent Risiko liegen. Vom
+selben Tag: Das Birchermüesli kam wieder heraus, das Gewicht liegt bei 66 kg
+gegenüber sonst 58, und ein Blutdrucksenker ist dazugekommen, der auf keiner
+Liste steht.
+
 Die «Ausgangslage» im Dokument beschreibt diesen Fall. Namen kommen keine vor,
 auch keine der behandelnden Ärzte.
 
