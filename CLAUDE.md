@@ -347,6 +347,36 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   als umgekehrt. Und was eine Farbe *nicht* sagt, gehört gleich daneben: Gelbes
   Erbrochenes nimmt die Frist für die Magenspiegelung weg, aber weder den
   Hämoglobinwert noch den Stuhl.
+- **Die Seite ist eine Ursachenangabe**, so wie die Farbe eine Ortsangabe ist.
+  Wo ein Befund seitengebunden auftritt, sortiert die Seite die Ursachen,
+  bevor irgendein Laborwert vorliegt: Systemische Ursachen – Herzschwäche,
+  Zirrhose, Nierenversagen, Eiweissmangel – machen **kleine Ergüsse auf beiden
+  Seiten**, so sehr, dass die Übersichtsarbeit für sie ausdrücklich *keine*
+  diagnostische Punktion verlangt. Bauchwasser, das durchs Zwerchfell steigt,
+  käme ganz überwiegend **rechts**. Eine Lungenembolie macht einen **kleinen**
+  Erguss. Ein einseitiger Liter links ist von allen dreien das Gegenteil und
+  zeigt auf einen örtlichen Vorgang. Beim Notieren gehört deshalb die Seite mit,
+  und zwar zu **jedem** seitenfähigen Befund; und wo eine frühere Angabe
+  «beidseits» lautete und die neue «nur links», ist die **Asymmetrie** die
+  Information, nicht die Menge.
+- **Material aus einer Punktion hat eine Frist von Stunden.** Untersuchte
+  Flüssigkeit lässt sich aufheben, ununtersuchte wird verworfen – und danach
+  kostet dieselbe Antwort einen zweiten Eingriff. Sobald irgendwo punktiert,
+  drainiert oder biopsiert wurde, ist die Frage «Ist das vollständige Programm
+  angefordert?» deshalb dringlicher als jede Auswertung des Ergebnisses. Sie
+  gehört an die Spitze der Fragenliste, mit der Frist dazu, nicht in den
+  Fliesstext. Beim Erguss ist das Programm: Zellzahl mit Differenzierung,
+  Gesamteiweiss, LDH, pH, Gram-Färbung, Kultur, Zytologie – und ein
+  **Zellblock**, ohne den keine Immunfärbung möglich ist.
+- **Ein laufendes Medikament kann nicht nur den Wert verschieben, sondern das
+  Kriterium wechseln.** Unter einem Entwässerungsmittel dickt ein Transsudat
+  ein und rutscht in den Exsudatbereich; die Light-Kriterien ordneten in der
+  Arbeit dazu fünf Herzschwäche-Kranke falsch ein, vier davon nach Diuretikum.
+  Dann gilt statt ihrer der Serum-Erguss-Albumin-Gradient. Das ist eine Stufe
+  schärfer als die Regel zu den Bedingungen eines negativen Befundes: Es reicht
+  nicht, das Ergebnis vorsichtiger zu lesen – es ist die **falsche Messlatte**.
+  Deshalb bei jedem Schwellenwert im Blatt prüfen, ob ein Mittel auf der Liste
+  ihn ungültig macht.
 - **Kommt während des Versands eine neue Angabe, geht sie zuerst ins Blatt.**
   Am 2. September traf «das Erbrochene ist jetzt gelb» ein, als das
   Versandskript schon im Trockenlauf stand. Richtig ist dann nicht, die
