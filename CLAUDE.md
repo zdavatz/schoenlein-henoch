@@ -337,6 +337,24 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   da ist, und sie sind die ergiebigsten Stellen im ganzen Verlauf: Dahinter
   steckt regelmässig ein Befund, den niemand erwähnt hat. Nicht die Zuordnung
   übernehmen, sondern fragen, was gemessen wurde.
+- **Die Farbe ist eine Ortsangabe.** Erbrochenes und Stuhl melden über die
+  Farbe, aus welcher Höhe sie kommen: schwarz oben heisst Blut in der Säure,
+  gelb heisst Galle und damit Inhalt von unterhalb der Einmündung des
+  Gallengangs, Miserere heisst Darminhalt. Eine Farbänderung ist deshalb nie
+  bloss ein Detail, sondern eine Bewegung auf einer Skala – und die
+  **Reihenfolge** über die Tage sagt mehr als jeder Einzelwert. Beim Notieren
+  gehört die Richtung mit: von Darminhalt über Blut zu Galle ist etwas anderes
+  als umgekehrt. Und was eine Farbe *nicht* sagt, gehört gleich daneben: Gelbes
+  Erbrochenes nimmt die Frist für die Magenspiegelung weg, aber weder den
+  Hämoglobinwert noch den Stuhl.
+- **Kommt während des Versands eine neue Angabe, geht sie zuerst ins Blatt.**
+  Am 2. September traf «das Erbrochene ist jetzt gelb» ein, als das
+  Versandskript schon im Trockenlauf stand. Richtig ist dann nicht, die
+  vorbereitete Mail abzuschicken und die Angabe nachzureichen, sondern
+  anzuhalten: einarbeiten, bauen, prüfen, committen, dann senden. Ein PDF, dem
+  die neueste Meldung fehlt, ist am Krankenbett schlechter als ein PDF, das
+  zehn Minuten später kommt – und eine zweite Mail zur selben Sache ist genau
+  das, was die Regel zur Mailfolge vermeiden will.
 - **Hinter einer Laienauskunft steht oft eine abgestufte Fachsprache.** «Es
   wurden ein paar pathologische Zellen gefunden» ist keine Diagnose, sondern
   die Umschreibung einer Kategorie. Die Zytologie der Ergussflüssigkeiten
