@@ -57,7 +57,10 @@ Kategorie im zytologischen Befund, weil zwischen «Atypie unklarer Bedeutung»
 und «verdächtig auf Bösartigkeit» 50,8 gegen 91,3 Prozent Risiko liegen. Vom
 selben Tag: Das Birchermüesli kam wieder heraus, das Gewicht liegt bei 66 kg
 gegenüber sonst 58, und ein Blutdrucksenker ist dazugekommen, der auf keiner
-Liste steht.
+Liste steht. Und das Erbrochene ist **gelb statt schwarz** – schwarz war Blut,
+gelb ist Galle: Damit ist das Zeichen weg, das die 24-Stunden-Frist für die
+Magenspiegelung ausgelöst hat. Die Farbskala dieses Falles ist damit von
+Darminhalt über Blut zu Galle gegangen, also in die richtige Richtung.
 
 Die «Ausgangslage» im Dokument beschreibt diesen Fall. Namen kommen keine vor,
 auch keine der behandelnden Ärzte.
