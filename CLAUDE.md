@@ -403,8 +403,14 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   **«Derselbe Stoff» nachprüfen, nicht behaupten** – Agiolax mite enthält je
   Teelöffel 3,25 g ganzen Samen und nur 0,11 g Schale, der Migros-Beutel ist
   reine Schale; die Mengen stehen unter `galenic_form`, nicht unter
-  `composition`, und ich hatte es erst falsch im Blatt. Und: **prüfen, ob
+  `composition`, und ich hatte es erst falsch im Blatt. **Prüfen, ob
   Fallberichte dieselbe Zubereitung betreffen** wie das, worüber geredet wird.
+  Und wenn ein Hausmittel für das **falsche Kompartiment** vorgeschlagen wird –
+  Flohsamen gegen das Wasser in den Beinen –, entscheidet das Kapitel
+  `kinetic` die Frage in einer Zeile: Bei Agiolax mite stehen Absorption,
+  Verteilung, Abbau und Ausscheidung allesamt als «nicht zutreffend», der Stoff
+  tritt also gar nicht in den Körper ein. Das ist kürzer und stärker als jede
+  Erklärung.
 - **Verhältnismässigkeit ist eine inhaltliche Frage, keine Formsache.** Der
   Flohsamen-Abschnitt wuchs auf vier Seiten, während die beiden Fragen mit
   echtem Einsatz offen blieben – welche Kategorie im zytologischen Befund
