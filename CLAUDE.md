@@ -233,7 +233,19 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   belegen, nicht über compendium.ch.** Dieselbe Fachinformation steht auf
   ch.oddb.org und ist dort frei zugänglich. Die Fachinfo einer Zulassung
   liegt unter `https://ch.oddb.org/de/gcc/fachinfo/reg/<Swissmedic-Nr>`, die
-  Suche unter `.../search/zone/drugs/search_query/<name>`.
+  Suche unter `.../search/zone/drugs/search_query/<name>`. **Fällt die Seite
+  aus** – am 3. September 2026 stand dort minutenlang «Wegen eines
+  Software-Updates … nicht erreichbar» –, liegt derselbe Fachinfo-Text offline
+  in der AmiKo-Datenbank von SDIF und lässt sich sofort lesen:
+
+  ```bash
+  sqlite3 ~/.software/sdif/db/amiko_db_full_idx_de.db \
+    "select content from amikodb where regnrs='42933' and type='FI';"
+  ```
+
+  Damit ist die Arbeit nicht blockiert. Der **Link** gehört trotzdem im Browser
+  geöffnet, bevor er ins Blatt kommt – die Offline-Datenbank sagt nichts
+  darüber, auf welchem Dokument eine Nummer landet.
 - **Der Beleg steht hinter dem Wort.** `Span::L("Wort", "URL")` macht ein
   Wort im Satz anklickbar – die Fachinformation hängt hinter dem Begriff, den
   sie belegt, und die Präparatenamen in den Tabellen führen auf ihre
@@ -377,6 +389,23 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   nicht, das Ergebnis vorsichtiger zu lesen – es ist die **falsche Messlatte**.
   Deshalb bei jedem Schwellenwert im Blatt prüfen, ob ein Mittel auf der Liste
   ihn ungültig macht.
+- **Zu jedem Hausmittel gibt es ein Arzneimittel mit derselben Substanz – und
+  dessen Gegenanzeigenliste ist die Prüfung, die der Zeitungsartikel nicht
+  mitliefert.** Flohsamenschalen stehen bei der Migros zwischen den
+  Frühstücksflocken, mit Zutat, Nährwerten und Spurenhinweis, aber ohne
+  Gegenanzeige, ohne Dosierung und ohne Flüssigkeitshinweis. Als Agiolax mite
+  (Swissmedic 42933, ATC A06AC01) trägt derselbe Stoff eine Fachinformation,
+  deren Gegenanzeigen diese Patientin viermal treffen, dazu ein Verbot der
+  gleichzeitigen Gabe mit Opiaten und die Pflicht zu 150 ml Flüssigkeit je
+  Einnahme, deren Fehlen ausdrücklich ein «Risiko für Luftnot» ergibt. Der
+  Stoff ändert sich an der Ladentheke nicht, die mitgelieferte Auskunft
+  vollständig. Deshalb: Wird am Krankenbett ein Hausmittel vorgeschlagen –
+  Flohsamen, Kleie, Leinsamen, Magnesium –, zuerst das zugelassene Präparat
+  derselben Substanz auf ch.oddb.org suchen und `contra_indications`,
+  `restrictions`, `usage` und `interactions` lesen. Und die Kritik gehört fair
+  gehalten: Ein Rat aus dem Gesundheitsteil ist an Gesunde gerichtet. Das macht
+  ihn nicht falsch, sondern unzuständig – und genau so gehört er im Blatt zu
+  stehen.
 - **Kommt während des Versands eine neue Angabe, geht sie zuerst ins Blatt.**
   Am 2. September traf «das Erbrochene ist jetzt gelb» ein, als das
   Versandskript schon im Trockenlauf stand. Richtig ist dann nicht, die

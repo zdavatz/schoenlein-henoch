@@ -212,6 +212,19 @@ verstanden werden:
   Blähungen, was hier den Ausschlag gäbe. Magnesium als Abführmittel ist
   bei 84 Jahren und möglicher Nierenbeteiligung gerade nicht das
   Naheliegende.
+- **Derselbe Stoff, zwei Theken, zwei Auskünfte.** Am 2. September empfahl
+  ein Zeitungsartikel Flohsamenschalen im Joghurt; die Packung steht bei
+  der Migros zwischen den Frühstücksflocken, mit Zutat und Nährwerten, aber
+  ohne Gegenanzeige, Dosierung oder Flüssigkeitshinweis. Als Arzneimittel
+  trägt derselbe Stoff eine Fachinformation – und deren Gegenanzeigen
+  treffen sie viermal: nicht diagnostizierte Blutung mit ausbleibendem
+  Stuhlgang trotz Abführmittel, Bauchschmerz unbekannter Ursache, drohender
+  Darmverschluss, Änderung der Stuhlgewohnheit über zwei Wochen. Dazu die
+  Pflicht zu 150 ml Flüssigkeit je Einnahme, deren Fehlen ausdrücklich ein
+  «Risiko für Luftnot» ergibt, und das Verbot der gleichzeitigen Gabe mit
+  Opiaten – zwei stehen auf ihrer Reserveliste. Ein Rat aus dem
+  Gesundheitsteil ist an Gesunde gerichtet; das macht ihn nicht falsch,
+  sondern unzuständig.
 - **Nach Wochen ohne Nahrung ist nicht das Essen das Risiko, sondern das
   Tempo.** Refeeding-Syndrom: Insulin treibt Phosphat, Kalium und Magnesium
   in die Zellen, die Blutwerte fallen, obwohl wieder gegessen wird. Der
