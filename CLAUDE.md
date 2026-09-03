@@ -389,23 +389,43 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   nicht, das Ergebnis vorsichtiger zu lesen – es ist die **falsche Messlatte**.
   Deshalb bei jedem Schwellenwert im Blatt prüfen, ob ein Mittel auf der Liste
   ihn ungültig macht.
-- **Zu jedem Hausmittel gibt es ein Arzneimittel mit derselben Substanz – und
+- **Zu jedem Hausmittel gibt es ein Arzneimittel mit ähnlicher Substanz – und
   dessen Gegenanzeigenliste ist die Prüfung, die der Zeitungsartikel nicht
-  mitliefert.** Flohsamenschalen stehen bei der Migros zwischen den
-  Frühstücksflocken, mit Zutat, Nährwerten und Spurenhinweis, aber ohne
-  Gegenanzeige, ohne Dosierung und ohne Flüssigkeitshinweis. Als Agiolax mite
-  (Swissmedic 42933, ATC A06AC01) trägt derselbe Stoff eine Fachinformation,
-  deren Gegenanzeigen diese Patientin viermal treffen, dazu ein Verbot der
-  gleichzeitigen Gabe mit Opiaten und die Pflicht zu 150 ml Flüssigkeit je
-  Einnahme, deren Fehlen ausdrücklich ein «Risiko für Luftnot» ergibt. Der
-  Stoff ändert sich an der Ladentheke nicht, die mitgelieferte Auskunft
-  vollständig. Deshalb: Wird am Krankenbett ein Hausmittel vorgeschlagen –
-  Flohsamen, Kleie, Leinsamen, Magnesium –, zuerst das zugelassene Präparat
-  derselben Substanz auf ch.oddb.org suchen und `contra_indications`,
-  `restrictions`, `usage` und `interactions` lesen. Und die Kritik gehört fair
-  gehalten: Ein Rat aus dem Gesundheitsteil ist an Gesunde gerichtet. Das macht
-  ihn nicht falsch, sondern unzuständig – und genau so gehört er im Blatt zu
-  stehen.
+  mitliefert.** Wird am Krankenbett ein Hausmittel vorgeschlagen – Flohsamen,
+  Kleie, Leinsamen, Magnesium –, zuerst das zugelassene Präparat suchen und
+  `contra_indications`, `restrictions`, `usage`, `interactions`,
+  `unwanted_effects` und `effects` lesen. Vier Regeln dazu, alle am
+  3. September 2026 gelernt:
+
+  1. **«Derselbe Stoff» nachprüfen, nicht behaupten.** Agiolax mite enthält je
+     Teelöffel 3,25 g ganzen Samen und nur 0,11 g Schale – der Migros-Beutel
+     ist reine Schale. Das ist derselbe Rohstoff, aber nicht dieselbe
+     Zubereitung, und hier sogar die schärfere: Der gelbildende Anteil macht
+     rund 55 % der Schale aus. Die Mengen stehen unter `galenic_form`, nicht
+     unter `composition`. **Ich hatte das erst falsch geschrieben, in Blatt und
+     Mail.** Die Zusammensetzung gehört gelesen, bevor zwei Produkte
+     gleichgesetzt werden.
+  2. **Die Lebensmittelseite hat eigene Quellen – sie sind die besseren.** Auf
+     den Einwand «wir reden von einem Lebensmittel, nicht von einem Medikament»
+     taugt eine Fachinformation nur als Checkliste. Was trägt, sind
+     Lebensmittelrecht (`21 CFR 101.17(f)` verlangt auf Lebensmitteln mit
+     Flohsamenschale eine Erstickungswarnung und «Do not eat this product if
+     you have difficulty in swallowing») und Fallberichte, die dieselbe
+     Zubereitung betreffen. **Prüfen, ob die Fälle das Lebensmittel oder das
+     Arzneimittel betreffen** – hier waren es durchweg Schalenfälle, was das
+     Argument stärkte statt es zu schwächen.
+  3. **Zuerst das Gute aufzählen, dann das Kippen begründen.** «Ist das gut?»
+     ist eine berechtigte Frage und verdient ein Ja, wo es eines gibt. Der
+     Abschnitt führt deshalb Wirkung, zugelassenen Gesundheitsanspruch und die
+     Kernspin-Studie zum Darmgas auf, bevor er zu ihr kommt. Und die Grösse des
+     Risikos gehört ehrlich benannt: Einzelfallberichte, kleines absolutes
+     Risiko. Der tragende Satz ist nicht «gefährlich», sondern **«es brächte
+     nichts – und für nichts lohnt sich auch ein kleines Risiko nicht»**. Dazu
+     gehört die Liste, wann die Antwort ja hiesse.
+  4. **Zwei Dinge kippen, nicht eines.** Der Nutzen fällt weg (die Wirkkette
+     braucht ein Glied, das fehlt), und das Risiko steigt (die Umstände der
+     Fallberichte häufen sich). Beides einzeln benennen – sonst liest sich der
+     Abschnitt als Warnung statt als Abwägung.
 - **Kommt während des Versands eine neue Angabe, geht sie zuerst ins Blatt.**
   Am 2. September traf «das Erbrochene ist jetzt gelb» ein, als das
   Versandskript schon im Trockenlauf stand. Richtig ist dann nicht, die

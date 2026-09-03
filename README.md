@@ -212,19 +212,25 @@ verstanden werden:
   Blähungen, was hier den Ausschlag gäbe. Magnesium als Abführmittel ist
   bei 84 Jahren und möglicher Nierenbeteiligung gerade nicht das
   Naheliegende.
-- **Derselbe Stoff, zwei Theken, zwei Auskünfte.** Am 2. September empfahl
-  ein Zeitungsartikel Flohsamenschalen im Joghurt; die Packung steht bei
-  der Migros zwischen den Frühstücksflocken, mit Zutat und Nährwerten, aber
-  ohne Gegenanzeige, Dosierung oder Flüssigkeitshinweis. Als Arzneimittel
-  trägt derselbe Stoff eine Fachinformation – und deren Gegenanzeigen
-  treffen sie viermal: nicht diagnostizierte Blutung mit ausbleibendem
-  Stuhlgang trotz Abführmittel, Bauchschmerz unbekannter Ursache, drohender
-  Darmverschluss, Änderung der Stuhlgewohnheit über zwei Wochen. Dazu die
-  Pflicht zu 150 ml Flüssigkeit je Einnahme, deren Fehlen ausdrücklich ein
-  «Risiko für Luftnot» ergibt, und das Verbot der gleichzeitigen Gabe mit
-  Opiaten – zwei stehen auf ihrer Reserveliste. Ein Rat aus dem
-  Gesundheitsteil ist an Gesunde gerichtet; das macht ihn nicht falsch,
-  sondern unzuständig.
+- **Flohsamenschalen sind gut – nur nicht für sie.** Am 2. September
+  empfahl ein Zeitungsartikel Flohsamenschalen im Joghurt; die Packung
+  steht bei der Migros zwischen den Frühstücksflocken. Der Abschnitt führt
+  zuerst auf, was dafür spricht: Wirkung bei Verstopfung, ein zugelassener
+  Gesundheitsanspruch zum Cholesterin, und – im Kernspin gemessen – sogar
+  *weniger* Darmgas als unter Inulin, weil der gelbildende Anteil schlecht
+  vergoren wird. Bei ihr kippt die Rechnung aus zwei unabhängigen Gründen.
+  Der Nutzen fällt weg: Der Wirkweg läuft laut Fachinformation
+  «reflektorisch über einen Dehnungsreiz», braucht also die Peristaltik,
+  die fehlt. Und das Risiko steigt: Die berichteten Verschlüsse – ein
+  betagter Heimbewohner mit Füllmittel-Ileus hinter einem unerkannten
+  Karzinom, ein Speiseröhren-Bezoar bei einem 76-Jährigen mit Parkinson,
+  ein Dünndarm-Bezoar unter 1,5 Teelöffeln täglich – sind allesamt
+  **Schalenfälle**, also Fälle mit dem Lebensmittel, nicht mit dem
+  Granulat. Auch die Lebensmittelseite hat dazu eine Quelle: `21 CFR
+  101.17(f)` schreibt auf Lebensmitteln mit Flohsamenschale eine
+  Erstickungswarnung vor und die Anweisung, das Produkt bei
+  Schluckbeschwerden nicht zu essen. Ein Rat aus dem Gesundheitsteil ist an
+  Gesunde gerichtet; das macht ihn nicht falsch, sondern unzuständig.
 - **Nach Wochen ohne Nahrung ist nicht das Essen das Risiko, sondern das
   Tempo.** Refeeding-Syndrom: Insulin treibt Phosphat, Kalium und Magnesium
   in die Zellen, die Blutwerte fallen, obwohl wieder gegessen wird. Der
