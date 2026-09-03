@@ -212,25 +212,20 @@ verstanden werden:
   Blähungen, was hier den Ausschlag gäbe. Magnesium als Abführmittel ist
   bei 84 Jahren und möglicher Nierenbeteiligung gerade nicht das
   Naheliegende.
-- **Flohsamenschalen sind gut – nur nicht für sie.** Am 2. September
-  empfahl ein Zeitungsartikel Flohsamenschalen im Joghurt; die Packung
-  steht bei der Migros zwischen den Frühstücksflocken. Der Abschnitt führt
-  zuerst auf, was dafür spricht: Wirkung bei Verstopfung, ein zugelassener
-  Gesundheitsanspruch zum Cholesterin, und – im Kernspin gemessen – sogar
-  *weniger* Darmgas als unter Inulin, weil der gelbildende Anteil schlecht
-  vergoren wird. Bei ihr kippt die Rechnung aus zwei unabhängigen Gründen.
-  Der Nutzen fällt weg: Der Wirkweg läuft laut Fachinformation
-  «reflektorisch über einen Dehnungsreiz», braucht also die Peristaltik,
-  die fehlt. Und das Risiko steigt: Die berichteten Verschlüsse – ein
-  betagter Heimbewohner mit Füllmittel-Ileus hinter einem unerkannten
-  Karzinom, ein Speiseröhren-Bezoar bei einem 76-Jährigen mit Parkinson,
-  ein Dünndarm-Bezoar unter 1,5 Teelöffeln täglich – sind allesamt
-  **Schalenfälle**, also Fälle mit dem Lebensmittel, nicht mit dem
-  Granulat. Auch die Lebensmittelseite hat dazu eine Quelle: `21 CFR
-  101.17(f)` schreibt auf Lebensmitteln mit Flohsamenschale eine
-  Erstickungswarnung vor und die Anweisung, das Produkt bei
-  Schluckbeschwerden nicht zu essen. Ein Rat aus dem Gesundheitsteil ist an
-  Gesunde gerichtet; das macht ihn nicht falsch, sondern unzuständig.
+- **Flohsamenschalen sind gut belegt – und trotzdem nicht ihr Werkzeug.**
+  Ein Zeitungsartikel empfahl sie im Joghurt; die Packung steht bei der
+  Migros zwischen den Frühstücksflocken. Die Wirksamkeitsliteratur ist
+  stark: 66 gegen 41 Prozent Ansprechen bei chronischer Verstopfung, LDL
+  −0,33 mmol/l, HbA1c −0,97 Prozent. Bemerkenswert ist, dass die Argumente
+  gegen die Anwendung bei ihr aus genau diesen Arbeiten kommen und keine
+  Warnung brauchen: Die Wirkung zeigte sich erst ab 10 g täglich – der
+  Artikel empfiehlt die halbe Dosis; der grösste Einzeleffekt der
+  Meta-Analyse war nicht der Nutzen, sondern die Blähung, und die Blähung
+  ist ihre Hauptbeschwerde; und Macrogol, das sie bereits bekommt, trägt in
+  der Übersicht zu rezeptfreien Mitteln wie in der zu Betagten über 65 die
+  bessere Note. Dazu das eine, was nicht aus Studien stammt: Der Wirkweg
+  läuft «reflektorisch über einen Dehnungsreiz» und braucht damit die
+  Peristaltik, deren Ausfall bei ihr ungeklärt ist.
 - **Nach Wochen ohne Nahrung ist nicht das Essen das Risiko, sondern das
   Tempo.** Refeeding-Syndrom: Insulin treibt Phosphat, Kalium und Magnesium
   in die Zellen, die Blutwerte fallen, obwohl wieder gegessen wird. Der
