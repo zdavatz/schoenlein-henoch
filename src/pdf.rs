@@ -691,11 +691,27 @@ fn baue(bs: &'static [Block], ziel: &mut LinearLayout, fc: &FontCache, style: St
                     .padded(Margins::trbl(0, 0, 2, 0)),
             ),
             Block::Liste(items) => {
-                let mut ul = UnorderedList::with_bullet("·");
-                for it in *items {
+                // Jeder Punkt als eigene Einpunktliste, zusammengehalten: genpdf
+                // zeichnet das Aufzaehlungszeichen, bevor es weiss, ob die erste
+                // Zeile noch auf die Seite passt - sonst steht ein einzelner Punkt
+                // am Seitenfuss und der Text beginnt auf der Folgeseite. Gedeckelt
+                // auf MITNEHMEN_MAX, damit ein sehr langer Punkt weiter umbrechen
+                // darf.
+                let n = items.len();
+                for (i, it) in items.iter().enumerate() {
+                    let mut ul = UnorderedList::with_bullet("·");
                     ul.push(absatz(it, grund()).padded(Margins::trbl(0, 0, 1, 0)));
+                    let oben = if i == 0 { 2 } else { 0 };
+                    let unten = if i + 1 == n { 2 } else { 0 };
+                    let hoehe = (zellhoehe(fc, it, style.and(grund()), SATZBREITE - 4.0) + 1.0)
+                        .min(MITNEHMEN_MAX);
+                    ziel.push(Zusammenhalten {
+                        was: "Listenpunkt",
+                        hoehe,
+                        inhalt: ul.padded(Margins::trbl(oben, 0, unten, 2)),
+                        umbruch_offen: true,
+                    });
                 }
-                ziel.push(ul.padded(Margins::trbl(0, 0, 2, 2)));
             }
             Block::Tab(t) => ziel.push(Zeilentabelle::neu(t).padded(Margins::trbl(1, 0, 3, 0))),
             Block::Lead { werte, blocks } => {

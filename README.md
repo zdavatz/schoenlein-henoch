@@ -403,6 +403,39 @@ verstanden werden:
   Hungern wieder Kohlenhydrate isst, hält Natrium und Wasser zurück. Das ist
   die fünfte Erklärung für ihre Ödeme und die unauffälligste.
 
+
+**Am 3. September hat der Gynäkologe einen Tumor gefunden: ein
+Eierstockkarzinom.** Von den drei Möglichkeiten des Zwischenberichts –
+autoimmun, paraneoplastisch, Bauchfellkarzinose – hat sich damit die dritte
+bestätigt, und die zweite wird zur wahrscheinlichsten Erklärung der Purpura.
+Das Blatt wird nicht umbenannt; die Diagnose steht im Kasten der Ausgangslage
+und in einem eigenen Abschnitt direkt danach. Er hält drei Stufen der
+Sicherheit auseinander – Ultraschall, Zytologie mit PAX8, Gewebeprobe –, weil
+nur die dritte Typ und Grad liefert und damit die Behandlung entscheidet. Er
+zeigt, was die Diagnose rückwirkend zusammenführt: das Bauchwasser, den
+Erguss in beiden Brustfellhöhlen (Stadium IV, wenn die Zytologie des Liters
+vom 2. September bösartig ausfällt; rund 30 Prozent falsch negativ), den
+gestauten Harnleiter (7,4 Prozent der Frauen mit Eierstockkarzinom, Auflösung
+nur bei 27 Prozent), den Darmstillstand, das Gewicht, die Ödeme und die
+Purpura selbst. Und er führt die Behandlungen mit ihren Zahlen: Operation
+zuerst oder Chemotherapie zuerst (EORTC 55971 und CHORUS – nicht unterlegen,
+6 Prozent gegen unter 1 Prozent Todesfälle nach der Operation), Carboplatin
+plus Paclitaxel auch im hohen Alter (EWOC-1: Carboplatin allein war schlechter,
+Studie abgebrochen), die Calvert-Formel und die Grenze der Fachinformation
+bei einer Clearance unter 60, Bevacizumab (vier Monate, Darmperforationen
+2,6 gegen 1,2 Prozent), PARP-Hemmer als Erhaltung (Reparaturdefekt am
+Gewebe), Bestrahlung nur noch als Ausnahme – und den dritten Weg, die
+Behandlung der Beschwerden ohne Behandlung des Tumors. Zwei Dinge werden mit
+der Diagnose dringlicher: die geschwollenen Beine als Frage an den Ultraschall
+der Venen, weil das Eierstockkarzinom zu den Krebsarten mit dem höchsten
+Thromboserisiko gehört, und die Geruchsempfindlichkeit als Zeichen der
+Krankheit selbst (48 Prozent vor jeder Behandlung), nicht als Vorliebe. Die
+zehn Fragen sind ein drittes Mal geordnet; die erste lautet jetzt: Steht die
+Diagnose auf einem Bild, auf Zellen oder auf Gewebe – und ist ein geriatrisches
+Assessment gemacht? Am selben Tag hat sie Fleisch, Gemüsesuppe und Polenta
+gegessen und behalten – die Regel «Festes ist das Schwierigste» steht damit
+neben einer Beobachtung, die ihr widerspricht, und das Blatt lässt beides
+stehen.
 ## Was drinsteht
 
 Das Blatt beginnt mit der Entdeckungsgeschichte von Heberden 1801 bis zur

@@ -161,6 +161,17 @@ Endlosschleife bei einer Zeile, die auf keine Seite passt; sobald in einem
 Durchgang mindestens eine Zeile gesetzt wurde, wird er wieder scharf
 gestellt.
 
+**Ein Aufzählungspunkt darf nicht allein am Seitenfuss stehen.** genpdfs
+`UnorderedList` zeichnet das Zeichen «·», bevor es weiss, ob die erste Zeile
+des Punktes noch auf die Seite passt – am 3. September 2026 stand so ein
+einzelner Punkt am Fuss von Seite 5, der Text begann auf Seite 6. Seit dann
+setzt `baue()` jeden Listenpunkt als eigene Einpunktliste in ein
+`Zusammenhalten`, mit der gemessenen Höhe des Punktes, gedeckelt auf
+`MITNEHMEN_MAX`, damit sehr lange Punkte weiter umbrechen dürfen. Die
+Ränder oben/unten trägt nur der erste bzw. letzte Punkt. Prüfen lässt sich das
+mit `pdftotext -f N -l N` je Seite: Die letzte nichtleere Zeile darf nie nur
+«·» sein.
+
 **Kästen, Überschriften und Adressen hält `Zusammenhalten` zusammen.**
 Dasselbe Prinzip: Höhe vorher schätzen, mit `area.size().height` vergleichen
 und, wenn es nicht mehr reicht, eine leere Fläche mit `has_more` zurückgeben
@@ -479,7 +490,32 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   Peritonealkarzinose. Das Blatt trägt den Namen der ersten. Richtig ist dann
   nicht, es umzubenennen oder stillschweigend weiterzuschreiben, sondern es an
   den Anfang zu stellen: Wer liest, liest die Ausarbeitung eines Zweiges,
-  während zwei andere offen danebenstehen.
+  während zwei andere offen danebenstehen. **Am 3. September 2026 ist genau das
+  eingetreten:** Der Gynäkologe fand ein Eierstockkarzinom. Das Blatt heisst
+  weiter «IgA-Vaskulitis», die Diagnose steht im Ausgangslage-Kasten und in
+  einem eigenen Abschnitt direkt danach, und die Abschnitte, die auf sie
+  zugelaufen sind («Die Zellen im Bauchwasser», «Warum der Gynäkologe»),
+  bleiben stehen mit einem datierten Nachtrag – nicht umgeschrieben. Vier
+  Dinge, die dabei zählten: (1) **Bild, Zellen oder Gewebe** – «Karzinom» aus
+  zweiter Hand kann eine Ultraschall-Annahme, eine Zytologie mit PAX8 oder
+  eine Histologie sein; nur die dritte liefert Typ, Grad und den
+  Reparaturdefekt für die Erhaltungstherapie. Das ist die erste Frage, vor
+  jeder Prognosezahl. (2) **Was die Diagnose rückwirkend zusammenführt, gehört
+  als Liste hin** – Bauchwasser, Ergüsse, Harnstau, Darmstillstand, Gewicht,
+  Ödeme, Purpura –, mit dem Satz, dass eine Erklärung, die alles erklärt,
+  besonders sorgfältig geprüft gehört. (3) **Behandlungen mit Zahlen, nicht
+  mit Namen**, und jede an ihrer Bedingung gemessen: Carboplatin an der GFR
+  (Calvert, Grenze <60), Bevacizumab am Darm (Perforation), PARP-Hemmer am
+  Hämoglobin (Anämie 31 %), Operation an Alter und Wasser (CHORUS: 6 % gegen
+  <1 % Tote nach 28 Tagen). Und der dritte Weg – Beschwerden behandeln ohne
+  den Tumor – steht gleichberechtigt da, weil sie entscheidet, nicht das
+  Blatt. (4) **Prognosezahlen sofort einschränken**, im selben Absatz: Sie
+  stammen aus jüngeren, behandelten Gruppen und sagen etwas über die
+  Krankheit, nichts über ihren Verlauf. Und zwei Symptome, die mit einer
+  Krebsdiagnose die Klasse wechseln: geschwollene Beine werden zur
+  Thrombosefrage (Eierstockkarzinom gehört zu den drei Krebsarten mit dem
+  höchsten VTE-Risiko), Geruchsempfindlichkeit wird zum Krankheitszeichen
+  (48 % vor jeder Behandlung) statt zur Vorliebe.
 - **Den Interaktionscheck nie auf einem vermuteten Warenkorb stehen lassen.**
   Der Lauf vom 29. August rechnete mit Novalgin, Aspirin und zwei
   Abführmitteln; von alldem stand auf der tatsächlichen Liste nur Pantoprazol.
