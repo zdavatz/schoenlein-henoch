@@ -104,10 +104,18 @@ verstanden werden:
   und gehört damit auf die Liste der Erklärungen für den fallenden
   Hämoglobinwert. Es kann ausserdem den Kreatininwert im Labor verfälschen
   und den Urin harmlos rot färben.
-- **Die Infusion füllt das Blutvolumen wieder auf** – richtig bei einer
-  Patientin, die kaum trinkt. Sie verdünnt aber auch: Der gemessene
-  Hämoglobinwert kann danach weiter fallen, ohne dass zusätzlich Blut
-  verloren geht.
+- **Die Infusion füllt das Blutvolumen wieder auf** – richtig gewesen bei
+  einer Patientin, die ausgetrocknet war, nicht trank und alles erbrach.
+  Sie verdünnt aber auch: Der gemessene Hämoglobinwert kann danach weiter
+  fallen, ohne dass zusätzlich Blut verloren geht. **Inzwischen trinkt sie
+  zuverlässig, und damit ist aus derselben Massnahme eine andere Rechnung
+  geworden:** 1500 ml Kochsalzlösung sind 1,5 Liter und gut 13 g Kochsalz
+  täglich in ein Kompartiment, das schon acht Liter zu viel hat. Die
+  Zufuhr zu drosseln ist der einzige Hebel gegen das Ödemwasser, der keine
+  Diagnose voraussetzt, sofort wirkt und sich zurücknehmen lässt –
+  vorbehältlich zweier Dinge, die nur die Station kennt: ob über denselben
+  Zugang Medikamente laufen, und ob sie trotz der Ödeme im Gefäss zu wenig
+  Volumen hat. Bei tiefem Albumin ist beides gleichzeitig möglich.
 - **Für eine 84-jährige Frau gibt es keinen passgenauen Fallbericht.** Die
   belegten Fälle reichen von 80 bis 97 Jahren, alle als Einzelfälle. Der
   93-jährige Fall bezeichnet sich selbst als den ältesten bekannten – ein
