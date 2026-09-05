@@ -436,6 +436,19 @@ Assessment gemacht? Am selben Tag hat sie Fleisch, Gemüsesuppe und Polenta
 gegessen und behalten – die Regel «Festes ist das Schwierigste» steht damit
 neben einer Beobachtung, die ihr widerspricht, und das Blatt lässt beides
 stehen.
+
+**Am 5. September ist die Diagnose bestätigt** – auf welcher Stufe, bleibt
+die Frage. Vom Dispenser abgelesen sind Kaliumchlorid retard und Magnesium
+neu, die Infusion ist jetzt Ringer-Acetat statt Kochsalz. Kalium und
+Magnesium sind die richtige Nachricht, weil sie die zwei Werte sind, die
+das Blatt seit dem Kostaufbau erfragt – aber beide Fachinformationen tragen
+bei einer GFR von 30 eine Gegenanzeige an der Grenze (Magnesium: GFR unter
+30; Kalium retard: schwere Niereninsuffizienz mit Oligurie, verzögerte
+Magen-Darm-Passage), der Interaktionscheck gibt Kaliumchlorid mit einem
+ACE-Hemmer die EPha-Klasse C, und die Fachinformation der Ringer-Lösung
+nennt als erste Gegenanzeige «Ödeme». Daraus wird eine einzige Frage: Wie
+hoch sind Kalium, Magnesium und Kreatinin heute, und wer schaut morgen
+wieder?
 ## Was drinsteht
 
 Das Blatt beginnt mit der Entdeckungsgeschichte von Heberden 1801 bis zur

@@ -360,6 +360,29 @@ nächste Seite, als sich zerreissen zu lassen. Das ist gewollt.
   da ist, und sie sind die ergiebigsten Stellen im ganzen Verlauf: Dahinter
   steckt regelmässig ein Befund, den niemand erwähnt hat. Nicht die Zuordnung
   übernehmen, sondern fragen, was gemessen wurde.
+- **Der Dispenser ist die frischeste Medikamentenliste, die es gibt – und
+  eine Nummer landet nicht immer auf dem richtigen Dokument.** Am
+  5. September 2026 kamen Fotos vom Dispenser und vom Nachttisch: Kalium
+  retard, Magnesiocard, Ringer-Acetat. Das ist der Stand von heute, während
+  die Verordnungsliste eine Woche alt ist – ins Blatt kommt ausschliesslich
+  der Sachverhalt, nie das Etikett mit Name, Geburtsdatum, Adresse und
+  Fallnummer. Zwei Fallen dabei: (1) **Zwei der fünf Fotos zeigten die
+  Kurve eines anderen Patienten** (aktiver Reiter im KIS, der ihre lag
+  daneben) – nichts davon übernehmen, den Absender darauf hinweisen, dass
+  die Bilder fremde Patientendaten enthalten und gelöscht gehören. Ein
+  Bildschirmfoto ist erst dann eine Quelle, wenn der Name im Reiter zur
+  Patientin passt. (2) **Die Swissmedic-Nummer der Retardtablette landet auf
+  ch.oddb.org auf der Brausetablette** (36360 → «Kalium Hausmann,
+  Brausetabletten»), und dort fehlt genau der Satz, der zählt («verzögerte
+  oder verhinderte Magen-Darm-Passage»). Zitiert wird deshalb das zweite
+  Schweizer Retard-Präparat (Plus Kalium retard, 29138), dessen Kapitel den
+  Satz trägt – und das im Blatt so benannt: «die Fachinformation eines
+  Schweizer Retard-Präparats». Wenn das Präparat im Dispenser (Viatris) in
+  der AmiKo-Datenbank gar nicht steht, ist das eine Aussage über die
+  Datenbank, nicht über das Präparat. Und die Regel zur Nierenfunktion als
+  Filter gilt auch für Substitutionen: Kalium und Magnesium sind bei einer
+  GFR von 30 richtig *und* an der Grenze – die Antwort ist die Zahl von
+  heute, nicht das Rezept.
 - **Die Farbe ist eine Ortsangabe.** Erbrochenes und Stuhl melden über die
   Farbe, aus welcher Höhe sie kommen: schwarz oben heisst Blut in der Säure,
   gelb heisst Galle und damit Inhalt von unterhalb der Einmündung des
